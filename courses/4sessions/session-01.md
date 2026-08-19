@@ -207,7 +207,7 @@ diff を確認して Accept。
 cart.js に applyCoupon(code) を追加して。
 - SUMMER10 のとき getSubtotal の 10% 引きを返す
 - 無効なコードのとき getSubtotal をそのまま返す
-- calculator.js の applyDiscount を使ってよい
+- calculator.js の applyDiscount を使ってよい（前半②を見ていない／Reject した人は、未実装なので先に実装させること）
 - 新規ファイルは作らない
 ```
 
@@ -227,6 +227,20 @@ cart.js に applyCoupon(code) を追加して。
 1. **Ask で確認してから Agent で依頼する**（いきなり変えない）
 2. **`@` で対象を明示する**（曖昧な依頼は曖昧な結果になる）
 3. **diff を読んでから Accept**（Cursor を信頼しすぎない）
+
+### 提出（30秒・全員）
+
+Accept した diff のスクリーンショットを1枚だけ、チャットか共有フォルダに貼ってもらう。
+
+> 「上手くできていなくて大丈夫です。1サイクル回したことが分かればそれで十分です。」
+
+講師はこれで「誰が1サイクル回せたか」を巡回なしで把握できる。第2回の入り方を決める材料にする。
+
+### 一言だけ注意（30秒）
+
+> 「今日は学習用のリポジトリなので何をしても大丈夫です。ただし**業務のリポジトリで同じことをするときは、API キーや顧客データを Agent に読ませない**よう気をつけてください。」
+
+詳しくは [`courses/fundamentals/13-safety-ignore.md`](../fundamentals/13-safety-ignore.md)。今日はこの一言だけでよい。
 
 ### やらなかったこと（次回以降）
 
