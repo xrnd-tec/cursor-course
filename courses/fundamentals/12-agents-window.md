@@ -10,7 +10,9 @@
 | **`/multitask`** | キュー待ちではなく並列サブエージェントで進める |
 | **Worktrees** | 別ブランチ用の作業ツリーで、ファイル衝突を減らす |
 
-開き方は環境によって差があります。コマンドパレットで **Agents Window** / **Open Agents Window** を探すのが確実です（macOS では `Cmd + Shift + A` のこともあります）。
+開き方は環境によって差があります。`Cmd + Shift + P` のコマンドパレットで **Agents Window** / **Open Agents Window** を探すのが確実です。
+
+> `Cmd + Shift + A` は Cursor 3.16 では**行コメントの切り替え**などに割り当たっており、Agents Window ではありません。
 
 ## いつ使うか
 
@@ -23,7 +25,7 @@
 Ask:
 
 ```text
-@docs/01-modes.md
+@courses/fundamentals/01-modes.md
 Multitask と worktree を併用すると良い例・やめた方がいい例を
 それぞれ1つずつ挙げて。
 ```

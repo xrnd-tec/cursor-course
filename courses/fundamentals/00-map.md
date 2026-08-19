@@ -21,7 +21,7 @@ Cursor は VS Code 系のエディタに、**コードを読んで・書いて�
 
 ## 学習のゴール（このコース）
 
-### 基礎（docs/00〜05）
+### 基礎（courses/fundamentals/00〜05）
 
 - モードを使い分けられる
 - 必要なショートカットを指が覚える
@@ -29,7 +29,7 @@ Cursor は VS Code 系のエディタに、**コードを読んで・書いて�
 - Tab / Cmd+K / Agent をシーンごとに選べる
 - 「曖昧な依頼」を「実行可能な依頼」に変えられる
 
-### 発展（docs/06〜13）
+### 発展（courses/fundamentals/06〜13）
 
 - Rules / Skills / Hooks の役割分担が言える
 - MCP・Cloud Agents・PR レビューの位置づけが分かる

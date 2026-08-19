@@ -32,7 +32,7 @@
 Ask:
 
 ```text
-現在の practice/ と docs/ の変更を想定して、
+現在の practice/ と courses/ の変更を想定して、
 小さな学習用 PR のタイトル案と Test plan（チェックリスト3項目）を書いて。
 まだ push / PR 作成はしないで。
 ```

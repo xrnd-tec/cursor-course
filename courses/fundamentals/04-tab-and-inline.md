@@ -53,7 +53,7 @@
 
 1. `practice/greeter.js` を開き、新しい関数名だけ打つ（例: `function farewell`）
 2. Tab 提案が出たら、まず `Cmd + →` で一部だけ採用してみる
-3. `formatName` 関数全体を選択 → `Cmd + K` → `ガード節で空文字を弾くようにして`
+3. `formatName` 関数全体を選択 → `Cmd + K` → `null や undefined を渡すと文字列 "null" が返ってしまう。空文字を返すように直して`
 4. 同じ変更を **Ask で手順説明 → Agent で実装** でもう一度やり、差分の出方の違いを感じる
 
 次: [05-prompting.md](05-prompting.md)

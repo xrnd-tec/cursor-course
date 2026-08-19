@@ -53,7 +53,8 @@ Ask モード:
 
 ```text
 @practice/cart.js
-getSubtotal が空カートで 0 を返すようにして。ついでに JSDoc を1つ追加
+getSubtotal が price や qty の欠けたアイテムを無視するようにして。
+空カートが 0 を返す今の挙動は変えないで。ついでに JSDoc を1つ追加
 ```
 
 次: [04-tab-and-inline.md](04-tab-and-inline.md)
