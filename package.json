@@ -1,0 +1,6 @@
+{
+  "name": "cursor-course",
+  "private": true,
+  "type": "module",
+  "description": "Cursor 基礎学習ワークスペース（practice/ を ESM として実行するための最小設定）"
+}

@@ -9,4 +9,5 @@
 | `cart.js` | `@` 参照、バグっぽい TODO |
 | `index.js` | 総合実習のエントリ |
 
-ESM で書いてあります。実行するときはプロジェクトに合わせて、または Agent に「動く形に整えて」と頼んでください。
+ESM です（リポジトリ直下の `package.json` に `"type": "module"` があります）。
+`node practice/index.js` でそのまま実行できます。

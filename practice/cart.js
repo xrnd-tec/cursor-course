@@ -17,6 +17,6 @@ export function listItems() {
 }
 
 export function getSubtotal() {
-  // TODO: 空カートや欠落フィールドにも耐えるように直してみよう
+  // TODO: price や qty が欠けたアイテムがあると NaN になる。耐えるように直してみよう
   return items.reduce((sum, item) => sum + item.price * item.qty, 0);
 }

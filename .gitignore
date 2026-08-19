@@ -28,3 +28,8 @@ npm-debug.log*
 # Local Cursor noise (project rules/skills はコミットする想定)
 .cursor/mcp.json
 .cursor/**/cache/
+
+# 受講者の演習成果物（教材リポジトリを汚さない）
+session02/
+session02-spec/
+team-app/
