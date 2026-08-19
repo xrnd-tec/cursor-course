@@ -20,7 +20,7 @@
 3. 各レッスン末尾の **実習** を `practice/` でやってみる
 4. わからない操作が出たら、そのままここに質問する
 
-基礎（0〜5）が終わったら発展編（6〜13）へ。
+基礎（0〜5）は上から順に。発展（6〜13）は**逆引きのリファレンス**なので、必要になった章だけ引けば十分です。
 
 ### 実践コース（90分 × 4回）を運営する場合
 
@@ -39,18 +39,20 @@
 | 4 | [courses/fundamentals/04-tab-and-inline.md](courses/fundamentals/04-tab-and-inline.md) | Tab 補完とインライン編集 | 15分 |
 | 5 | [courses/fundamentals/05-prompting.md](courses/fundamentals/05-prompting.md) | うまく頼む言い方 | 10分 |
 
-### 発展
+### 発展（逆引き）
 
-| # | ファイル | 内容 | 目安 |
-|---|----------|------|------|
-| 6 | [courses/fundamentals/06-rules.md](courses/fundamentals/06-rules.md) | Project Rules | 15分 |
-| 7 | [courses/fundamentals/07-skills.md](courses/fundamentals/07-skills.md) | Skills | 15分 |
-| 8 | [courses/fundamentals/08-hooks.md](courses/fundamentals/08-hooks.md) | Hooks | 15分 |
-| 9 | [courses/fundamentals/09-mcp.md](courses/fundamentals/09-mcp.md) | MCP | 10分 |
-| 10 | [courses/fundamentals/10-cloud-agents.md](courses/fundamentals/10-cloud-agents.md) | Cloud Agents | 10分 |
-| 11 | [courses/fundamentals/11-bugbot-pr.md](courses/fundamentals/11-bugbot-pr.md) | Bugbot / PR レビュー | 10分 |
-| 12 | [courses/fundamentals/12-agents-window.md](courses/fundamentals/12-agents-window.md) | Agents Window / Worktrees | 10分 |
-| 13 | [courses/fundamentals/13-safety-ignore.md](courses/fundamentals/13-safety-ignore.md) | 秘密情報・ignore | 10分 |
+順番に読む必要はありません。**必要になったときに引いてください。**
+
+| こうしたくなったら | 読む章 |
+|--------------------|--------|
+| 毎回同じ指示を書くのが面倒 | [6. Project Rules](courses/fundamentals/06-rules.md) |
+| 決まった手順を AI に覚えさせたい | [7. Skills](courses/fundamentals/07-skills.md) |
+| 危ないコマンドを自動で止めたい | [8. Hooks](courses/fundamentals/08-hooks.md) |
+| Issue や DB など外部ツールと繋ぎたい | [9. MCP](courses/fundamentals/09-mcp.md) |
+| 離席中に重い作業を進めたい | [10. Cloud Agents](courses/fundamentals/10-cloud-agents.md) |
+| PR のレビューを自動化したい | [11. Bugbot / PR レビュー](courses/fundamentals/11-bugbot-pr.md) |
+| 複数のエージェントを同時に走らせたい | [12. Agents Window / Worktrees](courses/fundamentals/12-agents-window.md) |
+| 秘密情報を読ませたくない | [13. 秘密情報・ignore](courses/fundamentals/13-safety-ignore.md) |
 
 ### 手を動かす場所
 
