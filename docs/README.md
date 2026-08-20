@@ -5,3 +5,4 @@
 | ファイル | 内容 |
 |----------|------|
 | [tasks.md](tasks.md) | 教材制作タスク一覧（Epic / User Story / Task） |
+| [screenshots.md](screenshots.md) | 授業スライド用スクリーンショットの撮影台本 |
