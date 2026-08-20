@@ -83,6 +83,7 @@ practice/calculator.js に「割引率を適用する関数」を追加して。
 - **正本は GitHub**（このリポジトリ）。下書き用の Notion 等は補助にとどめる
 - **`main` は実習できる初期状態**を保つ（例: `applyDiscount` は未実装のまま）
 - Cursor の UI / 機能が変わったら **該当する `courses/fundamentals/` の章だけ**直し、公式リンクを合わせて確認する
+- **個別のモデル名・世代は教材に書かない**（Grok / GPT / Claude の版は数ヶ月で入れ替わり、書いた時点で陳腐化する）。書くのは「Auto = Cursor Router が自動選択している」という**仕組み**まで
 - 追従作業は Issue で残す（例ラベル想定: `cursor-update` / `docs` / `practice-break`）
 - リリース前の受け入れ: README の「今すぐ試す」がそのまま通ること
 - 長い完成形の答えは `practice/` に混ぜず、必要なら別ディレクトリやブランチへ
