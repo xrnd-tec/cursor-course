@@ -11,7 +11,7 @@
 
 | 回 | ファイル | テーマ |
 |----|----------|--------|
-| 第1回 | [session-01.md](session-01.md) | 基本操作（Ask → Agent → diff → Accept） |
+| 第1回 | [session-01.md](session-01.md) | 基本操作（Ask → Agent → diff → Keep） |
 | 第2回 | [session-02.md](session-02.md) | バイブコーディング → 仕様駆動（神経衰弱） |
 | 第3回 | [session-03.md](session-03.md) | チーム開発演習・前半（テーマ決め / 仕様 / PR） |
 | 第4回 | [session-04.md](session-04.md) | 仕上げ＋発表 |
@@ -63,7 +63,7 @@ Cursor のモード・`@`・Tab / Cmd+K / Agent を使い分け、小さな改�
 - 全体像（Tab / Cmd+K / Agent の使い分け）
 - モード切替（Ask / Agent / Plan の最低限）
 - `@` でファイル・フォルダを渡す
-- Agent で差分を見て Accept / Reject
+- Agent で差分を見て Keep / Undo
 - 参照: `courses/fundamentals/00-map.md` 〜 `05-prompting.md`（全部読ませない。必要な箇所だけ）
 
 ### 後半（課題実践）
@@ -75,7 +75,7 @@ Cursor のモード・`@`・Tab / Cmd+K / Agent を使い分け、小さな改�
 
 - [ ] Ask と Agent を切り替えて依頼できる
 - [ ] `@` で意図したファイルを渡せる
-- [ ] Agent の差分を確認し、Accept / Reject できる
+- [ ] Agent の差分を確認し、Keep / Undo できる
 - [ ] `practice/` の課題を1つ以上完了した
 
 ### やらないこと
