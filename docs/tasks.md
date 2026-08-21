@@ -176,7 +176,7 @@ Epic > User Story > Task の 3 層。ID は `CUR-EEUU-TTT`（EE=Epic, UU=User St
 
 #### CUR-0402-004 | 授業スライド用のスクリーンショットを撮る
 
-撮影台本は [`screenshots.md`](screenshots.md)。第1回16枚・第2回6枚。
+撮影台本は [`screenshots.md`](screenshots.md)。第1回16枚・第2回7枚。
 
 **完了の定義:**
 - [x] 撮影台本（撮影順・狙い・作り方・注意）を作成した
@@ -186,7 +186,7 @@ Epic > User Story > Task の 3 層。ID は `CUR-EEUU-TTT`（EE=Epic, UU=User St
 - [ ] `s01-14`（Review 画面）を撮り直す。現状は `s01-12` とほぼ同一
 - [ ] `s01-07` / `s01-09` / `s01-10` を入力欄まわりで切り出す（比較用）
 - [ ] ステータスバーの git blame 表示の扱いを決める（消す / トリミング / そのまま）
-- [ ] 第2回の6枚を撮った
+- [ ] 第2回の7枚を撮った
 
 #### CUR-0402-002 | 第2回の配布物・置き場を決める
 
