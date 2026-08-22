@@ -30,7 +30,7 @@ Agents Window を開く価値があるのは、次のどちらかに当てはま
 
 「新しい画面があるから使わなければ」と考える必要はありません。
 
-> `Cmd + Shift + A` は Cursor 3.16 では**行コメントの切り替え**などに割り当たっており、Agents Window ではありません。
+> `Ctrl+Shift+A`（Mac は `Cmd+Shift+A`）は Cursor 3.16 では**行コメントの切り替え**などに割り当たっており、Agents Window ではありません。
 
 ## Worktrees
 

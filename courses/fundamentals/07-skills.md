@@ -47,7 +47,7 @@ Agent は **description を見て**「この会話にこの Skill を使うか�
 |--------|----------|------|
 | **自動** | 必要と判断されたとき | 何もしない。Agent が description を見て決める |
 | **スラッシュ** | **そのメッセージ1回だけ** | 入力欄で `/` → Skill 名を選ぶ |
-| **Custom Mode** | **セッション全体** | Skill を選んで `Option + Enter`（Windows は `Alt + Enter`）、または **Use as Mode** |
+| **Custom Mode** | **セッション全体** | Skill を選んで `Alt+Enter`（Mac は `Option+Enter`）、または **Use as Mode** |
 
 Custom Mode にすると入力欄にバッジが出て、会話の間ずっとその手順が効きます。「今日はこの規約でレビューし続けてほしい」というときはこれです（→ [01-modes.md](01-modes.md)）。
 

@@ -16,7 +16,7 @@
 | `@Commit` / `@Branch` | 未コミット差分や main との差分 |
 | `@Browser` | 組み込みブラウザの文脈（→ [16-browser-design.md](16-browser-design.md)） |
 
-画像も使えます: スクショを `Cmd + V`、またはドラッグ&ドロップ。
+画像も使えます: スクショを `Ctrl+V`（Mac は `Cmd+V`）、またはドラッグ&ドロップ。
 
 ## 良い例 / 弱い例
 
