@@ -14,7 +14,7 @@
 | `@Terminals` | エラー出力や実行結果を見せる |
 | `@Past Chats` | 以前の会話の続き |
 | `@Commit` / `@Branch` | 未コミット差分や main との差分 |
-| `@Browser` | 組み込みブラウザの文脈 |
+| `@Browser` | 組み込みブラウザの文脈（→ [16-browser-design.md](16-browser-design.md)） |
 
 画像も使えます: スクショを `Cmd + V`、またはドラッグ&ドロップ。
 

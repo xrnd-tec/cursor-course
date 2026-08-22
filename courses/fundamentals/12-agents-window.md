@@ -8,6 +8,8 @@
 
 開き方は環境によって差があります。`Cmd + Shift + P` のコマンドパレットで **Agents Window** / **Open Agents Window** を探すのが確実です。
 
+この画面には**ブラウザ**も載っていて、動いているアプリを Agent に見せながら直させられます。UI を画面上で指して直させる **Design Mode** もここです（→ [16-browser-design.md](16-browser-design.md)）。
+
 > `Cmd + Shift + A` は Cursor 3.16 では**行コメントの切り替え**などに割り当たっており、Agents Window ではありません。
 
 ## Worktrees

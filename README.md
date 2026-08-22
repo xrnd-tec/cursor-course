@@ -52,7 +52,12 @@
 | 離席中に重い作業を進めたい | [10. Cloud Agents](courses/fundamentals/10-cloud-agents.md) |
 | PR のレビューを自動化したい | [11. Bugbot / PR レビュー](courses/fundamentals/11-bugbot-pr.md) |
 | 複数のエージェントを同時に走らせたい | [12. Agents Window / Worktrees](courses/fundamentals/12-agents-window.md) |
-| 秘密情報を読ませたくない | [13. 秘密情報・ignore](courses/fundamentals/13-safety-ignore.md) |
+| 秘密情報を読ませたくない | [13. 秘密情報・実行制限](courses/fundamentals/13-safety-ignore.md) |
+| 調査や検証を別のエージェントに任せたい | [14. Subagents](courses/fundamentals/14-subagents.md) |
+| チーム全員に同じ設定一式を配りたい | [15. Plugins](courses/fundamentals/15-plugins.md) |
+| 画面を指して UI を直させたい | [16. ブラウザと Design Mode](courses/fundamentals/16-browser-design.md) |
+| CI やスクリプトから動かしたい | [17. CLI](courses/fundamentals/17-cli.md) |
+| Slack や Issue から動かしたい | [18. 外部サービス連携](courses/fundamentals/18-integrations.md) |
 
 ### 手を動かす場所
 

@@ -35,7 +35,7 @@
 
 - **タスクが変わったら新規チャット**（古い前提が邪魔になりにくい）
 - 長くなったらコンテキストリングを見て、必要なら新規に要約を渡して再開
-- 実装中に方針変更したくなったら Stop → 短い訂正メッセージ
+- 実装中に方針変更したくなったら、**止めずにそのまま送る**（次の区切りで反映される → [01-modes.md](01-modes.md) の steering）
 
 ## 総合実習（このフォルダで）
 
@@ -64,4 +64,4 @@ practice/ を使って「ミニ買い物デモ」を完成させて。
 
 基礎はここまで。発展編へ:
 
-次: [06-rules.md](06-rules.md)（Rules → Skills → Hooks → MCP → Cloud → PR → 並列 → 安全運用）
+次: [06-rules.md](06-rules.md)（Rules → Skills → Hooks → MCP → Cloud → PR → 並列 → 安全運用 → Subagents → Plugins → Design Mode → CLI → 外部連携）

@@ -6,8 +6,10 @@ Skill は「この種の作業をするときの手順」をまとめたパッ�
 
 | 種類 | パス | スコープ |
 |------|------|----------|
-| プロジェクト | `.cursor/skills/<名前>/SKILL.md` | このリポジトリ |
-| 個人 | `~/.cursor/skills/<名前>/SKILL.md` | 自分の全プロジェクト |
+| プロジェクト | `.cursor/skills/<名前>/SKILL.md` または `.agents/skills/<名前>/SKILL.md` | このリポジトリ |
+| 個人 | `~/.cursor/skills/<名前>/SKILL.md` または `~/.agents/skills/<名前>/SKILL.md` | 自分の全プロジェクト |
+
+`.claude/skills/` も互換で読み込まれるので、他ツール向けに書いた資産をそのまま置けます。サブフォルダで分類しても認識されます。
 
 > Cursor 本体の内蔵スキルは `~/.cursor/skills-cursor/` にあります。**触らない・上書きしない。**
 
@@ -32,10 +34,22 @@ description: practice/ のカート実装を確認し、責務と不足を短く
 4. コード変更はユーザーが求めたときだけ
 ```
 
+フロントマターの必須項目は **`name` と `description` の2つだけ**です。`name` は小文字・数字・ハイフンのみで、**親フォルダ名と一致させます**。
+
 ## description が重要
 
 Agent は **description を見て**「この会話にこの Skill を使うか」を判断します。  
 「何のとき使うか」を description に書いておくのがコツです。
+
+## 3つの呼び出し方
+
+| 呼び方 | 効く範囲 | 操作 |
+|--------|----------|------|
+| **自動** | 必要と判断されたとき | 何もしない。Agent が description を見て決める |
+| **スラッシュ** | **そのメッセージ1回だけ** | 入力欄で `/` → Skill 名を選ぶ |
+| **Custom Mode** | **セッション全体** | Skill を選んで `Option + Enter`（Windows は `Alt + Enter`）、または **Use as Mode** |
+
+Custom Mode にすると入力欄にバッジが出て、会話の間ずっとその手順が効きます。「今日はこの規約でレビューし続けてほしい」というときはこれです（→ [01-modes.md](01-modes.md)）。
 
 ## Rules との使い分け
 
