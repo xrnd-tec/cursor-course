@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>practice — ミニ買い物カート</title>
+    <style>
+      /* deck-creator のテーマに合わせた配色
+         背景 #F7F7F8 ／ 文字 #14161A ／ メイン #282882（濃紺）／ 差し色 #F35A29 */
+      :root {
+        color-scheme: light; /* デッキに合わせて白ベース固定 */
+        --bg: #f7f7f8;
+        --surface: #ffffff;
+        --fg: #14161a;
+        --muted: #666b75;
+        --faint: #a5a9b3;
+        --line: #e4e5e9;
+        --accent: #282882;
+        --accent-soft: #eeeef8;
+        --accent-line: #c3c5ee;
+        --ng: #f35a29;
+        --ng-soft: #fdefe9;
+        --ok: #282882;
+        --ok-soft: #eeeef8;
+        --shadow: 0 1px 2px rgba(20, 22, 26, 0.04), 0 10px 28px -16px rgba(40, 40, 130, 0.2);
+      }
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        padding: clamp(32px, 7vw, 72px) 20px 96px;
+        background:
+          radial-gradient(1200px 400px at 50% -200px, var(--accent-soft), transparent 70%),
+          var(--bg);
+        color: var(--fg);
+        font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, -apple-system, sans-serif;
+        line-height: 1.75;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      main { max-width: 640px; margin: 0 auto; }
+
+      /* ── ヘッダー ───────────────────────────────── */
+      .eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 3px;
+        background: var(--ng);
+      }
+      h1 {
+        font-size: clamp(28px, 5vw, 38px);
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        margin: 0 0 12px;
+        font-weight: 700;
+      }
+      .lead {
+        color: var(--muted);
+        margin: 0 0 clamp(32px, 6vw, 52px);
+        font-size: 14px;
+        max-width: 46ch;
+      }
+
+      /* ── カード ─────────────────────────────────── */
+      section {
+        position: relative;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 26px 26px 24px;
+        margin-bottom: 18px;
+        box-shadow: var(--shadow);
+        transition: border-color 0.2s ease;
+      }
+      section:hover { border-color: var(--accent-line); }
+
+      .head {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .badge {
+        flex: none;
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        background: var(--accent-soft);
+        border: 1px solid var(--accent-line);
+        color: var(--accent);
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        transform: translateY(2px);
+      }
+      h2 {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin: 0;
+      }
+      .src {
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+        font-size: 11.5px;
+        color: var(--faint);
+        margin-left: auto;
+        white-space: nowrap;
+      }
+
+      /* ── 表 ─────────────────────────────────────── */
+      table { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
+      th, td {
+        text-align: left;
+        padding: 9px 2px;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+      }
+      thead th {
+        color: var(--faint);
+        font-weight: 600;
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-bottom-color: var(--line);
+        padding-bottom: 6px;
+      }
+      tbody tr:last-child td { border-bottom: none; }
+      td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+      td.missing { color: var(--ng); }
+
+      /* ── 数値の結果 ─────────────────────────────── */
+      .readout {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding-top: 4px;
+      }
+      .readout .label {
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+      }
+      .result {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+        transition: color 0.2s ease;
+      }
+      .result.bad { color: var(--ng); }
+      .result.good { color: var(--ok); }
+
+      /* ── 状態の注記 ─────────────────────────────── */
+      .note {
+        display: none;
+        align-items: flex-start;
+        gap: 8px;
+        margin: 16px 0 0;
+        padding: 10px 12px;
+        border-radius: 9px;
+        font-size: 12.5px;
+        line-height: 1.6;
+      }
+      .note.show { display: flex; }
+      .note.bad { background: var(--ng-soft); color: var(--ng); }
+      .note.good { background: var(--ok-soft); color: var(--ok); }
+      .note::before {
+        content: "";
+        flex: none;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        margin-top: 8px;
+      }
+
+      /* ── 入力 ───────────────────────────────────── */
+      .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+      .row .sep { color: var(--muted); font-size: 13px; }
+      input {
+        font: inherit;
+        font-size: 14px;
+        font-variant-numeric: tabular-nums;
+        padding: 7px 11px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--bg);
+        color: var(--fg);
+        width: 96px;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+      }
+      button {
+        font: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 7px 16px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #ffffff;
+        cursor: pointer;
+        transition: opacity 0.15s ease, transform 0.05s ease;
+      }
+      button:hover { opacity: 0.85; }
+      button:active { transform: translateY(1px); }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+        font-size: 12.5px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 1px 6px;
+      }
+
+      footer {
+        margin-top: 32px;
+        font-size: 12px;
+        color: var(--faint);
+        text-align: center;
+      }
+
+      @media (max-width: 480px) {
+        .src { display: none; }
+        section { padding: 22px 18px 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">practice</p>
+      <h1 id="greeting">…</h1>
+      <p class="lead">
+        このページは <code>practice/</code> の JS をそのまま動かしています。コードを直して保存したら、ブラウザを再読み込みしてください。
+      </p>
+
+      <section>
+        <div class="head">
+          <span class="badge">1</span>
+          <h2>割引を計算する</h2>
+          <span class="src">calculator.js — applyDiscount()</span>
+        </div>
+        <div class="row">
+          <input id="amount" type="number" value="1000" />
+          <span class="sep">円の</span>
+          <input id="percent" type="number" value="10" />
+          <span class="sep">％引き</span>
+        </div>
+        <div class="readout">
+          <span class="label">割引後</span>
+          <span id="discounted" class="result">…</span>
+        </div>
+        <p class="note" id="discountNote"></p>
+      </section>
+
+      <section>
+        <div class="head">
+          <span class="badge">2</span>
+          <h2>カートの小計</h2>
+          <span class="src">cart.js — getSubtotal()</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>商品</th>
+              <th class="num">単価</th>
+              <th class="num">個数</th>
+            </tr>
+          </thead>
+          <tbody id="items"></tbody>
+        </table>
+        <div class="readout">
+          <span class="label">小計</span>
+          <span id="subtotal" class="result">…</span>
+        </div>
+        <p class="note" id="subtotalNote"></p>
+      </section>
+
+      <section>
+        <div class="head">
+          <span class="badge">3</span>
+          <h2>クーポンを使う</h2>
+          <span class="src">cart.js — applyCoupon()</span>
+        </div>
+        <div class="row">
+          <input id="code" type="text" value="SUMMER10" style="width: 140px" />
+          <button id="applyCouponBtn">適用する</button>
+        </div>
+        <div class="readout">
+          <span class="label">適用後</span>
+          <span id="couponResult" class="result">…</span>
+        </div>
+        <p class="note" id="couponNote"></p>
+      </section>
+
+      <footer>Cursor 実践コース — practice/</footer>
+    </main>
+
+    <script type="module">
+      import { greet } from "./greeter.js";
+      import { applyDiscount } from "./calculator.js";
+      import * as cart from "./cart.js";
+
+      const $ = (id) => document.getElementById(id);
+      const yen = (n) => `${n.toLocaleString("ja-JP")} 円`;
+
+      function setNote(el, text, kind) {
+        el.textContent = text ?? "";
+        el.className = text ? `note show ${kind}` : "note";
+      }
+
+      // 挨拶（greeter.js）
+      $("greeting").textContent = greet("ゲスト");
+
+      // ── ① 割引 ──────────────────────────────────────────────
+      function renderDiscount() {
+        const amount = Number($("amount").value);
+        const percent = Number($("percent").value);
+        const result = applyDiscount(amount, percent);
+        const el = $("discounted");
+
+        el.textContent = Number.isFinite(result) ? yen(result) : String(result);
+
+        if (result === amount && percent !== 0) {
+          el.className = "result bad";
+          setNote($("discountNote"), "割引されていません。applyDiscount() がまだ実装されていないためです。", "bad");
+        } else {
+          el.className = "result good";
+          setNote($("discountNote"), null);
+        }
+      }
+      $("amount").addEventListener("input", renderDiscount);
+      $("percent").addEventListener("input", renderDiscount);
+
+      // ── ② カート ────────────────────────────────────────────
+      cart.addItem("りんご", 120, 2);
+      cart.addItem("みかん", 80, 3);
+      cart.addItem("バナナ", undefined, 1); // わざと単価が欠けている
+
+      function renderCart() {
+        $("items").innerHTML = cart
+          .listItems()
+          .map(
+            (item) => `<tr>
+              <td>${item.name}</td>
+              <td class="num${item.price === undefined ? " missing" : ""}">${
+                item.price === undefined ? "未設定" : item.price
+              }</td>
+              <td class="num">${item.qty}</td>
+            </tr>`
+          )
+          .join("");
+
+        const subtotal = cart.getSubtotal();
+        const el = $("subtotal");
+        el.textContent = Number.isFinite(subtotal) ? yen(subtotal) : String(subtotal);
+
+        if (!Number.isFinite(subtotal)) {
+          el.className = "result bad";
+          setNote($("subtotalNote"), "単価が入っていない商品があると、小計が計算できません（バナナの単価が「未設定」です）。", "bad");
+        } else {
+          el.className = "result good";
+          setNote($("subtotalNote"), null);
+        }
+      }
+
+      // ── ③ クーポン ──────────────────────────────────────────
+      function renderCoupon() {
+        const el = $("couponResult");
+
+        if (typeof cart.applyCoupon !== "function") {
+          el.textContent = "未実装";
+          el.className = "result bad";
+          setNote($("couponNote"), "cart.js に applyCoupon() がありません。追加すると、ここが動きます。", "bad");
+          return;
+        }
+
+        const result = cart.applyCoupon($("code").value);
+        el.textContent = Number.isFinite(result) ? yen(result) : String(result);
+        el.className = "result good";
+        setNote($("couponNote"), null);
+      }
+      $("applyCouponBtn").addEventListener("click", renderCoupon);
+
+      renderDiscount();
+      renderCart();
+      renderCoupon();
+    </script>
+  </body>
+</html>
