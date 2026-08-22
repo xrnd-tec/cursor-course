@@ -29,6 +29,10 @@ npm-debug.log*
 .cursor/mcp.json
 .cursor/**/cache/
 
+# Claude Code のローカル設定（内輪の制作ルールを含むのでコミットしない）
+.claude/
+CLAUDE.md
+
 # 受講者の演習成果物（教材リポジトリを汚さない）
 session02/
 session02-spec/
