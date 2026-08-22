@@ -56,11 +56,11 @@
 
 ### この回のゴール
 
-Cursor のモード・`@`・Tab / Cmd+K / Agent を使い分け、小さな改修を自分で完了できる。
+Cursor のモード・`@`・Tab / Ctrl+K / Agent を使い分け、小さな改修を自分で完了できる。
 
 ### 前半（一緒に手を動かす）
 
-- 全体像（Tab / Cmd+K / Agent の使い分け）
+- 全体像（Tab / Ctrl+K / Agent の使い分け）
 - モード切替（Ask / Agent / Plan の最低限）
 - `@` でファイル・フォルダを渡す
 - Agent で差分を見て Keep / Undo
