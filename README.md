@@ -1,98 +1,54 @@
-# Cursor 基礎学習ワークスペース
+# Cursor Course Workspace
 
-少し使ったことがある方向けの、**対話パネル・モード・ショートカット・@参照**を一気に固める教材です。  
-あわせて **90分 × 4回の実践コース** もここに置いています。
+<!-- Tiếng Việt -->
 
-## ディレクトリの役割
+## Tiếng Việt
 
-| パス | 役割 |
+Tài liệu dành cho người **đã dùng Cursor đôi lần**, để một lần nắm chắc **panel hội thoại, các mode, phím tắt và cách tham chiếu bằng `@`**. Ngoài phần tự học còn có **khóa thực hành 90 phút × 4 buổi**.
+
+**→ Bắt đầu ở [`courses/vi/`](courses/vi/)**
+
+## English
+
+Material for people who have **used Cursor a few times** and want to lock down **the chat panel, the modes, the shortcuts, and `@` references** in one pass. It also contains a **hands-on course of 4 sessions × 90 minutes**.
+
+**→ Start at [`courses/en/`](courses/en/)**
+
+---
+
+## Repo layout · Cấu trúc repo
+
+| Path | Role |
 |------|------|
-| [`courses/`](courses/) | **コース資料**（自習レッスン・実践4回） |
-| [`practice/`](practice/) | 手を動かすサンプルコード |
+| [`courses/vi/`](courses/vi/) | Tài liệu khóa học（tiếng Việt） |
+| [`courses/en/`](courses/en/) | Course material（English） |
+| [`practice/`](practice/) | Sample code you edit by hand（English, shared by both languages） |
+| [`.cursor/skills/`](.cursor/skills/) | Skills used in session 2（English） |
 
-## 進め方
+`practice/` and `.cursor/skills/` are kept in **English only**: both language tracks point at the same files, so there is a single source of truth for the code you edit.
 
-### 自習する場合
+## Quick start · Thử ngay（3 min）
 
-1. このチャットで一緒に進める（おすすめ）
-2. [`courses/fundamentals/`](courses/fundamentals/) を上から読む
-3. 各レッスン末尾の **実習** を `practice/` でやってみる
-4. わからない操作が出たら、そのままここに質問する
-
-基礎（0〜5）は上から順に。発展（6〜13）は**逆引きのリファレンス**なので、必要になった章だけ引けば十分です。
-
-### 実践コース（90分 × 4回）を運営する場合
-
-進行の正本は [`courses/4sessions/overview.md`](courses/4sessions/overview.md)。
-
-## レッスン一覧（自習）
-
-### 基礎
-
-| # | ファイル | 内容 | 目安 |
-|---|----------|------|------|
-| 0 | [courses/fundamentals/00-map.md](courses/fundamentals/00-map.md) | Cursor の全体像 | 5分 |
-| 1 | [courses/fundamentals/01-modes.md](courses/fundamentals/01-modes.md) | Agent / Ask / Plan / Debug / Multitask | 15分 |
-| 2 | [courses/fundamentals/02-shortcuts.md](courses/fundamentals/02-shortcuts.md) | 覚えるショートカット | 10分 |
-| 3 | [courses/fundamentals/03-context.md](courses/fundamentals/03-context.md) | `@` で文脈を渡す | 15分 |
-| 4 | [courses/fundamentals/04-tab-and-inline.md](courses/fundamentals/04-tab-and-inline.md) | Tab 補完とインライン編集 | 15分 |
-| 5 | [courses/fundamentals/05-prompting.md](courses/fundamentals/05-prompting.md) | うまく頼む言い方 | 10分 |
-
-### 発展（逆引き）
-
-順番に読む必要はありません。**必要になったときに引いてください。**
-
-| こうしたくなったら | 読む章 |
-|--------------------|--------|
-| 毎回同じ指示を書くのが面倒 | [6. Project Rules](courses/fundamentals/06-rules.md) |
-| 決まった手順を AI に覚えさせたい | [7. Skills](courses/fundamentals/07-skills.md) |
-| 危ないコマンドを自動で止めたい | [8. Hooks](courses/fundamentals/08-hooks.md) |
-| Issue や DB など外部ツールと繋ぎたい | [9. MCP](courses/fundamentals/09-mcp.md) |
-| 離席中に重い作業を進めたい | [10. Cloud Agents](courses/fundamentals/10-cloud-agents.md) |
-| PR のレビューを自動化したい | [11. Bugbot / PR レビュー](courses/fundamentals/11-bugbot-pr.md) |
-| 複数のエージェントを同時に走らせたい | [12. Agents Window / Worktrees](courses/fundamentals/12-agents-window.md) |
-| 秘密情報を読ませたくない | [13. 秘密情報・実行制限](courses/fundamentals/13-safety-ignore.md) |
-| 調査や検証を別のエージェントに任せたい | [14. Subagents](courses/fundamentals/14-subagents.md) |
-| チーム全員に同じ設定一式を配りたい | [15. Plugins](courses/fundamentals/15-plugins.md) |
-| 画面を指して UI を直させたい | [16. ブラウザと Design Mode](courses/fundamentals/16-browser-design.md) |
-| CI やスクリプトから動かしたい | [17. CLI](courses/fundamentals/17-cli.md) |
-| Slack や Issue から動かしたい | [18. 外部サービス連携](courses/fundamentals/18-integrations.md) |
-
-### 手を動かす場所
-
-| # | ファイル | 内容 | 目安 |
-|---|----------|------|------|
-| — | [practice/](practice/) | サンプルコード | — |
-
-## 今すぐ試す（3分）
-
-1. `Cmd + I` で Agent パネルを開く
-2. 入力欄で `Shift + Tab` を押し、**Ask** モードにする
-3. 次を送る:
+1. `Ctrl+I`（Mac: `Cmd+I`）— open the Agent panel
+2. `Shift+Tab` — switch to **Ask** mode
+3. Send:
 
 ```text
-@practice/calculator.js このファイルの役割を3行で説明して
+@practice/calculator.js Explain what this file does in 3 lines
 ```
 
-4. 説明が出たら `Shift + Tab` で **Agent** に戻し:
+4. Then `Shift+Tab` back to **Agent**:
 
 ```text
-practice/calculator.js に「割引率を適用する関数」を追加して。テストは書かなくてよい
+Add a function to practice/calculator.js that applies a percentage discount. No tests needed
 ```
 
-5. 出てきた差分を確認し、採用するなら **Keep**、不要なら **Undo** で戻す
+5. Read the diff. **Keep** to accept, **Undo** to roll back
 
-## メンテ方針（教材を定期更新するとき）
+> Shortcuts are written **Windows-first**, with Mac in parentheses.
+> Phím tắt viết theo **Windows**, Mac để trong ngoặc.
 
-- **正本は GitHub**（このリポジトリ）。下書き用の Notion 等は補助にとどめる
-- **`main` は実習できる初期状態**を保つ（例: `applyDiscount` は未実装のまま）
-- Cursor の UI / 機能が変わったら **該当する `courses/fundamentals/` の章だけ**直し、公式リンクを合わせて確認する
-- **個別のモデル名・世代は教材に書かない**（Grok / GPT / Claude の版は数ヶ月で入れ替わり、書いた時点で陳腐化する）。書くのは「Auto = Cursor Router が自動選択している」という**仕組み**まで
-- 追従作業は Issue で残す（例ラベル想定: `cursor-update` / `docs` / `practice-break`）
-- リリース前の受け入れ: README の「今すぐ試す」がそのまま通ること
-- 長い完成形の答えは `practice/` に混ぜず、必要なら別ディレクトリやブランチへ
-
-## 公式ドキュメント
+## Official documentation
 
 - [Agent](https://cursor.com/help/ai-features/agent)
 - [Prompting / @ mentions](https://cursor.com/docs/agent/prompting)

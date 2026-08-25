@@ -31,6 +31,56 @@ Agents Window を開く価値があるのは、**複数のエージェントを�
 
 > 詳しくは [12-agents-window.md](12-agents-window.md)、ブラウザは [16-browser-design.md](16-browser-design.md)。
 
+## 最初にそろえる設定
+
+このコースは **IDE ビュー + Agent パネル** を前提にしています。起動・言語・承認だけ、先にそろえておくと後が楽です。
+
+### 起動を IDE にする
+
+最近の Cursor は、起動すると **Agents Window** が開くことがあります。仕様の変更によるもので、壊れているわけではありません。
+
+1. **Cursor Settings → General → Startup → Window Restoration** を **Last Used Windows** にする
+2. **IDE ビュー**に切り替えてから Cursor を終了する。Agents Window を前面にしたまま終了すると、次回も Agents Window で開きます
+
+Settings で `startup` と検索すると見つかります。
+
+古い UI では **Cursor Settings → Agents → Open Agents Window on startup** を OFF にする案内でした。3.12 で場所と名前が変わっています。OFF にしても「必ず IDE」ではなく、**最後に使っていたウィンドウを復元する**、という意味です。だから IDE から終了することが効きます。
+
+> コミュニティサポートの案内（2026年7月〜8月）。公式ドキュメントに独立したページは見当たらない。
+> 参考: [Stop cursor from opening into agents window](https://forum.cursor.com/t/stop-cursor-from-opening-into-agents-window/166472)
+
+### 表示言語を日本語にする
+
+**IDE ビュー**で次を実行します。
+
+1. `Ctrl+Shift+P`（Mac は `Cmd+Shift+P`）
+2. `Configure Display Language` と入力する
+3. **Japanese**（`ja`）を選ぶ
+4. Language Pack のインストールを求められたら入れる
+5. Cursor を**完全に**再起動する（ウィンドウを全部閉じる）
+
+これで、VS Code 由来のメニュー・設定・パネルなどは日本語になります。
+
+**Cursor 独自の Agent / Chat / Cursor Settings などは、2026年8月時点ではほぼ英語のままです。** 設定ミスではなく、言語パックが届く範囲の話です。
+
+`Configure Display Language` が出てこないときは、Agents Window ではなく **IDE ビュー**に切り替えてからやり直してください。Agents Window のコマンドパレットでは見つからないことがあります。
+
+> 参考: [I can't change the interface language](https://forum.cursor.com/t/i-cant-change-the-interface-language/165625)（コミュニティサポート）
+
+### 承認モード（Run Mode）
+
+Agent がターミナルや MCP を呼ぶとき、どこまで確認なしで進めるかを決めます。**Settings → Agents → Approvals & Execution**。
+
+| Run Mode | 動作 | 向く人 |
+|----------|------|--------|
+| **Auto-review** | 安全そうなものは自動。サンドボックスで実行できるものはそこで実行。それ以外は自動レビューし、必要なときだけ確認する | **個人開発の推奨** |
+| **Allowlist** | 許可リストに入れたものだけ自動 | 許可するものを自分で決めたいとき |
+| **Run Everything** | 基本すべて確認なしで実行 | リスクを受け入れられるときだけ |
+
+公式も、多くのユーザー向けの推奨は **Auto-review** です。安全なコマンドはサンドボックス内で実行し、それ以外は自動レビューして、必要な場合だけ確認を出します。詳細は [13-safety-ignore.md](13-safety-ignore.md)。
+
+参考: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
+
 ## UI で見る場所
 
 - **エディタ中央**: いつもどおりコードを書く場所。Tab 補完がここに出る

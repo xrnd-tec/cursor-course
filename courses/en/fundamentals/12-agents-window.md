@@ -6,7 +6,7 @@
 
 Cursor には **IDE ビュー**（従来のエディタ）と **Agents Window** の2つがあり、行き来できます（→ [00-map.md](00-map.md)）。
 
-開き方は `Ctrl + Shift + P`（Mac は `Cmd + Shift + P`）のコマンドパレットで **Agents Window** を選ぶのが確実です。**いつでも IDE ビューに戻れますし、両方同時に開いておけます。**
+開き方は `Ctrl + Shift + P`（Mac は `Cmd + Shift + P`）のコマンドパレットで **Agents Window** を選ぶのが確実です。**いつでも IDE ビューに戻れますし、両方同時に開いておけます。** 起動のたびに Agents Window が開く場合のそろえ方は [00-map.md](00-map.md) の「最初にそろえる設定」。
 
 ### Agents Window にあるもの
 
