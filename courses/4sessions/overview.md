@@ -3,8 +3,6 @@
 このリポジトリの `courses/fundamentals/`（0〜13）と `practice/` は **Cursor 操作の自習教材**。  
 本ドキュメントは、それとは別に運営する **実践コース（全4回）** の構成案をまとめたもの。
 
-プロジェクト運用（制作タスクなど）は [`docs/`](../../docs/) を参照。
-
 ## 各回の詳細（分単位の進行台本）
 
 本ドキュメントは全体設計。当日の司会進行は各回のファイルを使う。
@@ -226,5 +224,4 @@ Cursor のモード・`@`・Tab / Ctrl+K / Agent を使い分け、小さな改�
 ## 関連
 
 - 自習マップ: [../fundamentals/00-map.md](../fundamentals/00-map.md)
-- 制作タスク: [../../docs/tasks.md](../../docs/tasks.md)
 - コース資料一覧: [../README.md](../README.md)

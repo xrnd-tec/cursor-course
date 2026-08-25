@@ -37,3 +37,9 @@ CLAUDE.md
 session02/
 session02-spec/
 team-app/
+
+# 教材の制作物（スライド・撮影素材・制作メモ）は cursor-course-authoring に分離済み。
+# ここに現れた場合もコミットしない。
+decks/
+docs/
+out/
