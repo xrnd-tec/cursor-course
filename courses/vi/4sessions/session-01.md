@@ -77,7 +77,7 @@ Ai xong rồi thì cứ đi tiếp các bước sau, không phải chờ.
 | --- | -------- |
 | **Tải Cursor** | Vào [https://cursor.com](https://cursor.com), cài bản đúng hệ điều hành |
 | **Mở lần đầu và đăng nhập** | Đăng nhập bằng tài khoản GitHub hoặc Google |
-| **Clone repo này** | `git clone https://github.com/xrnd-tec/cursor-course.git` |
+| **Clone repo này** | **Làm ngay trong Cursor.** `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ `Git: Clone` → dán URL → chọn thư mục. Quen terminal thì dùng `git clone https://github.com/xrnd-tec/cursor-course.git`（terminal tích hợp của Cursor là `` Ctrl+` ``） |
 | **Mở thư mục bằng Cursor** | Mở thư mục `cursor-course/`（File → Open Folder）. Mở ở **IDE view**（code ở giữa, Agent ở bên） |
 | **Node.js** | **Hôm nay không cần cài.** Trang giáo cụ chỉ cần trình duyệt là chạy. Chỉ bài C（phần thử sức）ở chương 6 mới dùng `node`, không có thì bỏ qua cũng không sao |
 
@@ -203,11 +203,15 @@ Có ai hỏi “hôm nay mình làm ra cái gì?” thì trả lời: **không l
 
 1. Vào [https://cursor.com](https://cursor.com) tải Cursor về và cài
 2. Mở Cursor, đăng nhập bằng tài khoản GitHub hoặc Google
-3. Lấy giáo cụ về bằng terminal
+3. Lấy giáo cụ về. **Làm ngay trong Cursor được**
 
-```bash
-git clone https://github.com/xrnd-tec/cursor-course.git
+   `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ `Git: Clone` → dán URL bên dưới → chọn thư mục
+
+```text
+https://github.com/xrnd-tec/cursor-course.git
 ```
+
+   > Ai quen terminal thì `git clone <URL>` cũng được. Terminal tích hợp trong Cursor（`` Ctrl+` ``）cũng vậy.
 
 4. Mở thư mục `cursor-course/` bằng Cursor（File → Open Folder）
 5. Trong sidebar, **chuột phải** vào `practice/index.html` → chọn **Open In Browser**（nó mở bằng trình duyệt tích hợp của Cursor）
@@ -277,7 +281,7 @@ Nói “thấy đúng màn hình này là được” rồi đi tiếp.
 | Không đăng nhập được | Kiểm tra xem có tài khoản GitHub / Google chưa. Chưa có thì tạo bằng email |
 | Không mở được thư mục | Mở Cursor → File → Open Folder → chọn `cursor-course/` |
 | Không thấy sidebar | Bật/tắt bằng `Ctrl+B`（Mac là `Cmd+B`） |
-| Chưa git clone | Trong terminal chạy `git clone https://github.com/xrnd-tec/cursor-course.git` |
+| Chưa git clone | `Ctrl+Shift+P` → `Git: Clone` → dán URL. Quen terminal thì chạy `git clone https://github.com/xrnd-tec/cursor-course.git` |
 | **Trang lên rồi nhưng số vẫn là “…”** | Nhiều khả năng đang mở bằng trình duyệt của hệ điều hành. Mở lại bằng trình duyệt tích hợp của Cursor |
 | Trang trắng trơn | Tải lại trình duyệt tích hợp. Vẫn không được thì xin xem màn hình người bên cạnh |
 | Khởi động ra màn hình lạ（Agents Window） | ① `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ **Open Editor Window** ② Trong Cursor Settings tìm `startup` → đặt **Window Restoration** thành **Last Used Windows** ③ Thoát Cursor **từ IDE view**. Chi tiết xem [`00-map.md`](../fundamentals/00-map.md) |

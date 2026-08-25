@@ -77,7 +77,7 @@ Anyone already finished is welcome to move ahead without waiting.
 |------|-------|
 | **Download Cursor** | Install from [https://cursor.com](https://cursor.com), matching your operating system |
 | **First launch and sign-in** | Sign in with a GitHub or Google account |
-| **Clone this repo** | `git clone https://github.com/xrnd-tec/cursor-course.git` |
+| **Clone this repo** | **All inside Cursor.** `Ctrl+Shift+P`（`Cmd+Shift+P` on Mac）→ `Git: Clone` → paste the URL → pick a folder. If you prefer a terminal: `git clone https://github.com/xrnd-tec/cursor-course.git`（Cursor's built-in terminal is `` Ctrl+` ``） |
 | **Open the folder in Cursor** | Open the `cursor-course/` folder（File → Open Folder）. In the **IDE view**（code in the middle, Agent to the side） |
 | **Node.js** | **You don't need to install it today.** The material's page runs in the browser alone. Only exercise C（the stretch）in chapter 6 uses `node`, and skipping it is fine |
 
@@ -203,11 +203,15 @@ If someone asks “what are we building today?”, the answer is: **nothing**. T
 
 1. Download and install Cursor from [https://cursor.com](https://cursor.com)
 2. Launch Cursor and sign in with a GitHub or Google account
-3. Get the material in a terminal
+3. Get the material. **You can do this inside Cursor**
 
-```bash
-git clone https://github.com/xrnd-tec/cursor-course.git
+   `Ctrl+Shift+P`（`Cmd+Shift+P` on Mac）→ `Git: Clone` → paste the URL below → pick a folder
+
+```text
+https://github.com/xrnd-tec/cursor-course.git
 ```
+
+   > If you prefer a terminal, `git clone <URL>` works too — including Cursor's built-in terminal（`` Ctrl+` ``）.
 
 4. Open the `cursor-course/` folder in Cursor（File → Open Folder）
 5. In the sidebar, **right-click** `practice/index.html` → choose **Open In Browser**（it opens in Cursor's built-in browser）
@@ -276,7 +280,7 @@ Say “if you can see this screen you're good” and move on.
 | Can't sign in | Check they have a GitHub / Google account. If not, create one with an email address |
 | Can't open the folder | Launch Cursor → File → Open Folder → pick `cursor-course/` |
 | No sidebar | Toggle it with `Ctrl+B`（Mac: `Cmd+B`） |
-| Haven't cloned | In a terminal: `git clone https://github.com/xrnd-tec/cursor-course.git` |
+| Haven't cloned | `Ctrl+Shift+P` → `Git: Clone` → paste the URL. Or in a terminal: `git clone https://github.com/xrnd-tec/cursor-course.git` |
 | **The page appeared but the numbers stay as “…”** | Probably opened in the operating system's browser. Reopen it in Cursor's built-in browser |
 | The page is blank | Reload the built-in browser. If that doesn't fix it, look at a neighbour's screen |
 | An unfamiliar screen on launch（Agents Window） | ① `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ **Open Editor Window** ② Search Cursor Settings for `startup` → set **Window Restoration** to **Last Used Windows** ③ Quit Cursor **from the IDE view**. Detail in [`00-map.md`](../fundamentals/00-map.md) |
