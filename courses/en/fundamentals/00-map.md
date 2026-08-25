@@ -1,140 +1,137 @@
-# 0. Cursor の全体像
+# 0. The shape of Cursor
 
-Cursor は VS Code 系のエディタに、**コードを読んで・書いて・実行できる AI** が載ったものです。
+Cursor is a VS Code-family editor with **an AI that can read, write and run code** bolted on.
 
-## 3つの使い分け（覚えると混乱が減る）
+## Three ways in（learn these and a lot of confusion goes away）
 
-| 手段 | 用途 | 典型シーン |
-|------|------|------------|
-| **Tab** | 入力中に続きを提案 | 関数の続き、import、繰り返しパターン |
-| **インライン編集（`Ctrl+K`）** | 選択範囲だけ直す | 「この関数を async に」「この文言を変えて」 |
-| **Agent パネル（`Ctrl+I`）** | 会話しながら複数ファイルを扱う | 機能追加、調査、リファクタ、バグ修正 | 
+| Way | What it's for | Typical moment |
+|-----|---------------|----------------|
+| **Tab** | Suggests what comes next while you type | Finishing a function, imports, repeated patterns |
+| **Inline edit（`Ctrl+K`）** | Changes only the selection | “Make this function async”, “Reword this” |
+| **Agent panel（`Ctrl+I`）** | Works across several files while you talk | Adding a feature, investigating, refactoring, fixing bugs |
 
-昔の「Chat / Composer」という呼び分けより、今は **Agent パネル + モード切替** が中心です。
+The old “Chat / Composer” split is no longer the centre of gravity; today it's **the Agent panel plus mode switching**.
 
-## 2つのビュー（先に知っておくと迷わない）
+## Two views（knowing this first saves confusion）
 
-Cursor には**画面の作りが2つ**あり、行き来できます。**どちらか一方を選ぶものではありません。**
+Cursor has **two screen layouts**, and you move between them. **It isn't a choice of one or the other.**
 
-| | **IDE ビュー** | **Agents Window** |
+| | **IDE view** | **Agents Window** |
 |---|---|---|
-| 見た目 | 従来のエディタ。中央にコード、横に Agent パネル | エージェント中心。チャットを並べて回す |
-| 向くこと | **自分でコードを読み書きする作業** | 複数の作業を並列で進める、ブラウザで動作確認する |
-| 持っているもの | エディタ、ターミナル、Agent パネル | Agent タブ（並べて表示）、**内蔵ブラウザ**、Design Mode |
+| Looks like | The familiar editor. Code in the middle, Agent panel to the side | Agent-centric. Chats laid out side by side |
+| Suits | **Reading and writing code yourself** | Running several jobs in parallel, checking results in a browser |
+| Contains | Editor, terminal, Agent panel | Agent tabs（side by side）, the **built-in browser**, Design Mode |
 
-- **切り替え**: `Ctrl+Shift+P`（Mac は `Cmd+Shift+P`）→ `Agents Window`
-- **いつでも IDE ビューに戻れます。両方同時に開いておくこともできます**
+- **Switching**: `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ `Agents Window`
+- **You can return to the IDE view at any time, and keep both open at once**
 
-**普段は IDE ビューで十分です。** 内蔵ブラウザも IDE ビューのまま開けるので、動作確認のために切り替える必要はありません。
+**Day to day, the IDE view is enough.** The built-in browser opens there too, so you don't need to switch views just to check something works.
 
-Agents Window を開く価値があるのは、**複数のエージェントを同時に走らせたいとき**と、**ローカル以外（worktree / クラウド / リモート SSH）で走らせたいとき**です。1人で1つの作業をしている限り、開かなくても困りません。
+The Agents Window earns its keep when you **want several agents running at once**, or **want to run somewhere other than your own machine（worktree / cloud / remote SSH）**. As long as one person is doing one job, you won't miss it.
 
-> 詳しくは [12-agents-window.md](12-agents-window.md)、ブラウザは [16-browser-design.md](16-browser-design.md)。
+> More detail in [12-agents-window.md](12-agents-window.md); the browser is in [16-browser-design.md](16-browser-design.md).
 
-## 最初にそろえる設定
+## Settings worth getting right first
 
-このコースは **IDE ビュー + Agent パネル** を前提にしています。起動・言語・承認だけ、先にそろえておくと後が楽です。
+This course assumes **the IDE view plus the Agent panel**. Sorting out three things up front — how it starts, the language, and the approval level — makes everything afterwards lighter.
 
-### 起動を IDE にする
+### Make Cursor start into the IDE view
 
-最近の Cursor は、起動すると **Agents Window** が開くことがあります。仕様の変更によるもので、壊れているわけではありません。
+Recent builds sometimes open straight into the **Agents Window**. That's a product change, not a fault on your machine.
 
-1. **Cursor Settings → General → Startup → Window Restoration** を **Last Used Windows** にする
-2. **IDE ビュー**に切り替えてから Cursor を終了する。Agents Window を前面にしたまま終了すると、次回も Agents Window で開きます
+1. Go to **Cursor Settings → General → Startup → Window Restoration** and choose **Last Used Windows**
+2. Switch to the **IDE view** before you quit Cursor. Quit with the Agents Window in front and it will open there again next time
 
-Settings で `startup` と検索すると見つかります。
+Search Settings for `startup` and you'll find it.
 
-古い UI では **Cursor Settings → Agents → Open Agents Window on startup** を OFF にする案内でした。3.12 で場所と名前が変わっています。OFF にしても「必ず IDE」ではなく、**最後に使っていたウィンドウを復元する**、という意味です。だから IDE から終了することが効きます。
+In the older UI, the advice was to turn off **Cursor Settings → Agents → Open Agents Window on startup**. As of 3.12 that item moved and was renamed. And turning it off doesn't mean “always the IDE” — it means **restore the window you used last**. Which is why quitting from the IDE view is the part that matters.
 
-> コミュニティサポートの案内（2026年7月〜8月）。公式ドキュメントに独立したページは見当たらない。
-> 参考: [Stop cursor from opening into agents window](https://forum.cursor.com/t/stop-cursor-from-opening-into-agents-window/166472)
+> Per community support guidance（July–August 2026）. No dedicated page found in the official documentation.
+> Reference: [Stop cursor from opening into agents window](https://forum.cursor.com/t/stop-cursor-from-opening-into-agents-window/166472)
 
-### 表示言語を日本語にする
+### About the interface language
 
-**IDE ビュー**で次を実行します。
+Cursor inherits VS Code's language packs. To see which display languages are available on your machine, in the **IDE view**:
 
-1. `Ctrl+Shift+P`（Mac は `Cmd+Shift+P`）
-2. `Configure Display Language` と入力する
-3. **Japanese**（`ja`）を選ぶ
-4. Language Pack のインストールを求められたら入れる
-5. Cursor を**完全に**再起動する（ウィンドウを全部閉じる）
+1. `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）
+2. Type `Configure Display Language`
+3. Look at the list
 
-これで、VS Code 由来のメニュー・設定・パネルなどは日本語になります。
+One thing worth knowing: **Cursor's own surfaces — Agent, Chat, Cursor Settings — are still almost entirely in English as of August 2026**, even if you do change the display language. Language packs only reach what Cursor inherits from VS Code. This course is written against the English wording you see on screen.
 
-**Cursor 独自の Agent / Chat / Cursor Settings などは、2026年8月時点ではほぼ英語のままです。** 設定ミスではなく、言語パックが届く範囲の話です。
+If `Configure Display Language` doesn't appear, switch back to the **IDE view** and try again — the Agents Window's command palette sometimes doesn't find it.
 
-`Configure Display Language` が出てこないときは、Agents Window ではなく **IDE ビュー**に切り替えてからやり直してください。Agents Window のコマンドパレットでは見つからないことがあります。
+> Reference: [I can't change the interface language](https://forum.cursor.com/t/i-cant-change-the-interface-language/165625)（community support）
 
-> 参考: [I can't change the interface language](https://forum.cursor.com/t/i-cant-change-the-interface-language/165625)（コミュニティサポート）
+### The approval level（Run Mode）
 
-### 承認モード（Run Mode）
+This decides how far the Agent may go without asking when it calls the terminal or MCP. Under **Settings → Agents → Approvals & Execution**.
 
-Agent がターミナルや MCP を呼ぶとき、どこまで確認なしで進めるかを決めます。**Settings → Agents → Approvals & Execution**。
+| Run Mode | Behaviour | Who it suits |
+|----------|-----------|--------------|
+| **Auto-review** | Anything that looks safe runs by itself. Whatever can run in the sandbox does. The rest is auto-reviewed, and you're only asked when it really matters | **Recommended for individual work** |
+| **Allowlist** | Only what's on the allowlist runs automatically | When you want to decide what's permitted yourself |
+| **Run Everything** | Essentially everything runs without asking | Only when you accept the risk |
 
-| Run Mode | 動作 | 向く人 |
-|----------|------|--------|
-| **Auto-review** | 安全そうなものは自動。サンドボックスで実行できるものはそこで実行。それ以外は自動レビューし、必要なときだけ確認する | **個人開発の推奨** |
-| **Allowlist** | 許可リストに入れたものだけ自動 | 許可するものを自分で決めたいとき |
-| **Run Everything** | 基本すべて確認なしで実行 | リスクを受け入れられるときだけ |
+Cursor also recommends **Auto-review** for most users: safe commands run in the sandbox, the rest is auto-reviewed and only surfaced when needed. Detail in [13-safety-ignore.md](13-safety-ignore.md).
 
-公式も、多くのユーザー向けの推奨は **Auto-review** です。安全なコマンドはサンドボックス内で実行し、それ以外は自動レビューして、必要な場合だけ確認を出します。詳細は [13-safety-ignore.md](13-safety-ignore.md)。
+Reference: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 
-参考: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
+## Where to look on screen
 
-## UI で見る場所
+- **Centre of the editor**: where you write code as usual. Tab suggestions appear here
+- **Agent panel（on the right, or in its own layout）**: where you talk to the AI. Pick the mode here
+- **Agents Window**: the screen for running several agents side by side. The built-in browser and Design Mode live here too
+- **Diff view**: what the Agent changed. Decide with **Keep**（accept）/ **Undo**（revert）
+- **Context ring**: near the input box. Shows how much context the conversation is using
 
-- **エディタ中央**: いつもどおりコードを書く場所。Tab 補完がここに出る
-- **右側（または専用レイアウト）の Agent パネル**: AI との対話。ここでモードを選ぶ
-- **Agents Window**: 複数のエージェントを並べて回す画面。内蔵ブラウザと Design Mode もここ
-- **差分（diff）ビュー**: Agent が直した箇所。**Keep**（採用）/ **Undo**（取り消し）で決める
+> **A note on labels**: in Cursor 3.16, Agent diffs read **Keep / Undo / Review**.
+> Only the inline edit bar from `Ctrl+K` reads **Accept / Reject**. They mean the same thing.
 
-> **表記に注意**: Cursor 3.16 の Agent の差分は **Keep / Undo / Review** です。
-> `Ctrl+K` のインライン編集のバーだけは **Accept / Reject** と表示されます。同じ意味です。
-- **コンテキストリング**: 入力欄付近。会話がどれだけコンテキストを使っているか
+## What you'll be able to do（this course）
 
-## 学習のゴール（このコース）
+### Basics 00–05 — using it on your own
 
-### 基礎 00〜05 — 1人で使えるようになる
+- Pick the right mode for the job
+- Have the shortcuts you need in your fingers
+- Pass the context you intended, with `@`
+- Choose between Tab / `Ctrl+K` / Agent per situation
+- Turn a vague request into one that can actually be executed
 
-- モードを使い分けられる
-- 必要なショートカットを指が覚える
-- `@` で意図した文脈を渡せる
-- Tab / `Ctrl+K` / Agent をシーンごとに選べる
-- 「曖昧な依頼」を「実行可能な依頼」に変えられる
+### Advanced 06–13 — keeping premises and safety in the code itself
 
-### 発展 06〜13 — 前提と安全をコードで持つ
+- Say which of Rules / Skills / Hooks handles what
+- Understand where MCP, Cloud Agents and PR review sit
+- Know what to watch for around secrets, execution limits and parallel agents
 
-- Rules / Skills / Hooks の役割分担が言える
-- MCP・Cloud Agents・PR レビューの位置づけが分かる
-- 秘密情報・実行制限・並列エージェントの注意を押さえる
+### Applied 14–19 — distributing to a team, running things automatically
 
-### 応用 14〜18 — チームで配る、自動で回す
+- Carve a piece of work off to a Subagent
+- Bundle a whole setup into a Plugin and hand it out
+- Trigger the Agent from a screen, a terminal or an external service
 
-- 仕事を Subagent に切り出せる
-- 一式を Plugin にまとめて配れる
-- 画面・ターミナル・外部サービスから Agent を動かせる
+## Chapter list
 
-## 章の一覧
-
-| 章 | 内容 |
-|----|------|
-| [01](01-modes.md) | モード（Agent / Plan / Debug / Multitask / Ask）と Custom Mode |
-| [02](02-shortcuts.md) | 覚えるショートカット |
-| [03](03-context.md) | `@` で文脈を渡す |
-| [04](04-tab-and-inline.md) | Tab 補完とインライン編集 |
-| [05](05-prompting.md) | うまく頼む言い方 |
+| Chapter | Contents |
+|---------|----------|
+| [01](01-modes.md) | Modes（Agent / Plan / Debug / Multitask / Ask）and Custom Mode |
+| [02](02-shortcuts.md) | The shortcuts worth memorising |
+| [03](03-context.md) | Passing context with `@` |
+| [04](04-tab-and-inline.md) | Tab suggestions and inline editing |
+| [05](05-prompting.md) | Asking well |
 | [06](06-rules.md) | Project Rules |
 | [07](07-skills.md) | Skills |
 | [08](08-hooks.md) | Hooks |
 | [09](09-mcp.md) | MCP |
 | [10](10-cloud-agents.md) | Cloud Agents（Builds / Automations） |
-| [11](11-bugbot-pr.md) | Bugbot / PR レビュー |
-| [12](12-agents-window.md) | Agents Window / Worktrees |
-| [13](13-safety-ignore.md) | 秘密情報・実行制限・安全運用 |
+| [11](11-bugbot-pr.md) | Bugbot and PR review |
+| [12](12-agents-window.md) | Agents Window and Worktrees |
+| [13](13-safety-ignore.md) | Secrets, execution limits, safe operation |
 | [14](14-subagents.md) | Subagents |
-| [15](15-plugins.md) | Plugins とマーケットプレイス |
-| [16](16-browser-design.md) | ブラウザと Design Mode |
-| [17](17-cli.md) | CLI |
-| [18](18-integrations.md) | 外部サービス連携 |
+| [15](15-plugins.md) | Plugins and the marketplace |
+| [16](16-browser-design.md) | The browser and Design Mode |
+| [17](17-cli.md) | The CLI |
+| [18](18-integrations.md) | Integrations with external services |
+| [19](19-plans.md) | Plans and usage |
 
-次: [01-modes.md](01-modes.md)
+Next: [01-modes.md](01-modes.md)

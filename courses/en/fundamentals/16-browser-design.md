@@ -1,96 +1,123 @@
-# 16. 内蔵ブラウザと Design Mode
+# 16. The built-in browser and Design Mode
 
-Cursor にはブラウザが載っています。別のアプリに切り替えず、**動いている画面を Cursor の中で見られる**だけでなく、**Agent がそのブラウザを操作できる**のが本題です。
+Cursor ships with a browser. You don't switch to another app: you **see the running screen inside Cursor** — but the real point is that **the Agent can drive that browser**.
 
-外部ツールのインストールや設定は要りません。
+Nothing external to install or configure.
 
-## Agent がブラウザにできること
+## How to open it
 
-| できること | 中身 |
-|------------|------|
-| **移動** | URL を開く、リンクをたどる、戻る／進む、再読み込み |
-| **クリック** | ボタン・リンク・フォーム要素。ダブルクリック / 右クリック / ホバーも |
-| **入力** | フォームやテキスト欄に文字を入れる |
-| **スクロール** | 長いページを送って目的の場所を出す |
-| **スクリーンショット** | 画面を撮って、レイアウトの確認に使う |
-| **コンソールの読み取り** | ブラウザのコンソールのメッセージ・エラー・ログを読む |
-| **ネットワークの確認** | HTTP のリクエストとレスポンスを見る（Agent パネル） |
+**For a local file, use the right-click menu.**
 
-つまり「**直して、自分で開いて、自分で確かめる**」まで一続きで頼めます。エラーをコピーして貼る手間が減ります。
+1. In the file tree in the sidebar, right-click `practice/index.html`
+2. Choose **Open In Browser**
+
+For a URL, open it from the command palette. **No dedicated shortcut is bound.**
+
+1. `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）
+2. Choose **Open Browser**
+3. Type the URL into the address bar
+
+There are four related commands.
+
+| Command | What it does |
+|---------|--------------|
+| **Open Browser** | Open the browser pane |
+| **New Browser Tab** | Add a browser tab |
+| **Reload Browser Tab** | Reload the current tab |
+| **Close Browser Tab** | Close the tab |
+
+If a local dev server is already running, the Agent **finds the port by itself**（see below）.
+
+> **Verified on a real machine（Cursor 3.16）. The official documentation does not describe how to open it**
+> （the [Browser](https://cursor.com/docs/agent/tools/browser) page only says it “opens as a pane within Cursor”）.
+
+## What the Agent can do in the browser
+
+| Capability | Detail |
+|------------|--------|
+| **Navigate** | Open a URL, follow links, back / forward, reload |
+| **Click** | Buttons, links, form elements. Double-click / right-click / hover too |
+| **Type** | Enter text into forms and text fields |
+| **Scroll** | Move through a long page to reach what it needs |
+| **Screenshot** | Capture the screen to check the layout |
+| **Read the console** | Read messages, errors and logs from the browser console |
+| **Inspect network** | See HTTP requests and responses（in the Agent panel） |
+
+In other words, you can ask for the whole loop: **fix it, open it, verify it**. Far less copying errors and pasting them back.
 
 ```text
-http://localhost:3000 を開いて、ログインを試して。
-コンソールにエラーが出ていたら原因を教えて。
+Open http://localhost:3000 and try logging in.
+If there are errors in the console, tell me the cause.
 ```
 
-### 開発サーバーを自分で見つける
+### It finds the dev server itself
 
-すでに動いているローカルの開発サーバーを検知して、**正しいポートを使います**。サーバーを二重に立てたり、ポートを当てずっぽうで探したりしません。
+It detects a local dev server that is already running and **uses the right port**. It won't stand up a second server or guess at ports.
 
-### 状態が残る
+### State is preserved
 
-Cookie・localStorage・sessionStorage・IndexedDB は**セッションをまたいで保持**されます（ワークスペースごとに分離）。ログインし直さずに続きから確認できます。
+Cookies, localStorage, sessionStorage and IndexedDB are **kept across sessions**（isolated per workspace）. You continue where you left off without logging in again.
 
-## 承認のしかた
+## How approvals work
 
-ブラウザ操作には3段階あります。
+Browser actions have three levels.
 
-| モード | 動き |
-|--------|------|
-| **手動承認**（推奨） | 操作のたびに確認する |
-| **許可リスト** | 許可した操作だけ自動で走る |
-| **自動実行** | 確認なしで実行する。**慎重に** |
+| Mode | Behaviour |
+|------|-----------|
+| **Manual approval**（recommended） | Asks on every action |
+| **Allowlist** | Only approved actions run automatically |
+| **Automatic** | Runs without asking. **Be careful** |
 
-Teams / Enterprise では、管理者が「自動で開いてよいドメイン」を制限できます（手動で開くぶんには制限されません）。
+On Teams / Enterprise, an administrator can restrict which domains may be opened automatically（opening one by hand is not restricted）.
 
 ## Design Mode
 
-ブラウザ表示中に **`Ctrl+Shift+D`**（Mac は `Cmd+Shift+D`）で切り替えます。UI を**言葉で説明する代わりに、画面上で指す**ためのモードです。
+While the browser is showing, toggle it with **`Ctrl+Shift+D`**（Mac: `Cmd+Shift+D`）. It's the mode for **pointing at the screen instead of describing the UI in words**.
 
-| 操作 | キー |
-|------|------|
-| Design Mode の切り替え | `Ctrl+Shift+D` |
-| 範囲を選ぶ | `Shift` + ドラッグ |
-| 選んだ要素をチャットに追加 | `Ctrl+L`（Mac は `Cmd+L`） |
-| 選んだ要素を入力欄に追加 | `Alt`+クリック（Mac は `Option`+クリック） |
+| Action | Key |
+|--------|-----|
+| Toggle Design Mode | `Ctrl+Shift+D` |
+| Select a region | `Shift` + drag |
+| Add the selected element to the chat | `Ctrl+L`（Mac: `Cmd+L`） |
+| Add the selected element to the input box | `Alt`+click（Mac: `Option`+click） |
 
-選んだ要素の**コード・レイアウト・周囲との関係**がまとめて Agent に渡ります。
+The selected element's **code, layout and relationship to its surroundings** all go over to the Agent.
 
-> UI の修正依頼は言葉にすると長くなります（「ヘッダーの右側にある3つ並んだアイコンのうち真ん中」）。指せるなら指す方が速く、間違いも減ります。
+> Describing a UI fix in words gets long fast（“the middle one of the three icons on the right of the header”）. If you can point, pointing is faster and less error-prone.
 
-## どこにあるか
+## Where it lives
 
-ブラウザは **Cursor の中のペイン**として開きます。**IDE ビューのまま開けます**（実機で確認。Agents Window に切り替える必要はありません）。
+The browser opens as **a pane inside Cursor**. **It opens in the IDE view**（verified on a real machine; no need to switch to the Agents Window）.
 
-**Design Mode** は、公式ドキュメント上は **Agents Window のブラウザ**の機能として説明されています（→ [12-agents-window.md](12-agents-window.md)）。
+**Design Mode** specifically is documented as a feature of **the browser in the Agents Window**（→ [12-agents-window.md](12-agents-window.md)）.
 
-`@Browser` で、ブラウザの文脈を会話に載せることもできます（→ [03-context.md](03-context.md)）。
+You can also put the browser's context into the conversation with `@Browser`（→ [03-context.md](03-context.md)）.
 
-## 向くこと / 向かないこと
+## Good for / not good for
 
-- **向く**: 見た目の調整、余白・配置、「押しても動かない」系の不具合、動作確認、コンソールエラーの調査
-- **向かない**: 計算ロジックやデータ構造の修正。これは普通に Agent へ依頼する
+- **Good**: appearance tweaks, spacing and placement, “I click it and nothing happens” bugs, verifying behaviour, chasing console errors
+- **Not good**: fixing calculation logic or data structures. Just ask the Agent normally for that
 
-## 注意
+## Watch out for
 
-- **OS のブラウザでローカルの HTML を直接（`file://`）開くと、ES モジュールの読み込みがブロックされます。** Cursor の内蔵ブラウザで開けば動きます（実機で確認）
-- 自動実行を有効にしたまま、外部サイトを触らせない。まず手動承認から
+- **Opening a local HTML file directly in your operating system's browser（`file://`）blocks ES module loading.** Opening it in Cursor's built-in browser works（verified on a real machine）
+- Don't leave automatic mode on and let it loose on external sites. Start with manual approval
 
-## 実習
+## Exercise
 
-1. 何か動くページを用意する（`practice/index.html` でよい）
-2. Cursor のブラウザで開く
-3. Agent に次を頼む
+1. Have a page that runs（`practice/index.html` is fine）
+2. Open it in Cursor's browser
+3. Ask the Agent:
 
 ```text
-いま開いているページを見て、うまく動いていない箇所を3つ挙げて。
-コンソールにエラーが出ていたらそれも教えて。
-まだ直さないで。
+Look at the page that's open and name three things that aren't working.
+If there are errors in the console, tell me those too.
+Don't fix anything yet.
 ```
 
-4. `Ctrl+Shift+D` で Design Mode にし、要素を1つ選んで修正を依頼する
-5. 差分を読んでから Keep する（画面から指しても、確認の手順は変わりません）
+4. Press `Ctrl+Shift+D` for Design Mode, select one element and ask for a fix
+5. Read the diff before you Keep（pointing at the screen doesn't change the checking steps）
 
-参考: [Browser](https://cursor.com/docs/agent/tools/browser) · [Design Mode](https://cursor.com/docs/agent/design-mode) · [Cursor 3.0](https://cursor.com/changelog/3-0)
+Reference: [Browser](https://cursor.com/docs/agent/tools/browser) · [Design Mode](https://cursor.com/docs/agent/design-mode) · [Cursor 3.0](https://cursor.com/changelog/3-0)
 
-次: [17-cli.md](17-cli.md)
+Next: [17-cli.md](17-cli.md)

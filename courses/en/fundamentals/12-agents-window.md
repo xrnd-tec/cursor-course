@@ -1,75 +1,77 @@
-# 12. Agents Window / Worktrees（おすすめ）
+# 12. Agents Window and Worktrees（recommended）
 
-`/multitask` そのものは [01-modes.md](01-modes.md) で説明しました。この章では、**それを回すための場所（Agents Window）** と **衝突を防ぐ仕組み（worktree）** だけを扱います。
+`/multitask` itself was covered in [01-modes.md](01-modes.md). This chapter only covers **the place you run it（the Agents Window）** and **the mechanism that prevents collisions（worktrees）**.
 
-## Agents Window は「もう1つのビュー」
+## The Agents Window is “the other view”
 
-Cursor には **IDE ビュー**（従来のエディタ）と **Agents Window** の2つがあり、行き来できます（→ [00-map.md](00-map.md)）。
+Cursor has an **IDE view**（the familiar editor）and the **Agents Window**, and you move between them（→ [00-map.md](00-map.md)）.
 
-開き方は `Ctrl + Shift + P`（Mac は `Cmd + Shift + P`）のコマンドパレットで **Agents Window** を選ぶのが確実です。**いつでも IDE ビューに戻れますし、両方同時に開いておけます。** 起動のたびに Agents Window が開く場合のそろえ方は [00-map.md](00-map.md) の「最初にそろえる設定」。
+The reliable way to open it is the command palette — `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ **Agents Window**. **You can go back to the IDE view at any time, and you can keep both open at once.** If Cursor keeps starting into the Agents Window, the fix is in “Settings worth getting right first” in [00-map.md](00-map.md).
 
-### Agents Window にあるもの
+### What's in the Agents Window
 
-| | 中身 |
+| | Contents |
 |---|---|
-| **Agent タブ** | 複数のチャットを**並べて / グリッドで**同時に表示する。リポジトリをまたいでもよい |
-| **内蔵ブラウザ** | 動いているアプリを開き、Agent に操作させる（→ [16-browser-design.md](16-browser-design.md)） |
-| **Design Mode** | 画面の要素を指して修正を頼む。`Ctrl+Shift+D` |
-| **実行環境の選択** | ローカル / worktree / クラウド / リモート SSH |
+| **Agent tabs** | Several chats at once, **side by side or in a grid**. They can span repos |
+| **Built-in browser** | Open the running app and let the Agent drive it（→ [16-browser-design.md](16-browser-design.md)） |
+| **Design Mode** | Point at an element on screen and ask for a fix. `Ctrl+Shift+D` |
+| **Choice of runtime** | Local / worktree / cloud / remote SSH |
 
-エージェントを走らせる場所が、ローカルだけでなく worktree やクラウドも選べるのがこの画面の要点です。
+The essential point of this screen is that you can choose where an agent runs — not just locally, but in a worktree or on the cloud.
 
-### 開かなくてよい場面のほうが多い
+### More often than not, you don't need it
 
-**1人で1つの作業をしているなら、IDE ビューのままで困りません。** 内蔵ブラウザも IDE ビューで開けます。
+**If one person is doing one thing, the IDE view is fine.** The built-in browser opens there too.
 
-Agents Window を開く価値があるのは、次のどちらかに当てはまるときだけです。
+The Agents Window is worth opening only in one of these two cases:
 
-- **複数のエージェントを同時に走らせたい**（並べて進捗を見たい）
-- **ローカル以外で走らせたい**（worktree / クラウド / リモート SSH）
+- **You want several agents running at once**（side by side, so you can watch progress）
+- **You want to run somewhere other than locally**（worktree / cloud / remote SSH）
 
-「新しい画面があるから使わなければ」と考える必要はありません。
+There's no need to think “there's a new screen, so I have to use it”.
 
-> `Ctrl+Shift+A`（Mac は `Cmd+Shift+A`）は Cursor 3.16 では**行コメントの切り替え**などに割り当たっており、Agents Window ではありません。
+> `Ctrl+Shift+A`（Mac: `Cmd+Shift+A`）is bound to **toggling line comments** and similar in Cursor 3.16 — it is not the Agents Window.
 
 ## Worktrees
 
-git の worktree は、**同じリポジトリの別ブランチを、別のディレクトリに同時にチェックアウトする**仕組みです。エージェントを並列で走らせるとき、同じファイルを取り合わないために使います。
+A git worktree lets you **check out several branches of the same repo into separate directories at the same time**. When you run agents in parallel, it stops them fighting over the same files.
 
-Cursor 側にも worktree 用の操作が用意されています。
+Cursor has actions for worktrees too.
 
-| 操作 | 何をするか |
-|------|------------|
-| Open new window in worktree | worktree のフォルダを新しいウィンドウで開く |
-| Open terminal in worktree | worktree の場所でターミナルを開く |
-| Copy worktree path | worktree のパスをコピーする |
+| Action | What it does |
+|--------|--------------|
+| Open new window in worktree | Open the worktree folder in a new window |
+| Open terminal in worktree | Open a terminal at the worktree |
+| Copy worktree path | Copy the worktree's path |
 
-## 3つを混同しない
+## Don't confuse the three
 
-| 言葉 | 何を決めるか |
-|------|--------------|
-| **Agents Window** | 複数エージェントを **どこで見るか** |
-| **`/multitask`** | 仕事を **同時にやるか**（→ [01-modes.md](01-modes.md)） |
-| **Worktrees** | 作業を **どこまで隔離するか** |
+| Term | What it decides |
+|------|-----------------|
+| **Agents Window** | **Where you watch** several agents |
+| **`/multitask`** | Whether the work happens **at the same time**（→ [01-modes.md](01-modes.md)） |
+| **Worktrees** | **How isolated** the work is |
 
-「並列」と「隔離」は別の話です。**並列にしても隔離しなければ、同じファイルを複数のエージェントが書いて壊れます。**
+“Parallel” and “isolated” are different things. **Parallel without isolation means several agents writing to the same file and breaking it.**
 
-## いつ使うか
+## When to use what
 
-- 無関係な2作業を同時に進めたい → `/multitask`
-- 同じファイルを安全に並行実験したい → **worktree**（別チェックアウト）
-- 手元で1ファイルだけ直す → 普通の Agent パネルで十分。並列にしない
+- Two unrelated jobs at once → `/multitask`
+- Experimenting safely in parallel on the same file → **worktree**（a separate checkout）
+- Fixing one file locally → the ordinary Agent panel is plenty. Don't parallelise
 
-## 実習
+## Exercise
 
 Ask:
 
 ```text
-@courses/fundamentals/01-modes.md
-Multitask と worktree を併用すると良い例・やめた方がいい例を
-それぞれ1つずつ挙げて。
+@courses/en/fundamentals/01-modes.md
+Give one example where combining Multitask with a worktree is a good idea,
+and one example where it isn't.
 ```
 
-余裕があれば Agents Window を開き、小さな無関係な2依頼で `/multitask` を一度試す。
+If you have time, open the Agents Window and try `/multitask` once with two small unrelated requests.
 
-次: [13-safety-ignore.md](13-safety-ignore.md)
+Reference: [Agents Window](https://cursor.com/docs/agent/agents-window) · [Worktrees](https://cursor.com/docs/configuration/worktrees)
+
+Next: [13-safety-ignore.md](13-safety-ignore.md)

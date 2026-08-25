@@ -1,159 +1,159 @@
-# 1. モード（Agent / Plan / Debug / Multitask / Ask）
+# 1. Modes（Agent / Plan / Debug / Multitask / Ask）
 
-Agent パネルの入力欄で **`Shift + Tab`** を押すとモードが**順送り**で切り替わります。
-一覧から選びたいときは、入力欄左下の**モード名をクリック**するか `Ctrl+.`（Mac は `Cmd+.`）でメニューを開きます。
+Press **`Shift+Tab`** in the Agent panel's input box and the mode **cycles** to the next one.
+To pick from a list, **click the mode name** at the bottom left of the input box, or open the menu with `Ctrl+.`（Mac: `Cmd+.`）.
 
-> **このコースのショートカット表記は Windows が基本です。** Mac の人は括弧内を読んでください。
+> **Shortcuts in this course are written Windows-first.** On Mac, read what's in the brackets.
 
-> 注意: モードを切り替えると、そのモード用の新しい会話コンテキストになります。タスクが変わったら **新規チャット** も有効です。
+> Note: switching mode starts a new conversation context for that mode. When the task changes, a **new chat** is a good move too.
 
-## いつどれを使うか
+## Which one, when
 
-既定では **5つ** 並んでいます（Cursor 3.16 実機の並び順）。ここに自作の **Custom Mode** が加わることがあります（後述）。
+There are **five** by default（the order you'll see in Cursor 3.16）. Your own **Custom Modes** can join them（below）.
 
-| モード | 向いていること | ファイル編集 |
-|--------|----------------|--------------|
-| **Agent**（`Ctrl+I`） | 機能追加・リファクタ・バグ修正・テスト実行 | する |
-| **Plan** | 大きい変更の方針を先に合意してから実装 | 計画承認後に実装 |
-| **Debug** | 再現が難しいバグを、証拠を取りながら追う | する |
-| **Multitask** | 独立した複数の作業を並列で進める | する（並列に） |
-| **Ask** | 調査・説明・設計の相談（まだ書かせたくない） | しない（読み取りのみ） |
+| Mode | Good for | Edits files |
+|------|----------|-------------|
+| **Agent**（`Ctrl+I`） | Adding features, refactoring, fixing bugs, running tests | Yes |
+| **Plan** | Agreeing the approach to a big change before building it | After you approve the plan |
+| **Debug** | Chasing a hard-to-reproduce bug while gathering evidence | Yes |
+| **Multitask** | Running several independent jobs in parallel | Yes（in parallel） |
+| **Ask** | Investigating, explaining, discussing design（you don't want it writing yet） | No（read-only） |
 
-### 迷ったら
+### If you're unsure
 
-1. 「まず中身を知りたい」→ **Ask**
-2. 「方針から決めたい」→ **Plan**
-3. 「直して / 作って」→ **Agent**
-4. 「再現するが原因が掴みにくい」→ **Debug**
-5. 「独立した作業が複数ある」→ **Multitask**
+1. “I want to understand what's in there first” → **Ask**
+2. “I want to settle the approach first” → **Plan**
+3. “Fix it / build it” → **Agent**
+4. “It reproduces but I can't find the cause” → **Debug**
+5. “I have several independent jobs” → **Multitask**
 
-最初に覚えるのは **Ask と Agent の2つ**で十分です。残りは必要になってから。
+**Ask and Agent** are the only two you need at first. Learn the rest when you need them.
 
-## Custom Mode（自分でモードを増やす）
+## Custom Mode（adding your own）
 
-既定の5つに加えて、**Skill をそのままモードとして常時 ON にする**ことができます（[07-skills.md](07-skills.md)）。
+On top of the five defaults, you can **promote a Skill into a mode and leave it on**（see [07-skills.md](07-skills.md)）.
 
-- Skill を選んで **`Alt+Enter`**（Mac は `Option+Enter`）、またはメニューの **Use as Mode**
-- 入力欄にバッジが出て、**そのセッションの間ずっとその手順が効く**
+- Pick the Skill and press **`Alt+Enter`**（Mac: `Option+Enter`）, or choose **Use as Mode** from the menu
+- A badge appears in the input box, and **that procedure stays in force for the whole session**
 
-スラッシュで Skill を呼ぶと1メッセージだけに付きますが、Custom Mode にすると会話全体に効きます。「今日はレビューだけやる」「この規約で書き続けてほしい」というときに使います。
+Calling a Skill with a slash attaches it to one message only; as a Custom Mode it covers the whole conversation. That's the one for “today I'm only doing reviews” or “keep writing to this convention”.
 
-したがって「モードは5つ」は固定ではありません。**既定が5つ + 自分で足せる**が正確です。
+So “there are five modes” isn't fixed. More precisely: **five by default, plus whatever you add**.
 
-## モードとモデルは別物
+## Modes and models are different things
 
-入力欄の近くに **モード**（上の5つ）と **モデル**（Auto など）が並んでいて混同しやすいので、整理しておきます。
+Right next to the input box sit both the **mode**（the five above）and the **model**（Auto and friends）, which makes them easy to confuse.
 
-| | 何を決めるか | 切り替え |
+| | What it decides | Switch with |
 |---|---|---|
-| **モード** | AI の **振る舞い**（編集するか、計画を先に出すか） | `Shift + Tab` |
-| **モデル** | 依頼を処理する **AI の頭脳そのもの** | `Ctrl+/`（Mac は `Cmd+/`） |
+| **Mode** | The AI's **behaviour**（does it edit, does it plan first） | `Shift+Tab` |
+| **Model** | **The AI brain itself** handling the request | `Ctrl+/`（Mac: `Cmd+/`） |
 
-入力欄にはもう1つ **`High`** のような表示が並んでいることがあります。これは **思考にかける手間（reasoning effort）** の指定で、モードともモデルとも別物です。既定のままで構いません。
+Sometimes there's a third item near the input box, something like **`High`**. That's the **reasoning effort**, and it's neither the mode nor the model. Leave it at the default.
 
-### Auto とは
+### What Auto is
 
-既定は **Auto** です。これは「モデルを選ばない」という意味ではなく、**Cursor Router がリクエストごとにモデルを自動で選ぶ**仕組みです。タスクの種類と複雑さを分類し、難しければ高性能なモデルへ、簡単なら低コストなモデルへ振り分けます。
+The default is **Auto**. It doesn't mean “no model is chosen” — it means **the Cursor Router picks a model per request**. It classifies the kind and difficulty of the task, sending hard ones to a stronger model and easy ones to a cheaper one.
 
-最適化の方針は3つあります（Teams / Enterprise では管理者が制限・既定値の設定をできます）。
+There are three optimisation policies（on Teams / Enterprise an administrator can restrict them or set the default）.
 
-| 方針 | ねらい |
-|------|--------|
-| **Cost** | 品質を保ちつつトークン支出を抑える。どのモデルが動いても一律レート |
-| **Balance** | 通常業務でちょうどよい品質。多くの人はこれ |
-| **Intelligence** | 最上位モデル相当の品質 |
+| Policy | Aim |
+|--------|-----|
+| **Cost** | Hold down token spend while keeping quality. One flat rate whichever model runs |
+| **Balance** | The right quality for everyday work. Most people want this |
+| **Intelligence** | Quality on a par with the top model |
 
-### 基本は Auto のままでよい
+### Auto is fine as the default
 
-学習中も日常の作業も、**Auto で困ることはほとんどありません**。手動で選ぶ価値があるのは次のときだけです。
+While learning and in everyday work, **Auto rarely causes trouble**. Picking by hand is only worth it in these cases:
 
-- **結果を比較したいとき** — Auto は **ターンごとに違うモデルが動くことがある**ので、条件を揃えたい実験では固定する
-- **難しい設計やデバッグで、明らかに力不足を感じるとき** — 上位のモデルに切り替える
-- **チームでコストの方針が決まっているとき**
+- **When you want to compare results** — Auto **can run a different model each turn**, so pin it for experiments that need matched conditions
+- **When a hard design or debugging job is clearly outrunning it** — move up to a stronger model
+- **When your team has a cost policy**
 
-> モデル名と世代（GPT / Claude / Grok など）は数ヶ月で入れ替わります。**個別の名前を覚えるより「Auto が自動で選んでいる」という仕組みを押さえる方が長持ちします。**
+> Model names and generations（GPT / Claude / Grok…）rotate every few months. **Understanding the mechanism — “Auto is choosing for me” — lasts longer than memorising individual names.**
 
-参考: [Auto](https://cursor.com/docs/models) · [Cursor Router](https://cursor.com/changelog/router)
+Reference: [Auto](https://cursor.com/docs/models) · [Cursor Router](https://cursor.com/changelog/router)
 
-## Multitask について
+## About Multitask
 
-Multitask は **モードメニューの中にあります**（上の表の4番目）。他のモードが「その会話の振る舞い」を決めるのに対し、Multitask だけは **仕事を1本ずつ順番にやるか、複数エージェントで同時にやるか** を決めます。性質が違うので、同じメニューにあっても分けて考えてください。
+Multitask **sits in the mode menu**（the fourth row above）. But where the other modes decide “how this conversation behaves”, Multitask alone decides **whether work happens one job at a time or across several agents at once**. Different in nature, so think of it separately even though it shares the menu.
 
-`/multitask` というスラッシュコマンドの形でも使えます。
+It also works as the slash command `/multitask`.
 
-### できること
+### What it does
 
-- 通常はキューに溜まる依頼を、**非同期サブエージェントで並列実行**する（サブエージェント自体は [14-subagents.md](14-subagents.md)）
-- 大きい依頼を小さなかたまりに分け、複数エージェントに振る
-- すでにキューにあるメッセージを「待たずに multitask して」と頼める
-- Plan では **Build in Parallel** で、独立したステップを並列ビルドできることがある
+- Requests that would normally queue get **run in parallel by asynchronous sub-agents**（sub-agents themselves are [14-subagents.md](14-subagents.md)）
+- Split a large request into small chunks and hand them to several agents
+- Ask it to “multitask these, don't wait” for messages already in the queue
+- In Plan, **Build in Parallel** can sometimes build independent steps at once
 
-Agents Window を開き、入力で次のように使います。
+Open the Agents Window and use it like this:
 
 ```text
-/multitask モジュールAのテストを書いて、ついでにモジュールBのREADMEも更新して
+/multitask Write tests for module A, and while you're at it update module B's README
 ```
 
-### 使うとき / 使わないとき
+### When to use it, when not
 
-- **向く**: 互いに独立した仕事（別ファイルのテストと別モジュールのドキュメントなど）
-- **向かない**: 順番が重要な一連の修正、同じファイルを複数人が触るような依存の強い作業
+- **Fits**: jobs independent of each other（tests for one file and docs for another module）
+- **Doesn't fit**: a sequence of fixes where the order matters, or several people touching the same file
 
-同じブランチで並列編集すると衝突しうるので、必要なら **worktree**（隔離された作業ツリー）と組み合わせます。
+Parallel edits on the same branch can collide, so combine it with a **worktree**（an isolated working tree）when you need to.
 
-参考: [Changelog 3.2（Multitask）](https://cursor.com/changelog/04-24-26) · [Multi-agent](https://cursor.com/help/ai-features/multi-agent)
+Reference: [Changelog 3.2（Multitask）](https://cursor.com/changelog/04-24-26) · [Multi-agent](https://cursor.com/help/ai-features/multi-agent)
 
-## 実行中に口を挟む（steering）
+## Interrupting mid-run（steering）
 
-Agent が走っている最中でも、メッセージを送って軌道修正できます。**送っても途中で切られず、次のツール呼び出しの区切りで反映されます**。
+You can send a message while the Agent is running and nudge it. **Sending doesn't cut it off; it gets applied at the next break between tool calls.**
 
-| やりたいこと | 操作 |
-|--------------|------|
-| 走らせたまま指示を足す | そのまま送る（Send / Enter 2回） |
-| 今の作業の後に処理させる | `Enter` でキューに積む |
-| キューを飛ばしてすぐ送る | `Ctrl+Enter`（Mac は `Cmd+Enter`） |
+| What you want | How |
+|---------------|-----|
+| Add an instruction while it keeps running | Just send it（Send / `Enter` twice） |
+| Have it handled after the current job | `Enter` to queue it |
+| Skip the queue and send now | `Ctrl+Enter`（Mac: `Cmd+Enter`） |
 
-「違う、そっちじゃない」と思った時点で止めずに言えるので、やり直しが減ります。
+Because you can say “no, not that way” the moment you think it, you redo less.
 
 ### `/goal`
 
-`/goal` は、**達成するまで続ける長期の目標**を渡すコマンドです。1回の依頼で終わらせず、「CI が緑になるまで直し続けて」のような使い方をします。
+`/goal` hands over a **long-running objective it keeps working at until it's met**. Rather than finishing after one request, you use it for things like “keep fixing until CI is green”.
 
-## 操作チェックリスト
+## Operation checklist
 
-- [ ] `Ctrl+I`（Mac は `Cmd+I`）でパネルを開く
-- [ ] `Shift + Tab` で Ask にする
-- [ ] Ask で `@practice/calculator.js` を付けて質問する
-- [ ] Agent に戻して小さな変更を頼む
-- [ ] 差分を確認する
-- [ ] 必要ならメッセージ横の **Restore Checkpoint** で巻き戻す
+- [ ] Open the panel with `Ctrl+I`（Mac: `Cmd+I`）
+- [ ] `Shift+Tab` to Ask
+- [ ] Ask a question in Ask with `@practice/calculator.js` attached
+- [ ] Switch back to Agent and request a small change
+- [ ] Read the diff
+- [ ] If you need to, roll back with **Restore Checkpoint** beside the message
 
-## 実習 A（Ask）
+## Exercise A（Ask）
 
-Ask モードで送る:
-
-```text
-@practice/ このフォルダにあるコードの責務を一覧にして。
-まだ編集しないで。
-```
-
-## 実習 B（Agent）
-
-Agent モードで送る:
+Send this in Ask mode:
 
 ```text
-practice/calculator.js に、税率を渡して税込金額を返す関数を追加して。
-既存関数の挙動は壊さないで。完了後に使い方を1例だけコメントで示して。
+@practice/ List the responsibility of each piece of code in this folder.
+Don't edit anything yet.
 ```
 
-## 実習 C（Plan）
+## Exercise B（Agent）
 
-Plan モードで送る:
+Send this in Agent mode:
 
 ```text
-practice/ を「簡単な買い物カート」に拡張したい。
-商品追加・小計・割引・税込合計ができる最小構成の計画を出して。
-実装は計画を見せてからにして。
+Add a function to practice/calculator.js that takes a tax rate and returns the tax-inclusive amount.
+Don't break the behaviour of the existing functions. When you're done, show exactly one usage example in a comment.
 ```
 
-次: [02-shortcuts.md](02-shortcuts.md)
+## Exercise C（Plan）
+
+Send this in Plan mode:
+
+```text
+I want to grow practice/ into a simple shopping cart.
+Give me the minimum plan to support adding items, a subtotal, a discount, and a tax-inclusive total.
+Show me the plan before you write any code.
+```
+
+Next: [02-shortcuts.md](02-shortcuts.md)

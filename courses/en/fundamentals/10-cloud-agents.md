@@ -1,68 +1,69 @@
 # 10. Cloud Agents
 
-ローカルの Agent はあなたのマシン上で動きます。**Cloud Agents** はクラウド側の環境で走り、長めの作業やリモートの PR 作成などに向きます。
+A local Agent runs on your machine. **Cloud Agents** run in an environment on the cloud side, which suits longer jobs and creating PRs remotely.
 
-## ざっくり比較
+## A rough comparison
 
-| | ローカル Agent | Cloud Agents |
-|--|----------------|--------------|
-| 実行場所 | 自分の PC | クラウドの分離環境 |
-| 向くこと | 対話的な編集、手元確認 | まとまった作業、離席中の進行 |
-| 依存 | ローカルの git / ネットワーク / ツール | クラウド側のセットアップ |
+| | Local Agent | Cloud Agents |
+|--|-------------|--------------|
+| Runs where | Your own machine | An isolated environment on the cloud |
+| Good for | Interactive editing, checking things by hand | Self-contained chunks of work, progress while you're away |
+| Depends on | Your local git / network / tools | The cloud-side setup |
 
-両方とも「Agent」。違いは **どこで走るか・どう隔離されるか** です。
+Both are “the Agent”. The difference is **where it runs and how it is isolated**.
 
-クラウド側は**自分専用の仮想マシン**を持つので、ビルド・テスト・ブラウザ操作まで含めて任せられます。
+The cloud side gets **its own virtual machine**, so you can hand over builds, tests, even browser work.
 
-## 使うときのイメージ
+## How it looks in practice
 
-- リポジトリとブランチを指定して起動
-- クラウド上で探索・編集・テストなどを進める
-- 結果を PR やブランチ差分として受け取る（利用プランによる）
+- Specify a repo and a branch, then start it
+- It explores, edits and tests on the cloud
+- You receive the result as a PR or a branch diff（depending on your plan）
 
-### どこから起動できるか
+### Where you can start one from
 
-| 経路 | 使いどころ |
-|------|------------|
-| Cursor / Web | 通常の起動 |
-| **Slack** | スレッドで `@Cursor` と話しかける（→ [18-integrations.md](18-integrations.md)） |
-| **CLI** | プロンプトの先頭に `&` を付ける（→ [17-cli.md](17-cli.md)） |
-| **モバイル / iPad** | 移動中に PR を見る・指示する |
+| Entry point | When to use it |
+|-------------|----------------|
+| Cursor / Web | The normal way |
+| **Slack** | Talk to `@Cursor` in a thread（→ [18-integrations.md](18-integrations.md)） |
+| **CLI** | Put `&` at the start of the prompt（→ [17-cli.md](17-cli.md)） |
+| **Mobile / iPad** | Review PRs and give instructions on the move |
 
-### Builds（起動を速くする仕組み）
+### Builds（what makes startup fast）
 
-毎回ゼロから環境を作ると遅いので、Cursor は**準備済みの環境スナップショット**を裏で作っておきます。エージェントはそこから起動するので、依存インストールを待たずに作業を始められます。直近の成功したビルドが保持され、失敗してもそこへ戻せます。
+Building the environment from scratch every time is slow, so Cursor quietly prepares **snapshots of a ready environment**. Agents start from those, so they get to work without waiting on dependency installs. The most recent successful build is kept, and you can fall back to it when one fails.
 
-### Automations（自動で走らせる）
+### Automations（running it by itself）
 
-Cloud Agent を**スケジュール**または**イベント**で自動起動する仕組みです。
+A way to start a Cloud Agent automatically, on a **schedule** or on an **event**.
 
-- 毎朝、前日の変更を要約する
-- PR が更新されたらバグ観点でレビューする
-- Slack に上がったバグ報告をトリアージする
+- Summarise yesterday's changes every morning
+- Review a PR for bugs whenever it is updated
+- Triage bug reports as they land in Slack
 
-GitHub / GitLab / Slack / Linear / Webhook などをきっかけにできます。「人が起動する道具」から「勝手に動く同僚」に変わるのがここです。
+GitHub / GitLab / Slack / Linear / webhooks can all be the trigger. This is the point where it stops being “a tool a person starts” and becomes “a colleague that acts on its own”.
 
-詳細 UI は更新が速いので、公式の Cloud Agents ヘルプを開いて確認するのが安全です。
+The detailed UI moves quickly, so the safe move is to open the official Cloud Agents help and check.
 
-## Multitask・Worktrees との関係
+## How it relates to Multitask and Worktrees
 
-- **`/multitask`**: 複数サブエージェントを並列（多くは同じチェックアウト上）。クラウド側では **1台ずつ隔離した仮想マシン**に分けることもできる
-- **Worktrees**: ブランチ単位で作業ツリーを分けて衝突を減らす
-- **Cloud**: マシンを離れた／重い作業を外に出す
+- **`/multitask`**: several sub-agents in parallel（usually on the same checkout）. On the cloud they can be split into **one isolated VM each**
+- **Worktrees**: separate working trees per branch, to reduce collisions
+- **Cloud**: push heavy work, or work that must continue while you're away, off your machine
 
-「並列」「隔離」「リモート実行」は別概念です。混ぜて使える場合があります。
+“Parallel”, “isolated” and “remote” are three different ideas. Sometimes you combine them.
 
-## 実習（設計）
+## Exercise（design）
 
 Ask:
 
 ```text
-次の3作業を、ローカル Agent / Cloud Agents / multitask
-のどれに振るのがよいか理由つきで振り分けて。
-1) practice/calculator.js に関数を1つ足す
-2) 無関係な2モジュールに同時にテストを足す
-3) 大きめリファクタを夜のうちに進めて朝 PR を見たい
+Which of local Agent / Cloud Agents / multitask should each of these go to, and why?
+1) Add one function to practice/calculator.js
+2) Add tests to two unrelated modules at the same time
+3) Run a large refactor overnight and look at the PR in the morning
 ```
 
-次: [11-bugbot-pr.md](11-bugbot-pr.md)
+Reference: [Cloud Agents](https://cursor.com/docs/cloud-agent)
+
+Next: [11-bugbot-pr.md](11-bugbot-pr.md)

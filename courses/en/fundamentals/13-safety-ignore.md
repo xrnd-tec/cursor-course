@@ -1,80 +1,80 @@
-# 13. 秘密情報・`.cursorignore`・安全運用（おすすめ）
+# 13. Secrets, `.cursorignore` and safe operation（recommended）
 
-Agent は便利なほど、**読ませたくないもの**と **実行させたくないこと** の線引きが重要です。
+The more useful the Agent gets, the more it matters where you draw the line on **what it must not read** and **what it must not do**.
 
-## 守るもの
+## What to protect
 
-- `.env`、API キー、個人トークン、顧客データ
-- 社外秘ドキュメント（必要なら別チャネルで人間が判断）
+- `.env`, API keys, personal tokens, customer data
+- Confidential documents（if they're needed, let a human decide through another channel）
 
-## `.cursorignore` / `.gitignore`
+## `.cursorignore` and `.gitignore`
 
-| ファイル | 主目的 |
-|----------|--------|
-| `.gitignore` | git に載せない |
-| `.cursorignore` | Cursor / Agent のインデックスや参照から外しやすくする |
+| File | Main purpose |
+|------|--------------|
+| `.gitignore` | Keep it out of git |
+| `.cursorignore` | Keep it out of Cursor's / the Agent's index and references |
 
-両方必要になることがあります。「git に無いから Agent も見ない」とは限りません。秘密は **そもそもリポジトリに置かない** が最優先です。
+You often need both. **“It isn't in git, so the Agent can't see it” is wrong.** The highest priority is still **not putting secrets in the repo in the first place**.
 
-## 実行の制限（既定でどこまで守られているか）
+## Limiting execution（how much the defaults already protect you）
 
-「読ませない」だけでなく「**やらせない**」も設定できます。既定でも次のようになっています。
+Beyond “don't read it”, you can also set “don't do it”. Even at the defaults, things stand as follows.
 
-| 対象 | 既定の扱い |
-|------|------------|
-| ファイルの読み取り・検索 | 承認不要 |
-| ファイルの書き換え | **即座に保存される**。だからバージョン管理が前提 |
-| ターミナルのコマンド実行 | **Run Mode に従う**（推奨は Auto-review。下を参照） |
-| ネットワーク | 任意の通信は不可。GitHub・直接指定したリンク・Web 検索などに限られる |
-| MCP のツール呼び出し | 接続も呼び出しも承認が要る（許可リストや Auto-review で事前承認は可能） |
+| Subject | Default |
+|---------|---------|
+| Reading and searching files | No approval needed |
+| Overwriting files | **Saved immediately.** Which is exactly why version control is assumed |
+| Running terminal commands | **Follows the Run Mode**（Auto-review is recommended, see below） |
+| Network | No arbitrary traffic. Limited to GitHub, links you point it at directly, web search, and similar |
+| Calling MCP tools | Both connecting and calling need approval（an allowlist or Auto-review can pre-approve） |
 
 ### Run Modes
 
-Agent のツール呼び出しを、どこまで確認なしで進めるかは **Settings → Agents → Approvals & Execution** で決めます。最初にそろえる手順は [00-map.md](00-map.md) の「最初にそろえる設定」。
+How far the Agent's tool calls may go without asking is set under **Settings → Agents → Approvals & Execution**. The first-time steps are in “Settings worth getting right first” in [00-map.md](00-map.md).
 
-公式が多くのユーザー向けに推奨しているのは **Auto-review** です。
+Cursor recommends **Auto-review** for most users.
 
-| Run Mode | 確認なしで走ること | 向くとき |
-|----------|-------------------|----------|
-| **Auto-review** | 許可リストに合うものはすぐ実行。シェルはサンドボックスで実行できるならそこで実行。それ以外は分類して、必要なときだけ確認する | 確認を減らしつつ、危険度の高い操作は止めたい |
-| **Allowlist** | 許可リストに入れたものだけ自動（サンドボックスは任意） | 許可するものを自分で固定したい |
-| **Run Everything** | すべてのツール呼び出しを自動 | 確認ゼロを受け入れるとき |
+| Run Mode | Runs without asking | When it fits |
+|----------|---------------------|--------------|
+| **Auto-review** | Anything matching the allowlist runs straight away. Shell commands run in the sandbox where they can. The rest is classified, and you're only asked when needed | You want fewer prompts but still want risky operations stopped |
+| **Allowlist** | Only what you put on the list（sandbox optional） | You want to fix the allowed set yourself |
+| **Run Everything** | Every tool call, automatically | Only when you accept having no confirmations |
 
-Auto-review は便利ですが、**安全の境界ではありません**。分類を間違えることがあります。厳密に止めたい操作は Allowlist と自分の承認で扱います。追加の設定ファイルは必須ではありません。
+Auto-review is convenient, but **it is not a security boundary**. It can classify things wrongly. Anything you need strictly stopped should go through Allowlist plus your own approval. No extra config file is required.
 
-「何でも自動実行」（Run Everything）にすると、そこが事故の入口になります。
+Turning on “run everything” makes that the doorway for accidents.
 
-CLI 側にも `--sandbox` / `/sandbox` があります（→ [17-cli.md](17-cli.md)）。
+The CLI has `--sandbox` / `/sandbox` as well（→ [17-cli.md](17-cli.md)）.
 
-参考: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
+Reference: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 
-## 運用の最低ライン
+## The operational minimum
 
-1. 秘密は環境変数やシークレットマネージャへ  
-2. Agent に「キーをチャットに貼って」と言わない  
-3. Hook や Rule で `git push --force` などを抑止（[08-hooks.md](08-hooks.md)）  
-4. 破壊的操作は自分で確認してから Keep  
+1. Put secrets in environment variables or a secret manager
+2. Never tell the Agent to “paste the key into the chat”
+3. Use a Hook or a Rule to block things like `git push --force`（[08-hooks.md](08-hooks.md)）
+4. Check destructive operations yourself before you Keep
 
-## 実習
+## Exercise
 
 Ask:
 
 ```text
-このリポジトリ学習用に .cursorignore に入れておくとよい候補を5つ。
-入れすぎると学習の邪魔になるものも指摘して。
-まだファイルは作らないで。
+Give five candidates worth putting in .cursorignore for this learning repo.
+Also point out anything that would get in the way of learning if it were ignored.
+Don't create any files yet.
 ```
 
 ---
 
-発展編はここまで。ここで一度手を動かすなら:
+That's the end of the advanced material. If you want to try one thing right now:
 
-1. `.cursor/rules` を1枚入れる  
-2. 小さな Skill を1つ書く  
-3. Hook は観察だけから始める  
+1. Add one file to `.cursor/rules`
+2. Write one small Skill
+3. With Hooks, start with one that only observes
 
-このあと 14〜18 は **チームで配る・自動で回す**ための応用編です。公式は更新が速いので、詰まったら Cursor の Help / Docs とこのチャットを併用してください。
+Chapters 14 to 19 are the applied material: **distributing to a team, and running things automatically**. The official docs move quickly, so when you're stuck use Cursor's Help / Docs alongside this chat.
 
-参考: [Agent Security](https://cursor.com/docs/agent/security)
+Reference: [Agent Security](https://cursor.com/docs/agent/security)
 
-次: [14-subagents.md](14-subagents.md)
+Next: [14-subagents.md](14-subagents.md)

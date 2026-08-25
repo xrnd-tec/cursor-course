@@ -1,16 +1,16 @@
 # 6. Project Rules（`.cursor/rules`）
 
-毎回のプロンプトに書かなくてよい **チーム／リポジトリの約束** を Rules に置きます。Agent がその前提で動きます。
+Put the **agreements of your team or repo** — the ones you don't want to retype in every prompt — into Rules. The Agent then works with those as given.
 
-## Rules / Skills / Hooks の違い（先にこれだけ）
+## Rules vs Skills vs Hooks（just this much for now）
 
-| 仕組み | 役割 | 典型例 |
-|--------|------|--------|
-| **Rules** | いつも効く方針・制約 | 「コミットは日本語」「CSS は modules」 |
-| **Skills** | 特定タスクの手順書 | PR 作成手順、週次レポートの型 |
-| **Hooks** | イベント時にプログラムで介入 | 危険な shell を止める、編集後フォーマット |
+| Mechanism | Role | Typical example |
+|-----------|------|-----------------|
+| **Rules** | Policies and constraints that are always in force | “Commit messages in English”, “CSS uses modules” |
+| **Skills** | A playbook for one particular kind of work | How to open a PR, the shape of a weekly report |
+| **Hooks** | Programmatic intervention on an event | Block a dangerous shell command, format after an edit |
 
-## 置き場所
+## Where they live
 
 ```text
 .cursor/rules/
@@ -18,52 +18,54 @@
   practice-js.mdc
 ```
 
-各ファイルは `.mdc`（Markdown + YAML フロントマター）です。
+Each file is `.mdc`（Markdown + YAML frontmatter）.
 
 ```markdown
 ---
-description: practice/ の JS は ESM・小さな関数優先
+description: JS under practice/ is ESM and prefers small functions
 globs: practice/**/*.js
 alwaysApply: false
 ---
 
 # practice JS
 
-- `export` を使う（CommonJS にしない）
-- 1 関数は短く。副作用は index 側に寄せる
+- Use `export`（not CommonJS）
+- Keep functions short. Push side effects towards index
 ```
 
-### フロントマターの意味
+### What the frontmatter fields mean
 
-| フィールド | 用途 |
-|------------|------|
-| `description` | ルール一覧に出る短い説明 |
-| `globs` | このパターンのファイル作業時に効かせる |
-| `alwaysApply` | `true` なら毎回必ず載せる |
+| Field | Purpose |
+|-------|---------|
+| `description` | The short description shown in the rules list |
+| `globs` | Only applies when working on files matching this pattern |
+| `alwaysApply` | Set `true` to include it every single time |
 
-**User Rules**（Cursor Settings）は個人全プロジェクト向け。**Project Rules** はリポジトリ共有向け、と覚えるとよいです。
+An easy way to remember it: **User Rules**（in Cursor Settings）are yours across every project; **Project Rules** are shared through the repo.
 
-## 書き方のコツ
+## Tips for writing them
 
-- 短く具体的に（長い百科事典より、守れる 5〜15 行）
-- 「やる / やらない」を書く
-- ファイル種別に分ける（`alwaysApply: true` の乱用はコンテキストを食う）
+- Short and concrete（5–15 lines people actually follow beats an encyclopedia nobody does）
+- Write down what to do *and* what not to do
+- Split them by file type（overusing `alwaysApply: true` eats your context）
 
-## 実習
+## Exercise
 
-Agent モードで:
+In Agent mode:
 
 ```text
-このリポジトリ用に .cursor/rules/practice-js.mdc を作って。
-practice/**/*.js にだけ効くようにして。
-内容は「ESM」「関数は小さく」「テストは依頼されない限り作らない」の3点だけ。
+Create .cursor/rules/practice-js.mdc for this repo.
+It should only apply to practice/**/*.js.
+Exactly three points: "use ESM", "keep functions small", "don't create tests unless asked".
 ```
 
-できたら新規チャット（Ask）で:
+Then, in a new chat（Ask）:
 
 ```text
 @practice/calculator.js
-新しい関数を1つ足すなら、このプロジェクトのルール上どう書くべき？
+If I add one new function, how should it be written under this project's rules?
 ```
 
-次: [07-skills.md](07-skills.md)
+Reference: [Rules](https://cursor.com/docs/rules)
+
+Next: [07-skills.md](07-skills.md)

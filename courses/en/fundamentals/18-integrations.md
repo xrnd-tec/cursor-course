@@ -1,63 +1,64 @@
-# 18. 外部サービス連携
+# 18. Integrations with external services
 
-[09-mcp.md](09-mcp.md) の MCP が「自分たちで繋ぐ」仕組みなのに対し、こちらは **Cursor 側が用意している公式の連携**です。設定さえすれば、**Cursor を開いていない場所から Agent を動かせます**。
+MCP in [09-mcp.md](09-mcp.md) is the mechanism you wire up yourself. These are **the official integrations Cursor provides**. Configure them once and you can **start the Agent from places where Cursor isn't even open**.
 
-## 主な連携先
+## What you can connect
 
-| 種類 | サービス |
-|------|----------|
-| チャット | Slack / Microsoft Teams |
-| Issue・タスク | Jira / Linear / Notion |
-| リポジトリ | GitHub / GitLab / Azure DevOps / Bitbucket |
-| 他エディタ | JetBrains / Xcode |
+| Kind | Service |
+|------|---------|
+| Chat | Slack / Microsoft Teams |
+| Issues and tasks | Jira / Linear / Notion |
+| Repositories | GitHub / GitLab / Azure DevOps / Bitbucket |
+| Other editors | JetBrains / Xcode |
 
-## 例: Slack から動かす
+## Example: starting it from Slack
 
-スレッドで `@Cursor` に話しかけると、[Cloud Agents](10-cloud-agents.md) が動きます。
-
-```text
-@Cursor ログイン画面のバグを直して
-@Cursor dev ブランチで API のレスポンス形式を更新して
-```
-
-- メッセージからリポジトリ・ブランチ・モデルを読み取って実行する
-- **スレッドの文脈を読む**ので、議論の流れをそのまま前提にできる
-- 終わったら PR を作ってリンクを返す
-
-使うには、連携ダッシュボードから Slack アプリを入れ、既定のリポジトリと課金設定を済ませておく必要があります。
-
-## Deeplink
-
-MCP やプラグインの設定を **URL 1本で配れる**仕組みです。手順書に「この URL を踏んでください」と書けるので、チームの環境構築が揃いやすくなります。
-
-## MCP との使い分け
-
-| | 公式連携 | MCP |
-|--|----------|-----|
-| 用意する人 | Cursor | 自分たち |
-| 繋がる先 | 主要 SaaS | 社内 API・DB・任意のツール |
-| 入口 | Slack など**外から** Agent を起動できる | Cursor の会話の**中から**呼ぶ |
-
-「Slack で言えば PR が返ってくる」は公式連携、「社内在庫 DB を見て直す」は MCP です。
-
-## 注意
-
-- 外から起動できるということは、**チャットに書いた内容がそのまま実行される**ということ。誰が起動できるかを決めておく
-- 権限は最小から。まず読み取り中心の連携で慣れる
-
-## 実習（設計）
-
-Ask モードで:
+Talk to `@Cursor` in a thread and [Cloud Agents](10-cloud-agents.md) run.
 
 ```text
-次の3つを、公式連携 / MCP / どちらも不要 のどれで実現するのが妥当か、理由つきで振り分けて。
-1) Slack で報告されたバグを、その場で直して PR にしたい
-2) 社内の在庫 API を見て価格ロジックを直したい
-3) 手元の practice/cart.js を1行直したい
+@Cursor Fix the bug on the login screen
+@Cursor Update the API response format on the dev branch
 ```
 
-参考: [Integrations](https://cursor.com/docs) · [Slack 連携](https://cursor.com/docs/integrations/slack)
+- It reads the repo, branch and model straight out of the message and runs
+- It **reads the thread's context**, so the discussion so far becomes the premise
+- When it's done it opens a PR and replies with the link
+
+To use it you have to install the Slack app from the integrations dashboard and set a default repo and billing.
+
+## Deeplinks
+
+A way to **distribute an MCP or plugin configuration as a single URL**. Your setup guide can just say “click this URL”, which keeps a team's environments consistent.
+
+## Official integrations or MCP?
+
+| | Official integration | MCP |
+|--|----------------------|-----|
+| Who provides it | Cursor | You |
+| What it connects to | Major SaaS | Internal APIs, databases, any tool |
+| Entry point | Start the Agent **from outside**, e.g. Slack | Call it **from inside** a Cursor conversation |
+
+“Say it in Slack and get a PR back” is an official integration; “read the internal inventory DB and fix it” is MCP.
+
+## Watch out for
+
+- Being startable from outside means **whatever is written in the chat gets executed for real**. Decide up front who may start it
+- Start from minimum permissions. Get comfortable with read-oriented integrations first
+
+## Exercise（design）
+
+In Ask mode:
+
+```text
+For each of these three, should it be an official integration, MCP, or neither?
+Classify them with reasons.
+1) A bug reported in Slack that I want fixed on the spot and turned into a PR
+2) Reading an internal inventory API and fixing the pricing logic
+3) Fixing one line in practice/cart.js locally
+```
+
+Reference: [Integrations](https://cursor.com/docs) · [Slack](https://cursor.com/docs/integrations/slack)
 
 ---
 
-これで一通りです。手を動かす順番は [00-map.md](00-map.md) の一覧を参照してください。
+That's the whole tour. For the order to work through things by hand, see the list in [00-map.md](00-map.md).

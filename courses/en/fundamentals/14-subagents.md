@@ -1,91 +1,91 @@
-# 14. Subagents（サブエージェント）
+# 14. Subagents
 
-Subagent は、メインの Agent が **仕事を切り出して渡す専用のエージェント** です。自分専用のコンテキストを持つので、メインの会話を汚さずに調査・検証・修正を任せられます。
+A Subagent is **a dedicated agent that the main Agent carves work off to**. It has its own context, so you can hand over investigation, verification or a fix without polluting the main conversation.
 
-`/multitask`（[01-modes.md](01-modes.md)）が「並列にする」という**やり方**の名前なら、Subagent は「誰に振るか」という**相手**の定義です。
+If `/multitask`（[01-modes.md](01-modes.md)）names a **way of working** — in parallel — then a Subagent defines **who** the work goes to.
 
-## 何が嬉しいか
+## What you get
 
-- 長い調査の結果だけがメインの会話に返ってくる（途中の大量の読み込みが載らない）
-- 役割ごとにモデル・ツール権限を変えられる（例: レビュー役は読み取り専用）
-- 複数の Subagent を同時に走らせられる
+- Only the result of a long investigation comes back to the main conversation（not everything it read along the way）
+- You can vary the model and tool permissions per role（a reviewer role can be read-only）
+- Several Subagents can run at once
 
-## 置き場所
+## Where they live
 
-| 種類 | パス |
+| Kind | Path |
 |------|------|
-| プロジェクト | `.cursor/agents/` |
-| 個人 | `~/.cursor/agents/` |
+| Project | `.cursor/agents/` |
+| Personal | `~/.cursor/agents/` |
 
-`.claude/agents/` や `.codex/agents/` も互換で読み込まれます。他ツールの資産をそのまま使えます。
+`.claude/agents/` and `.codex/agents/` are also read for compatibility, so work from other tools can be reused as-is.
 
-## 定義ファイル
+## The definition file
 
-Markdown + YAML フロントマターです。
+Markdown plus YAML frontmatter.
 
 ```markdown
 ---
 name: cart-verifier
-description: practice/ のカート実装を読み、仕様どおりか検証するときに使う。コードは書き換えない。
+description: Use when you need to read the cart implementation under practice/ and verify it against the spec. Does not modify code.
 model: inherit
 readonly: true
 is_background: false
 ---
 
-practice/cart.js と calculator.js を読み、次を報告する。
+Read practice/cart.js and calculator.js, then report on the following.
 
-1. 小計・割引・税込の計算が仕様どおりか
-2. 壊れている点があれば再現手順つきで
-3. コードの変更は絶対にしない
+1. Whether subtotal, discount and tax-inclusive totals match the spec
+2. Any broken behaviour, with steps to reproduce
+3. Never change the code
 ```
 
-| フィールド | 意味 |
-|------------|------|
-| `name` | 呼び出し名。フォルダ／ファイル名と揃える |
-| `description` | **いつ使うか**。Agent はここを見て自動で振るか判断する |
-| `model` | `inherit`（親と同じ）か、特定のモデル ID |
-| `readonly` | `true` で読み取り専用。レビュー役・調査役に有効 |
-| `is_background` | `true` でバックグラウンド実行 |
+| Field | Meaning |
+|-------|---------|
+| `name` | The name you call it by. Match the folder / file name |
+| `description` | **When to use it.** The Agent reads this to decide whether to delegate automatically |
+| `model` | `inherit`（same as the parent）or a specific model ID |
+| `readonly` | `true` means read-only. Very effective for reviewer and investigator roles |
+| `is_background` | `true` runs it in the background |
 
-## 呼び出し方
+## How to call it
 
-1. **自動** — Agent が `description` を見て、必要と判断したら勝手に振る
-2. **明示** — `/cart-verifier 仕様どおりか見て` のようにスラッシュで指名する
-3. **自然文** — 「cart-verifier に確認させて」でも通る
-4. **並列** — 複数を同時に指名すると同時に走る
+1. **Automatically** — the Agent reads the `description` and delegates when it judges it should
+2. **By name** — use a slash, e.g. `/cart-verifier check it against the spec`
+3. **In plain language** — “have cart-verifier check this” works too
+4. **In parallel** — name several and they run at once
 
-Cloud 側では、Subagent を**隔離された仮想マシン**（プロジェクトのクリーンなコピー）で走らせることもできます。並列でテストを回しても互いに壊し合いません。
+On the cloud, Subagents can run in **isolated virtual machines**（a clean copy of the project）. Tests run in parallel without breaking each other.
 
-## Rules / Skills / Subagents の使い分け
+## Rules, Skills or Subagents?
 
-| 仕組み | 何を決めるか |
-|--------|--------------|
-| **Rules** | いつも効く方針（[06-rules.md](06-rules.md)） |
-| **Skills** | 手順書。誰がやるかは決めない（[07-skills.md](07-skills.md)） |
-| **Subagents** | **誰にやらせるか**。専用の文脈・権限・モデルを持つ |
+| Mechanism | What it decides |
+|-----------|-----------------|
+| **Rules** | The policy that is always in force（[06-rules.md](06-rules.md)） |
+| **Skills** | The procedure. It says nothing about who does it（[07-skills.md](07-skills.md)） |
+| **Subagents** | **Who does it.** With their own context, permissions and model |
 
-## 注意
+## Watch out for
 
-- `description` が曖昧だと自動で呼ばれない。「いつ使うか」を必ず書く
-- 書き換えさせたくない役割には `readonly: true` を付ける
-- 増やしすぎると Agent がどれを呼ぶか迷う。まず1つから
+- A vague `description` never gets called automatically. Always write “when to use it”
+- Give `readonly: true` to any role that must not modify anything
+- Too many and the Agent hesitates over which to call. Start with one
 
-## 実習
+## Exercise
 
-Agent モードで:
+In Agent mode:
 
 ```text
-.cursor/agents/cart-verifier.md を作って。
-practice/ のカート実装を読んで仕様どおりか報告するだけの読み取り専用サブエージェントにして。
-コードは書き換えない設定にすること。
+Create .cursor/agents/cart-verifier.md.
+Make it a read-only sub-agent that only reads the cart implementation under practice/
+and reports whether it matches the spec. It must be configured not to change code.
 ```
 
-新規チャットで:
+Then, in a new chat:
 
 ```text
-/cart-verifier practice/ のカートを検証して
+/cart-verifier Verify the cart under practice/
 ```
 
-参考: [Subagents](https://cursor.com/docs/subagents)
+Reference: [Subagents](https://cursor.com/docs/subagents)
 
-次: [15-plugins.md](15-plugins.md)
+Next: [15-plugins.md](15-plugins.md)

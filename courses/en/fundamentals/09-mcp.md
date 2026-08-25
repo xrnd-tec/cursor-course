@@ -1,46 +1,48 @@
 # 9. MCP（Model Context Protocol）
 
-MCP は、Agent が **外部ツール／データ**（Issue トラッカー、DB、ブラウザ、社内 API など）に繋がるための共通インタフェースです。チャットにコピペせず、ツール呼び出しで取りに行きます。
+MCP is the shared interface through which the Agent reaches **external tools and data**（issue trackers, databases, browsers, internal APIs…）. Instead of pasting things into the chat, the Agent calls a tool and fetches them.
 
-## 何が嬉しいか
+## What you get
 
-- Linear / GitHub / Notion / Datadog などと会話から連携
-- 「今の Issue を見て直して」がコピペ無しで通る
-- 社内の読み取り専用 API を安全に渡せる（権限設計は自分たち次第）
+- Linear / GitHub / Notion / Datadog and friends, connected from inside a conversation
+- “Read the current issue and fix it” works with nothing pasted
+- A read-only internal API can be handed over safely（the permission design is still yours to get right）
 
-## Cursor 側のイメージ
+## How it looks from Cursor
 
-1. MCP サーバを設定（設定 UI または mcp.json）
-2. サーバが **tools / resources** を公開
-3. Agent が必要ならそのツールを呼ぶ（承認が出ることも）
+1. Configure an MCP server（through the settings UI or `mcp.json`）
+2. The server publishes its **tools / resources**
+3. The Agent calls one when it needs to（sometimes asking you to approve）
 
-学習段階では「全部繋ぐ」より、**用途が1つはっきりしたサーバを1つ** がおすすめです。
+While you're learning, don't “connect everything” — start with **exactly one server with one clear purpose**.
 
-## Rules / Skills との関係
+## How it relates to Rules and Skills
 
-| 仕組み | 役割 |
-|--------|------|
-| MCP | **外のシステム**に触る能力 |
-| Skill | その触り方・手順の型 |
-| Rule | 「本番 DB を壊す操作は禁止」などの制約 |
+| Mechanism | Role |
+|-----------|------|
+| MCP | The ability to reach **an outside system** |
+| Skill | The shape of how to reach it, the procedure |
+| Rule | Constraints such as “never run anything destructive against the production DB” |
 
-「繋がる」だけだと危ないので、誰が何を呼べるかもセットで考えます。
+Merely “being connected” is dangerous, so decide who may call what at the same time.
 
-## 注意
+## Watch out for
 
-- 書き込み系ツールは権限制限・承認を強く
-- 秘密鍵・PAT をリポジトリにコミットしない
-- 動かないときはサーバ状態（要認証・エラー）を先に見る
+- For tools that write, tighten permissions and require approval
+- Don't commit private keys or PATs to the repo
+- When something doesn't work, check the server's state first（does it need auth? is it erroring?）
 
-## 実習（調査）
+## Exercise（investigate）
 
-Ask モードで:
+In Ask mode:
 
 ```text
-Cursor で MCP を1つ追加する手順を、このマシン向けに要約して。
-学習用なら何を最初に繋ぐのが安全か、候補を3つ挙げて。
+Summarise the steps to add one MCP to Cursor on this machine.
+If it's purely for learning, what is safe to connect first? Give three candidates.
 ```
 
-実際にサーバを足すときは、接続先の公式手順＋ Cursor Settings の MCP を確認してください。
+When you add a real server, follow the official instructions from whatever you are connecting to, alongside the MCP section of Cursor Settings.
 
-次: [10-cloud-agents.md](10-cloud-agents.md)
+Reference: [MCP](https://cursor.com/docs/mcp)
+
+Next: [10-cloud-agents.md](10-cloud-agents.md)

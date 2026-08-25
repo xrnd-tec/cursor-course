@@ -1,56 +1,56 @@
-# 15. Plugins とマーケットプレイス
+# 15. Plugins and the marketplace
 
-ここまでに出てきた **Rules / Skills / Subagents / Hooks / MCP** は、それぞれ別のファイルに置く別々の仕組みでした。Plugin は、それらを **1つの配布単位にまとめたもの** です。
+**Rules / Skills / Subagents / Hooks / MCP** have all been separate mechanisms living in separate files. A Plugin is what **bundles them into a single unit you can distribute**.
 
-「この職場のやり方一式」を1回のインストールで配れる、と考えると近いです。
+Think of it as shipping “the whole way this place works” in one install.
 
-## Plugin に入るもの
+## What goes into a Plugin
 
-| 中身 | 対応する章 |
-|------|------------|
+| Component | Related chapter |
+|-----------|-----------------|
 | Rules | [06-rules.md](06-rules.md) |
 | Skills | [07-skills.md](07-skills.md) |
 | Agents（Subagents） | [14-subagents.md](14-subagents.md) |
 | Hooks | [08-hooks.md](08-hooks.md) |
-| MCP サーバ | [09-mcp.md](09-mcp.md) |
-| Commands | スラッシュで呼ぶ定型コマンド |
+| MCP servers | [09-mcp.md](09-mcp.md) |
+| Commands | Fixed commands invoked with a slash |
 
-## 2つの規格
+## Two standards
 
-| 規格 | マニフェスト | 中身 |
-|------|--------------|------|
-| **Agent Plugins** | ルートの `plugin.json` | Skills と MCP が中心。ベンダー中立で、他ツールでも動く |
-| **Cursor Plugins** | `.cursor-plugin/plugin.json` | 上記に加えて Rules・Hooks・Commands など Cursor 固有のものも入る |
+| Standard | Manifest | Contents |
+|----------|----------|----------|
+| **Agent Plugins** | `plugin.json` at the root | Mostly Skills and MCP. Vendor-neutral, works in other tools |
+| **Cursor Plugins** | `.cursor-plugin/plugin.json` | The above plus Cursor-specific things: Rules, Hooks, Commands |
 
-Cursor は両方を読み込みます。移植性を優先するなら前者、Cursor に閉じた運用なら後者です。
+Cursor reads both. Pick the first for portability, the second if you're staying inside Cursor.
 
-## 入手経路
+## Where to get them
 
-- **Marketplace** — Cursor 公式。審査済みのものが並ぶ
-- **Team Marketplace** — Teams / Enterprise で自社用の配布棚を持てる。グループごとに公開範囲を制限し、**既定オフ / 既定オン / 必須** を選べる
-- **ローカル開発** — `~/.cursor/plugins/local` に置くと読み込まれる。自作の動作確認はここ
-- **Deeplink** — MCP 設定を URL で共有してインストールさせる
+- **Marketplace** — Cursor's official one, with reviewed entries
+- **Team Marketplace** — Teams / Enterprise get their own internal shelf. Visibility can be limited per group, and each entry can be **off by default / on by default / required**
+- **Local development** — anything in `~/.cursor/plugins/local` is loaded. That's where you try your own
+- **Deeplink** — share an MCP configuration as a URL for others to install
 
-インストール後の管理は **Customize パネル**から行います。ユーザー / チーム / ワークスペースのどの階層に入れるかもここで選べます。
+After installing, manage them from the **Customize panel**. That's also where you choose the level to install into — user, team or workspace.
 
-## いつ Plugin にするか
+## When to make one
 
-- 1人で使う → ファイルを直接置けばよい（Rules や Skill 単体）
-- **チーム全員に同じ前提を配りたい** → Plugin
-- 新しいメンバーの環境構築を1手で済ませたい → Plugin
+- Just for yourself → put the files in directly（a lone Rule or Skill）
+- **You want the whole team on the same footing** → Plugin
+- You want a new joiner's environment set up in one action → Plugin
 
-逆に、まだ形が固まっていない手順を Plugin にすると更新が面倒になります。**まず単体で回して、定着してから束ねる**のが順番です。
+Conversely, packaging a procedure that hasn't settled yet makes updates painful. The right order is **run it loose first, bundle it once it sticks**.
 
-## 実習（調査）
+## Exercise（investigate）
 
-Ask モードで:
+In Ask mode:
 
 ```text
-このリポジトリの .cursor/ にあるもの（rules / skills / agents / hooks）を一覧にして。
-もし1つの Plugin にまとめるなら、どれを入れてどれを外すべきか理由つきで提案して。
-まだファイルは作らないで。
+List what's currently under .cursor/ in this repo (rules / skills / agents / hooks).
+If it were bundled into one Plugin, what should go in and what should stay out? Give reasons.
+Don't create any files yet.
 ```
 
-参考: [Plugins](https://cursor.com/docs/plugins)
+Reference: [Plugins](https://cursor.com/docs/plugins)
 
-次: [16-browser-design.md](16-browser-design.md)
+Next: [16-browser-design.md](16-browser-design.md)

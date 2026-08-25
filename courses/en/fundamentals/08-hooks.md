@@ -1,30 +1,30 @@
 # 8. Hooks
 
-Hook は Agent のライフサイクルに割り込む **自動化・ガードレール** です。方針（Rules）や手順（Skills）と違い、シェルやスクリプトで **許可・拒否・加工・監査** ができます。
+Hooks are **automation and guardrails** that interrupt the Agent's lifecycle. Unlike a policy（Rules）or a procedure（Skills）, a Hook is a shell command or script, so it can **allow, deny, modify and audit**.
 
-## 置き場所
+## Where they live
 
-| 階層 | 設定 | スクリプト例 |
-|------|------|--------------|
-| Enterprise | OS 共通の設定ディレクトリ | 管理者が配布 |
-| Team | クラウドのダッシュボード（Enterprise のみ） | 全メンバーに配る |
-| プロジェクト | `.cursor/hooks.json` | `.cursor/hooks/*.sh` |
-| ユーザー | `~/.cursor/hooks.json` | `~/.cursor/hooks/*.sh` |
+| Level | Config | Example scripts |
+|-------|--------|-----------------|
+| Enterprise | The OS-wide config directory | Distributed by an administrator |
+| Team | The cloud dashboard（Enterprise only） | Distributed to every member |
+| Project | `.cursor/hooks.json` | `.cursor/hooks/*.sh` |
+| User | `~/.cursor/hooks.json` | `~/.cursor/hooks/*.sh` |
 
-**優先順位は上ほど強い**（Enterprise → Team → プロジェクト → ユーザー）。チームで共有したいならプロジェクト Hook を推奨します。
+**The higher up, the stronger**（Enterprise → Team → project → user）. If you want to share with a team, use project hooks.
 
-## よく使うイベント（学習用に絞る）
+## The events you'll actually use（narrowed down for learning）
 
-| イベント | 用途 |
-|----------|------|
-| `beforeShellExecution` | 危険なコマンドを止める／確認する |
-| `afterFileEdit` | 編集後にフォーマットなど |
-| `beforeSubmitPrompt` | プロンプトに秘密情報が無いかチェック |
-| `sessionStart` | セッション開始時のセットアップ |
+| Event | What it's for |
+|-------|---------------|
+| `beforeShellExecution` | Block or confirm dangerous commands |
+| `afterFileEdit` | Format after an edit, and so on |
+| `beforeSubmitPrompt` | Check the prompt for secrets |
+| `sessionStart` | Set things up when a session begins |
 
-このほかに、ツール実行の前後（`preToolUse` / `postToolUse` / `postToolUseFailure`）、サブエージェントの前後（`subagentStart` / `subagentStop`）、MCP 実行の前後、ファイル読み取り前（`beforeReadFile`）、応答後（`afterAgentResponse`）、Tab 補完の前後、ワークスペースを開いたときなどがあります。まず1つだけで十分です。
+There are more: around tool execution（`preToolUse` / `postToolUse` / `postToolUseFailure`）, around sub-agents（`subagentStart` / `subagentStop`）, around MCP execution, before reading a file（`beforeReadFile`）, after a response（`afterAgentResponse`）, around Tab completion, and when a workspace opens. One is plenty to start with.
 
-## 最小イメージ
+## The minimum shape
 
 ```json
 {
@@ -39,35 +39,37 @@ Hook は Agent のライフサイクルに割り込む **自動化・ガード�
 }
 ```
 
-Hook は **stdin の JSON を読み、stdout に JSON で応答**する形が基本です（詳細は公式／create-hook スキル）。最初は「ログだけ出す観察 Hook」から始めると安全です。
+A Hook basically **reads JSON from stdin and replies with JSON on stdout**（see the official docs or the create-hook skill for detail）. The safe way to start is with an observing hook that only writes a log.
 
-各 Hook には次のオプションを付けられます。
+Each Hook takes these options.
 
-| オプション | 意味 |
-|------------|------|
-| `type` | `"command"`（既定）か `"prompt"`。後者は**スクリプトではなく LLM に判定させる** |
-| `matcher` | 対象を絞る（ツール種別・サブエージェント種別・コマンドのパターン） |
-| `timeout` | 秒数 |
-| `failClosed` | `true` で、Hook が失敗したときに**通さない** |
+| Option | Meaning |
+|--------|---------|
+| `type` | `"command"`（default）or `"prompt"`. The latter **has an LLM decide rather than running a script** |
+| `matcher` | Narrow what it applies to（tool kind, sub-agent kind, command pattern） |
+| `timeout` | Seconds |
+| `failClosed` | `true` means **don't let it through** when the Hook fails |
 
-応答の JSON では `permission` に `allow` / `deny` / `ask` を返せます。終了コード `2` は `deny` と同じ扱いです。
+In the JSON response, `permission` can be `allow` / `deny` / `ask`. Exit code `2` is treated the same as `deny`.
 
-## 注意
+## Watch out for
 
-- 失敗時にすべてブロック（`failClosed: true`）すると開発が止まりやすい。既定は「失敗したら通す」
-- まず観察 → 必要なら拒否、の順がおすすめ
-- Secrets を Hook のログに出さない
+- Blocking everything on failure（`failClosed: true`）easily brings development to a halt. The default is “let it through on failure”
+- Go in this order: observe first, deny only once you need to
+- Don't let secrets end up in a Hook's log
 
-## 実習（読む／設計する）
+## Exercise（read and design）
 
-Ask モードで:
+In Ask mode:
 
 ```text
-このリポジトリ向けに、beforeShellExecution で
-「rm -rf /」「git push --force」だけ拒否する Hook の設計を書いて。
-まだファイルは作らないで。
+For this repo, write the design of a Hook on beforeShellExecution
+that denies exactly two commands: "rm -rf /" and "git push --force".
+Don't create any files yet.
 ```
 
-方針が納得できたら Agent で実装を頼んでください。
+Once the approach makes sense, ask the Agent to implement it.
 
-次: [09-mcp.md](09-mcp.md)
+Reference: [Hooks](https://cursor.com/docs/hooks)
+
+Next: [09-mcp.md](09-mcp.md)

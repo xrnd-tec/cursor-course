@@ -1,19 +1,19 @@
 # 7. Skills
 
-Skill は「この種の作業をするときの手順」をまとめたパッケージです。Rules が常時の方針なら、Skills は **必要なときだけ読み込むプレイブック** です。
+A Skill is a package holding “the procedure for doing this kind of work”. If Rules are the policy that is always on, Skills are **a playbook loaded only when it's needed**.
 
-## 置き場所
+## Where they live
 
-| 種類 | パス | スコープ |
-|------|------|----------|
-| プロジェクト | `.cursor/skills/<名前>/SKILL.md` または `.agents/skills/<名前>/SKILL.md` | このリポジトリ |
-| 個人 | `~/.cursor/skills/<名前>/SKILL.md` または `~/.agents/skills/<名前>/SKILL.md` | 自分の全プロジェクト |
+| Kind | Path | Scope |
+|------|------|-------|
+| Project | `.cursor/skills/<name>/SKILL.md` or `.agents/skills/<name>/SKILL.md` | This repo |
+| Personal | `~/.cursor/skills/<name>/SKILL.md` or `~/.agents/skills/<name>/SKILL.md` | All your projects |
 
-`.claude/skills/` も互換で読み込まれるので、他ツール向けに書いた資産をそのまま置けます。サブフォルダで分類しても認識されます。
+`.claude/skills/` is also read for compatibility, so work written for other tools can be dropped in as-is. Sub-folders for grouping are still recognised.
 
-> Cursor 本体の内蔵スキルは `~/.cursor/skills-cursor/` にあります。**触らない・上書きしない。**
+> Cursor's own built-in skills live in `~/.cursor/skills-cursor/`. **Don't touch them, don't overwrite them.**
 
-最小構成:
+The minimum structure:
 
 ```text
 .cursor/skills/mini-cart-check/
@@ -23,53 +23,55 @@ Skill は「この種の作業をするときの手順」をまとめたパッ�
 ```markdown
 ---
 name: mini-cart-check
-description: practice/ のカート実装を確認し、責務と不足を短く報告するときに使う
+description: Use when you need to check the cart implementation under practice/ and report briefly on responsibilities and what is missing
 ---
 
 # Mini cart check
 
-1. practice/cart.js / calculator.js / index.js を読む
-2. 追加・削除・小計・税込の有無を表にする
-3. 壊れている点があれば再現手順つきで1つだけ指摘する
-4. コード変更はユーザーが求めたときだけ
+1. Read practice/cart.js / calculator.js / index.js
+2. Tabulate whether add, remove, subtotal and tax-inclusive total exist
+3. If something is broken, point out exactly one thing with steps to reproduce
+4. Only change code when the user asks
 ```
 
-フロントマターの必須項目は **`name` と `description` の2つだけ**です。`name` は小文字・数字・ハイフンのみで、**親フォルダ名と一致させます**。
+Only **two frontmatter fields are required: `name` and `description`**. `name` is lowercase letters, digits and hyphens only, and **must match the parent folder name**.
 
-## description が重要
+## `description` is the important part
 
-Agent は **description を見て**「この会話にこの Skill を使うか」を判断します。  
-「何のとき使うか」を description に書いておくのがコツです。
+The Agent **reads the `description`** to decide whether to use this Skill in a conversation.
+The trick is to write “when to use it” right there in the description.
 
-## 3つの呼び出し方
+## Three ways to invoke it
 
-| 呼び方 | 効く範囲 | 操作 |
-|--------|----------|------|
-| **自動** | 必要と判断されたとき | 何もしない。Agent が description を見て決める |
-| **スラッシュ** | **そのメッセージ1回だけ** | 入力欄で `/` → Skill 名を選ぶ |
-| **Custom Mode** | **セッション全体** | Skill を選んで `Alt+Enter`（Mac は `Option+Enter`）、または **Use as Mode** |
+| How | Scope |
+|-----|-------|
+| **Automatic** | When the Agent judges it should be used |
+| **Slash** | Type `/` and pick it. **That one message only** |
+| **Custom Mode** | Pin it with `Alt+Enter`（Mac: `Option+Enter`）, or choose **Use as Mode**. **The whole session** |
 
-Custom Mode にすると入力欄にバッジが出て、会話の間ずっとその手順が効きます。「今日はこの規約でレビューし続けてほしい」というときはこれです（→ [01-modes.md](01-modes.md)）。
+As a Custom Mode a badge appears in the input box and the procedure stays in force for the whole conversation. That's the one for “just keep reviewing against this convention today”（→ [01-modes.md](01-modes.md)）.
 
-## Rules との使い分け
+## Rules or Skill?
 
-- 毎回守らせたい → **Rule**
-- 「PR を作る」「週次レポート」「この API の直し方」など手順が長い → **Skill**
-- イベントで止めたい／直したい → **Hook**（次章）
+- Must be obeyed every time → **Rule**
+- A long procedure like “open a PR”, “the weekly report”, “how to fix this API” → **Skill**
+- Block or fix something on an event → **Hook**（next chapter）
 
-## 実習
+## Exercise
 
-Agent に:
+Tell the Agent:
 
 ```text
-.cursor/skills/mini-cart-check/SKILL.md を上記の最小構成で作って。
-余計なファイルは増やさないで。
+Create .cursor/skills/mini-cart-check/SKILL.md using exactly the minimum structure above.
+Don't generate any extra files.
 ```
 
-新規チャットで:
+Then, in a new chat:
 
 ```text
-practice/ のカート実装をチェックして（Skill があれば従って）
+Check the cart implementation under practice/ (follow the Skill if there is one)
 ```
 
-次: [08-hooks.md](08-hooks.md)
+Reference: [Skills](https://cursor.com/docs/skills)
+
+Next: [08-hooks.md](08-hooks.md)

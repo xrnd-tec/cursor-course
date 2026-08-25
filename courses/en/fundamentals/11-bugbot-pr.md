@@ -1,48 +1,50 @@
-# 11. Bugbot / PR レビュー連携
+# 11. Bugbot and PR review
 
-実装後の品質ゲートとして、Cursor 周りの **PR レビュー自動化** を知っておくとチーム開発が楽になります。
+Knowing about **automated PR review** around Cursor, as a quality gate after you've written the code, makes team work considerably lighter.
 
-## 登場人物（ざっくり）
+## The cast（briefly）
 
-| 名前 | 役割 |
+| Name | Role |
 |------|------|
-| **あなた＋Agent** | ブランチで実装、コミット、PR 作成 |
-| **Bugbot**（などの PR ボット） | PR 差分を見てバグやリスクを指摘 |
-| **人間レビュアー** | 仕様・設計・最終判断 |
+| **You + the Agent** | Build on a branch, commit, open the PR |
+| **Bugbot**（or a similar PR bot） | Read the PR diff and point out bugs and risks |
+| **Human reviewers** | The spec, the design, and the final call |
 
-環境によって名前や有効化手順は異なります。要点は「**チャット内のレビュー**」と「**PR 上の自動レビュー**」を混ぜないこと。
+Names and how you enable them differ by environment. The point is not to mix up **review inside the chat** with **automated review on the PR**.
 
-## Bugbot の位置づけ
+## Where Bugbot sits
 
-Bugbot は [Cloud Agents](10-cloud-agents.md) の一機能です。PR の差分を読み、指摘と修正案をコメントで残します。PR が更新されるたびに自動で走らせることも、手動で呼ぶこともできます。
+Bugbot is a feature of [Cloud Agents](10-cloud-agents.md). It reads the PR diff and leaves comments with findings and suggested fixes. You can have it run automatically every time the PR updates, or call it by hand.
 
-**Autofix** を使うと、見つけたバグを直す Cloud Agent がそのまま立ち上がります。指摘 → 修正 → PR 反映までが1本に繋がるので、**指摘を読まずにマージする**という事故が起きやすくなります。出てきた修正も差分で読む、は変わりません。
+With **Autofix**, a Cloud Agent starts up to fix the bugs it found. Finding → fixing → landing in the PR becomes one continuous line, which also **makes it easier to merge without reading the findings at all**. The fixes it produces still have to be read as a diff.
 
-## チャットでできること（学習リポジトリでも）
+## What you can do in the chat（even in this learning repo）
 
-- Agent に「この差分をレビューして」と頼む（ローカル変更）
-- Ask で「マージ前チェックリスト」を作らせる
-- `gh pr create` 前提の手順を Skill 化する（[07-skills.md](07-skills.md)）
+- Ask the Agent to “review this diff”（your local changes）
+- Have Ask build you a pre-merge checklist
+- Turn a `gh pr create`-based procedure into a Skill（[07-skills.md](07-skills.md)）
 
-## PR 連携で覚える流れ
+## The flow worth learning
 
-1. 小さくコミットできる単位でブランチを切る  
-2. PR を作る（タイトルと Test plan）  
-3. 自動レビューの指摘をトリアージ（全部直す／意図的に残す）  
-4. 人間レビューで仕様を確認  
+1. Cut a branch at a size that commits cleanly
+2. Open a PR（with a title and a test plan）
+3. Triage the automated findings（fix them all / deliberately leave some）
+4. A human reviewer checks it against the spec
 
-学習用のこのリポジトリでは、まず **1→2 の型** だけ身につければ十分です。
+In this learning repo, having **steps 1 → 2** in your fingers is enough.
 
-## 実習
+## Exercise
 
 Ask:
 
 ```text
-現在の practice/ と courses/ の変更を想定して、
-小さな学習用 PR のタイトル案と Test plan（チェックリスト3項目）を書いて。
-まだ push / PR 作成はしないで。
+Assuming the current changes in practice/ and courses/,
+write a title for a small learning PR and a test plan with three checklist items.
+Don't push and don't create a PR yet.
 ```
 
-チームで Bugbot が入っているリポジトリでは、実 PR で指摘の読み方を1回経験するのが最短です。
+If your team already has Bugbot on a repo, the fastest route is to read its findings once on a real PR.
 
-次: [12-agents-window.md](12-agents-window.md)
+Reference: [Bugbot](https://cursor.com/docs/bugbot)
+
+Next: [12-agents-window.md](12-agents-window.md)

@@ -1,8 +1,8 @@
-# 17. CLI（ターミナルの Agent）
+# 17. The CLI（the Agent in your terminal）
 
-同じ Agent を、エディタを開かずに**ターミナルから**使えます。エディタ版が「見ながら直す」のに対し、CLI は **手順に組み込む**ためのものです。
+The same Agent, **from the terminal**, without opening the editor. Where the editor version is for “fixing while you watch”, the CLI is for **building it into a process**.
 
-## インストール
+## Installation
 
 ```bash
 # macOS / Linux / WSL
@@ -15,60 +15,60 @@ Windows（PowerShell）:
 irm 'https://cursor.com/install?win32=true' | iex
 ```
 
-コマンド名は `agent` です。
+The command is `agent`.
 
-## 2つの使い方
+## Two ways to use it
 
-### 1. 対話モード
+### 1. Interactive mode
 
 ```bash
 agent
-agent "practice/cart.js の getSubtotal を安全にして"
+agent "Make getSubtotal in practice/cart.js safe"
 ```
 
-エディタの Agent パネルと同じ感覚で会話します。
+The same feel as the Agent panel in the editor.
 
-### 2. print モード（ヘッドレス）
+### 2. Print mode（headless）
 
 ```bash
-agent -p "変更をセキュリティ観点でレビューして" --output-format text
-agent -p "テストの失敗を直して" --model "gpt-5"
+agent -p "Review the changes from a security angle" --output-format text
+agent -p "Fix the failing tests" --model "gpt-5"
 ```
 
-`-p` を付けると**対話せずに1回答えて終わる**ので、スクリプトや CI に組み込めます。ここが CLI 最大の価値です。
+With `-p` it **answers once and exits instead of conversing**, so it fits into scripts and CI. That is the CLI's biggest value.
 
-## 覚えておくもの
+## Worth knowing
 
-| 機能 | 使い方 |
-|------|--------|
-| モード指定 | `--mode` またはスラッシュコマンド。`agent` / `plan` / `ask` |
-| セッション再開 | `agent resume` / `agent --continue` |
-| Cloud へ渡す | プロンプトの先頭に `&` を付けると、そのままクラウドで走らせる |
-| サンドボックス | `/sandbox` または `--sandbox <mode>` でコマンド実行の制限を変える |
+| Feature | How |
+|---------|-----|
+| Choose a mode | `--mode`, or a slash command. `agent` / `plan` / `ask` |
+| Resume a session | `agent resume` / `agent --continue` |
+| Hand off to the cloud | Put `&` at the start of the prompt and it runs on the cloud |
+| Sandbox | `/sandbox` or `--sandbox <mode>` to change command-execution limits |
 
-## 何に使うか
+## What to use it for
 
-- **CI で使う** — PR ごとにレビューを1回走らせる、失敗したテストの原因を要約させる
-- **定型作業** — 「全ファイルの見出しレベルを揃える」のような機械的な一括処理
-- **エディタを開けない場所** — サーバ上、コンテナの中
+- **In CI** — run one review per PR, or summarise why tests failed
+- **Repetitive work** — mechanical bulk edits, like “make every file's heading levels consistent”
+- **Where you can't open an editor** — on a server, inside a container
 
-対話しながら考える作業はエディタ側の方が速いです。**CLI は自動化のための入口**と考えてください。
+Work where you think as you go is faster in the editor. Treat **the CLI as the doorway to automation**.
 
-## 注意
+## Watch out for
 
-- `-p` は人間が差分を読まないまま進むことがある。**必ず git 管理下で走らせる**
-- CI に入れるときはトークンの権限を最小にする（[13-safety-ignore.md](13-safety-ignore.md)）
+- With `-p`, things can proceed with nobody reading the diff. **Only ever run it inside a git repo**
+- When you put it in CI, give the token the minimum permissions（[13-safety-ignore.md](13-safety-ignore.md)）
 
-## 実習
+## Exercise
 
-ターミナルで:
+In your terminal:
 
 ```bash
-agent -p "practice/ にあるファイルの役割を1行ずつ列挙して。コードは変更しないで" --output-format text
+agent -p "List the role of each file in practice/, one line each. Don't change the code" --output-format text
 ```
 
-エディタの Ask で同じことを聞いて、返り方の違いを見比べてください。
+Then ask the same thing with Ask in the editor and compare how the answers differ.
 
-参考: [CLI](https://cursor.com/docs/cli/overview)
+Reference: [CLI](https://cursor.com/docs/cli/overview)
 
-次: [18-integrations.md](18-integrations.md)
+Next: [18-integrations.md](18-integrations.md)
