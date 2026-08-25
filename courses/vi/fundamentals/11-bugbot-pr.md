@@ -45,4 +45,6 @@ Chưa push, chưa tạo PR.
 
 Nếu team bạn đã gắn Bugbot vào repo, cách nhanh nhất là trải nghiệm đọc nhận xét một lần trên PR thật.
 
+Tham khảo: [Bugbot](https://cursor.com/docs/bugbot)
+
 Tiếp theo: [12-agents-window.md](12-agents-window.md)

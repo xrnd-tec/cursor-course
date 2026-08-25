@@ -72,4 +72,6 @@ Rồi mở chat mới:
 Kiểm tra phần giỏ hàng trong practice/（có Skill thì làm theo）
 ```
 
+Tham khảo: [Skills](https://cursor.com/docs/skills)
+
 Tiếp theo: [08-hooks.md](08-hooks.md)

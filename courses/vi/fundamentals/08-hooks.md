@@ -70,4 +70,6 @@ Chưa tạo tệp nào cả.
 
 Thấy hướng đi hợp lý rồi thì nhờ Agent viết thật.
 
+Tham khảo: [Hooks](https://cursor.com/docs/hooks)
+
 Tiếp theo: [09-mcp.md](09-mcp.md)

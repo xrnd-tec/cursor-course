@@ -65,4 +65,6 @@ Nếu cải thiện thì một bước nhỏ nhất nên làm là gì?
 
 Phần cơ bản dừng ở đây. Sang phần nâng cao:
 
+Tham khảo: [Prompting](https://cursor.com/docs/agent/prompting)
+
 Tiếp theo: [06-rules.md](06-rules.md)（Rules → Skills → Hooks → MCP → Cloud → PR → chạy song song → vận hành an toàn → Subagents → Plugins → Design Mode → CLI → kết nối ngoài）

@@ -65,4 +65,6 @@ Phân loại kèm lý do.
 3) Chạy một đợt refactor lớn qua đêm, sáng ra xem PR
 ```
 
+Tham khảo: [Cloud Agents](https://cursor.com/docs/cloud-agent)
+
 Tiếp theo: [11-bugbot-pr.md](11-bugbot-pr.md)

@@ -134,5 +134,6 @@ Tham khảo: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 | [16](16-browser-design.md) | Trình duyệt và Design Mode |
 | [17](17-cli.md) | CLI |
 | [18](18-integrations.md) | Kết nối dịch vụ ngoài |
+| [19](19-plans.md) | Gói dịch vụ và mức sử dụng |
 
 Tiếp theo: [01-modes.md](01-modes.md)

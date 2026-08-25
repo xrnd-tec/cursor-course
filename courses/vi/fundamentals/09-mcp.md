@@ -43,4 +43,6 @@ Nếu chỉ để học thì nối cái gì trước là an toàn? Nêu 3 phươ
 
 Khi thêm server thật, hãy làm theo hướng dẫn chính thức của bên được nối, đối chiếu với mục MCP trong Cursor Settings.
 
+Tham khảo: [MCP](https://cursor.com/docs/mcp)
+
 Tiếp theo: [10-cloud-agents.md](10-cloud-agents.md)

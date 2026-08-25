@@ -56,4 +56,6 @@ Việc lớn, bàn hướng đi trước     → Plan
 3. Bôi đen toàn bộ hàm `formatName` → `Ctrl+K`（Mac là `Cmd+K`）→ `Truyền null hoặc undefined vào thì đang trả về chuỗi "null". Sửa lại để trả về chuỗi rỗng`
 4. Làm lại đúng thay đổi đó một lần nữa theo đường **Ask để nghe cách làm → Agent để thực hiện**, và cảm nhận diff hiện ra khác nhau thế nào
 
+Tham khảo: [Tab](https://cursor.com/help/ai-features/tab)
+
 Tiếp theo: [05-prompting.md](05-prompting.md)

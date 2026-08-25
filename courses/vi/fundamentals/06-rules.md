@@ -66,4 +66,6 @@ Xong thì mở chat mới（Ask）:
 Nếu thêm một hàm mới, theo rule của dự án này thì phải viết thế nào?
 ```
 
+Tham khảo: [Rules](https://cursor.com/docs/rules)
+
 Tiếp theo: [07-skills.md](07-skills.md)

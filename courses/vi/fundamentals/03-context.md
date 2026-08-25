@@ -57,4 +57,6 @@ Sửa getSubtotal để nó bỏ qua những item thiếu price hoặc thiếu q
 Giữ nguyên hành vi hiện tại là giỏ rỗng trả về 0. Tiện thể thêm một khối JSDoc.
 ```
 
+Tham khảo: [@ symbols · Context](https://cursor.com/help/customization/context)
+
 Tiếp theo: [04-tab-and-inline.md](04-tab-and-inline.md)

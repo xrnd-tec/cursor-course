@@ -9,7 +9,7 @@
 
 | Đường dẫn | Nội dung |
 |-----------|----------|
-| [fundamentals/](fundamentals/) | Bài tự học thao tác Cursor（0–18） |
+| [fundamentals/](fundamentals/) | Bài tự học thao tác Cursor（0–19） |
 | [4sessions/](4sessions/) | Khóa thực hành（90 phút × 4 buổi） |
 
 ## Học thế nào
@@ -21,7 +21,7 @@
 3. Làm phần **Thực hành** ở cuối mỗi bài, ngay trong [`practice/`](../../practice/)
 4. Gặp thao tác chưa rõ thì hỏi thẳng trong panel
 
-Phần cơ bản（0–5）nên đọc theo thứ tự. Phần nâng cao（6–18）là tài liệu tra cứu ngược, cần chương nào thì mở chương đó.
+Phần cơ bản（0–5）nên đọc theo thứ tự. Phần nâng cao（6–19）là tài liệu tra cứu ngược, cần chương nào thì mở chương đó.
 
 ### Nếu bạn đứng lớp
 
@@ -59,6 +59,7 @@ Không cần đọc theo thứ tự. **Khi nào cần thì mở chương đó.**
 | Muốn chỉ thẳng vào màn hình để AI sửa UI | [16. Trình duyệt và Design Mode](fundamentals/16-browser-design.md) |
 | Muốn chạy Cursor từ CI hoặc script | [17. CLI](fundamentals/17-cli.md) |
 | Muốn kích hoạt từ Slack hay Issue | [18. Kết nối dịch vụ ngoài](fundamentals/18-integrations.md) |
+| Muốn biết dùng miễn phí được tới đâu, hết hạn mức thì sao | [19. Gói dịch vụ và mức sử dụng](fundamentals/19-plans.md) |
 
 ## Nơi để tự tay làm
 

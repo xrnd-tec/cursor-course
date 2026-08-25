@@ -72,4 +72,6 @@ và trường hợp không nên.
 
 Còn thời gian thì mở Agents Window và thử `/multitask` một lần với hai yêu cầu nhỏ không liên quan nhau.
 
+Tham khảo: [Agents Window](https://cursor.com/docs/agent/agents-window) · [Worktrees](https://cursor.com/docs/configuration/worktrees)
+
 Tiếp theo: [13-safety-ignore.md](13-safety-ignore.md)
