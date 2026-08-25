@@ -1,1007 +1,885 @@
-# 第1回：基本操作（90分）
+# Session 1: Basic operations（90 minutes）
 
-> **この回のゴール（4段）**  
-> 01 Cursor の基本操作を覚える → 02 既存のコードを AI に説明させる → 03 不具合を AI に直させる → 04 新しい機能を AI に実装させる（挑戦）  
-> **01〜03 まで届けば達成です。04 は挑戦枠**なので、届かなくても失敗ではありません。
+> **The goals（four rungs）**
+> 01 Learn Cursor's basic operations → 02 Have the AI explain existing code → 03 Have the AI fix a defect → 04 Have the AI build a new feature（stretch）
+> **Reaching 01–03 is success. 04 is a stretch**, and not reaching it isn't a failure.
 
-> **今日の教材は、壊れた買い物カートのページです。** `practice/index.html` を開くと、
-> ①割引が効かない ②小計が NaN ③クーポンが未実装 の3か所がオレンジで表示されています。
-> **この3つを AI に直させて、画面が直るところまでを見るのが今日です。**
-
----
-
-## 台本の全体の流れ
-
-1. 00-1 この台本の読み方
-2. 00-2 セットアップ手順
-3. 00-3 タイムテーブル
-4. 0-1 表紙とイントロ
-5. 第1章〜第7章
-6. 講師チェックリスト
+> **Today's material is a broken shopping cart page.** Open `practice/index.html` and you'll see
+> three things marked in orange: ① the discount doesn't apply ② the subtotal is NaN ③ the coupon isn't implemented.
+> **Today is about getting the AI to fix all three, and watching the screen come good.**
 
 ---
 
-## この台本の読み方
+## The whole shape of this script
 
-### この節の流れ
-
-1. 00-1 読み方の要点
-
-### 00-1 読み方の要点
-
-**受講者が資料を見ながら手を動かし、講師が説明しながら進める**前提で書いてあります。時間配分もその想定です。
-
-プロンプトは資料に全文を載せ、画面の位置はスクリーンショットで示すので、別途の実演は前提にしていません。実際の進め方は現場で調整してください。
-
-見出しの番号は **`N-M` = 第N章のステップM** です（例: `1-2`）。第1章の前は **`00-M`**（読み方・セットアップ・タイムテーブル）、イントロは **`0-1`** です。各章の先頭に **この章の流れ**、章の前の節には **この節の流れ**（目次）があります。
-
-各章は5ブロックで書いてあります（イントロなど一部の節では欠けることがあります）。
-
-
-| ブロック               | 誰のためのものか                                            |
-| ------------------ | --------------------------------------------------- |
-| **［スライド］解説**       | Cursor の仕組みの説明。スライドに載せる。出典は `courses/fundamentals/` |
-| **［スライド］受講者がやること** | そのまま配布資料に載せる。プロンプトは全文を載せて、口頭で読み上げない                 |
-| **講師が話すこと**        | 受講者が打っている間・待っている間に話す内容                              |
-| **チェックポイント**       | 揃うまで待つか、先へ進むかの判断                                    |
-| **詰まったら**          | その章で実際に起きる詰まりと対処                                    |
-
-
-解説はすべて `[courses/fundamentals/](../fundamentals/)` から引いています。**内容を直したいときは fundamentals 側を直してください**（台本は抜粋です）。
-
-
-| 章   | 引いている fundamentals                                                                                  |
-| --- | --------------------------------------------------------------------------------------------------- |
-| 第1章 | `[00-map](../fundamentals/00-map.md)`（最初にそろえる設定）                                                    |
-| 第3章 | `[00-map](../fundamentals/00-map.md)` · `[04-tab-and-inline](../fundamentals/04-tab-and-inline.md)` |
-| 第4章 | `[01-modes](../fundamentals/01-modes.md)` · `[03-context](../fundamentals/03-context.md)`           |
-| 第5章 | `[02-shortcuts](../fundamentals/02-shortcuts.md)`                                                   |
-| 第6章 | `[05-prompting](../fundamentals/05-prompting.md)`                                                   |
-| 第7章 | `[13-safety-ignore](../fundamentals/13-safety-ignore.md)`                                           |
-
-
-> **［口頭で出す］**の印が付いたものは、その場で講師が口頭で伝えるものです。第1回にはありません。
-
-Agent に送ると 30〜60 秒返ってきません。全員が同時に待つ時間になるので、その枠で話す内容を各章に用意してあります。
+1. 00-1 How to read this script
+2. 00-2 The setup steps
+3. 00-3 The timetable
+4. 0-1 Cover and intro
+5. Chapters 1 to 7
+6. The instructor checklist
 
 ---
 
+## How to read this script
 
+### The shape of this section
 
-## セットアップ手順（当日 0:00 で一緒にやる）
+1. 00-1 The key points
 
-### この節の流れ
+### 00-1 The key points
 
-1. 00-2 当日の準備一覧
+Written on the assumption that **participants work with their hands while looking at the material, and the instructor explains as it goes**. The timings assume the same.
 
-### 00-2 当日の準備一覧
+Prompts are printed in full in the material and screen positions are shown in screenshots, so a separate live demo isn't assumed. Adjust how you actually run it to the room.
 
-受講者が事前にインストールできる環境ではないことを前提にしています。**当日 0:00 からの15分で、講師と一緒に上から順に進めます。**
-すでに終わっている人には、待たずに先の手順へ進んでもらって構いません。
+The numbers in the headings read as **`N-M` = step M of chapter N**（e.g. `1-2`）. Everything before chapter 1 is **`00-M`**（how to read, setup, timetable）, and the intro is **`0-1`**. Each chapter opens with **The shape of this chapter**; sections before chapter 1 have **The shape of this section**.
 
+Each chapter has five blocks（some sections, like the intro, are missing a few）.
 
-| 項目                  | 手順                                                                                    |
-| ------------------- | ------------------------------------------------------------------------------------- |
-| **Cursor のダウンロード**  | [https://cursor.com](https://cursor.com) から OS に合わせてインストール                            |
-| **初回起動・サインイン**      | GitHub または Google アカウントでサインイン                                                         |
-| **このリポジトリをクローン**    | `git clone https://github.com/xrnd-tec/cursor-course.git`                             |
-| **Cursor でフォルダを開く** | `cursor-course/` フォルダを Cursor で開く（File → Open Folder）。**IDE ビュー**（中央にコード、横に Agent）で開く |
-| **Node.js（任意）**     | `node` コマンドを使う課題がある場合のみ。[https://nodejs.org](https://nodejs.org) の LTS 版              |
+| Block | Who it's for |
+|-------|--------------|
+| **［Slide］Explanation** | How Cursor works. Goes on a slide. Sourced from `courses/en/fundamentals/` |
+| **［Slide］What participants do** | Goes straight into the handout. Prompts printed in full, not read aloud |
+| **What the instructor says** | What to say while participants are typing or waiting |
+| **Checkpoint** | Whether to wait for everyone or move on |
+| **When people get stuck** | The sticking points that actually occur, and what to do |
 
+Every explanation is drawn from [`courses/en/fundamentals/`](../fundamentals/). **To change the content, change it on the fundamentals side**（this script is an extract）.
 
-> **この回は IDE ビュー + Agent パネルが前提です。** 第1章で起動を IDE に揃えます。  
-> 日本語化・Auto-review は**コラム**（任意）。手順の正本は [`00-map.md`](../fundamentals/00-map.md) の「最初にそろえる設定」。
+| Chapter | fundamentals drawn from |
+|---------|-------------------------|
+| Chapter 1 | [`00-map`](../fundamentals/00-map.md)（settings worth getting right first） |
+| Chapter 3 | [`00-map`](../fundamentals/00-map.md) · [`04-tab-and-inline`](../fundamentals/04-tab-and-inline.md) |
+| Chapter 4 | [`01-modes`](../fundamentals/01-modes.md) · [`03-context`](../fundamentals/03-context.md) |
+| Chapter 5 | [`02-shortcuts`](../fundamentals/02-shortcuts.md) |
+| Chapter 6 | [`05-prompting`](../fundamentals/05-prompting.md) |
+| Chapter 7 | [`13-safety-ignore`](../fundamentals/13-safety-ignore.md) |
 
-> **教材のページは Cursor の内蔵ブラウザで開きます。** 追加のインストールは要りません。
-> `practice/index.html` をダブルクリックして OS のブラウザで開くと、ES モジュールがブロックされて数字が出ません。
+> Anything marked **［Say it out loud］** is delivered verbally by the instructor at that moment. Session 1 has none.
 
-> **講師へ**: ダウンロードを一斉に始めると、回線が詰まることがあります。落ちてくるまでの待ち時間に、
-> 「よくある詰まり」と **Agents Window → IDE** を先回りで案内しておくと、15 分に収まりやすくなります。
-
----
-
-
-
-## タイムテーブル
-
-
-### この節の流れ
-
-1. 00-3 90分の流れ
-
-### 00-3 90分の流れ
-
-| 時刻   | 章               | 内容                                | 主体  |
-| ---- | --------------- | --------------------------------- | --- |
-| 0:00 | （イントロ）          | 表紙・コース全体・今日やること（ダウンロード待ちに）        | 講師  |
-| 0:00 | 第1章 環境をそろえる     | インストール・クローン・起動（15分）               | 全員  |
-| 0:15 | 第2章 今日のゴール      | 今日の4段（5分）                         | 講師  |
-| 0:20 | 第3章 三つの道具       | Tab / Ctrl+K / Agent を1つずつ触る（10分） | 全員  |
-| 0:30 | 第4章 Ask と Agent | Ask で聞く → Agent で実装する（15分）        | 全員  |
-| 0:45 | 第5章 差分を読む       | 自分の diff を読んで Keep する（10分）        | 全員  |
-| 0:55 | 第6章 ハンズオン       | `practice/` 課題を自分でやる（25分）         | 全員  |
-| 1:20 | 第7章 持ち帰るもの      | 今日おぼえて帰ること・次回予告（10分）              | 講師  |
-
-
-**受講者が手を動かすのは 75 分 / 90 分**です。講師が一方的に話す時間は第2章と第7章の 15 分だけ。
-
-> このタイムテーブルが、そのままスライドの章立てです。各章の頭に扉ページが入ります。
-> **イントロは時間枠を持ちません。** 第1章のダウンロード待ちに重ねて話します。
-
-> **セットアップで詰まった人が多い場合**: 第3章を3分に圧縮し、第6章の課題を A だけに絞ります。**第4・5章は圧縮しません**（この2つが今日の本体です）。
+After you send something to the Agent there's a 30–60 second silence. That's time the whole room spends waiting, so every chapter comes with something to say in that gap.
 
 ---
 
+## The setup steps（done together at 0:00）
 
+### The shape of this section
 
-## 表紙とイントロ — 0:00（ダウンロードを待っている数分で話す）
+1. 00-2 The day's preparation list
 
-> **章にはしません。** インストールのダウンロードを待っている時間に話します。
-> 全員の手が空いている唯一のタイミングなので、ここで今日の位置づけを渡しておきます。
+### 00-2 The day's preparation list
 
+We assume participants aren't in a position to install anything in advance. **In the 15 minutes from 0:00, the room works down this list together with the instructor.**
+Anyone already finished is welcome to move ahead without waiting.
 
+| Item | Steps |
+|------|-------|
+| **Download Cursor** | Install from [https://cursor.com](https://cursor.com), matching your operating system |
+| **First launch and sign-in** | Sign in with a GitHub or Google account |
+| **Clone this repo** | `git clone https://github.com/xrnd-tec/cursor-course.git` |
+| **Open the folder in Cursor** | Open the `cursor-course/` folder（File → Open Folder）. In the **IDE view**（code in the middle, Agent to the side） |
+| **Node.js** | **You don't need to install it today.** The material's page runs in the browser alone. Only exercise C（the stretch）in chapter 6 uses `node`, and skipping it is fine |
 
-### この節の流れ
+> **This session assumes the IDE view plus the Agent panel.** Chapter 1 gets everyone starting into the IDE.
+> The language and Auto-review are **optional reading**. The canonical steps are in “Settings worth getting right first” in [`00-map.md`](../fundamentals/00-map.md).
 
-1. 0-1 表紙〜今日の約束
+> **The material's page opens in Cursor's built-in browser.** Nothing extra to install.
+> Double-click `practice/index.html` to open it in your operating system's browser and ES modules get blocked, so no numbers appear.
 
-### 0-1 表紙〜今日の約束
+> **For the instructor**: everyone downloading at once can choke the network. While it downloads, get ahead of it —
+> talk through “the common sticking points” and how to go from **Agents Window → IDE**, and 15 minutes will hold.
 
-#### ［スライド］表紙
+---
+
+## Timetable
+
+### The shape of this section
+
+1. 00-3 The 90 minutes
+
+### 00-3 The 90 minutes
+
+| Time | Chapter | Contents | Who |
+|------|---------|----------|-----|
+| 0:00 | （Intro） | Cover, the whole course, today's work（spoken over the download wait） | Instructor |
+| 0:00 | Ch.1 Set up the environment | Install, clone, launch（15 min） | Everyone |
+| 0:15 | Ch.2 Today's goal | Today's four rungs（5 min） | Instructor |
+| 0:20 | Ch.3 Three tools | Touch Tab / Ctrl+K / Agent one at a time（10 min） | Everyone |
+| 0:30 | Ch.4 Ask and Agent | Ask to find out → Agent to build（15 min） | Everyone |
+| 0:45 | Ch.5 Read the diff | Read your own diff and Keep it（10 min） | Everyone |
+| 0:55 | Ch.6 Hands-on | Work through the `practice/` exercises（25 min） | Everyone |
+| 1:20 | Ch.7 What to take away | What to remember, and next session（10 min） | Instructor |
+
+**Participants have their hands on the keyboard for 75 of the 90 minutes.** The instructor talks one-way for only 15 minutes, in chapters 2 and 7.
+
+> This timetable is also the chapter structure of the slides. Each chapter gets a title page.
+> **The intro has no slot of its own.** It's spoken over the download wait in chapter 1.
+
+> **If lots of people got stuck on setup**: compress chapter 3 to three minutes and keep only exercise A in chapter 6. **Don't compress chapters 4 and 5** — those two are the body of the day.
+
+---
+
+## Cover and intro — 0:00（spoken during the few minutes of downloading）
+
+> **Not a chapter.** Spoken while the installer downloads.
+> It's the only moment everyone's hands are free, so use it to hand over the framing for the day.
+
+### The shape of this section
+
+1. 0-1 From the cover to today's promises
+
+### 0-1 From the cover to today's promises
+
+#### ［Slide］Cover
 
 ```
-Cursor の基本操作
+Cursor: basic operations
 
-Cursor 実践コース　第 1 回 / 全 4 回　・　90分
-（日付）
+Cursor hands-on course　Session 1 / 4　·　90 minutes
+（date）
 ```
 
+#### ［Slide］About this course
 
+**Four sessions to get to “a team can build an app and present it”.**
 
-#### ［スライド］このコースについて
+| Session | What we do | What you can do afterwards |
+|---------|------------|----------------------------|
+| **Session 1（today）** | Basic operations | Have the AI fix a defect, and read the diff it produced |
+| Session 2 | Vibe coding → spec-driven development | Write the requirements before you have it built |
+| Session 3 | Team development（first half） | Write a spec as a team and open a PR |
+| Session 4 | Finishing and presenting | Demo something that runs |
 
-**4回で「チームでアプリを作って発表できる」ところまで行きます。**
+#### ［Slide］What we're doing today
 
+**Getting the AI to fix a broken shopping cart page.**
 
-| 回           | やること               | 終わったときにできること          |
-| ----------- | ------------------ | --------------------- |
-| **第1回（今日）** | 基本操作               | AI に不具合を直させて、その差分を読める |
-| 第2回         | バイブコーディング → 仕様駆動開発 | 要件を書いてから作らせられる        |
-| 第3回         | チーム開発（前半）          | チームで仕様を書き、PR を出せる     |
-| 第4回         | 仕上げと発表             | 動くものをデモできる            |
+Open `practice/index.html` and three things are broken, marked in orange.
 
+| | What's showing wrong |
+|---|---|
+| ① Apply a discount | 10% off 1,000 and it's **still 1,000** |
+| ② Cart subtotal | **NaN** |
+| ③ Use a coupon | **not implemented** |
 
+**When those three turn navy, today is a success.**
 
+#### ［Slide］Today's three promises
 
-#### ［スライド］今日やること
+1. **You don't have to remember everything.** We use exactly three tools today
+2. **There's almost no time just watching.** 75 of the 90 minutes are your own hands
+3. **Stuck? Look at your neighbour's screen.** Still stuck — raise your hand
 
-**壊れた買い物カートのページを、AI に直させます。**
+#### What the instructor says
 
-`practice/index.html` を開くと、オレンジで3か所が壊れています。
+Run those four slides while watching the download progress. **Anyone whose download finished can carry on with setup instead of waiting.**
 
+But **you only move to chapter 2 once everyone has the page open**（chapter 1's checkpoint）. Individual work can run ahead; only the chapter boundary has to be in step.
 
-|           | 壊れている表示                        |
-| --------- | ------------------------------ |
-| ① 割引を計算する | 1,000円の10%引きなのに **1,000 円のまま** |
-| ② カートの小計  | **NaN**                        |
-| ③ クーポンを使う | **未実装**                        |
+If someone asks “what are we building today?”, the answer is: **nothing**. Today is about **fixing something that already exists**. Building starts in session 2.
 
+#### When people get stuck
 
-**この3つが紺色の金額に変わったら、今日は達成です。**
-
-#### ［スライド］今日の約束（3つ）
-
-1. **全部覚えなくていい。** 今日使う道具は3つだけです
-2. **見ているだけの時間はほぼありません。** 90分のうち75分は自分の手を動かします
-3. **詰まったら隣の画面を見る。** それでも分からなければ手を挙げてください
-
-
-
-#### 講師が話すこと
-
-ダウンロードの進み具合を見ながら、上の4枚を流します。**落ちてきた人は、待たずにセットアップの続きを進めて構いません。**
-
-ただし、**第2章へ進むのは全員がページを開けてからです**（第1章のチェックポイント）。個人の作業は先へ行ってよく、章の進行だけ揃える、という切り分けです。
-
-「今日は何を作るんですか」と聞かれたら、**作りません**と答えます。今日は**既にあるものを直す**回です。作るのは第2回からです。
-
-#### 詰まったら
-
-
-| 詰まり               | 対処                                 |
-| ----------------- | ---------------------------------- |
-| 「もう Cursor 入ってます」 | 待たずに `practice/index.html` を開いてもらう |
-| ダウンロードが全員終わらない    | イントロを話し切ったら、終わった人から第1章へ進めてよい       |
-
+| Sticking point | What to do |
+|----------------|------------|
+| “I already have Cursor” | Have them open `practice/index.html` instead of waiting |
+| The downloads won't finish for everyone | Once you've said the intro, let whoever is ready move on to chapter 1 |
 
 ---
 
+## Chapter 1 Set up the environment — 0:00（15 minutes）
 
+> Install Cursor and get the material's page open. **Anyone free can move ahead, but you only move to chapter 2 once everyone has it open.**
 
-## 第1章 環境をそろえる — 0:00（15分）
+### The shape of this chapter
 
-> Cursor を入れて、教材のページを開くところまで。**手が空いた人は先へ進んで構いませんが、第2章へ移るのは全員が開けてからです。**
+1. 1-1 From installing to opening the page
+2. 1-2 Settings to get right first（required + optional reading）
 
+### 1-1 From installing to opening the page
 
+#### ［Slide］What participants do
 
-### この章の流れ
-
-1. 1-1 インストール〜ページを開く
-2. 1-2 最初にそろえる（必須＋コラム）
-
-### 1-1 インストール〜ページを開く
-
-#### ［スライド］受講者がやること
-
-1. [https://cursor.com](https://cursor.com) から Cursor をダウンロードしてインストールする
-2. Cursor を起動し、GitHub か Google のアカウントでサインインする
-3. ターミナルで教材を落とす
+1. Download and install Cursor from [https://cursor.com](https://cursor.com)
+2. Launch Cursor and sign in with a GitHub or Google account
+3. Get the material in a terminal
 
 ```bash
 git clone https://github.com/xrnd-tec/cursor-course.git
 ```
 
-4. Cursor で `cursor-course/` フォルダを開く（File → Open Folder）
-5. `practice/index.html` を **Cursor の内蔵ブラウザ**で開く
-6. 「ミニ買い物カート」のページが出たら準備完了
+4. Open the `cursor-course/` folder in Cursor（File → Open Folder）
+5. In the sidebar, **right-click** `practice/index.html` → choose **Open In Browser**（it opens in Cursor's built-in browser）
+6. When the “Mini Shopping Cart” page appears, setup is done
 
-### 1-2 最初にそろえる（必須＋コラム）
+### 1-2 Settings to get right first（required + optional reading）
 
-#### ［スライド］最初にそろえる（必須1＋コラム）
+#### ［Slide］Settings to get right first（1 required + optional reading）
 
-ページが開けたら、**今日使う画面だけ全員で揃えます。** 言語と Auto-review はコラムです（先に終わった人向け／持ち帰り）。
+Once the page is open, **the room aligns only the part of the screen we use today.** Language and Auto-review are optional reading（for anyone who finished early, or to take home）.
 
-**必須 — 起動を IDE にする**
+**Required — start into the IDE**
 
-1. **Cursor Settings → General → Startup → Window Restoration** を **Last Used Windows**
-2. **IDE ビュー**（中央にコード）であることを確認する。Agents Window なら `Ctrl+Shift+P`（Mac は `Cmd+Shift+P`）→ **Open Editor Window**
-3. 次回も IDE で開くように、**IDE から** Cursor を終了する癖をつける（今日は終了しなくてよい）
+1. **Cursor Settings → General → Startup → Window Restoration** → **Last Used Windows**
+2. Confirm you're in the **IDE view**（code in the middle）. If it's the Agents Window: `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ **Open Editor Window**
+3. Get into the habit of quitting Cursor **from the IDE view**, so it opens there next time（no need to quit today）
 
-> 古い UI では **Agents → Open Agents Window on startup** を OFF、という案内でした。詳しくは [`00-map.md`](../fundamentals/00-map.md)。
+> In the older UI the advice was to turn off **Agents → Open Agents Window on startup**. Detail in [`00-map.md`](../fundamentals/00-map.md).
 
-**コラム — 表示言語を日本語にする（任意）**
+**Optional reading — about the interface language**
 
-IDE で `Ctrl+Shift+P`（Mac は `Cmd+Shift+P`）→ `Configure Display Language` → **Japanese** → 完全再起動。  
-VS Code 由来のメニューは日本語になります。**Agent / Cursor Settings は 2026年8月時点ではほぼ英語のまま**（設定ミスではない）。
+Cursor's interface is in **English**, and Cursor's own surfaces（Agent, Cursor Settings）are **still almost entirely English as of August 2026** even if you change the display language. That isn't a misconfiguration. To see the available display languages, press `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）in the IDE and run `Configure Display Language`.
 
-**コラム — Auto-review（任意・個人開発向け）**
+**Optional reading — Auto-review（optional, for individual work）**
 
-**Settings → Agents → Approvals & Execution** の Run Mode を **Auto-review** にすると、安全そうなコマンドは自動・危険度が高ければ確認、になります。今日の実習では必須ではありません。
+Set the Run Mode under **Settings → Agents → Approvals & Execution** to **Auto-review** and safe-looking commands run on their own, while risky ones still ask. Not required for today's exercises.
 
-> 正本: [`00-map.md`](../fundamentals/00-map.md) の「最初にそろえる設定」
+> Canonical: “Settings worth getting right first” in [`00-map.md`](../fundamentals/00-map.md)
 
-#### 講師が話すこと
+#### What the instructor says
 
-ダウンロードは全員同時だと回線が詰まります。**落ちてくるまでの数分が最初の待ち時間**なので、そこで「よくある詰まり」を先回りで案内します。黙って待たせないこと。
+Everyone downloading at once chokes the network. **The few minutes of downloading are the first wait**, so use them to get ahead of the common sticking points. Don't leave the room waiting in silence.
 
-待ち時間に一言だけ:
+One line during the wait:
 
-> 「起動したら見慣れない画面（Agents Window）が出ることがあります。壊れていません。**今日使うのは IDE（中央にコード）です。** 次のスライドで揃えます。」
+> “When it launches you might get an unfamiliar screen（the Agents Window）. Nothing is broken. **What we use today is the IDE — code in the middle.** The next slide gets everyone aligned.”
 
-ページが開けたら、**必須の IDE だけ全員で確認**します。日本語化と Auto-review は**コラム**です。先に終わった人にやってもらうか、「持ち帰りでよい」と伝えて止めません。
+Once the page is open, **the room only confirms the required item, the IDE**. Language and Auto-review are **optional reading**. Let anyone who finished early try them, or tell people it's fine to take home — don't hold the room.
 
-ページが揃ったら、**オレンジの3か所を指して**今日やることを説明します。
+Once the pages are up, **point at the three orange spots** and explain today's work.
 
-> 「①割引が効いていない ②小計が NaN ③クーポンが未実装。**今日はこの3つを AI に直させます。**
-> 直すと、この数字が紺色に変わります。」
+> “① the discount isn't applying ② the subtotal is NaN ③ the coupon isn't implemented. **Today we get the AI to fix all three.**
+> Fix them and those numbers turn navy.”
 
-先に終わった人には、待たずにページを触っていてもらいます。**止める必要はありません。**
+Let anyone finished early play with the page. **No need to stop them.**
 
-#### チェックポイント
+#### Checkpoint
 
-**全員がここに到達するまで、第2章へ進みません。** 揃えるのはこの1回だけです（先に終わった人を止める必要はありません）。
+**Don't move to chapter 2 until everyone reaches here.** This is the only time we wait for the room（no need to hold back anyone who's ahead）.
 
-- [ ] Cursor が起動している
-- [ ] サインインが完了している（右上にアカウントアイコンが出る）
-- [ ] **IDE ビュー**で `cursor-course/` を開いている（サイドバーにファイルツリーが見える）
-- [ ] **Cursor の内蔵ブラウザに「ミニ買い物カート」のページが出ている**
-- [ ] ページの①②③がオレンジで表示されている
+- [ ] Cursor is running
+- [ ] Signed in（the account icon shows top right）
+- [ ] `cursor-course/` is open in the **IDE view**（the file tree is visible in the sidebar）
+- [ ] **The “Mini Shopping Cart” page is showing in Cursor's built-in browser**
+- [ ] ①②③ on the page are showing in orange
 
-「この画面が見えていれば OK です」と伝えて次へ。
+Say “if you can see this screen you're good” and move on.
 
-#### 詰まったら
+#### When people get stuck
 
-
-| 詰まり                         | 対処                                                                                                                                                                                                                                      |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ダウンロードが遅い                   | 全員同時だと詰まることがある。落ちてくるまでは待ちで、その間に他の人を見る                                                                                                                                                                                                   |
-| どのビルドか分からない（Mac）            | Apple Silicon か Intel か。不明ならアップルメニュー → このMacについて → チップ欄                                                                                                                                                                                 |
-| インストールに管理者権限が要る             | その場で解決できないことがある。事前に IT へ確認しておく                                                                                                                                                                                                          |
-| サインインできない                   | GitHub / Google アカウントを持っているか確認。なければメールで作成                                                                                                                                                                                               |
-| フォルダが開けない                   | Cursor を起動 → File → Open Folder → `cursor-course/` を選ぶ                                                                                                                                                                                  |
-| サイドバーが出ない                   | `Ctrl+B`（Mac は `Cmd+B`）でトグル                                                                                                                                                                                                             |
-| git clone していない             | ターミナルで `git clone https://github.com/xrnd-tec/cursor-course.git`                                                                                                                                                                        |
-| **ページは出たが数字が「…」のまま**        | OS のブラウザで直接開いている可能性がある。Cursor の内蔵ブラウザで開き直す                                                                                                                                                                                              |
-| ページが真っ白                     | 内蔵ブラウザを再読み込み。それでも直らなければ隣の画面を見せてもらう                                                                                                                                                                                                      |
-| 起動したら見慣れない画面（Agents Window） | ① `Ctrl+Shift+P`（Mac は `Cmd+Shift+P`）→ **Open Editor Window**（または画面の IDE へ戻る）② Cursor Settings で `startup` と検索 → **Window Restoration** を **Last Used Windows** ③ **IDE から** Cursor を終了する。詳しくは `[00-map.md](../fundamentals/00-map.md)` |
-| メニューが英語のまま / 日本語にしたい        | IDE で `Ctrl+Shift+P` → `Configure Display Language` → **Japanese**。再起動。Agent / Cursor Settings は 2026年8月時点では英語のまま（設定ミスではない）                                                                                                             |
-
+| Sticking point | What to do |
+|----------------|------------|
+| The download is slow | Everyone at once tends to choke. Wait it out and check on others meanwhile |
+| Don't know which build（Mac） | Apple Silicon or Intel. If unsure: Apple menu → About This Mac → the Chip line |
+| Installing needs admin rights | Sometimes unsolvable on the spot. Check with IT in advance |
+| Can't sign in | Check they have a GitHub / Google account. If not, create one with an email address |
+| Can't open the folder | Launch Cursor → File → Open Folder → pick `cursor-course/` |
+| No sidebar | Toggle it with `Ctrl+B`（Mac: `Cmd+B`） |
+| Haven't cloned | In a terminal: `git clone https://github.com/xrnd-tec/cursor-course.git` |
+| **The page appeared but the numbers stay as “…”** | Probably opened in the operating system's browser. Reopen it in Cursor's built-in browser |
+| The page is blank | Reload the built-in browser. If that doesn't fix it, look at a neighbour's screen |
+| An unfamiliar screen on launch（Agents Window） | ① `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ **Open Editor Window** ② Search Cursor Settings for `startup` → set **Window Restoration** to **Last Used Windows** ③ Quit Cursor **from the IDE view**. Detail in [`00-map.md`](../fundamentals/00-map.md) |
+| The menus are in English | That's correct. Cursor's own surfaces stay English. Not a misconfiguration |
 
 ---
 
+## Chapter 2 Today's goal — 0:15（5 minutes）
 
+> A four-rung ladder. Decide how far up you're going, in advance. **This chapter is the instructor talking.**
 
-## 第2章 今日のゴール — 0:15（5分）
+### The shape of this chapter
 
-> 4段のはしごです。どこまで登るかを、先に決めておきます。**この章は講師が話すだけ**です。
+1. 2-1 Share today's four rungs
 
+### 2-1 Share today's four rungs
 
+#### ［Slide］What participants do
 
-### この章の流れ
+Nothing. Just listen.
 
-1. 2-1 今日の4段を共有する
+#### What the instructor says
 
-### 2-1 今日の4段を共有する
+> “There are four rungs today. Just climb from 01 in order — you don't have to remember everything. Getting to 03 is plenty. 04 is a stretch.”
 
-#### ［スライド］受講者がやること
+**Today's four rungs:**
 
-なし。聞くだけです。
+| Rung | What you'll be able to do | Where | What gets fixed on screen |
+|------|---------------------------|-------|---------------------------|
+| 01 | Learn Cursor's basic operations | Chapter 3 | The greeting in the heading changes |
+| 02 | Have the AI explain existing code | Chapter 4（asking with `@` attached） | — |
+| 03 | Have the AI fix a defect | Chapter 6, exercise A | **② the subtotal appears** |
+| 04 | Have the AI build a new feature ← **stretch** | Chapter 4 / chapter 6, exercise B | **① the discount applies** / **③ the coupon works** |
 
-#### 講師が話すこと
+> Chapter 4 implements `applyDiscount`, so **everyone passes through the doorway to rung 04 once, in chapter 4**. Exercise B is the extension of it.
 
-> 「今日は4段あります。01 から順に上がるだけで、全部覚える必要はありません。03 まで来れば十分。04 は挑戦枠です。」
+> 03 is the line for the whole room. Not reaching 04 is fine — carry it into next time.
 
-**今日の4段:**
+> Where this sits in the course as a whole **was covered in the intro**. Here we stick to today's four rungs.
 
+#### Checkpoint
 
-| 段   | できるようになること                | どこでやるか                | 画面のどこが直るか                   |
-| --- | ------------------------- | --------------------- | --------------------------- |
-| 01  | Cursor の基本操作を覚える          | 第3章                   | 見出しの挨拶が変わる                  |
-| 02  | 既存のコードを AI に説明させる         | 第4章（Ask で `@` を付けて聞く） | —                           |
-| 03  | 不具合を AI に直させる             | 第6章・課題 A              | **② 小計が出る**                 |
-| 04  | 新しい機能を AI に実装させる ← **挑戦** | 第4章 / 第6章・課題 B        | **① 割引が効く** / **③ クーポンが動く** |
+None. Wrap up in five minutes and go to chapter 3.
 
+#### When people get stuck
 
-> 第4章で `applyDiscount` を実装するので、**04 の入口は第4章で全員が一度通ります**。課題 B はその応用です。
-
-> 03 が全員の到達ラインです。04 に届かなくても、次回に持ち越せば構いません。
-
-> コース全体の位置づけは**イントロで話し済み**です。ここでは今日の4段だけに絞ります。
-
-
-
-#### チェックポイント
-
-なし。5分で切り上げて第3章へ。
-
-#### 詰まったら
-
-「全部覚えないといけないのか」と身構えている人がいたら、**03 までが全員のラインだ**と繰り返します。ここで緊張を落とすと、後の章で手が動きます。
+If anyone looks braced for having to memorise everything, **repeat that 03 is the line for the room**. Take the tension out here and their hands will move in the later chapters.
 
 ---
 
+## Chapter 3 Three tools — 0:20（10 minutes）
 
+> `Tab`, `Ctrl+K`, Agent. Three of them, touched one at a time, by hand.
 
-## 第3章 三つの道具 — 0:20（10分）
+### The shape of this chapter
 
-> `Tab`、`Ctrl+K`、Agent。3つを1つずつ、自分で触ります。
+1. 3-1 Three tools（explanation）
+2. 3-2 Try them（Tab / Ctrl+K / Agent）
 
+### 3-1 Three tools（explanation）
 
+#### ［Slide］Explanation
 
-### この章の流れ
+**Cursor is a VS Code-family editor with “an AI that can read, write and run code” on top.** There are three ways to ask it for something.
 
-1. 3-1 三つの道具（解説）
-2. 3-2 触ってみる（Tab / Ctrl+K / Agent）
+| Way | From the screen | Windows | Mac | For | Typical moment |
+|-----|-----------------|---------|-----|-----|----------------|
+| **Tab** | （none） | （automatic） | （automatic） | Suggests what comes next while you type | Finishing a function, imports, repeated patterns |
+| **Inline edit** | （none） | `Ctrl+K` | `Cmd+K` | Changes only the selection | “Make this function async”, “Reword this” |
+| **Agent** | The Agent panel on the right | `Ctrl+I` | `Cmd+I` | Works across several files while you talk | Adding features, investigating, refactoring, fixing bugs |
 
-### 3-1 三つの道具（解説）
+> **Shortcuts in this course are written Windows-first.** On Mac, read what's in the brackets.
 
-#### ［スライド］解説
+> **Today's screen is the IDE view（code in the middle）plus the Agent panel on the right.** No need to open the Agents Window today（→ [`00-map.md`](../fundamentals/00-map.md)）.
 
-**Cursor は、VS Code 系のエディタに「コードを読んで・書いて・実行できる AI」が載ったもの**です。AI に頼む手段は3つあります。
+**What Tab is looking at**: the surrounding code, your recent edits, linter information. Which is why it's strong at “more of what you're writing right now”.
 
+| When Tab shines | When not to leave it to Tab |
+|-----------------|-----------------------------|
+| Repeating a similar pattern | Logic that needs a judgement about the spec |
+| Filling in imports and types | Security or money calculations |
+| Continuing the line you're writing | Anything that must be reviewed |
 
-| 手段          | 画面からやる        | Windows  | Mac     | 用途              | 典型シーン                     |
-| ----------- | ------------- | -------- | ------- | --------------- | ------------------------- |
-| **Tab**     | （なし）          | （自動）     | （自動）    | 入力中に続きを提案       | 関数の続き、import、繰り返しパターン     |
-| **インライン編集** | （なし）          | `Ctrl+K` | `Cmd+K` | 選択範囲だけ直す        | 「この関数を async に」「この文言を変えて」 |
-| **Agent**   | 右側の Agent パネル | `Ctrl+I` | `Cmd+I` | 会話しながら複数ファイルを扱う | 機能追加、調査、リファクタ、バグ修正        |
+**What `Ctrl+K`（Mac: `Cmd+K`）is and isn't for**
 
+- For: renaming or simplifying just this function, fixing this wording, rewriting this block
+- Not for: a feature spanning several files → **Agent**; “how does this even work?” → **Ask**
 
-> **このコースのショートカット表記は Windows が基本です。** Mac の人は括弧内を読んでください。
-
-> **今日の画面は IDE ビュー（中央にコード）+ 右の Agent パネルです。** Agents Window は今日は開かなくてよい（→ `[00-map.md](../fundamentals/00-map.md)`）。
-
-**Tab が見ているもの**: 周囲のコード・最近の編集・リンターの情報。だから「いま書いている流れの続き」に強い。
-
-
-| Tab が活きるとき   | Tab に任せないとき  |
-| ------------ | ------------ |
-| 似たパターンの繰り返し  | 仕様判断が必要なロジック |
-| import や型の補完 | セキュリティやお金の計算 |
-| 「今書いてる流れ」の続き | レビューが必須の箇所   |
-
-
-`Ctrl+K`**（Mac は** `Cmd+K`**）の向き / 不向き**
-
-- 向く: この関数だけリネーム / 簡潔化、この文言を直す、このブロックを書き換える
-- 向かない: 複数ファイルにまたがる機能追加 → **Agent**、「そもそもどう動いている？」 → **Ask**
-
-**使い分け早見**
+**Quick reference**
 
 ```text
-今打っている続きが欲しい     → Tab
-この選択範囲だけ直したい     → Ctrl+K
-調査したい / まだ書くな       → Ask
-作って・直して・動かして     → Agent
-大きいので方針から           → Plan
+I want the rest of what I'm typing   → Tab
+I only want to change this selection → Ctrl+K
+I want to investigate / don't write  → Ask
+Build it, fix it, run it             → Agent
+It's big, agree the approach first   → Plan
 ```
 
-> もっと詳しく: `[00-map.md](../fundamentals/00-map.md)` · `[04-tab-and-inline.md](../fundamentals/04-tab-and-inline.md)`
+> More detail: [`00-map.md`](../fundamentals/00-map.md) · [`04-tab-and-inline.md`](../fundamentals/04-tab-and-inline.md)
 
+### 3-2 Try them（Tab / Ctrl+K / Agent）
 
+#### ［Slide］What participants do（10 minutes）
 
-### 3-2 触ってみる（Tab / Ctrl+K / Agent）
+Work down in order. ① and ② open different files.
 
-#### ［スライド］受講者がやること（10分）
+**① Get a Tab suggestion（3 minutes）**
 
-上から順に触ってください。①と②で開くファイルが違います。
+Open `practice/calculator.js`, put the cursor inside `applyDiscount` and start writing something. When grey text appears, `Tab` accepts it and `Esc` rejects it.
 
-**① Tab を出す（3分）**
+**② Change exactly one spot with `Ctrl+K`（5 minutes）**
 
-`practice/calculator.js` を開き、`applyDiscount` の中にカーソルを置いて、何か書きかけてください。灰色の文字が出たら `Tab` で採用、`Esc` で却下。
-
-**②** `Ctrl+K` **で1か所だけ直す（5分）**
-
-`practice/greeter.js` を開き、`greet` 関数全体を選択して `Ctrl+K`（Mac は `Cmd+K`）。次を貼り付けて送ります。
+Open `practice/greeter.js`, select the whole `greet` function and press `Ctrl+K`（Mac: `Cmd+K`）. Paste this and send it.
 
 ```text
-英語の挨拶を、丁寧な日本語の挨拶に変えて。
+Rewrite this English greeting as a more formal one.
 ```
 
-出てきたら **Accept**（採用）か **Reject**（取り消し）。
+When it appears, press **Accept** or **Reject**.
 
-**Accept したら、ブラウザを再読み込みしてください。ページの見出しが変わります。**
+**If you accepted, reload the browser. The page's heading changes.**
 
-**③ Agent の入力欄を開く（2分）**
+**③ Open the Agent input box（2 minutes）**
 
-`Ctrl+I`（Mac は `Cmd+I`）。**まだ何も送りません。** 開くだけです。
+`Ctrl+I`（Mac: `Cmd+I`）. **Don't send anything yet.** Just open it.
 
-#### 講師が話すこと
+#### What the instructor says
 
-**①に入る前**: 資料の表記は Windows 基準で、Mac の人は `Ctrl` を `Cmd` に読み替えること（`Shift+Tab` は両方同じ）。**ショートカットが効かない人は、画面のボタンから操作してよい**と先に言っておきます。受講者がキーバインドを変えていることがあり、ここでつまずくと後が続きません。
+**Before ①**: remind them the material is Windows-first and Mac users read `Ctrl` as `Cmd`（`Shift+Tab` is the same on both）. And say up front that **anyone whose shortcut does nothing should use the on-screen button**. People remap their keybindings, and getting stuck here derails the rest.
 
-**①の待ち中**: 灰色が出るまで数秒かかることがある、と先に言っておくと受講者が焦りません。入力途中なので赤い波線が出ますが、それは想定どおりだと添えます。
+**During the wait at ①**: say in advance that the grey text can take a few seconds, so nobody panics. Add that the red squiggles from typing mid-line are expected.
 
-**②の待ち中**: 確定ボタンの表記が2種類あることを説明します。インラインの入力欄は **Accept / Reject**、行単位の差分は **Keep / Undo**（旧版はどちらも Accept / Reject）。**次の章で必ず使うので、ここで一度言っておきます。**
+**During the wait at ②**: explain that the confirm buttons come in two labellings. The inline input box says **Accept / Reject**; line-level diffs say **Keep / Undo**（older versions said Accept / Reject for both）. **We use it for certain in the next chapter, so say it once here.**
 
-**②の再読み込み後**: ここが今日**初めて自分の変更が画面に出る**瞬間です。「いま直したのはコードですが、変わったのは画面です」と一言添えると、この後の章が生きます。
+**After the reload at ②**: this is the first moment today that **their own change appears on screen**. Adding “what you just fixed was code, but what changed was the screen” makes the later chapters land.
 
-**③のあと**: 「Tab は『続き』、Ctrl+K は『ここだけ』、Agent は『会話しながら』。今日は主に Agent を使います。」
+**After ③**: “Tab is ‘what comes next’, Ctrl+K is ‘just here’, Agent is ‘while we talk’. Today we mostly use the Agent.”
 
-#### チェックポイント
+#### Checkpoint
 
-- [ ] Tab の灰色提案を一度は見た
-- [ ] `Ctrl+K` で1回変更して Accept か Reject した
-- [ ] **再読み込みして、ページの見出しが変わったのを見た**（Accept した人）
-- [ ] Agent の入力欄が開いている
+- [ ] They've seen a grey Tab suggestion at least once
+- [ ] They made one change with `Ctrl+K` and either accepted or rejected it
+- [ ] **They reloaded and saw the page's heading change**（for those who accepted）
+- [ ] The Agent input box is open
 
-**Tab が出なかった人がいても進みます。** 今日の本体は第4・5章です。ここで止まらないこと。
+**Move on even if Tab didn't fire for someone.** The body of today is chapters 4 and 5. Don't stall here.
 
-#### 詰まったら
+#### When people get stuck
 
-
-| 詰まり            | 対処                                                                              |
-| -------------- | ------------------------------------------------------------------------------- |
-| Tab の提案が出ない    | 数秒待つ。それでも出なければ飛ばしてよい。右下の Tab インジケータがオフになっていることもある                               |
-| `Ctrl+K` が効かない | Mac は `Cmd+K`。キーバインドを変えている人は、選択してから右クリックメニューを探す                                 |
-| 別ウィンドウが開いた     | Agent が別ウィンドウで開く版がある。右上の Agent ボタンか `Alt+Ctrl+J`（Mac は `Option+Cmd+J`）で右パネルに戻せる |
-
+| Sticking point | What to do |
+|----------------|------------|
+| No Tab suggestion | Wait a few seconds. Still nothing — skip it. The Tab indicator bottom right can also be off |
+| `Ctrl+K` does nothing | On Mac it's `Cmd+K`. Anyone who remapped should select and look in the right-click menu |
+| A separate window opened | Some builds open the Agent in its own window. The Agent button top right, or `Alt+Ctrl+J`（Mac: `Option+Cmd+J`）, returns it to the right-hand panel |
 
 ---
 
+## Chapter 4 Ask and Agent — 0:30（15 minutes）
 
+> **The centre of today.** Investigate with Ask, then fix with Agent. Everyone runs that one cycle with their own hands.
 
-## 第4章 Ask と Agent — 0:30（15分）
+### The shape of this chapter
 
-> **今日の中心です。** Ask で調べてから Agent で直す。この1サイクルを全員が自分の手で回します。
+1. 4-1 Ask, Agent and `@`（explanation）
+2. 4-2 Run one cycle（Ask → Agent）
 
+### 4-1 Ask, Agent and `@`（explanation）
 
+#### ［Slide］Explanation
 
-### この章の流れ
+**A mode decides how the AI behaves.** It's shown at the bottom left of the input box; click it to choose, or `Shift+Tab` to cycle.
 
-1. 4-1 Ask と Agent / @（解説）
-2. 4-2 1サイクルを回す（Ask → Agent）
+| Mode | Good for | Edits files |
+|------|----------|-------------|
+| **Agent** | Adding features, refactoring, fixing bugs, running tests | Yes |
+| **Plan** | Agreeing the approach to a big change before building it | After you approve the plan |
+| **Debug** | Chasing a hard-to-reproduce bug while gathering evidence | Yes |
+| **Multitask** | Running several independent jobs in parallel | Yes（in parallel） |
+| **Ask** | Investigating, explaining, discussing design（you don't want it writing yet） | **No（read-only）** |
 
-### 4-1 Ask と Agent / @（解説）
+**Today we use only two: Ask and Agent.** The rest when you need them.
 
-#### ［スライド］解説
+> Switching mode starts a new conversation context for that mode. When the task changes, a new chat is a good move too.
 
-**モードは、AI の振る舞いを決めるもの**です。入力欄の左下に出ていて、クリックで選ぶか `Shift+Tab` で順送りできます。
+**Modes and models are different things.** They sit next to each other by the input box, which makes them easy to confuse.
 
+| | What it decides | Switch with |
+|---|---|---|
+| **Mode** | The AI's **behaviour**（does it edit, does it plan first） | `Shift+Tab` |
+| **Model** | **The AI brain itself** handling the request | `Ctrl+/`（Mac: `Cmd+/`） |
 
-| モード           | 向いていること                | ファイル編集          |
-| ------------- | ---------------------- | --------------- |
-| **Agent**     | 機能追加・リファクタ・バグ修正・テスト実行  | する              |
-| **Plan**      | 大きい変更の方針を先に合意してから実装    | 計画承認後に実装        |
-| **Debug**     | 再現が難しいバグを、証拠を取りながら追う   | する              |
-| **Multitask** | 独立した複数の作業を並列で進める       | する（並列に）         |
-| **Ask**       | 調査・説明・設計の相談（まだ書かせたくない） | **しない（読み取りのみ）** |
-
-
-**今日は Ask と Agent の2つだけ**使います。残りは必要になってから。
-
-> モードを切り替えると、そのモード用の新しい会話コンテキストになります。タスクが変わったら新規チャットも有効です。
-
-**モードとモデルは別物です。** 入力欄の近くに並んでいるので混同しやすいところです。
-
-
-|         | 何を決めるか                       | 切り替え                    |
-| ------- | ---------------------------- | ----------------------- |
-| **モード** | AI の**振る舞い**（編集するか、計画を先に出すか） | `Shift+Tab`             |
-| **モデル** | 依頼を処理する **AI の頭脳そのもの**       | `Ctrl+/`（Mac は `Cmd+/`） |
-
-
-既定の **Auto** は「モデルを選ばない」ではなく、**Cursor Router がリクエストごとに自動で選んでいる**という意味です。難しいタスクは高性能なモデルへ、簡単なものは低コストなモデルへ振り分けられます。**今日はそのままで構いません。**
+The default **Auto** doesn't mean “no model is chosen” — it means **the Cursor Router picks one per request**. Hard tasks go to a stronger model, easy ones to a cheaper one. **Leave it as it is today.**
 
 ---
 
-`@` **は、会話に載せる情報を指定するもの**です。入力欄で `@` を打つと選べます。
+**`@` specifies what goes into the conversation.** Type `@` in the input box to pick.
 
+| Reference | When to use it |
+|-----------|----------------|
+| `@<file>` | “Take this file as the basis for the answer / the fix” |
+| `@<folder>/` | “Only look inside this scope” |
+| `@Docs` | Reference registered documentation |
+| `@Terminals` | Show it your error output or run results |
+| `@Past Chats` | Continue from an earlier conversation |
+| `@Commit` / `@Branch` | Uncommitted changes, or the diff against main |
 
-| 指定                    | 使いどころ                 |
-| --------------------- | --------------------- |
-| `@ファイル名`              | 「このファイルを前提に話して / 直して」 |
-| `@フォルダ/`              | 「この範囲だけ見て」            |
-| `@Docs`               | 登録済みドキュメントを参照         |
-| `@Terminals`          | エラー出力や実行結果を見せる        |
-| `@Past Chats`         | 以前の会話の続き              |
-| `@Commit` / `@Branch` | 未コミット差分や main との差分    |
+The way to think about it: **if you know which files are involved, `@` them. If you don't, attach nothing and let the Agent go looking.**
 
+| A weak request | A good request |
+|----------------|----------------|
+| `Fix the bug` | `@practice/cart.js @Terminals` Fix the “subtotal comes out as NaN” problem. To reproduce: addItem an item with no price, then call getSubtotal. |
 
-考え方は **「関係ファイルが分かっているなら** `@` **する。分からないなら付けず、Agent に探させる」**。
+**Don't over-attach**: `@`-ing a whole large irrelevant folder is just noise. **One file is plenty today.**
 
+> More detail: [`01-modes.md`](../fundamentals/01-modes.md) · [`03-context.md`](../fundamentals/03-context.md)
 
-| 弱い依頼    | 良い依頼                                                                                                    |
-| ------- | ------------------------------------------------------------------------------------------------------- |
-| `バグ直して` | `@practice/cart.js @Terminals` 「小計が NaN になる」問題を直して。 再現手順: addItem に price 未定義の商品を入れたあと getSubtotal を呼ぶ。 |
+### 4-2 Run one cycle（Ask → Agent）
 
+#### ［Slide］What participants do（15 minutes）
 
-**やりすぎ注意**: 無関係な大きいフォルダを全部 `@` するとノイズになります。**今日は1ファイルだけで十分**です。
+**① Switch to Ask mode（2 minutes）**
 
-> もっと詳しく: `[01-modes.md](../fundamentals/01-modes.md)` · `[03-context.md](../fundamentals/03-context.md)`
+Open the input box with `Ctrl+I`（Mac: `Cmd+I`）, click the mode name at the bottom left and choose **Ask**（`Shift+Tab` cycles through the modes）.
 
-
-
-### 4-2 1サイクルを回す（Ask → Agent）
-
-#### ［スライド］受講者がやること（15分）
-
-**① Ask モードにする（2分）**
-
-`Ctrl+I`（Mac は `Cmd+I`）で入力欄を開き、左下のモード名をクリックして **Ask** を選びます（`Shift+Tab` はモードを順送りします）。
-
-**② Ask で聞く（4分）**
+**② Ask（4 minutes）**
 
 ```text
 @practice/calculator.js
-このファイルの役割を3行で説明して。
-そのうえで、画面の「割引を計算する」が効かない理由を教えて。
+Explain what this file does in 3 lines.
+Then tell me why "Apply a discount" on the screen isn't working.
 ```
 
-**③ Agent モードに戻す（1分）**
+**③ Switch back to Agent mode（1 minute）**
 
-モード名をクリックして **Agent** を選びます。
+Click the mode name and choose **Agent**.
 
-**④ Agent に実装させる（8分）**
+**④ Have the Agent implement it（8 minutes）**
 
 ```text
 @practice/calculator.js
-applyDiscount(amount, percent) を実装して。
-例: applyDiscount(1000, 10) → 900
-TODOコメントは残さなくてよい
+Implement applyDiscount(amount, percent).
+Example: applyDiscount(1000, 10) → 900
+You don't need to keep the TODO comment
 ```
 
-送ったら**差分（diff）が出るまで待ちます**。まだ Keep しないでください。次の章で読んでから決めます。
+Once sent, **wait for the diff to appear**. Don't Keep it yet — we read it in the next chapter first.
 
-#### 講師が話すこと
+#### What the instructor says
 
-**①のとき**: モードは入力欄の左下に出ています。**切り替わったかどうかを必ず自分の目で確認させます。** Ask のまま実装を頼む／Agent のまま質問する、が最初の詰まりどころです。
+**At ①**: the mode is shown at the bottom left of the input box. **Make them confirm with their own eyes that it changed.** Asking for an implementation while still in Ask, or asking a question while still in Agent, is the first sticking point.
 
-**②を送った直後の待ち（30〜60秒）**: `@` で渡せるものの話をします。「`@` でファイルを指定すると、そのファイルを読んで答えてくれる」を最初に言い、ファイルだけでなくフォルダ、`@Terminals`（エラー出力）も渡せる。ただし**今日は1ファイルだけで十分**。
+**Right after ② is sent, during the wait（30–60 seconds）**: talk about what `@` can carry. Lead with “attach `@` to a file and it reads that file to answer”, then add that folders and `@Terminals`（error output）work too. But **one file is plenty today**.
 
-**③のとき**: 「Ask は『調べる・確認する』、Agent は『変える』。この使い分けが最初の型です。」
+**At ③**: “Ask is ‘find out, confirm’; Agent is ‘change’. Telling those apart is the first pattern.”
 
-**④を送った直後の待ち（1分前後）**: **次の章の予習をここで済ませます。** 「返ってきたら緑と赤の画面が出ます。緑が追加、赤が削除。それを1行ずつ読むのが次の章です」と先に言っておくと、返ってきた瞬間に全員が読み始められます。
+**Right after ④ is sent, during the wait（about a minute）**: **do the next chapter's prep here.** Saying in advance “when it comes back you'll get a green-and-red screen. Green is added, red is removed. Reading that line by line is the next chapter” means the whole room can start reading the instant it lands.
 
-入力欄のモデル表示（**Auto** や **High**）を聞かれたら、**今日はそのままでよい**と答えます。
+If anyone asks about the model shown in the input box（**Auto** or **High**）, the answer is **leave it as it is today**.
 
-#### チェックポイント
+#### Checkpoint
 
-- [ ] Ask で答えが返ってきた（画面①が効かない理由を自分の言葉で言える）
-- [ ] Agent モードに戻せた
-- [ ] `applyDiscount` の差分が画面に出ている（**まだ Keep していない**）
+- [ ] Ask came back with an answer（they can say in their own words why ① isn't working）
+- [ ] They got back into Agent mode
+- [ ] The `applyDiscount` diff is on screen（**not Kept yet**）
 
-**Ask と Agent の切り替えで詰まっている人が3人以上いたら、全員を止めて補足します。** ここが分からないと今日が終わります。
+**If three or more people are stuck switching between Ask and Agent, stop the room and go over it.** Not getting this means the day is over.
 
-#### 詰まったら
+#### When people get stuck
 
-
-| 詰まり               | 対処                                    |
-| ----------------- | ------------------------------------- |
-| モードが切り替わらない       | 入力欄左下の現在のモード名をクリックする。`Shift+Tab` は順送り |
-| `@` で候補が出ない       | ファイル名を少し入力するとサジェストが出る                 |
-| 差分が出ない            | Agent パネルをスクロールして「変更がありません」が出ていないか確認  |
-| Ask のまま実装を頼んでしまった | Ask は編集しない。モードを戻してもう一度送る              |
-| 先に Keep してしまった    | 問題なし。第5章は Keep 済みの状態からでも読める           |
-
+| Sticking point | What to do |
+|----------------|------------|
+| The mode won't switch | Click the current mode name at the bottom left of the input box. `Shift+Tab` cycles |
+| `@` shows no suggestions | Type a few characters of the file name and they appear |
+| No diff appears | Scroll the Agent panel and check it doesn't say “no changes” |
+| They asked for an implementation while still in Ask | Ask doesn't edit. Switch mode and send it again |
+| They Kept it already | No problem. Chapter 5 reads fine from an already-Kept state |
 
 ---
 
+## Chapter 5 Read the diff — 0:45（10 minutes）
 
+> Read **the diff you produced**. Looking at someone else's screen doesn't build the skill.
 
-## 第5章 差分を読む — 0:45（10分）
+### The shape of this chapter
 
-> **自分が出した差分**を読みます。他人の画面を見ても読む力はつきません。
+1. 5-1 How to read a diff（explanation）
+2. 5-2 Read it and Keep it
 
+### 5-1 How to read a diff（explanation）
 
+#### ［Slide］Explanation
 
-### この章の流れ
+**The Agent's changes are applied to your files as it works.** It isn't “see the proposal, then apply it” — you look at the diff **with the file already changed**. Which is exactly why you read before you decide.
 
-1. 5-1 diff の読み方（解説）
-2. 5-2 読んで Keep する
+| What you see | Meaning |
+|--------------|---------|
+| **Green** | A line that was added |
+| **Red** | A line that was removed |
 
-### 5-1 diff の読み方（解説）
+| The button | Meaning | Where it is |
+|------------|---------|-------------|
+| **Keep** | Accept | Bottom right of the diff, or the change bar at the bottom of the Agent panel |
+| **Undo** | Revert it | Same |
+| **Review** | Look over all the changes together | Bottom of the Agent panel |
+| **Restore Checkpoint** | Roll right back to that point | Beside the relevant message |
 
-#### ［スライド］解説
+> **A note on labels**: line-level diffs read **Keep / Undo**; only the inline edit from `Ctrl+K` reads **Accept / Reject**. **They mean the same thing**（older versions said Accept / Reject for both）.
 
-**Agent の変更は、作業中にファイルへ適用されていきます。** 「提案を見てから反映」ではなく、**もう書き換わっている**状態で差分を見ます。だから読んでから決めます。
+**Even when you think you accepted everything, get into the habit of a final check with git or with your own eyes.**
 
+> More detail: [`02-shortcuts.md`](../fundamentals/02-shortcuts.md)
 
-| 見るもの  | 意味     |
-| ----- | ------ |
-| **緑** | 追加された行 |
-| **赤** | 削除された行 |
+### 5-2 Read it and Keep it
 
+#### ［Slide］What participants do（10 minutes）
 
+**① Read your own diff, line by line（4 minutes）**
 
-| 決めるボタン                 | 意味            | どこにある                      |
-| ---------------------- | ------------- | -------------------------- |
-| **Keep**               | 採用する          | 差分の右下、または Agent パネル下部の変更バー |
-| **Undo**               | 取り消して元に戻す     | 同上                         |
-| **Review**             | 変更全体をまとめて確認する | Agent パネル下部                |
-| **Restore Checkpoint** | その時点まで大きく巻き戻す | 対象メッセージの横                  |
+Read the `applyDiscount` diff from the previous chapter, asking yourself three things.
 
+- Has anything changed beyond what I asked for
+- The removed lines（red）— is losing them a problem
+- Does `applyDiscount(1000, 10)` look like it will give 900
 
-> **表記の注意**: 行単位の差分は **Keep / Undo**、`Ctrl+K` のインライン編集だけは **Accept / Reject** と表示されます。**意味は同じ**です（旧版はどちらも Accept / Reject）。
+**② Keep it（2 minutes）**
 
-**「全部受け入れたつもり」でも、git や目視で最終確認する癖をつけてください。**
+If you've read it and you're convinced, **Keep**. If not, **Undo** to revert it and ask again.
 
-> もっと詳しく: `[02-shortcuts.md](../fundamentals/02-shortcuts.md)`
+To roll back further, **Restore Checkpoint** beside the message takes you back to that point.
 
+**③ Check it on screen（2 minutes）**
 
+Reload the browser.
 
-### 5-2 読んで Keep する
+| Until just now | After the reload |
+|----------------|------------------|
+| ① After discount **1,000**（orange） | ① After discount **900**（navy） |
 
-#### ［スライド］受講者がやること（10分）
+If the number doesn't change, either the Keep didn't happen or the implementation is wrong.
 
-**① 自分の差分を1行ずつ読む（4分）**
+**④ Check the answer with Ask（2 minutes）**
 
-前の章で出した `applyDiscount` の差分を読みます。次の3つを自分に問いながら読んでください。
-
-- 頼んだこと以外が変わっていないか
-- 消えている行（赤）は、消えて困らないか
-- `applyDiscount(1000, 10)` が 900 になりそうか
-
-**② Keep する（2分）**
-
-読んで納得できたら **Keep**。納得できなければ **Undo** で戻して、もう一度頼み直します。
-
-大きく戻したいときは、メッセージ横の **Restore Checkpoint** でその時点まで戻せます。
-
-**③ 画面で確かめる（2分）**
-
-ブラウザを再読み込みしてください。
-
-
-| 直前まで                    | 再読み込み後             |
-| ----------------------- | ------------------ |
-| ① 割引後 **1,000 円**（オレンジ） | ① 割引後 **900 円**（紺） |
-
-
-数字が変わらなければ、Keep できていないか、実装が違っています。
-
-**④ Ask で答え合わせをする（2分）**
-
-モードを **Ask** に切り替えて送ります。
+Switch to **Ask** mode and send:
 
 ```text
 @practice/calculator.js
-applyDiscount(1000, 10) の期待値は何？ 今の実装で合ってる？
+What's the expected value of applyDiscount(1000, 10)? Is the current implementation right?
 ```
 
+#### What the instructor says
 
+**During ①**: circulate and ask one or two people “what are you looking at?”. They don't need an answer. The point is to create **the state of trying to read**.
 
-#### 講師が話すこと
+**At ③**: the best moment of the day. Have the room confirm **orange turning navy** together. “You fixed the code, and the screen got fixed. That's one complete cycle.”
 
-**①の間**: 巡回しながら「どこを見ていますか」と1〜2人に聞きます。答えられなくてよい。**読もうとしている状態**を作るのが目的です。
-
-**③のとき**: 今日いちばん気持ちのいい瞬間です。**オレンジが紺に変わる**のを全員で確認します。「コードを直したら、画面が直りました。ここまでが1サイクルです。」
-
-**④を送った直後の待ち**: 今日の型をまとめて話します。
+**Right after ④ is sent, during the wait**: pull today's pattern together.
 
 ```
-Ask（@ファイル 質問）
-  ↓ 内容を理解
-Agent（@ファイル 依頼 + 完了条件）
-  ↓ diff を読む
-Keep or Undo（旧版では Accept or Reject）
+Ask（@file + question）
+  ↓ understand it
+Agent（@file + request + definition of done）
+  ↓ read the diff
+Keep or Undo（Accept or Reject in older versions）
 ```
 
-そして今日いちばん大事な一言を、ここで言います。
+Then say the most important line of the day, right here.
 
-> 「Keep する前に必ず diff を読む。これが Cursor を安全に使う土台になります。」
+> “Always read the diff before you Keep. That's the foundation for using Cursor safely.”
 
+#### Checkpoint
 
+- [ ] They read the diff before Keeping（not just clicking through）
+- [ ] **① on screen changed to “900”**
+- [ ] The Ask answer-check came back
 
-#### チェックポイント
+#### When people get stuck
 
-- [ ] 差分を読んでから Keep した（読まずに押していないか）
-- [ ] **画面①が「900 円」に変わった**
-- [ ] Ask の答え合わせが返ってきた
-
-
-
-#### 詰まったら
-
-
-| 詰まり                  | 対処                                                 |
-| -------------------- | -------------------------------------------------- |
-| Keep / Undo ボタンが見えない | diff の右下、または Agent パネル下部の変更バー。旧版では Accept / Reject |
-| Undo したら消えすぎた        | メッセージ横の **Restore Checkpoint** でその時点まで戻す           |
-| 実装が間違っている            | 直させる前に Ask で「どこが違う？」と聞かせる。答えを講師が言わない               |
-
+| Sticking point | What to do |
+|----------------|------------|
+| Can't see the Keep / Undo buttons | Bottom right of the diff, or the change bar at the bottom of the Agent panel. Older versions say Accept / Reject |
+| Undo removed too much | **Restore Checkpoint** beside the message takes you back to that point |
+| The implementation is wrong | Don't let them fix it yet. Make them ask “what's wrong with it?” in Ask first. The instructor doesn't give the answer |
 
 ---
 
+## Chapter 6 Hands-on — 0:55（25 minutes）
 
+> From here the instructor doesn't talk. Just circulates.
 
-## 第6章 ハンズオン — 0:55（25分）
+### The shape of this chapter
 
-> ここからは講師は話しません。巡回するだけです。
+1. 6-1 The shape of a good request（explanation）
+2. 6-2 Exercises A / B / C
 
+### 6-1 The shape of a good request（explanation）
 
+#### ［Slide］Explanation
 
-### この章の流れ
-
-1. 6-1 うまく頼む形（解説）
-2. 6-2 課題 A / B / C
-
-### 6-1 うまく頼む形（解説）
-
-#### ［スライド］解説
-
-**うまく頼むコツは、モデルより先に「ゴール・制約・完了条件」を書くこと**です。今日の課題のプロンプトも、この形になっています。
+**The knack of asking well isn't the model — it's writing down “the goal, the constraints and the definition of done” first.** The prompts in today's exercises follow exactly this shape.
 
 ```text
-【やりたいこと】一言
-【対象】@ファイル or フォルダ（分かる範囲）
-【制約】壊したくないもの / 使ってよい技術
-【完了条件】何があれば終わりか
-【やらなくてよいこと】（任意）
+[What I want] one line
+[Scope] @file or folder（as far as you know）
+[Constraints] what must not break / what technology is allowed
+[Done when] what has to exist for this to be finished
+[Not needed]（optional）
 ```
 
+| Avoid saying | Say this instead |
+|--------------|------------------|
+| Make it nice | Be concrete about appearance, behaviour and edge cases |
+| Refactor everything | Name the files, and what to do / not do |
+| Fix the bug | Expected, actual, and how to reproduce |
+| Optimise it | Which comes first: speed, readability, or compatibility |
 
-| 避ける言い方  | 代わりに                |
-| ------- | ------------------- |
-| いい感じにして | 具体的な見た目・挙動・境界条件     |
-| 全部リファクタ | 対象ファイルと「やる / やらない」  |
-| バグ直して   | 期待・実際・再現手順          |
-| 最適に     | 速度 / 可読性 / 互換のどれ優先か |
+**New task, new chat.** Old assumptions get less in the way.
 
+> More detail: [`05-prompting.md`](../fundamentals/05-prompting.md)
 
-**タスクが変わったら新規チャット。** 古い前提が邪魔になりにくくなります。
+### 6-2 Exercises A / B / C
 
-> もっと詳しく: `[05-prompting.md](../fundamentals/05-prompting.md)`
+#### ［Slide］What participants do
 
+**Exercise A（everyone, the minimum line）— goal 03: fix a defect → screen ②**
 
-
-### 6-2 課題 A / B / C
-
-#### ［スライド］受講者がやること
-
-**課題 A（全員・最低ライン）— ゴール 03：不具合を直す → 画面②**
-
-画面②の小計が **NaN** になっています。`practice/cart.js` の `getSubtotal` を直します。
-**Ask で確認してから Agent で依頼する**、第4章と同じ順番です。
+The subtotal in ② is showing **NaN**. Fix `getSubtotal` in `practice/cart.js`.
+**Check with Ask first, then ask the Agent** — the same order as chapter 4.
 
 ```text
-【Ask】
+[Ask]
 @practice/cart.js
-getSubtotal の現状の問題点を1〜2個教えて。
-直す前に確認したいだけ。
+Tell me one or two problems with getSubtotal as it stands.
+I just want to confirm before fixing it.
 ```
 
 ```text
-【Agent】
+[Agent]
 @practice/cart.js
-getSubtotal を次の条件で改善して。
-- price か qty が undefined / null のアイテムはスキップ
-- 空カートが 0 を返す今の挙動は変えない
-- 既存の関数名・引数は変えない
+Improve getSubtotal under these conditions.
+- Skip items whose price or qty is undefined / null
+- Keep the current behaviour where an empty cart returns 0
+- Don't change the existing function name or parameters
 ```
 
-差分を読んで Keep したら、**ブラウザを再読み込み**してください。
+Read the diff, Keep it, then **reload the browser**.
 
+| Until just now | After the reload |
+|----------------|------------------|
+| ② Subtotal **NaN**（orange） | ② Subtotal **480**（navy） |
 
-| 直前まで               | 再読み込み後            |
-| ------------------ | ----------------- |
-| ② 小計 **NaN**（オレンジ） | ② 小計 **480 円**（紺） |
-
-
-**課題 B（余裕があれば）— ゴール 04：新しい機能を実装する → 画面③**
+**Exercise B（if you have time）— goal 04: build a new feature → screen ③**
 
 ```text
-【Agent】
+[Agent]
 @practice/cart.js @practice/calculator.js
-cart.js に applyCoupon(code) を追加して。
-- SUMMER10 のとき getSubtotal の 10% 引きを返す
-- 無効なコードのとき getSubtotal をそのまま返す
-- calculator.js の applyDiscount を使ってよい
-- 新規ファイルは作らない
+Add applyCoupon(code) to cart.js.
+- For the code SUMMER10, return getSubtotal with 10% off
+- For an invalid code, return getSubtotal unchanged
+- You may use applyDiscount from calculator.js
+- Don't create new files
 ```
 
-Keep して再読み込みすると、画面③の「未実装」が消えて金額が出ます。**これで3か所すべてが紺色になります。**
+Keep it, reload, and “not implemented” in ③ disappears and an amount appears. **All three are now navy.**
 
-**課題 C（さらに余裕があれば）— ゴール 03：エラーから直す**
+**Exercise C（if you have even more time）— goal 03: fix from an error**
 
-同じロジックを、今度は**ターミナルで**動かします。`practice/index.js` はまだ空のプレースホルダです。
+The same logic, this time **in the terminal**. `practice/index.js` is still an empty placeholder.
 
 ```text
-【Agent】
+[Agent]
 @practice/index.js @practice/cart.js
-index.js に、カートの中身と小計を console.log で出す処理を書いて。
-完了条件: node practice/index.js がエラーなく動き、金額がログに出る
+Write code in index.js that prints the cart's contents and subtotal with console.log.
+Done when: node practice/index.js runs without errors and prints the amounts
 ```
 
-**エラーが出たら、ターミナルの出力をそのまま Agent に貼り付けて直してもらってください。** これがエラー対応の型です。
+**If you get an error, paste the terminal output straight to the Agent and have it fixed.** That's the pattern for handling errors.
 
-#### 講師が話すこと
+#### What the instructor says
 
-**話しません。** 巡回してサポートします。
+**Nothing.** Circulate and support.
 
-詰まっている人に答えを教えないこと。**「Ask で聞いてみてください」**と返すのが基本です。今日の型を体に入れるのがこの25分の目的なので、講師が答えを出すと目的を外します。
+Don't give answers to anyone stuck. The default reply is **“try asking in Ask”**. The purpose of these 25 minutes is getting today's pattern into their bodies, and giving the answer misses that purpose.
 
-#### チェックポイント
+#### Checkpoint
 
-- [ ] 全員が課題 A の Agent 依頼まで到達した
-- [ ] **画面②が「480 円」になった人が半数を超えた**
+- [ ] Everyone got as far as the Agent request in exercise A
+- [ ] **More than half saw screen ② change to “480”**
 
-課題 A が終わっていない人が多ければ、B と C は案内しません。
+If lots of people haven't finished exercise A, don't introduce B and C.
 
-#### 詰まったら
+#### When people get stuck
 
-
-| 詰まり                           | 対処                                         |
-| ----------------------------- | ------------------------------------------ |
-| 何を頼めばいいか分からない                 | スライドのプロンプトをそのまま貼らせる。自分で書くのは今日の課題ではない       |
-| Agent が余計なところまで変えた            | Undo して、依頼に「他は変えないで」を足させる                  |
-| **直したのに画面が変わらない**             | ブラウザの再読み込みを忘れている。Keep できているかも確認            |
-| 課題 B で applyDiscount が無いと言われる | 第4章で Undo した人。先に `applyDiscount` を実装させる    |
-| 課題 B で画面③が「未実装」のまま            | 関数名が `applyCoupon` になっているか確認（`export` も必要） |
-| `node` が無い                    | 課題 C は飛ばしてよい                               |
-
+| Sticking point | What to do |
+|----------------|------------|
+| Doesn't know what to ask for | Have them paste the prompt from the slide as-is. Writing it themselves isn't today's exercise |
+| The Agent changed more than it should | Undo, then add “don't change anything else” to the request |
+| **Fixed it but the screen didn't change** | They forgot to reload the browser. Check the Keep landed too |
+| Exercise B says applyDiscount doesn't exist | They Undid it in chapter 4. Have them implement `applyDiscount` first |
+| Exercise B and ③ still says “not implemented” | Check the function is called `applyCoupon`（and that it's `export`ed） |
+| No `node` | Skipping exercise C is fine |
 
 ---
 
+## Chapter 7 What to take away — 1:20（10 minutes）
 
+> What to remember, what to hand in, and next session. **Don't shorten this.**
 
-## 第7章 持ち帰るもの — 1:20（10分）
+> Even if setup overran and chapter 3 got compressed, this chapter keeps its 10 minutes.
 
-> 今日おぼえて帰ること、提出、そして次回。**ここは短縮しません。**
+### The shape of this chapter
 
-> セットアップで詰まって第3章が圧縮された場合も、この章は10分確保します。
+1. 7-1 Takeaways, hand-in, safety, next session
 
+### 7-1 Takeaways, hand-in, safety, next session
 
+#### ［Slide］What participants do
 
-### この章の流れ
+**Hand in（30 seconds）**
 
-1. 7-1 持ち帰り・提出・安全・次回
+**Post exactly one screenshot of your own screen** into the chat or the shared folder.
 
-### 7-1 持ち帰り・提出・安全・次回
+> “One orange turning navy is enough. It doesn't have to all be fixed.”
 
-#### ［スライド］受講者がやること
+#### What the instructor says
 
-**提出（30秒）**
+**Three things to remember（just three）:**
 
-**自分の画面のスクリーンショットを1枚だけ**、チャットか共有フォルダに貼ってください。
+1. **Confirm with Ask before you ask the Agent**（don't change things straight away）
+2. **Name the target with `@`**（a vague request gives a vague result）
+3. **Read the diff before you Keep**（don't over-trust Cursor）
 
-> 「オレンジが1つでも紺に変わっていれば十分です。全部直っていなくて大丈夫。」
+**One warning（30 seconds）:**
 
+> “Today's repo is for learning, so nothing you do matters. But **when you do the same thing on a work repo, be careful not to let the Agent read API keys or customer data.**”
 
+**［Slide］Explanation — how much the defaults already protect you**
 
-#### 講師が話すこと
+| Subject | Default |
+|---------|---------|
+| Reading and searching files | No approval needed |
+| Overwriting files | **Saved immediately.** Which is why version control is assumed |
+| Running terminal commands | **Follows the Run Mode**（Auto-review for individual work） |
+| Network | No arbitrary traffic. Limited to GitHub, links you point it at, web search, and similar |
 
-**今日おぼえて帰ること（3つだけ）:**
+You can exclude what you don't want read with `.cursorignore`. But the highest priority is **not putting secrets in the repo in the first place**.
 
-1. **Ask で確認してから Agent で依頼する**（いきなり変えない）
-2. `@` **で対象を明示する**（曖昧な依頼は曖昧な結果になる）
-3. **diff を読んでから Keep**（Cursor を信頼しすぎない）
+For individual work, **Auto-review** is a good idea（the optional reading in chapter 1）. Under **Settings → Agents → Approvals & Execution**.
 
-**一言だけ注意（30秒）:**
+> More detail: [`13-safety-ignore.md`](../fundamentals/13-safety-ignore.md) · [`00-map.md`](../fundamentals/00-map.md)（settings worth getting right first）
 
-> 「今日は学習用のリポジトリなので何をしても大丈夫です。ただし**業務のリポジトリで同じことをするときは、API キーや顧客データを Agent に読ませない**よう気をつけてください。」
-
-**［スライド］解説 — 既定でどこまで守られているか**
-
-
-| 対象           | 既定の扱い                                   |
-| ------------ | --------------------------------------- |
-| ファイルの読み取り・検索 | 承認不要                                    |
-| ファイルの書き換え    | **即座に保存される**。だからバージョン管理が前提              |
-| ターミナルのコマンド実行 | **Run Mode に従う**（個人開発なら Auto-review）    |
-| ネットワーク       | 任意の通信は不可。GitHub・直接指定したリンク・Web 検索などに限られる |
-
-
-読ませたくないものは `.cursorignore` で外せます。ただし**秘密はそもそもリポジトリに置かない**のが最優先です。
-
-個人開発なら **Auto-review** がおすすめです（第1章のコラム）。**Settings → Agents → Approvals & Execution**。
-
-> もっと詳しく: [`13-safety-ignore.md`](../fundamentals/13-safety-ignore.md) · [`00-map.md`](../fundamentals/00-map.md)（最初にそろえる設定）
-
-**やらなかったこと（次回以降）:**
+**What we didn't do（later sessions）:**
 
 - Rules / Skills / Hooks / MCP / Cloud Agents
-- Git / PR / チーム開発
-- 本格アプリ開発
+- Git / PRs / team development
+- Real application development
 
-「これらは第2回以降で必要なときに触れます。今日動かせたことの方が大事です。」
+“We'll touch these from session 2 onwards, when they're needed. What matters more is that you got something moving today.”
 
-**次回予告:**
+**Next session:**
 
-> 「次回は神経衰弱を作ります。まず『何も考えずに』作ってもらいます。その後、要件を書いてから作り直す。どっちがうまくいくか、体で覚えてください。」
+> “Next time we build memory match. First you'll build it ‘without thinking’. Then you'll write the requirements and build it again. Which one goes better — let your hands find out.”
 
+#### Checkpoint
 
+The hand-in exists so you can see **who fixed how much** without circulating. How many orange spots are left tells you at a glance. It's the material for deciding how to open session 2.
 
-#### チェックポイント
+#### When people get stuck
 
-提出は「**誰がどこまで直せたか**」を巡回なしで把握するためのものです。オレンジが何個残っているかで一目で分かります。第2回の入り方を決める材料になります。
+Don't chase anyone who can't hand something in. **Just count the ones who did.**
 
-#### 詰まったら
+#### Revision links（for self-study）
 
-提出が出せない人がいても追いません。**出せた人の数だけ**を数えます。
-
-#### 復習リンク（自習用）
-
-- `[courses/fundamentals/00-map.md](../fundamentals/00-map.md)` — 全体像・最初にそろえる設定（起動 / 日本語 / Auto-review）
-- `[courses/fundamentals/01-modes.md](../fundamentals/01-modes.md)` — モード詳細
-- `[courses/fundamentals/03-context.md](../fundamentals/03-context.md)` — `@` の全種類
-- `[courses/fundamentals/05-prompting.md](../fundamentals/05-prompting.md)` — うまい頼み方
+- [`00-map.md`](../fundamentals/00-map.md) — the overall picture and the settings to get right first（startup / language / Auto-review）
+- [`01-modes.md`](../fundamentals/01-modes.md) — modes in detail
+- [`03-context.md`](../fundamentals/03-context.md) — every kind of `@`
+- [`05-prompting.md`](../fundamentals/05-prompting.md) — asking well
 
 ---
 
+## Instructor checklist（for the day）
 
+#### Beforehand
 
-## 講師チェックリスト（当日用）
+- [ ] Confirmed the venue's network can download from cursor.com
+- [ ] Your own Cursor is up to date
+- [ ] Opened `practice/index.html` **and confirmed ①②③ are all orange, the initial state**（the state of `main`）
+- [ ] `applyDiscount` in `practice/calculator.js` is still a TODO
+- [ ] The `node` command runs（**on the instructor's machine only**, to decide whether to introduce exercise C. Don't have participants install it）
+- [ ] The clone URL is ready to paste into the chat（handed out to everyone at 0:00）
+- [ ] Asked IT whether installing needs admin rights in this environment
+- [ ] **Confirmed the prompts are printed in full on the slides**（in a work-along format you don't read them aloud）
+- [ ] **The slides contain screenshots showing where things are on screen**（where the mode name is, the diff, where Keep / Undo are）
+- [ ] Walked through returning from the Agents Window to the IDE yourself once（chapter 1's “When people get stuck”）
 
+#### Time management per chapter
 
+- If chapter 1 passes 0:20, compress chapter 3 to three minutes（**don't compress chapters 4 and 5**）
+- If you're **past 0:55** when chapter 5 ends, keep only exercise A in chapter 6
+- Chapter 7 keeps its 10 minutes no matter what
 
-#### 前日までに
+#### Assumptions about running it
 
-- [ ] 会場のネットワークから cursor.com のダウンロードが通ることを確認した
-- [ ] 自分の Cursor が最新版
-- [ ] `practice/index.html` **を開いて、①②③がすべてオレンジの初期状態**であることを確認した（`main` の状態）
-- [ ] `practice/calculator.js` の `applyDiscount` が TODO のまま
-- [ ] `node` コマンドが動く（課題 C 用）
-- [ ] clone の URL をチャットに貼れる状態にした（0:00 で全員に配る）
-- [ ] インストールに管理者権限が要る環境か、IT に確認した
-- [ ] **スライドにプロンプトが全文載っていることを確認した**（並走型では口頭で読み上げない）
-- [ ] **画面の位置を示すスクリーンショットがスライドに入っている**（モード名の場所・diff・Keep / Undo の位置）
-- [ ] Agents Window → IDE の戻し方を一度自分で通した（第1章の「詰まったら」）
-
-
-
-#### 章ごとの時間管理
-
-- 第1章が 0:20 を過ぎたら、第3章を3分に圧縮する（**第4・5章は圧縮しない**）
-- 第5章が終わった時点で **0:55 を超えていたら**、第6章は課題 A だけに絞る
-- 第7章は何があっても10分確保する
-
-
-
-#### 進行の想定
-
-- プロンプトはスライドに出す。口頭で読み上げると打ち間違いから遅れが出やすい
-- 送信直後に待ち時間が出る。各章の「講師が話すこと」はその枠を埋めるためのもの
-- 全員を揃えるのは第1章だけの想定。他は打ち切って進む形で時間を組んである
-- 受講者が詰まったときは、隣の画面を見せてもらうのが早い
-
+- Prompts go on the slides. Reading them aloud invites typos and delays
+- There's a wait right after every send. Each chapter's “What the instructor says” exists to fill it
+- Waiting for the whole room is only assumed in chapter 1. Elsewhere the timings assume you cut and move on
+- When someone is stuck, the fastest fix is looking at a neighbour's screen

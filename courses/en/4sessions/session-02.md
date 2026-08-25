@@ -1,713 +1,713 @@
-# 第2回：バイブコーディング → 仕様駆動開発（90分）
+# Session 2: Vibe coding → spec-driven development（90 minutes）
 
-> **この回のゴール（4段）**  
-> 01 バイブコーディングで動くものを出す → 02 同じ依頼から全員が別のものを作ったことに気づく → 03 要件を書いてから作らせる → 04 後から来た要求を、要件に足して通す（挑戦）  
-> **01〜03 まで届けば達成です。04 は挑戦枠**なので、届かなくても失敗ではありません。
+> **The goals（four rungs）**
+> 01 Get something running with vibe coding → 02 Notice that the same request produced something different for everyone → 03 Write the spec before building → 04 Take a late requirement, add it to the spec, and push it through（stretch）
+> **Reaching 01–03 is success. 04 is a stretch**, and not reaching it isn't a failure.
 
 ---
 
-## この回の主張（講師が理解しておくこと）
+## The claim of this session（for the instructor to understand）
 
-**「バイブコーディングは壊れる」とは言わない前提で組んであります。**
+**This is built on the premise that we do NOT say “vibe coding breaks”.**
 
-神経衰弱は AI がよく知っているゲームなので、バイブでも普通に完成します。スコアも難易度も制限時間も、頼めば問題なく足せます（**実測で確認済み**）。「壊れるはずだ」という筋書きにすると、実物が成立しないので受講者に見抜かれます。
+Memory match is a game the AI knows very well, so vibe coding finishes it perfectly well. Score, difficulty, a time limit — ask and it adds them without trouble（**measured in practice**）. Frame it as “this is bound to break” and the reality won't cooperate, and participants will see straight through it.
 
-この回で示すのは、次の4つです。
+What this session shows is these four things.
 
-| バイブコーディングの実際 | どこで体験するか |
+| What vibe coding is actually like | Where it's experienced |
 |---|---|
-| **頼んでいないものまで作る** — 指示したものと AI が勝手に決めたものの区別がつかない | 第3章 |
-| **同じ依頼から全員が別のものを作る** — 再現しない | 第3章 |
-| **正しさを判定できない** — 「合っているか」を答える基準が無い | 第4章 |
-| **引き継げない** — 文脈を持たない相手には渡せない | 第4章 |
+| **It builds things nobody asked for** — you can't tell your instructions apart from the AI's own decisions | Chapter 3 |
+| **The same request produces something different for everyone** — it doesn't reproduce | Chapter 3 |
+| **You can't judge correctness** — there's no basis for answering “is this right?” | Chapter 4 |
+| **You can't hand it over** — you can't give it to someone without the context | Chapter 4 |
 
-最後の落としどころは **「バイブが悪いわけではない。切り替え点を見極められるようになる」** です。バイブでうまくいったら、それは失敗ではなく「今回はバイブが正解だった」という学びとして回収できます。うまくいってもいかなくても成立する構成にしてあります。
-
----
-
-## この台本の読み方
-
-**受講者が資料を見ながら手を動かし、講師が説明しながら進める**前提で書いてあります。時間配分もその想定です。各章は5ブロックです（表紙とイントロなど一部の節では欠けることがあります）。
-
-| ブロック | 誰のためのものか |
-|----------|------------------|
-| **［スライド］解説** | Cursor の仕組みの説明。スライドに載せる。出典は `courses/fundamentals/` |
-| **［スライド］受講者がやること** | そのまま配布資料に載せる。プロンプトは全文を載せて、口頭で読み上げない |
-| **講師が話すこと** | 受講者が打っている間・待っている間に話す内容 |
-| **チェックポイント** | 揃うまで待つか、先へ進むかの判断 |
-| **詰まったら** | その章で実際に起きる詰まりと対処 |
-
-解説は [`courses/fundamentals/`](../fundamentals/) から引いています。**内容を直したいときは fundamentals 側を直してください**（台本は抜粋です）。
-
-| 章 | 引いている fundamentals |
-|----|------------------------|
-| 第2章 | [`01-modes`](../fundamentals/01-modes.md)（モデルと Auto） |
-| 第5章 | [`07-skills`](../fundamentals/07-skills.md) · [`05-prompting`](../fundamentals/05-prompting.md) |
-| 第6章 | [`05-prompting`](../fundamentals/05-prompting.md) |
-| 第7章 | [`06-rules`](../fundamentals/06-rules.md) |
-
-> **［口頭で出す］**の印が付いたものは、その場で講師が口頭で伝えるものです。第4章と第5章の「追加要件」がそれです。
-> 発注者から後から言われる、という流れを作るためのタイミング指定で、伏せておく必要はありません。
+The landing point is **“vibe isn't the bad guy. The skill is spotting the switch-over point.”** If vibe works out well, that isn't a failure — it's the lesson “vibe was the right call this time”. The session holds together either way.
 
 ---
 
-## 事前準備（この回に必要なもの）
+## How to read this script
 
-| 必要なもの | 内容 |
+Written on the assumption that **participants work with their hands while looking at the material, and the instructor explains as it goes**. The timings assume the same. Each chapter has five blocks（some sections, like the cover and intro, are missing a few）.
+
+| Block | Who it's for |
+|-------|--------------|
+| **［Slide］Explanation** | How Cursor works. Goes on a slide. Sourced from `courses/en/fundamentals/` |
+| **［Slide］What participants do** | Goes straight into the handout. Prompts printed in full, not read aloud |
+| **What the instructor says** | What to say while participants are typing or waiting |
+| **Checkpoint** | Whether to wait for everyone or move on |
+| **When people get stuck** | The sticking points that actually occur, and what to do |
+
+Explanations are drawn from [`courses/en/fundamentals/`](../fundamentals/). **To change the content, change it on the fundamentals side**（this script is an extract）.
+
+| Chapter | fundamentals drawn from |
+|---------|-------------------------|
+| Chapter 2 | [`01-modes`](../fundamentals/01-modes.md)（models and Auto） |
+| Chapter 5 | [`07-skills`](../fundamentals/07-skills.md) · [`05-prompting`](../fundamentals/05-prompting.md) |
+| Chapter 6 | [`05-prompting`](../fundamentals/05-prompting.md) |
+| Chapter 7 | [`06-rules`](../fundamentals/06-rules.md) |
+
+> Anything marked **［Say it out loud］** is delivered verbally by the instructor at that moment. Those are the “late requirements” in chapters 4 and 5.
+> The timing is specified to recreate “the client says something after the fact” — there's nothing to keep secret.
+
+---
+
+## Preparation（what this session needs）
+
+| Needed | What it is |
 |---|---|
-| `.cursor/skills/requirements/` | 要件作成スキル。テーマを聞いて「やること / 画面 / 操作 / やらないこと」を対話で埋め、要件 Markdown を出す |
-| `.cursor/skills/task-breakdown/` | タスク分解スキル。要件を、1つずつ Agent に渡せる粒度のタスク（完了条件つき）に割る |
+| `.cursor/skills/requirements/` | The spec-writing skill. It interviews you about the subject, fills in “what it does / screen / interactions / out of scope”, and produces a Markdown spec |
+| `.cursor/skills/task-breakdown/` | The task-splitting skill. It cuts a spec into tasks small enough to hand the Agent one at a time, each with a definition of done |
 
-**この2つがリポジトリに入っていることが前提です。** 第5章・第6章はこれを使います。
-
----
-
-## タイムテーブル
-
-| 時刻 | 章 | 内容 | 主体 |
-|------|----|------|------|
-| 0:00 | 第1章 今日のゴール | 同じゲームを2回作る（5分） | 講師 |
-| 0:05 | 第2章 バイブで作る | 例の1行を各自で打つ（15分） | 全員 |
-| 0:20 | 第3章 見比べる | 隣と画面を見せ合う（10分） | 全員 |
-| 0:30 | 第4章 後出し要求 | 発注者からの追加要求を自分のバイブ版に入れる（15分） | 全員 |
-| 0:45 | 第5章 要件を書く | 要件作成スキルで自分の要件を書く（15分） | 全員 |
-| 1:00 | 第6章 タスクに割って作る | タスク分解 → 1つずつ実装（20分） | 全員 |
-| 1:20 | 第7章 持ち帰るもの | 使い分けの判断・次回予告（10分） | 講師 |
-
-**受講者が手を動かすのは 75 分 / 90 分**です。
-
-> このタイムテーブルが、そのままスライドの章立てです。各章の頭に扉ページが入ります。
-
-> **時間が押したら**: 第6章を削ります（要件が書けていれば目的は半分達成しています）。**第3章と第4章は削りません。** この2つがこの回の本体です。
+**Both must already be in the repo.** Chapters 5 and 6 use them.
 
 ---
 
-## 表紙とイントロ — 0:00（第1章に含む）
+## Timetable
 
-### ［スライド］表紙
+| Time | Chapter | Contents | Who |
+|------|---------|----------|-----|
+| 0:00 | Ch.1 Today's goal | Build the same game twice（5 min） | Instructor |
+| 0:05 | Ch.2 Build it with vibe | Everyone types the one example line（15 min） | Everyone |
+| 0:20 | Ch.3 Compare | Show each other your screens（10 min） | Everyone |
+| 0:30 | Ch.4 The late requirement | Fit the client's new requirement into your vibe version（15 min） | Everyone |
+| 0:45 | Ch.5 Write the spec | Write your own spec with the spec skill（15 min） | Everyone |
+| 1:00 | Ch.6 Split into tasks and build | Split into tasks → build one at a time（20 min） | Everyone |
+| 1:20 | Ch.7 What to take away | Deciding which to use, and next session（10 min） | Instructor |
+
+**Participants have their hands on the keyboard for 75 of the 90 minutes.**
+
+> This timetable is also the chapter structure of the slides. Each chapter gets a title page.
+
+> **If you're running late**: cut chapter 6（if the spec got written, half the purpose is achieved）. **Don't cut chapters 3 and 4.** They are the body of this session.
+
+---
+
+## Cover and intro — 0:00（inside chapter 1）
+
+### ［Slide］Cover
 
 ```
-バイブコーディングから仕様駆動開発へ
+From vibe coding to spec-driven development
 
-Cursor 実践コース　第 2 回 / 全 4 回　・　90分
-（日付）
+Cursor hands-on course　Session 2 / 4　·　90 minutes
+（date）
 ```
 
-### ［スライド］前回の復習（30秒）
+### ［Slide］Recap of last session（30 seconds）
 
-**前回のサイクルは今日も変わりません。変わるのは「依頼の中身」だけです。**
+**Last session's loop is unchanged today. The only thing that changes is what's inside the request.**
 
 ```
-Ask（@ファイル 質問）
-  ↓ 内容を理解
-Agent（@ファイル 依頼 + 完了条件）
-  ↓ diff を読む
+Ask（@file + question）
+  ↓ understand it
+Agent（@file + request + definition of done）
+  ↓ read the diff
 Keep or Undo
 ```
 
-### ［スライド］今日やること
+### ［Slide］What we're doing today
 
-**同じゲームを2回作ります。**
+**Building the same game twice.**
 
-| | 作り方 | どこで |
+| | How | Where |
 |---|---|---|
-| 1回目 | 何も決めずに「いい感じに作って」 | 第2章 |
-| 2回目 | 先に要件を書いてから作る | 第5章・第6章 |
+| First time | Decide nothing, just say “make it nice” | Chapter 2 |
+| Second time | Write the spec first, then build | Chapters 5 and 6 |
 
-**どちらが良いかではなく、どちらをいつ使うかを持ち帰ってもらいます。**
+**Not to see which is better, but to take away an answer to: when do you use which.**
 
-### 講師が話すこと
+### What the instructor says
 
-第1回を休んだ人がいたら、復習のスライドだけ丁寧に。それ以外は30秒で流します。
+If anyone missed session 1, take the recap slide carefully. Otherwise run it in 30 seconds.
 
-**「2回作る」と先に宣言しておくと、1回目の粗さを受講者が気にしなくなります。** ここは飛ばさないでください。
+**Announcing up front that “we'll build it twice” stops people fretting about how rough the first attempt is.** Don't skip this.
 
 ---
 
-## 第1章 今日のゴール — 0:00（5分）
+## Chapter 1 Today's goal — 0:00（5 minutes）
 
-> 同じゲームを2回作ります。1回目はバイブコーディング、2回目は要件から。
+> Build the same game twice. First with vibe coding, then from a spec.
 
-### ［スライド］受講者がやること
+### ［Slide］What participants do
 
-なし。聞くだけです。
+Nothing. Just listen.
 
-### 講師が話すこと
+### What the instructor says
 
-> 「今日は全員同じゲーム『神経衰弱（メモリーマッチ）』を作ります。ただし2回作ります。  
-> 1回目: 何も考えず『いい感じに作って』と頼む（バイブコーディング）  
-> 2回目: 先に要件を書いてから作る（仕様駆動開発）  
-> どっちがうまくいくか、体で覚えてください。」
+> “Today everyone builds the same game: memory match. But we build it twice.
+> First: no thinking, just ask for ‘something nice’（vibe coding）
+> Second: write the spec first, then build（spec-driven development）
+> Which one goes better — let your hands find out.”
 
-**2回作ると先に宣言しておくと、1回目の粗さを受講者が気にしなくなります。** ここは飛ばさないこと。
+**Announcing up front that we build it twice stops people fretting about how rough the first attempt is.** Don't skip this.
 
-前回の復習を一言だけ（Ask → Agent → diff → Keep のサイクル）。
+One line of recap from last session（the Ask → Agent → diff → Keep loop）.
 
-**今日の4段:**
+**Today's four rungs:**
 
-| 段 | できるようになること | どこでやるか |
-|----|--------------------|------------|
-| 01 | バイブコーディングで動くものを出す | 第2章 |
-| 02 | 同じ依頼から全員が別のものを作ったことに気づく | 第3章 |
-| 03 | 要件を書いてから作らせる | 第5章・第6章 |
-| 04 | 後から来た要求を、要件に足して通す ← **挑戦** | 第6章 |
+| Rung | What you'll be able to do | Where |
+|------|---------------------------|-------|
+| 01 | Get something running with vibe coding | Chapter 2 |
+| 02 | Notice that the same request produced something different for everyone | Chapter 3 |
+| 03 | Write the spec before building | Chapters 5 and 6 |
+| 04 | Take a late requirement, add it to the spec, push it through ← **stretch** | Chapter 6 |
 
-> **用語の使い分け**: 手法の名前は「バイブコーディング」「仕様駆動開発」。
-> それぞれで作ったものを比べるときは「**バイブ版**」「**仕様版**」と呼びます。受講者にもこの2語で通します。
+> **Terminology**: the methods are called “vibe coding” and “spec-driven development”.
+> When comparing what each produced, call them the “**vibe version**” and the “**spec version**”. Use those two terms with participants as well.
 
-### チェックポイント
+### Checkpoint
 
-なし。5分で切り上げます。
+None. Wrap it up in five minutes.
 
-### 詰まったら
+### When people get stuck
 
-第1回を休んだ人がいたら、Ask → Agent → diff → Keep のサイクルだけ30秒で補足します。
+If anyone missed session 1, add just the Ask → Agent → diff → Keep loop in 30 seconds.
 
 ---
 
-## 第2章 バイブで作る — 0:05（15分）
+## Chapter 2 Build it with vibe — 0:05（15 minutes）
 
-> 何も決めずに頼むと、どこまで出るか。**全員が自分のバイブ版を持ちます。**
+> How far you get when you decide nothing. **Everyone ends up with their own vibe version.**
 
-### ［スライド］解説 — なぜモデルを固定するのか
+### ［Slide］Explanation — why we pin the model
 
-入力欄には **モード**（Agent / Ask など）と **モデル**（Auto など）が並んでいます。別物です。
+Next to the input box sit both the **mode**（Agent / Ask…）and the **model**（Auto…）. Different things.
 
-| | 何を決めるか | 切り替え |
+| | What it decides | Switch with |
 |---|---|---|
-| **モード** | AI の**振る舞い**（編集するか、調べるだけか） | `Shift+Tab` |
-| **モデル** | 依頼を処理する **AI の頭脳そのもの** | `Ctrl+/`（Mac は `Cmd+/`） |
+| **Mode** | The AI's **behaviour**（does it edit, or only investigate） | `Shift+Tab` |
+| **Model** | **The AI brain itself** handling the request | `Ctrl+/`（Mac: `Cmd+/`） |
 
-既定の **Auto** は「モデルを選ばない」ではなく、**Cursor Router がリクエストごとに自動で選んでいる**という意味です。難しいタスクは高性能なモデルへ、簡単なものは低コストなモデルへ振り分けられます。
+The default **Auto** doesn't mean “no model is chosen” — it means **the Cursor Router picks one per request**. Hard tasks go to a stronger model, easy ones to a cheaper one.
 
-**普段は Auto のままで困りません。** 固定する価値があるのは、今日のように**結果を比べたいとき**です。Auto のままだと、バイブ版と仕様版で別のモデルが動き、差が「やり方の差」なのか「モデルの差」なのか分からなくなります。
+**Day to day, Auto causes no trouble.** Pinning it is worth it when you **want to compare results**, exactly like today. Leave it on Auto and the vibe version and the spec version may run different models, and you can no longer tell whether the difference came from the method or the model.
 
-> もっと詳しく: [`01-modes.md`](../fundamentals/01-modes.md)
+> More detail: [`01-modes.md`](../fundamentals/01-modes.md)
 
-### ［スライド］受講者がやること
+### ［Slide］What participants do
 
-**① モデルを固定する（3分・必須）**
+**① Pin the model（3 minutes, required）**
 
-入力欄のモデル表示（**Auto** や **High**）をクリックするか `Ctrl+/`（Mac は `Cmd+/`）で、**Auto ではなく特定のモデル**を選びます。
+Click the model shown in the input box（**Auto** or **High**）, or press `Ctrl+/`（Mac: `Cmd+/`）, and choose **a specific model rather than Auto**.
 
-**今日はこの後もずっと同じモデルを使います。** ここで変えると、後の比較が「やり方の差」ではなく「モデルの差」になってしまいます。
+**You'll use that same model for the rest of today.** Change it partway and the later comparison becomes “a different model” rather than “a different method”.
 
-**② 作業フォルダを作る（1分）**
+**② Make a working folder（1 minute）**
 
-`session02/` という新しいフォルダを作ります。
+Create a new folder called `session02/`.
 
-**③ 神経衰弱を作らせる（10分）**
+**③ Have it build memory match（10 minutes）**
 
-新しいチャットを開いて、次を送ります。**これだけです。**
+Open a new chat and send this. **That's all.**
 
 ```text
-神経衰弱ゲームを作って。
-HTML + JS で、ブラウザで遊べるようにして。
-いい感じに。
+Build me a memory match game.
+HTML + JS, playable in a browser.
+Make it nice.
 ```
 
-**④ 動かす（1分）**
+**④ Run it（1 minute）**
 
-出てきたらブラウザで開いて、遊べることを確認してください。
+When it's done, open it in the browser and confirm you can play.
 
-### 講師が話すこと
+### What the instructor says
 
-**①のとき**: この回で唯一、飛ばすと後の比較が成立しなくなる操作です。全員の画面を確認してから進めると安全です。
+**At ①**: this is the one operation in this session that, if skipped, breaks the later comparison. Safest to check everyone's screen before moving on.
 
-**③を送った直後の待ち（1〜3分）**: ここが長い待ちになります。次を話しておきます。
+**Right after ③, during the wait（1–3 minutes）**: this is a long wait. Say the following.
 
-- わざと雑に頼んでいること。「いい感じに」は前回「避ける言い方」として挙げたフレーズ
-- **返ってきたら、頼んでいないものが付いていないか探してほしい**こと ← 第3章の予告
+- That we're deliberately asking sloppily. “Make it nice” is exactly the phrasing listed under “avoid saying” last session
+- That **when it comes back, they should hunt for things nobody asked for** ← trailing chapter 3
 
-**④のあと**: 「速い。動くものがすぐ出る。ここまではバイブコーディングの得意分野です。」
+**After ④**: “Fast. Something running, straight away. Up to here is vibe coding's home ground.”
 
-**「AI すごい」で終わらせないこと。** 次の章への引きとして使います。
+**Don't let it end at ‘the AI is amazing’.** Use it as the hook into the next chapter.
 
-### チェックポイント
+### Checkpoint
 
-- [ ] モデルが Auto ではない特定のモデルに固定されている（**全員必須**）
-- [ ] 自分のバイブ版がブラウザで動いている
+- [ ] The model is pinned to a specific model, not Auto（**required for everyone**）
+- [ ] Their own vibe version is running in the browser
 
-**動かなかった人がいても進みます。** 隣の画面を見せてもらえば第3章は成立します。
+**Move on even if someone's didn't run.** Chapter 3 works fine if they look at a neighbour's screen.
 
-### 詰まったら
+### When people get stuck
 
-| 詰まり | 対処 |
-|--------|------|
-| モデルの選び方が分からない | 入力欄のモデル名をクリック。`Ctrl+/`（Mac は `Cmd+/`）でも開く |
-| ブラウザで開けない | Cursor の内蔵ブラウザで開く。ファイルのパスも確認する |
-| ファイルが大量に生成されて混乱 | そのままでよい。この章では整理させない |
-| 動かない | 出たエラーを Agent に貼って直させる。それでもダメなら隣を見せてもらう |
+| Sticking point | What to do |
+|----------------|------------|
+| Doesn't know how to pick a model | Click the model name in the input box. `Ctrl+/`（Mac: `Cmd+/`）also opens it |
+| Can't open it in a browser | Open it in Cursor's built-in browser. Check the file path too |
+| A pile of files got generated and it's confusing | Leave it. Nothing gets tidied in this chapter |
+| It doesn't run | Paste the error to the Agent and have it fixed. Still nothing — look at a neighbour's screen |
 
 ---
 
-## 第3章 見比べる — 0:20（10分）
+## Chapter 3 Compare — 0:20（10 minutes）
 
-> **この章は教室でしかできません。** 1人でやっても気づけないことを見せます。
+> **This chapter only works in a room together.** It shows what you can't notice on your own.
 
-### ［スライド］受講者がやること
+### ［Slide］What participants do
 
-**① 自分のバイブ版を、隣の人と見せ合う（5分）**
+**① Show your vibe version to the person next to you（5 minutes）**
 
-次の項目を、自分のものと隣のものとで比べてください。
+Compare the following between yours and theirs.
 
-| 比べるもの | 自分 | 隣 |
+| Compare | Mine | Theirs |
 |---|---|---|
-| カードは何枚か | | |
-| 表の絵柄は何か（数字 / 絵文字 / 色） | | |
-| スコアや手数は表示されるか | | |
-| 難易度の選択はあるか | | |
-| 見た目（色・レイアウト） | | |
+| How many cards | | |
+| What's on the face（numbers / emoji / colours） | | |
+| Is a score or a move count shown | | |
+| Is there a difficulty setting | | |
+| Appearance（colours, layout） | | |
 
-**② 自分が「頼んでいないもの」を数える（3分）**
+**② Count what *you* never asked for（3 minutes）**
 
-自分が送った依頼は3行だけでした。それ以外に付いてきたものを挙げてください。
+The request you sent was three lines. List everything that came along beyond that.
 
-**③ 一言で答える（2分）**
+**③ Answer in one line（2 minutes）**
 
-> **あなたが作りたかったものは、どれですか。**
+> **Which of these is the thing you wanted to build?**
 
-### 講師が話すこと
+### What the instructor says
 
-**①の間に巡回して、違いを拾っておきます。** カード枚数が違う人、絵柄が違う人、スコアが付いている人と付いていない人。**その場で全体に言うための材料を集めます。**
+**Circulate during ① and collect the differences.** Someone with a different card count, someone with different faces, someone with a score and someone without. **Gather material to use with the whole room straight after.**
 
-**②のとき**: ここが第1のポイントです。
+**At ②**: this is the first point.
 
-> 「スコアも難易度も、誰も頼んでいません。AI が勝手に決めました。**指示したものと、AI が決めたものの区別がつかない**。これがバイブの1つ目の性質です。」
+> “Nobody asked for a score, or difficulty. The AI decided. **You can't tell what you specified apart from what the AI decided.** That's vibe's first property.”
 
-**③のとき**: ここが第2のポイントです。
+**At ③**: this is the second point.
 
-> 「同じ3行を全員が打ったのに、全員違うものができました。**もう一度打っても、また違うものが出ます**。動くけれど、狙って作れていない。」
+> “Everyone typed the same three lines, and everyone got something different. **Type them again and you'd get something different again.** It runs, but you didn't aim it.”
 
-そして、次の章に渡します。
+Then hand over to the next chapter.
 
-> 「動いているから、まあいいか。次はそのバイブ版に、**発注者から追加の要求**が来ます。」
+> “It runs, so who cares. Except that vibe version is about to get **an extra requirement from the client**.”
 
-### チェックポイント
+### Checkpoint
 
-- [ ] 隣と見せ合った（1人の人は講師の画面と比べる）
-- [ ] 「頼んでいないのに付いていたもの」を1つ以上言える
+- [ ] They compared with a neighbour（anyone on their own compares against the instructor's screen）
+- [ ] They can name at least one thing that appeared without being asked for
 
-### 詰まったら
+### When people get stuck
 
-| 詰まり | 対処 |
-|--------|------|
-| 隣が欠席で1人 | 講師のバイブ版か、隣の島の人と比べさせる |
-| 全員よく似ている | 枚数・絵柄・スコアの有無のどれかは必ず割れる。細かく見せる |
-| 「別に困らない」と言われる | 正しい反応。「いま困らないことが、次の章でどうなるか見てください」と返す |
+| Sticking point | What to do |
+|----------------|------------|
+| Neighbour absent, working alone | Compare with the instructor's vibe version, or with someone at the next table |
+| Everyone's looks very similar | Card count, faces, or the presence of a score will differ somewhere. Get them looking closer |
+| “This doesn't bother me” | The right reaction. Reply: “what doesn't bother you now — watch what it does in the next chapter” |
 
 ---
 
-## 第4章 後出し要求 — 0:30（15分）
+## Chapter 4 The late requirement — 0:30（15 minutes）
 
-> **この回の山場です。** 発注者から追加要求が来たとき、バイブ版で何が起きるか。
+> **The peak of this session.** What happens to a vibe version when an extra requirement arrives.
 
-### ［口頭で出す］講師がその場で出す追加要求
+### ［Say it out loud］The extra requirement the instructor gives on the spot
 
-講師が発注者役として、このタイミングで口頭で伝えます。
+The instructor plays the client and delivers this verbally at this moment.
 
-> 「発注者から追加の要望です。2つあります。  
-> **① ペアが成立したら、もう一度めくれるようにしてください。**  
-> **② 3回目以降のミスからは、裏に戻るまでの待ち時間を 0.5 秒に短くしてください。**」
+> “The client has two more requests.
+> **① When you match a pair, you get another turn.**
+> **② From the third mistake onwards, shorten the wait before the cards flip back to 0.5 seconds.**”
 
-この2つは、**AI が神経衰弱の常識からは推測しないルール**です。だからバイブ版には1つも入っていません。
+Neither is **a rule the AI would infer from what everyone knows about memory match**. Which is why not one vibe version has them.
 
-### ［スライド］受講者がやること
+### ［Slide］What participants do
 
-**① 新しいチャットを開く（1分）**
+**① Open a new chat（1 minute）**
 
-いま使っているチャットではなく、**新しいチャット**を開きます。
+Not the chat you're using — **a new chat**.
 
-> **なぜ**: いまのチャットには「さっき何を作ったか」の文脈が残っています。新しいチャットは、その文脈を持っていません。**他人に引き継ぐのと同じ状況**になります。
+> **Why**: the current chat still holds the context of what you just built. A new chat doesn't. **That puts you in exactly the position of handing this to someone else.**
 
-**② 追加要求を実装させる（8分）**
+**② Have the extra requirements implemented（8 minutes）**
 
-講師が口頭で伝えた2つを、自分の言葉で書いて送ってください。
+Write the two things the instructor said in your own words and send them.
 
 ```text
 @session02/
-（講師が言った追加要求を、自分で書いて送る）
-他の挙動は変えないで。
+（write the extra requirements the instructor said, yourself）
+Don't change any other behaviour.
 ```
 
-**③ 記録する（6分）**
+**③ Record it（6 minutes）**
 
-| 記録すること | 答え |
+| Record | Answer |
 |---|---|
-| 変更行数（diff の +/-） | |
-| 既存の機能が壊れたか | |
-| **正しく実装されたか、自分で判定できたか** | |
+| Lines changed（the +/- of the diff） | |
+| Did any existing feature break | |
+| **Could you judge for yourself that it was implemented correctly** | |
 
-3行目が今日いちばん大事な質問です。
+The third row is the most important question of the day.
 
-### 講師が話すこと
+### What the instructor says
 
-**①のとき**: 新しいチャットを開くのを飛ばす人が多い箇所です。ここを飛ばすと「文脈を持たない相手に渡す」という状況にならないので、この章が成立しなくなります。
+**At ①**: a lot of people skip opening a new chat. Skip it and you never get into “handing it to someone without the context”, and the chapter stops working.
 
-**②を送った直後の待ち**: 記録シートの3行目について先に話します。
+**Right after ② is sent, during the wait**: talk about the third row of the record sheet in advance.
 
-> 「返ってきたら『正しく入ったか』を確かめてください。**何と照らし合わせますか？**」
+> “When it comes back, check whether it went in correctly. **What are you comparing it against?**”
 
-**③のとき**: ここが第3・第4のポイントです。
+**At ③**: this is the third and fourth point.
 
-> 「動いたと思います。AI は優秀なので。でも『0.5 秒になっているか』を、**何を見て確認しましたか**。自分の記憶ですよね。**照らし合わせる先が、あなたの頭の中にしかない**。」
+> “It probably works. The AI is good. But how did you check that it's **actually 0.5 seconds**? From your own memory. **The thing you compare against exists only inside your head.**”
 
-> 「そして、いま新しいチャットに渡したときに、AI はコードを最初から読み直しました。**あなた以外の誰も、このコードが何のつもりで書かれたか知りません**。」
+> “And just now, when you handed it to a new chat, the AI had to read the code from scratch. **Nobody except you knows what this code was meant to be.**”
 
-**多くの人は実装できてしまいます。それでいいです。** この章の主張は「できない」ではなく「**できたかどうかを判定できない**」です。
+**Most people will manage the implementation. That's fine.** The claim of this chapter isn't “you can't do it” but “**you can't tell whether you did it**”.
 
-### チェックポイント
+### Checkpoint
 
-- [ ] 新しいチャットで依頼した
-- [ ] 記録シートの3行が埋まっている
+- [ ] They made the request in a new chat
+- [ ] All three rows of the record sheet are filled in
 
-**壊れた人がいたらラッキーです。** 全体に共有して materials にします。壊れなくても構いません。
+**If someone's broke, that's a bonus.** Share it with the room as material. If nothing broke, that's fine too.
 
-### 詰まったら
+### When people get stuck
 
-| 詰まり | 対処 |
-|--------|------|
-| 追加要求を覚えていない | 講師がもう一度言う |
-| 古いチャットで続けてしまった | それも記録に残す。「文脈があると楽だった」も学びとして拾う |
-| 変更行数の数え方が分からない | diff の右上か、Agent パネルの変更バーに +/- が出る |
-| 実装されたか確認できない | **それが正解です。**「確認できませんでした」と記録させる |
-
----
-
-## 第5章 要件を書く — 0:45（15分）
-
-> 2回目です。今度は**自分で要件を書いてから**作ります。
-
-### ［スライド］解説 — Skill とは
-
-**Skill は「この種の作業をするときの手順」をまとめたパッケージ**です。毎回同じ手順を書かなくて済むようになります。
-
-| 仕組み | 役割 | 例 |
-|--------|------|-----|
-| **Rules** | いつも効く方針・制約 | 「コミットは日本語」 |
-| **Skills** | **必要なときだけ読み込む手順書** | 要件の作り方、タスクの割り方 |
-
-置き場所は `.cursor/skills/<名前>/SKILL.md`。呼び出し方は3つあります。
-
-| 呼び方 | 効く範囲 |
-|--------|----------|
-| **自動** | Agent が「使うべき」と判断したとき |
-| **スラッシュ** | `/` を打って選ぶ。**そのメッセージ1回だけ** |
-| **Custom Mode** | `Alt+Enter`（Mac は `Option+Enter`）で固定。**セッション全体** |
-
-**今日は「スラッシュ」で呼びます。**
+| Sticking point | What to do |
+|----------------|------------|
+| Can't remember the extra requirements | The instructor says them again |
+| Carried on in the old chat | Record that too. “Having the context made it easier” is also a lesson worth catching |
+| Doesn't know how to count lines changed | The +/- appears at the top right of the diff, or on the change bar in the Agent panel |
+| Can't confirm whether it was implemented | **That is the correct answer.** Have them write “couldn't confirm” |
 
 ---
 
-**要件に必ず入れる4項目**
+## Chapter 5 Write the spec — 0:45（15 minutes）
 
-| 項目 | 中身 |
+> Round two. This time **you write the spec first**.
+
+### ［Slide］Explanation — what a Skill is
+
+**A Skill is a package holding “the procedure for doing this kind of work”.** It saves you writing the same procedure out every time.
+
+| Mechanism | Role | Example |
+|-----------|------|---------|
+| **Rules** | Policy and constraints, always in force | “Commit messages in English” |
+| **Skills** | **A playbook loaded only when needed** | How to write a spec, how to split tasks |
+
+They live at `.cursor/skills/<name>/SKILL.md`. There are three ways to invoke one.
+
+| How | Scope |
+|-----|-------|
+| **Automatic** | When the Agent judges it should be used |
+| **Slash** | Type `/` and pick it. **That one message only** |
+| **Custom Mode** | Pin it with `Alt+Enter`（Mac: `Option+Enter`）. **The whole session** |
+
+**Today we use the slash.**
+
+---
+
+**The four things a spec must contain**
+
+| Section | Contents |
 |---|---|
-| **やること** | 成立するために必要なこと |
-| **画面** | 何が見えて、何が押せるか |
-| **操作** | ユーザーが何をするとどうなるか |
-| **やらないこと** | **今回は作らないと決めるもの** |
+| **What it does** | What's needed for it to exist at all |
+| **Screen** | What's visible and what can be clicked |
+| **Interactions** | What happens when the user does something |
+| **Out of scope** | **What you decide not to build this time** |
 
-4つ目が今日の効きどころです。**AI は書いていないことを勝手に足してくる**ので、先に禁止しておきます。第2章で、頼んでいないスコアや難易度が付いてきたのと同じ理屈です。
+The fourth is where today's leverage is. **The AI keeps adding things that were never written down**, so you forbid them in advance. The same logic as the score and difficulty that appeared uninvited in chapter 2.
 
-> もっと詳しく: [`07-skills.md`](../fundamentals/07-skills.md) · [`05-prompting.md`](../fundamentals/05-prompting.md)
+> More detail: [`07-skills.md`](../fundamentals/07-skills.md) · [`05-prompting.md`](../fundamentals/05-prompting.md)
 
-### ［スライド］受講者がやること
+### ［Slide］What participants do
 
-**① 要件作成スキルを呼ぶ（2分）**
+**① Call the spec skill（2 minutes）**
 
-新しいチャットで、入力欄に `/` を打って **requirements** を選びます。
+In a new chat, type `/` in the input box and pick **requirements**.
 
 ```text
-/requirements 神経衰弱（メモリーマッチ）を作りたい
+/requirements I want to build memory match
 ```
 
-**② 対話で要件を埋める（8分）**
+**② Fill in the spec through the conversation（8 minutes）**
 
-スキルが聞いてくることに答えていきます。埋めるのは4つです。
+Answer what the skill asks. There are four sections to fill.
 
-| 項目 | 中身 |
+| Section | Contents |
 |---|---|
-| **やること** | ゲームとして成立するために必要なこと |
-| **画面** | 何が見えて、何が押せるか |
-| **操作** | ユーザーが何をするとどうなるか |
-| **やらないこと** | **今回は作らないと決めるもの** |
+| **What it does** | What the game needs to exist at all |
+| **Screen** | What's visible and what can be clicked |
+| **Interactions** | What happens when the user does something |
+| **Out of scope** | **What you decide not to build this time** |
 
-**第4章で発注者から言われた2つも、忘れずに要件に書き起こしてください。**
+**Don't forget to write down the two things the client asked for in chapter 4.**
 
-**③ 追加要件を受け取って足す（5分）**
+**③ Take another requirement and add it（5 minutes）**
 
-講師がもう1つ要求を出します。それを**要件に1行足すだけ**で対応してください。
+The instructor gives one more requirement. Handle it **by adding one line to the spec**.
 
-### ［口頭で出す］第2の追加要求
+### ［Say it out loud］The second extra requirement
 
-**③のタイミングで、講師が口頭で伝えます。**
+**At step ③, the instructor says this out loud.**
 
-> 「もう1つ追加です。**残り2ペアになったら、カードの裏面の色を変えてください。**」
+> “One more. **When only two pairs are left, change the colour of the cards' backs.**”
 
-### 講師が話すこと
+### What the instructor says
 
-**②の間**: 巡回して、**「やらないこと」が空の人に声をかけます**。ここが空だと、AI がまた勝手に足してきます。
+**During ②**: circulate and **talk to anyone whose “Out of scope” is empty**. Leave it empty and the AI will start adding things again.
 
-> 「『やらないこと』が今日の効きどころです。AI は書いていないことを勝手に足すので、**先に禁止しておく**。」
+> “‘Out of scope’ is where today's leverage is. The AI adds things that were never written down, so **forbid them in advance**.”
 
-**②の後半**: 第4章で言われた2つを要件に書けているか確認します。書けていれば、そこを指して言います。
+**Later in ②**: check that the two things from chapter 4 made it into the spec. If they did, point at them and say:
 
-> 「さっき口で言われたものが、いま**文字になりました**。これで、あなた以外の人も『合っているか』を判定できます。」
+> “What was said out loud earlier is now **in writing**. Now somebody other than you can judge whether it's right.”
 
-**③のとき**: ここが今日の答え合わせです。
+**At ③**: this is today's answer key.
 
-> 「同じ『追加要求』が来ました。第4章では、コードを直接触りにいきましたね。**今回は要件に1行足しただけです。** 何が違いましたか。」
+> “The same kind of extra requirement arrives. In chapter 4 you went and touched the code directly, right? **This time you added one line to the spec.** What was different?”
 
-### チェックポイント
+### Checkpoint
 
-- [ ] 要件の4項目が埋まっている（特に**やらないこと**）
-- [ ] 第4章の追加要求2つが要件に書かれている
-- [ ] 第2の追加要求が要件に1行足されている
+- [ ] All four sections of the spec are filled in（especially **Out of scope**）
+- [ ] The two extra requirements from chapter 4 are written in the spec
+- [ ] The second extra requirement has been added as one line
 
-**要件が完璧である必要はありません。** 埋まっていれば次へ進みます。
+**The spec doesn't need to be perfect.** If it's filled in, move on.
 
-### 詰まったら
+### When people get stuck
 
-| 詰まり | 対処 |
-|--------|------|
-| スキルが呼べない | `/` を打って一覧から探す。出なければ `.cursor/skills/` があるか確認 |
-| 「やらないこと」が思いつかない | 「難易度選択」「制限時間」「アニメーション」「外部ライブラリ」を例示する |
-| 要件が大きくなりすぎた | 「やること」を5項目までに削らせる。残りは「やらないこと」へ |
-| 対話が終わらない | 8分で打ち切る。埋まっていない項目は空のまま進む |
-
----
-
-## 第6章 タスクに割って作る — 1:00（20分）
-
-> 要件を、1つずつ渡せる大きさに割ってから作ります。
-
-### ［スライド］解説 — 1回の依頼に1つだけ
-
-第1回で「曖昧な依頼は曖昧な結果になる」をやりました。**タスク分解は、その具体的なやり方**です。1回の依頼はこの形にします。
-
-```text
-【やりたいこと】一言
-【対象】@ファイル or フォルダ
-【制約】壊したくないもの
-【完了条件】何があれば終わりか
-```
-
-**完了条件があると、返ってきたものを判定できます。** 第4章で「判定する基準が自分の頭の中にしかなかった」のと、ここが対になります。
-
-長くなったら**新しいチャット**に切り替えます。古い前提を引きずらないためです。
-
-> もっと詳しく: [`05-prompting.md`](../fundamentals/05-prompting.md)
-
-### ［スライド］受講者がやること
-
-**① タスクに割る（5分）**
-
-```text
-/task-breakdown （書いた要件を渡す）
-```
-
-**3〜5個**に割れれば十分です。多すぎたら削ってください。
-
-**② 1つずつ実装する（15分）**
-
-**新しいチャット**を開いて、タスクを**1つだけ**渡します。
-
-```text
-（タスク1の内容）
-完了条件: （タスクに書かれている完了条件）
-他の機能は変えないで。
-```
-
-diff を読んで Keep したら、次のタスクへ。
-
-**③ 完了ライン**
-
-- [ ] カードが並んで、めくれる
-- [ ] 一致／不一致の判定ができる
-- [ ] 全ペアが揃ったらクリア表示が出る
-- [ ] **第4章・第5章で来た追加要求のどれか1つが入っている**
-
-### 講師が話すこと
-
-**①のとき**: 「1回の依頼で1つだけ」が今日の型です。第1回で「曖昧な依頼は曖昧な結果になる」をやりました。**タスク分解は、その具体的なやり方**です。
-
-**②の待ち時間**: 巡回しながら、次を確認します。
-
-- 要件を渡さずにバイブしている人 → 声をかける
-- 1回の依頼に2つ以上詰め込んでいる人 → 「1つずつ」を伝える
-
-**時間が来たら未完成のまま止めます。** この章の目的は完成ではなく、**渡し方の型を1回やること**です。
-
-### チェックポイント
-
-- [ ] タスクが3〜5個に割れている
-- [ ] 少なくとも2つのタスクを実装して Keep した
-
-**完成しなくて構いません。** 完了ライン4つのうち2つで十分です。
-
-### 詰まったら
-
-| 詰まり | 対処 |
-|--------|------|
-| タスクが10個以上に割れた | 要件が大きすぎる。「やらないこと」を増やして割り直す |
-| 1つずつが面倒で全部渡した | 止めない。**結果を後で比べる材料**になる |
-| 時間が足りない | 完了ライン2つで打ち切る。第7章を削らない |
-| バイブ版と混ざった | フォルダを分ける（`session02/` と `session02-spec/`） |
+| Sticking point | What to do |
+|----------------|------------|
+| Can't invoke the skill | Type `/` and look through the list. If it isn't there, check `.cursor/skills/` exists |
+| Can't think of anything for “Out of scope” | Offer examples: difficulty settings, a time limit, animation, external libraries |
+| The spec grew too big | Make them cut “What it does” to five items. The rest goes to “Out of scope” |
+| The conversation never ends | Cut it at eight minutes. Move on with the unfilled sections empty |
 
 ---
 
-## 第7章 持ち帰るもの — 1:20（10分）
+## Chapter 6 Split into tasks and build — 1:00（20 minutes）
 
-> 使い分けの判断、そして次回。**ここは短縮しません。**
-> 内訳: 振り返り3 + おぼえて帰ること2 + バイブが悪いわけではない1 + この先1 + 次回予告1 + 次回に向けた確認2 = 10分
+> Cut the spec into pieces you can hand over one at a time, then build.
 
-### ［スライド］受講者がやること
+### ［Slide］Explanation — one thing per request
 
-- 振り返りの3つの問いに答える
-- 最後に、次回に向けた確認で**挙手**する（`git status` が動くか / GitHub アカウントがあるか）
+Session 1 covered “a vague request gets you a vague result”. **Splitting into tasks is the concrete way of doing something about it.** Each request takes this shape.
 
-### 講師が話すこと
+```text
+[What I want] one line
+[Scope] @file or folder
+[Constraints] what must not break
+[Done when] what has to exist for this to be finished
+```
 
-**振り返り（受講者に聞く・3分）**
+**With a definition of done, you can judge what comes back.** That is the counterpart to chapter 4, where the basis for judging existed only inside your head.
 
-1. 同じ「追加要求」を、バイブ版に入れたときと要件に足したときで、**何が違いましたか**
-2. 「正しく実装されたか」を、それぞれどうやって確認しましたか
-3. 明日、同じゲームをもう一度作れと言われたら、どちらの方法を使いますか
+When it gets long, switch to a **new chat**, so you don't drag old assumptions along.
 
-**今日おぼえて帰ること（3つ・2分）**
+> More detail: [`05-prompting.md`](../fundamentals/05-prompting.md)
 
-1. **バイブは速い。ただし狙って作れない**（頼んでいないものが付いてくる／同じ依頼でも別のものが出る）
-2. **要件は「他人に渡せる形」にすること**（やること + **やらないこと**）
-3. **追加は1つずつ、完了条件つき**
+### ［Slide］What participants do
 
-**バイブコーディングが悪いわけではありません（1分）**
+**① Split it into tasks（5 minutes）**
 
-> 「バイブコーディングは『最初のプロトタイプ』や『調査』には向いています。今日、実際に数分で動くものが出ましたよね。**あれは本物の強みです。**  
-> ただし『ちゃんと動く状態を維持しながら、他の人と一緒に育てる』には要件が要ります。  
-> **使い分けの判断ができること**が今日のゴールです。」
+```text
+/task-breakdown （hand it the spec you wrote）
+```
 
-**この先にあるもの（1分・スライド1枚）**
+**Three to five** is plenty. Trim if there are more.
 
-今日書いたのは「この1回のための要件」でした。**毎回守らせたい約束は、`.cursor/rules/` に置いておけます。**
+**② Build them one at a time（15 minutes）**
 
-| 仕組み | いつ効くか |
-|--------|------------|
-| **Rules** | **いつも**（毎回のプロンプトに書かなくてよい方針・制約） |
-| **Skills** | 必要なときだけ（手順書） |
-| **要件** | その案件だけ |
+Open a **new chat** and hand over **exactly one** task.
 
-「コミットメッセージは日本語」「テストは依頼されない限り作らない」のような、**チームやリポジトリの約束**が Rules です。第3回のチーム開発で使います。
+```text
+（the contents of task 1）
+Done when: （the definition of done from the task）
+Don't change any other feature.
+```
 
-> もっと詳しく: [`06-rules.md`](../fundamentals/06-rules.md)
+Read the diff, Keep it, then move to the next task.
 
-**次回予告（1分）**
+**③ The finish line**
 
-> 「第3回は自分たちでテーマを決めてアプリを作り始めます。今日やった『要件を先に書く』を、チームでやるとどうなるか。ブランチ・PR・レビューの最小フローも入れます。」
+- [ ] Cards are laid out and can be flipped
+- [ ] Matches and mismatches are detected
+- [ ] Matching every pair shows a completion message
+- [ ] **At least one of the extra requirements from chapters 4 and 5 is in**
 
-### チェックポイント（次回に向けた実測・全員／2分）
+### What the instructor says
 
-第3回は Git と PR を使います。**ここで実測しておきます。** 当日に発覚すると、後半40分が Git 講習になります。
+**At ①**: “one thing per request” is today's pattern. Session 1 covered “a vague request gets you a vague result”. **Splitting into tasks is the concrete way of doing something about it.**
 
-- [ ] ターミナルで `git status` が動く
-- [ ] GitHub アカウントを持っている
+**During the waits in ②**: circulate and watch for:
 
-どちらか欠けている人に挙手してもらい、**講師は人数を控えておきます**。3人以上なら第3回の PR を任意に切り替える判断材料になります。
+- Anyone vibing without handing over the spec → have a word
+- Anyone cramming two or more things into one request → tell them “one at a time”
 
-### 詰まったら
+**When time is up, stop, finished or not.** The purpose of this chapter isn't completion but **running the handover pattern once**.
 
-振り返りの1問目に誰も答えられない場合は、講師が第4章の記録シートを指します。数字が出ているので答えやすくなります。
+### Checkpoint
 
-### 宿題（任意）
+- [ ] It's split into three to five tasks
+- [ ] At least two tasks were built and kept
 
-- `courses/fundamentals/05-prompting.md` を読む（うまい頼み方のテンプレ）
-- 今日の要件に自分で1行足して、機能を1つ増やしてみる
+**It doesn't have to be finished.** Two of the four finish-line items is enough.
+
+### When people get stuck
+
+| Sticking point | What to do |
+|----------------|------------|
+| It split into ten or more tasks | The spec is too big. Add to “Out of scope” and split again |
+| Handing them over one at a time is tedious, so they sent them all | Don't stop them. **It becomes material for comparing results later** |
+| Not enough time | Stop at two finish-line items. Don't cut chapter 7 |
+| It got mixed up with the vibe version | Separate the folders（`session02/` and `session02-spec/`） |
 
 ---
 
-## 付録: 見本の最小仕様（答え合わせ用）
+## Chapter 7 What to take away — 1:20（10 minutes）
 
-**受講者に最初から配ってはいけません。** 第5章で自分の要件が書けなかった人への救済、または講師が「こう書けていれば十分」を示すために使います。
+> Deciding which to use, and next session. **Don't shorten this.**
+> The split: reflection 3 + things to remember 2 + vibe isn't the bad guy 1 + what's ahead 1 + next session 1 + a check for next session 2 = 10 minutes
+
+### ［Slide］What participants do
+
+- Answer the three reflection questions
+- At the end, **raise your hand** for the check for next session（does `git status` run / do you have a GitHub account）
+
+### What the instructor says
+
+**Reflection（ask participants, 3 minutes）**
+
+1. The same “extra requirement”, put into the vibe version and added to the spec — **what was different**
+2. How did you confirm “it was implemented correctly” in each case
+3. If you were told tomorrow to build the same game again, which method would you use
+
+**Three things to remember（2 minutes）**
+
+1. **Vibe is fast. But you can't aim it**（things you didn't ask for appear / the same request gives different results）
+2. **A spec has to be in a form you can hand to someone else**（what it does + **out of scope**）
+3. **Add one thing at a time, with a definition of done**
+
+**Vibe coding isn't the bad guy（1 minute）**
+
+> “Vibe coding suits a first prototype and suits investigating. You had something running in minutes today, right? **That's a genuine strength.**
+> But to ‘keep it working while several people grow it’, you need a spec.
+> **Being able to decide which to use** — that's today's goal.”
+
+**What's ahead（1 minute, one slide）**
+
+What you wrote today was “a spec for this one job”. **The agreements you want obeyed every time can live in `.cursor/rules/`.**
+
+| Mechanism | When it applies |
+|-----------|-----------------|
+| **Rules** | **Always**（policy and constraints, without retyping them in every prompt） |
+| **Skills** | Only when needed（a procedure） |
+| **The spec** | Only that one project |
+
+Things like “commit messages in English” or “don't create tests unless asked” — **the agreements of a team or a repo** — are Rules. Session 3 uses them in the team work.
+
+> More detail: [`06-rules.md`](../fundamentals/06-rules.md)
+
+**Next session（1 minute）**
+
+> “In session 3 you pick your own themes and start building an app. What does ‘write the spec first’ look like as a team? We'll also add the minimum flow of branches, PRs and review.”
+
+### Checkpoint（measuring for next session, everyone, 2 minutes）
+
+Session 3 uses Git and PRs. **Measure it here.** Discover it on the day and the second 40 minutes turns into a Git lesson.
+
+- [ ] `git status` runs in the terminal
+- [ ] They have a GitHub account
+
+Have anyone missing either raise a hand, and **note the number**. Three or more is grounds for making session 3's PR optional.
+
+### When people get stuck
+
+If nobody can answer reflection question 1, point at the record sheet from chapter 4. There are numbers on it, which makes it easier to answer.
+
+### Homework（optional）
+
+- Read [`05-prompting.md`](../fundamentals/05-prompting.md)（the template for asking well）
+- Add one line to today's spec yourself and grow one more feature
+
+---
+
+## Appendix: a sample minimum spec（for checking against）
+
+**Don't hand this out at the start.** Use it to rescue anyone who couldn't write a spec in chapter 5, or for the instructor to show “this much is enough”.
 
 ```markdown
-# 神経衰弱（メモリーマッチ）要件
+# Requirements — Memory match
 
-## やること
+## What it does
 
-- 8ペア（16枚）のカードを裏向きにシャッフルして並べる
-- プレイヤーはカードを2枚めくる
-- 2枚が同じ柄なら表のまま残す（ペア成立）
-- 2枚が違う柄なら1秒後に裏に戻す
-- **ペアが成立したら、もう一度めくれる**
-- **3回目以降のミスからは、裏に戻すまでの待ち時間を 0.5 秒に短縮する**
-- **残り2ペアになったら、カードの裏面の色を変える**
-- 全ペアが揃ったらクリア（「おめでとう」を表示）
+- Shuffle 8 pairs（16 cards）and lay them out face down
+- The player flips two cards
+- If they match, leave them face up（a pair）
+- If they don't match, flip them back after 1 second
+- **When you match a pair, you get another turn**
+- **From the third mistake onwards, shorten the wait before flipping back to 0.5 seconds**
+- **When only two pairs are left, change the colour of the cards' backs**
+- Matching every pair completes the game（show “Congratulations”）
 
-## 画面
+## Screen
 
-- カードは 4×4 のグリッドで配置する
-- 裏面は統一デザイン（色ベタでよい）
-- 表面はペアが分かる記号（絵文字 or 数字）
+- Lay the cards out in a 4×4 grid
+- The backs share one design（a flat colour is fine）
+- The faces carry a symbol that identifies a pair（emoji or a number）
 
-## 操作
+## Interactions
 
-- カードをクリックでめくる
-- めくれるのは一度に2枚まで（3枚目は無反応）
-- すでに表のカードは押せない
+- Click a card to flip it
+- At most two cards face up at a time（a third click does nothing）
+- Cards already face up can't be clicked
 
-## やらないこと
+## Out of scope
 
-- 難易度選択
-- 制限時間
-- スコア・ランキング
-- アニメーション（flip 演出なし。表示切り替えだけ）
-- 外部ライブラリ・API
-- 永続化（リロードでリセットでよい）
+- Difficulty settings
+- A time limit
+- Score and leaderboards
+- Animation（no flip effect, just a display change）
+- External libraries and APIs
+- Persistence（a reload may reset everything）
 ```
 
-**★印の3行**（ペア成立で再度めくれる / 0.5 秒 / 残り2ペアで裏面変化）が、この回の切り札です。**AI が神経衰弱の常識からは推測しないルール**なので、バイブ版には出てきません。
+**The three bold lines**（another turn on a match / 0.5 seconds / the backs change with two pairs left）are this session's trump card. They are **rules the AI won't infer from what everyone knows about memory match**, so no vibe version can contain them.
 
 ---
 
-## 講師チェックリスト（当日用）
+## Instructor checklist（for the day）
 
-### 前日までに
-- [ ] 第1回でクローンできていない人がいないか確認した（いれば当日の頭で対応する）
-- [ ] **`.cursor/skills/requirements/` と `.cursor/skills/task-breakdown/` がリポジトリに入っている**
-- [ ] 自分でも一度、第2章〜第6章を通しでやってみた（**必須**。追加要求が推測されるかは AI の版で変わる）
-- [ ] Cursor の内蔵ブラウザで HTML を開けることを確認した
-- [ ] 使用するモデルを1つ決めてある（Auto ではなく固定）
-- [ ] `session02/` `session02-spec/` フォルダが空の状態
-- [ ] **追加要求3つ（下表）を、出すタイミングごとに把握している**
+### Beforehand
+- [ ] Checked whether anyone still hasn't cloned since session 1（if so, handle it at the very start）
+- [ ] **`.cursor/skills/requirements/` and `.cursor/skills/task-breakdown/` are in the repo**
+- [ ] You've run chapters 2 to 6 yourself once（**required**. Whether the AI infers the extra requirements varies by AI version）
+- [ ] Confirmed you can open HTML in Cursor's built-in browser
+- [ ] Chosen one model to use（pinned, not Auto）
+- [ ] `session02/` and `session02-spec/` are empty
+- [ ] **You know the three extra requirements（table below）and when each is given**
 
-### 追加要求の一覧（講師のみ）
+### The extra requirements（instructor only）
 
-| 出すタイミング | 内容 |
+| Given when | What |
 |---|---|
-| 第4章 冒頭 | ペアが成立したら、もう一度めくれる |
-| 第4章 冒頭 | 3回目以降のミスからは、裏に戻る待ち時間を 0.5 秒に |
-| 第5章 ③ | 残り2ペアになったら、カードの裏面の色を変える |
+| Start of chapter 4 | Matching a pair earns another turn |
+| Start of chapter 4 | From the third mistake, the wait before flipping back drops to 0.5 seconds |
+| Chapter 5, step ③ | With two pairs left, the cards' backs change colour |
 
-**AI がこれを推測してしまう版が出たら、要求を差し替えてください。** 条件は「実装コストが低い」かつ「神経衰弱の常識では出てこない」。
+**If you meet an AI version that infers these, swap the requirements.** The conditions are “cheap to implement” and “not something you'd get from general knowledge of memory match”.
 
-### 章ごとの時間管理
-- 第2章は15分で切る。完璧なものより「動いた」の勢いが大事
-- 第3章・第4章は**削らない**。この回の本体
-- 第6章で 1:20 を超えたら、完成していなくても止める
-- 第7章は何があっても10分確保する
+### Time management per chapter
+- Cut chapter 2 at 15 minutes. The momentum of “it runs” beats a perfect result
+- **Don't cut** chapters 3 and 4. They are the body of the session
+- If chapter 6 passes 1:20, stop even if it isn't finished
+- Chapter 7 keeps its full 10 minutes no matter what
 
-### 進行の想定
-- モデル固定（第2章①）と新しいチャット（第4章①）は、飛ばされるとその章が成立しない。確認してから進む形で時間を組んである
-- 追加要求は、第4章冒頭と第5章③で講師が口頭で出す前提
-- バイブ版がうまくできた人がいた場合、「バイブでも十分だった」はこの回の正しい学びの一部として扱える
+### Assumptions about running it
+- Pinning the model（chapter 2 ①）and opening a new chat（chapter 4 ①）break their chapters if skipped. The timings assume you confirm them before moving on
+- The extra requirements are delivered verbally at the start of chapter 4 and at step ③ of chapter 5
+- If someone's vibe version comes out well, “vibe was enough this time” is a legitimate part of the lesson
 
-### よくある詰まりポイント
-| 詰まり | 対処 |
-|--------|------|
-| Agent が大量のファイルを生成して混乱 | 第2章では整理させない。第6章の要件に「1ファイルで完結してよい」を書かせる |
-| ブラウザで開けない | Cursor の内蔵ブラウザで開く。ファイルのパスも確認する |
-| 要件を渡したのに余計な機能が付く | 「やらないこと」を強調して渡し直す。これ自体が良い教材になる |
-| バイブのほうがうまくいったと感じる | 正直にそう伝える。小規模ならそのとおり。規模が上がると逆転しやすい |
-| 結果がバラついて比較にならない | モデルが Auto のままになっていないか確認。第2章と第6章で同じモデルに固定する |
+### Common sticking points
+| Sticking point | What to do |
+|----------------|------------|
+| The Agent generated a pile of files and it's confusing | Nothing gets tidied in chapter 2. By chapter 6, have them write “one file is fine” into the spec |
+| Can't open it in a browser | Open it in Cursor's built-in browser. Check the file path too |
+| Extra features appear even after handing over the spec | Emphasise “Out of scope” and hand it over again. This itself makes excellent teaching material |
+| Someone feels vibe went better | Say so honestly — at small scale it does. At larger scale it tends to flip |
+| Results are too scattered to compare | Check whether the model is still on Auto. Chapters 2 and 6 must use the same pinned model |
 
-> **提出物は未定です。** 必要なら第4章の記録シート（変更行数・壊れたか・判定できたか）を回収してください。
+> **The deliverable isn't decided.** If you want one, collect the record sheet from chapter 4（lines changed, did anything break, could you judge it）.
