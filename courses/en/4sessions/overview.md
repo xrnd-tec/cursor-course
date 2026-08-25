@@ -1,227 +1,222 @@
-# 実践コース案：90分 × 4回
+# The hands-on course: 90 minutes × 4
 
-このリポジトリの `courses/fundamentals/`（0〜13）と `practice/` は **Cursor 操作の自習教材**。  
-本ドキュメントは、それとは別に運営する **実践コース（全4回）** の構成案をまとめたもの。
+`courses/en/fundamentals/`（0–19）and `practice/` in this repo are **self-study material for using Cursor**.
+This document is different: it is the overall design of the **hands-on course（4 sessions）** that runs separately.
 
-## 各回の詳細（分単位の進行台本）
+## Session by session（the minute-by-minute script）
 
-本ドキュメントは全体設計。当日の司会進行は各回のファイルを使う。
+This document is the overall design. On the day, use the file for that session.
 
-| 回 | ファイル | テーマ |
-|----|----------|--------|
-| 第1回 | [session-01.md](session-01.md) | 基本操作（Ask → Agent → diff → Keep） |
-| 第2回 | [session-02.md](session-02.md) | バイブコーディング → 仕様駆動（神経衰弱） |
-| 第3回 | [session-03.md](session-03.md) | チーム開発演習・前半（テーマ決め / 仕様 / PR） |
-| 第4回 | [session-04.md](session-04.md) | 仕上げ＋発表 |
+| Session | File | Theme |
+|---------|------|-------|
+| Session 1 | [session-01.md](session-01.md) | Basic operations（Ask → Agent → diff → Keep） |
+| Session 2 | [session-02.md](session-02.md) | Vibe coding → spec-driven development（memory match） |
+| Session 3 | [session-03.md](session-03.md) | Team development, first half（theme / spec / PR） |
+| Session 4 | [session-04.md](session-04.md) | Finishing and presenting |
 
-## コース全体のゴール
+## Goals for the whole course
 
-このコースを終えると、受講者は次ができるようになる。
+By the end, participants can do the following.
 
-1. Cursor の基本操作で、小さな改修・機能追加を自分で進められる
-2. 「バイブコーディング」の限界を体感し、**仕様を決めてから作る**と安定することを説明・実践できる
-3. チームでテーマを決め、短いサイクルでアプリを動かし、発表できる
+1. Carry out small fixes and additions themselves, using Cursor's basic operations
+2. Feel where “vibe coding” runs out, and both explain and practise that **deciding the spec first** is more stable
+3. Pick a theme as a team, get an app moving in short cycles, and present it
 
-既存の自習教材（`courses/fundamentals/00〜13`）は、主に **第1回の参照** と **復習用** として使う。発展編の全部を4回に詰めない。
+The existing self-study material（`courses/en/fundamentals/00–19`）is mainly **reference for session 1** and **revision**. Don't try to cram the whole advanced set into four sessions.
 
-## 1回の共通フォーマット（90分）
+## The common shape of a session（90 minutes）
 
-| パート | 目安 | やること |
-|--------|------|----------|
-| ゴール説明 | 5〜8分 | その回で「できること」を1〜2文で固定する |
-| 前半・説明しながら手を動かす | 35〜40分 | 講師デモを追従。止まらず「型」を1つ通す |
-| 後半・課題実践 | 35〜40分 | 個人／チームで同じ型を再現・応用 |
-| まとめ | 5〜8分 | 今日の勝ちパターン＋次回予告 |
+| Part | Rough length | What happens |
+|------|--------------|--------------|
+| State the goal | 5–8 min | Pin down “what you'll be able to do” in one or two sentences |
+| First half: hands moving while you explain | 35–40 min | Participants follow along. Don't stall; get one pattern all the way through |
+| Second half: exercises | 35–40 min | Individually or in teams, reproduce and apply that same pattern |
+| Wrap-up | 5–8 min | What worked today, plus what's next |
 
-前半が長引くと後半が死ぬ。前半の完了条件は「完璧な説明」ではなく **型が1本通ったこと**。
+If the first half overruns, the second half dies. The completion condition for the first half isn't “a perfect explanation” but **one pattern got all the way through**.
 
-## 受講者数の上限（講師1人あたり）
+## The cap on participants（per instructor）
 
-このコース設計が成立する人数には上限がある。**超えると第4回が破綻する。**
+This course design only holds up to a certain size. **Go past it and session 4 falls apart.**
 
-| 制約 | 計算 | 上限 |
-|------|------|------|
-| 第4回の発表枠 | 35分 ÷ 1チーム3分（質疑なし） | 11チーム |
-| 第4回の発表枠 | 35分 ÷ 1チーム4分（質疑込み） | **8チーム** |
-| 第3回・第4回の巡回サポート | 講師1人が後半40分で回れる数 | **6〜8チーム** |
+| Constraint | Calculation | Cap |
+|------------|-------------|-----|
+| Session 4's presentation slot | 35 min ÷ 3 min per team（no questions） | 11 teams |
+| Session 4's presentation slot | 35 min ÷ 4 min per team（with questions） | **8 teams** |
+| Circulating support in sessions 3 and 4 | How many teams one instructor covers in a 40-minute second half | **6–8 teams** |
 
-**目安: 8チーム / 受講者24人まで（講師1人）。** これを超えるなら講師かサポーターを増やし、
-第4回の発表を2部屋に分けるなどの対応を先に決めておく。
-
----
-
-## 第1回：基本操作（90分）
-
-### この回のゴール
-
-Cursor のモード・`@`・Tab / Ctrl+K / Agent を使い分け、小さな改修を自分で完了できる。
-
-### 前半（一緒に手を動かす）
-
-- 全体像（Tab / Ctrl+K / Agent の使い分け）
-- モード切替（Ask / Agent / Plan の最低限）
-- `@` でファイル・フォルダを渡す
-- Agent で差分を見て Keep / Undo
-- 参照: `courses/fundamentals/00-map.md` 〜 `05-prompting.md`（全部読ませない。必要な箇所だけ）
-
-### 後半（課題実践）
-
-- `practice/` の短い課題（例: calculator に関数追加、説明→実装のモード切替）
-- README の「今すぐ試す」相当を、各自のペースで完走
-
-### 完了の定義（この回の線）
-
-- [ ] Ask と Agent を切り替えて依頼できる
-- [ ] `@` で意図したファイルを渡せる
-- [ ] Agent の差分を確認し、Keep / Undo できる
-- [ ] `practice/` の課題を1つ以上完了した
-
-### やらないこと
-
-- Rules / Skills / Hooks / MCP / Cloud Agents の深掘り（必要なら一言紹介まで）
-- 本格アプリ開発の開始
+**Rule of thumb: up to 8 teams / 24 participants per instructor.** Beyond that, add instructors or helpers and decide up front on measures such as splitting session 4's presentations across two rooms.
 
 ---
 
-## 第2回：バイブコーディング → 仕様駆動（ゲーム実践）（90分）
+## Session 1: Basic operations（90 minutes）
 
-### この回のゴール
+### The goal
 
-バイブで一気に作ると「つぎはぎ」で破綻しやすいこと、仕様を決めてから作ると安定することを **体感** できる。
+Choose between modes, `@`, and Tab / Ctrl+K / Agent, and complete a small fix on your own.
 
-### 題材（講師側で固定）
+### First half（hands moving together）
 
-**神経衰弱（メモリーマッチ）**
+- The overall picture（choosing between Tab / Ctrl+K / Agent）
+- Switching modes（the minimum: Ask / Agent / Plan）
+- Passing files and folders with `@`
+- Reading the Agent's diff and Keep / Undo
+- Reference: `courses/en/fundamentals/00-map.md` to `05-prompting.md`（don't make them read it all, just what's needed）
 
-理由: ルールが既知で、カード枚数・めくり・一致判定などが仕様化しやすい。動くものがすぐ見える。
+### Second half（exercises）
 
-### 前半（一緒に手を動かす）
+- Short exercises in `practice/`（e.g. add a function to calculator, switch modes between explaining and implementing）
+- Each person works through the equivalent of “Quick start” in the README at their own pace
 
-1. **バイブで一気に作る** — 「神経衰弱を作って」程度の曖昧依頼で動くものを出す
-2. **つぎはぎで壊す** — スコア／難易度／タイマーなどを足し、破綻や意図しない変更を見せる
-3. **最小仕様を渡して立て直す** — やること／やらないことを短く書き、Plan → Agent で通す
+### Definition of done（the line for this session）
 
-### 後半（課題実践）
+- [ ] Can switch between Ask and Agent to make a request
+- [ ] Can pass the file they intended with `@`
+- [ ] Can review the Agent's diff and Keep / Undo it
+- [ ] Completed at least one exercise in `practice/`
 
-- 渡された最小仕様に沿って、神経衰弱を完成（または立て直し）させる
-- 余裕があれば仕様に書かれたオプション機能を1つだけ追加
+### Not doing
 
-### 完了の定義（この回の線）
-
-最低限、次が動くこと。綺麗さ・演出は不要。
-
-- [ ] 表裏のあるカードが並ぶ
-- [ ] 2枚めくって一致／不一致を判定できる
-- [ ] （余裕があれば）手数 **または** タイマーのどちらか1つ
-- [ ] 「バイブだと崩れた／仕様だと通った」を自分の言葉で言える
-
-### 最小仕様に必ず書くこと（案）
-
-- **やること**: カード枚数、めくり操作、一致判定、勝敗 or クリア条件
-- **やらないこと**: オンライン対戦、凝ったアニメ、永続化、外部API など
-
-### やらないこと
-
-- 自テーマのアプリ開始（第3回以降）
-- チーム開発フローの本格導入
+- Going deep on Rules / Skills / Hooks / MCP / Cloud Agents（a one-line mention at most）
+- Starting real application development
 
 ---
 
-## 第3回：チーム開発演習（前半）（90分）
+## Session 2: Vibe coding → spec-driven development（90 minutes）
 
-### この回のゴール
+### The goal
 
-チームでテーマを決め、役割と最小の Git / PR フローを回しながら、アプリ開発に着手できる。
+**Feel** the four real properties of vibe coding, and learn to spot the point where you should switch to writing a spec first.
 
-### テーマ制約（暴走防止）
+> **Don't frame this as “vibe coding breaks”.** Memory match is something the AI knows very well, so vibe coding finishes it perfectly well（measured in practice）. See “The claim of this session” at the top of [session-02.md](session-02.md).
 
-各自／各チームでテーマを決めるが、次を守る。
+### The subject（fixed by the instructor）
 
-- 1画面〜数画面
-- 外部API なし（または1つまで）
-- **発表で見せる1操作** を先に決める
-- 第4回終了時点の目標は「完璧」ではなく **デモ可能な動作**
+**Memory match**
 
-### 前半（一緒に手を動かす）
+Why: everyone knows the rules, and card count, flipping and match detection are all easy to write as a spec. You also get something running quickly.
 
-- チーム役割の型（例: ドライバー／仕様係／レビュアー）
-- 最小 Git フロー: feature ブランチ → PR → レビュー1人 → マージ
-- 「発表で見せる1操作」を先に書く練習
-- 必要なら Rules / PR 連携は触りだけ（`courses/fundamentals/06` / `11` 参照可）
+### First half（hands moving together）
 
-### 後半（課題実践）
+1. **Build it in one go with vibe** — a vague request along the lines of “build me memory match” gets something running
+2. **Compare** — show that the same request produced different things for everyone, and that things nobody asked for got added
+3. **Take a late requirement** — try to fit a new client requirement into the vibe version, and notice there is no basis on which to judge whether it went in correctly
 
-- テーマ決定（制約内）
-- 最小仕様（やること／やらないこと／デモ1操作）を書く
-- リポジトリ／ブランチを用意し、実装開始
+### Second half（exercises）
 
-### 完了の定義（この回の線）
+- Write your own spec（what it does / screen / interactions / out of scope）, split it into tasks and build them one at a time
+- Handle late requirements by adding them to the spec
 
-- [ ] チームのテーマと「デモで見せる1操作」が決まっている
-- [ ] 最小仕様（やること／やらないこと）がある
-- [ ] 少なくとも1本の PR（または同等の変更共有）を経験した
-- [ ] 動く途中成果（画面 or 主要処理の一部）がある
+### Definition of done（the line for this session）
 
-### やらないこと
+At minimum, these have to work. No polish or effects needed.
 
-- 大規模設計・インフラ構築
-- 発表用スライドの作り込み（第4回）
+- [ ] Cards with a face and a back are laid out
+- [ ] Flipping two cards detects a match or a mismatch
+- [ ] At least one of the late requirements is in
+- [ ] They can say in their own words how vibe and spec differed this time
 
----
+### Not doing
 
-## 第4回：演習の続き ＋ 発表（90分）
-
-### この回のゴール
-
-アプリをデモ可能な状態まで仕上げ、短い発表で「何を・どう Cursor で作ったか」を共有できる。
-
-### 前半（一緒に手を動かす）
-
-- 仕上げチェックリスト（動作確認、致命バグ、README 最短、デモ手順）
-- 発表の型（3分想定）: 課題 → 仕様 → デモ → Cursor で効いたこと／詰まったこと
-- 時間配分の確認（実装残り時間 vs 発表枠）
-
-### 後半（課題実践）
-
-- 実装の仕上げ
-- 発表・デモ
-- 短い振り返り（バイブ vs 仕様、チームで効いたこと）
-
-### 完了の定義（この回の線）
-
-- [ ] 「発表で見せる1操作」がデモできる
-- [ ] チームで発表した（時間内・型に沿う）
-- [ ] 振り返りを1つ以上共有した（例: 仕様が効いた場面）
-
-### やらないこと
-
-- 新機能の大幅追加（デモが壊れない範囲に限定）
-- 本番デプロイ必須化
+- Starting their own themed app（session 3 onwards）
+- Introducing a full team development workflow
 
 ---
 
-## 既存教材との関係
+## Session 3: Team development（first half）（90 minutes）
 
-| 教材 | 役割 |
-|------|------|
-| `courses/fundamentals/00〜05` | 第1回の参照・復習 |
-| `courses/fundamentals/06〜13` | 必要箇所だけ参照（全部やらない） |
-| `practice/` | 第1回のドリル |
-| 本ドキュメント | 実践コース（4回）の進行正本 |
-| `docs/` | プロジェクト資料（制作タスクなど） |
+### The goal
 
-自習教材の「基礎→発展を全部通す」と、本コースの「90分×4で成果まで」は目的が違う。混同しない。
+Pick a theme as a team and start building, while running roles and a minimum Git / PR flow.
 
-## 未決・次に詰めること
+### Theme constraints（to stop it running away）
 
-- [x] 各回の詳細アジェンダ（分単位の司会進行）→ `session-01.md` 〜 `session-04.md`
-- [x] 第2回用の神経衰弱「最小仕様」→ `session-02.md` の「配布物: 最小仕様」に記載（配布形式への落とし込みは別途）
-- [ ] 第2回用のスターター／完成例の置き場（`practice/` とは分離推奨）
-- [ ] 第3〜4回のチーム人数・リポジトリ運用（共有 or fork）
-- [x] 発表の持ち時間と人数に応じたタイムテーブル → 上の「受講者数の上限」に記載
-- [x] README から本ドキュメントへの導線
+Each person or team picks their own theme, but must keep to these.
 
-## 関連
+- One to a few screens
+- No external APIs（or at most one）
+- **Decide “the one action you'll show” up front**
+- The target by the end of session 4 isn't “perfect” but **it runs well enough to demo**
 
-- 自習マップ: [../fundamentals/00-map.md](../fundamentals/00-map.md)
-- コース資料一覧: [../README.md](../README.md)
+### First half（hands moving together）
+
+- The team role pattern（e.g. driver / spec keeper / reviewer）
+- The minimum Git flow: feature branch → PR → one reviewer → merge
+- Practising writing “the one action you'll show” first
+- If needed, a light touch of Rules and PR integration（see `courses/en/fundamentals/06` and `11`）
+
+### Second half（exercises）
+
+- Decide the theme（within the constraints）
+- Write the minimum spec（what it does / out of scope / the one demo action）
+- Prepare the repo and branch, and start building
+
+### Definition of done（the line for this session）
+
+- [ ] The team's theme and “the one action you'll show” are decided
+- [ ] A minimum spec exists（what it does / out of scope）
+- [ ] They have been through at least one PR（or an equivalent way of sharing a change）
+- [ ] There is a working partial result（a screen, or part of the main processing）
+
+### Not doing
+
+- Large-scale design or infrastructure
+- Polishing presentation slides（session 4）
+
+---
+
+## Session 4: Finishing and presenting（90 minutes）
+
+### The goal
+
+Get the app to a demoable state and share, in a short presentation, what was built and how Cursor was used to build it.
+
+### First half（hands moving together）
+
+- The finishing checklist（does it run, fatal bugs, the shortest possible README, the demo steps）
+- The presentation format（3 minutes）: the problem → the spec → the demo → what Cursor was good at / where you got stuck
+- Check the time split（build time remaining vs the presentation slot）
+
+### Second half（exercises）
+
+- Finish the build
+- Present and demo
+- A short reflection（vibe vs spec, what worked in the team）
+
+### Definition of done（the line for this session）
+
+- [ ] “The one action you'll show” demos
+- [ ] The team presented（inside the time, following the format）
+- [ ] They shared at least one reflection（e.g. a moment the spec paid off）
+
+### Not doing
+
+- Adding major new features（only within what won't break the demo）
+- Requiring a production deployment
+
+---
+
+## How this relates to the existing material
+
+| Material | Role |
+|----------|------|
+| `courses/en/fundamentals/00–05` | Reference and revision for session 1 |
+| `courses/en/fundamentals/06–19` | Reference only where needed（don't work through it all） |
+| `practice/` | The drills for session 1 |
+| This document | The canonical source for running the hands-on course（4 sessions） |
+
+The self-study material aims at “work through the basics then the advanced material”; this course aims at “90 minutes × 4 and out the other side with something”. Different purposes — don't mix them up.
+
+## Still open
+
+- [x] The detailed agenda per session（minute-by-minute）→ `session-01.md` to `session-04.md`
+- [x] The minimum spec for session 2 → in the appendix of `session-02.md`
+- [ ] Where to keep a starter / finished example for session 2（best kept separate from `practice/`）
+- [ ] Team size and repo handling for sessions 3–4（shared or fork）
+- [x] A timetable that accounts for headcount and presentation length → see “The cap on participants” above
+- [x] A route into this document from the README
+
+## Related
+
+- The self-study map: [../fundamentals/00-map.md](../fundamentals/00-map.md)
+- The course material index: [../README.md](../README.md)

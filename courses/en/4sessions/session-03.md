@@ -1,210 +1,211 @@
-# 第3回：チーム開発演習・前半（90分）
+# Session 3: Team development, first half（90 minutes）
 
-> **この回の一言ゴール**  
-> チームでテーマを決め、仕様を書き、PR を1本出す
-
----
-
-## タイムテーブル
-
-| 時刻 | パート | 内容 |
-|------|--------|------|
-| 0:00 | ゴール説明 | チーム開発で今日やること（5分） |
-| 0:05 | 前半① | チーム・テーマ決め（15分） |
-| 0:20 | 前半② | 最小仕様と Git/PR の型（20分） |
-| 0:40 | 後半 | 実装開始＋PR 体験（40分） |
-| 1:20 | まとめ | 進捗確認・次回予告（10分） |
+> **The one-line goal**
+> Pick a theme as a team, write a spec, and open one PR
 
 ---
 
-## 0:00 ゴール説明（5分）
+## Timetable
 
-> 「今日から自分たちでテーマを決めてアプリを作ります。  
-> ルールは4つだけ:  
-> ① テーマ制約を守る ② 仕様を先に書く ③ PR を出す ④ 第4回でデモできる状態を目指す」
-
-前回の振り返り（一言）: 仕様 → 新しいチャット → 1つずつ追加。
-
----
-
-## 0:05 前半① — チーム・テーマ決め（15分）
-
-### チーム編成
-
-- 2〜3人（人数に応じて調整）
-- 1人チームも可（ただし第4回で PR を見せる工夫が要る）
-
-### テーマ制約
-
-受講者に提示して守らせる:
-
-| 制約 | 理由 |
-|------|------|
-| 1画面〜数画面 | 第4回までに終わるスコープ |
-| 外部API なし（または1つまで） | 環境差でハマらない |
-| **「発表で見せる1操作」を先に決める** | ゴールがブレない |
-| 完成 = デモ可能な動作（完璧さ不要） | 時間内に着地 |
-
-### テーマ例（迷っている人向け）
-
-- ToDoアプリ（追加・完了・削除）
-- じゃんけんゲーム（対CPU、勝敗カウント）
-- クイズアプリ（3問出して正答率を表示）
-- タイマー / ストップウォッチ
-- 簡易メモ帳（保存は localStorage）
-
-### このパートの完了
-
-- [ ] チームが決まっている
-- [ ] テーマが1つ決まっている
-- [ ] 「発表で見せる1操作」が一言で言える
-
-> 迷って15分使い切る人がいたら講師が1つ提案して決める。
+| Time | Part | Contents |
+|------|------|----------|
+| 0:00 | Goal | What we're doing in the team work today（5 min） |
+| 0:05 | First half ① | Forming teams, picking a theme（15 min） |
+| 0:20 | First half ② | The minimum spec and the Git / PR pattern（20 min） |
+| 0:40 | Second half | Start building + experience a PR（40 min） |
+| 1:20 | Wrap-up | Progress check, next session（10 min） |
 
 ---
 
-## 0:20 前半② — 最小仕様と Git/PR の型（20分）
+## 0:00 Goal（5 minutes）
 
-### 仕様テンプレ（配布）
+> “From today you pick your own theme and build an app.
+> Only four rules:
+> ① keep to the theme constraints ② write the spec first ③ open a PR ④ aim for something demoable by session 4”
 
-前回と同じ構造。チームで埋める。
+Recap of last time（one line）: spec → new chat → add one thing at a time.
+
+---
+
+## 0:05 First half ① — teams and theme（15 minutes）
+
+### Forming teams
+
+- Two to three people（adjust to headcount）
+- A team of one is fine（though they'll need a way to show a PR in session 4）
+
+### Theme constraints
+
+Present these and hold people to them:
+
+| Constraint | Why |
+|------------|-----|
+| One to a few screens | A scope that finishes by session 4 |
+| No external APIs（or at most one） | Don't get stuck on environment differences |
+| **Decide “the one action you'll show” up front** | Keeps the goal from drifting |
+| Done = it runs well enough to demo（not perfect） | Lands inside the time available |
+
+### Theme ideas（for anyone stuck）
+
+- A ToDo app（add, complete, delete）
+- Rock-paper-scissors（against the computer, with a win/loss count）
+- A quiz app（three questions, then show the score）
+- A timer / stopwatch
+- A simple notepad（saved in localStorage）
+
+### Done with this part
+
+- [ ] Teams are formed
+- [ ] One theme is chosen
+- [ ] “The one action you'll show” can be said in a sentence
+
+> If anyone is going to burn the full 15 minutes deciding, the instructor proposes one and settles it.
+
+---
+
+## 0:20 First half ② — the minimum spec and the Git / PR pattern（20 minutes）
+
+### The spec template（hand this out）
+
+Same structure as last session. The team fills it in.
 
 ```markdown
-# アプリ名: ____________
+# App name: ____________
 
-## やること
-- （箇条書き 3〜5個）
+## What it does
+- （bullets, 3–5）
 
-## 画面
-- （何が見える / 何が押せる）
+## Screen
+- （what's visible / what can be clicked）
 
-## 操作
-- （ユーザーが何をするとどうなるか）
+## Interactions
+- （what happens when the user does something）
 
-## やらないこと
-- （明示的に切る）
+## Out of scope
+- （explicitly cut）
 
-## 発表で見せる1操作
-- 「○○を押すと△△になる」
+## The one action you'll show
+- “Press ○○ and △△ happens”
 ```
 
-### Git / PR の最小フロー（講師デモ）
+### The minimum Git / PR flow（instructor demo）
 
-> **前提の確認**: 第2回のまとめで `git status` と GitHub アカウントを実測してある。
-> 未達が3人以上なら、**PR は任意**に切り替えてよい。この回の本質は PR そのものではなく
-> 「変更を他人に見せて確認してもらう」体験なので、ブランチを push して diff を見せ合うだけでも成立する。
+> **Check the premise**: at the end of session 2 you measured `git status` and GitHub accounts.
+> If three or more people fell short, it's fine to **make the PR optional**. The essence of this session
+> isn't the PR itself but the experience of “showing a change to someone else and having them confirm it”,
+> so pushing a branch and comparing diffs is enough to make it work.
 
-**リポジトリの準備:**
+**Preparing the repo:**
 
 ```bash
-# 各チーム用のフォルダを作る or 新規リポジトリを用意する
+# Make a folder per team, or prepare a new repo
 mkdir team-app && cd team-app && git init
 ```
 
-**ブランチの型:**
+**The branch pattern:**
 
 ```
-main（壊さない）
-  └── feature/xxx（作業ブランチ）
+main（don't break it）
+  └── feature/xxx（working branch）
 ```
 
-**PR の型（デモ）:**
+**The PR pattern（demo）:**
 
-1. `main` から `feature/add-html-skeleton` を切る
-2. 最小の変更（HTML のガワだけ）を commit
-3. `gh pr create`（または GitHub 上で PR 作成）
-4. レビュアーが diff を見て Approve → Merge
+1. Cut `feature/add-html-skeleton` from `main`
+2. Commit a minimal change（just the HTML skeleton）
+3. `gh pr create`（or open the PR in the GitHub UI）
+4. A reviewer reads the diff, approves, merges
 
-> 「PR = "ここまで作ったよ" の共有ポイント。レビューは深い指摘じゃなくて "diff 読んだ、OK" で十分。」
+> “A PR is a checkpoint for sharing ‘here's how far I got’. The review doesn't need deep comments — ‘read the diff, looks fine’ is enough.”
 
-### 役割の型（提案）
+### The role pattern（a suggestion）
 
-チーム内で毎回ローテーションしてもよい:
+Rotate within the team if you like:
 
-| 役割 | やること |
-|------|----------|
-| ドライバー | Cursor で実装する |
-| 仕様係 | 仕様を書く / Agent への依頼文を書く |
-| レビュアー | PR の diff を読んで OK / 質問を出す |
+| Role | What they do |
+|------|--------------|
+| Driver | Builds it in Cursor |
+| Spec keeper | Writes the spec / writes the request to the Agent |
+| Reviewer | Reads the PR diff and says OK or asks a question |
 
-> 2人チームならドライバーとレビュアーを交互に。
-
----
-
-## 0:40 後半 — 実装開始＋PR体験（40分）
-
-### やること
-
-1. **仕様テンプレを埋める**（10分以内に。完璧じゃなくてよい）
-2. **リポジトリ / フォルダを用意する**
-3. **`feature/` ブランチを切って実装開始**
-4. **1つ commit して PR を出す**（最低1本）
-
-### 講師の巡回ポイント
-
-| 状況 | 対処 |
-|------|------|
-| 仕様を書かずにコードに入っている | 「発表で見せる1操作、決まってる？」と聞く |
-| 仕様が大きすぎる（10項目以上） | 「3〜5個に削って。やらないことを増やして」 |
-| Git で詰まっている | ブランチ作成〜PR 作成をハンズオンで一緒にやる |
-| 全員がドライバーで誰もレビューしない | 「1本 PR が出たら、誰かが diff 読んで」を促す |
-| 1人で全部やっていてチームが機能しない | 役割ローテーションを促す |
-
-### このパートの目標
-
-- [ ] 仕様テンプレが埋まっている
-- [ ] リポジトリ（or フォルダ）が用意されている
-- [ ] 少なくとも1本の commit がある
-- [ ] PR を1本出した（難しければ、ブランチを push して diff を見せ合うでも可）
+> With two people, alternate between driver and reviewer.
 
 ---
 
-## 1:20 まとめ（10分）
+## 0:40 Second half — start building + experience a PR（40 minutes）
 
-### 進捗確認（各チーム一言）
+### What to do
 
-- テーマは？
-- 発表で見せる1操作は？
-- いま何ができていて、次回何をやる？
+1. **Fill in the spec template**（within 10 minutes. It doesn't have to be perfect）
+2. **Prepare the repo / folder**
+3. **Cut a `feature/` branch and start building**
+4. **Make one commit and open a PR**（at least one）
 
-### 今日の勝ちパターン
+### What to watch for while circulating
 
-1. **テーマ制約を守る**（小さく作る）
-2. **仕様を先に埋める**（やること + やらないこと + 見せる1操作）
-3. **PR = diff を読む習慣**（完璧なレビューじゃなくてよい）
+| Situation | What to do |
+|-----------|------------|
+| Writing code without a spec | Ask: “have you decided the one action you'll show?” |
+| The spec is too big（10+ items） | “Cut it to 3–5. Move more into out of scope” |
+| Stuck on Git | Walk through branch creation to PR creation with them |
+| Everyone is driving, nobody reviews | Prompt: “once a PR exists, someone read the diff” |
+| One person doing everything, the team isn't working | Prompt the role rotation |
 
-### 次回予告
+### The goal for this part
 
-> 「次回は仕上げて発表します。  
-> "発表で見せる1操作" がデモできる状態がゴール。  
-> 新機能追加より、動く状態の維持を優先してください。」
-
-### 次回までにやること（任意）
-
-- 実装の続き（無理しなくてよい。次回の前半40分でも進められる）
-- 行き詰まったら `courses/fundamentals/06-rules.md` を読んで Rules を1つ試してみる
+- [ ] The spec template is filled in
+- [ ] A repo（or folder）exists
+- [ ] There is at least one commit
+- [ ] One PR is open（or, failing that, a pushed branch whose diff they showed each other）
 
 ---
 
-## 講師チェックリスト（当日用）
+## 1:20 Wrap-up（10 minutes）
 
-### 事前準備
-- [ ] チーム分けの方針を決めている（ランダム / 自由 / 指名）
-- [ ] 仕様テンプレを配布できる状態
-- [ ] 第2回まとめの Git 確認の結果を把握している（`git status` が動かない人・GitHub アカウントが無い人の人数）
-- [ ] 上記が3人以上いる場合、前半②の Git デモを10分延長し、後半の PR を任意に切り替える判断をしておく
-- [ ] 各チームのリポジトリ方針を決めている（共有リポ / fork / フォルダ分け）
-- [ ] `gh` CLI がインストール済み（PR 作成をターミナルからやる場合）
+### Progress check（one line per team）
 
-### 時間管理
-- テーマ決めで15分を超えそうなら講師が提案して決定する
-- 前半②の Git デモは5分以内に終わらなければ「とにかくやってみよう」で後半に回す
-- 後半の最低ライン = 仕様テンプレ完成 + 1 commit。PR まで行けなくてもよい
+- What's the theme?
+- What's the one action you'll show?
+- What works right now, and what's next?
 
-### よくある詰まりポイント
-| 詰まり | 対処 |
-|--------|------|
-| テーマが決まらない | 上のテーマ例から1つ選ばせる |
-| Git の操作が分からない | 最低限: `git init` → `git add <ファイル>` → `git commit` → `git checkout -b`（`git add .` は無関係な生成物を巻き込むので避ける） |
-| PR の作り方が分からない | GitHub の Web UI で PR ボタンを押す手順を見せる |
-| チーム内で温度差がある | 役割を明示してローテーションを約束する |
+### What worked today
+
+1. **Keep to the theme constraints**（build small）
+2. **Fill in the spec first**（what it does + out of scope + the one action）
+3. **A PR is the habit of reading a diff**（it doesn't need to be a perfect review）
+
+### Next session
+
+> “Next time we finish and present.
+> The goal is a state where ‘the one action you'll show’ demos cleanly.
+> Prioritise keeping it running over adding new features.”
+
+### Before next time（optional）
+
+- Keep building（no need to push it. The first 40 minutes of next session are also for building）
+- If you hit a wall, read [`06-rules.md`](../fundamentals/06-rules.md) and try one Rule
+
+---
+
+## Instructor checklist（for the day）
+
+### Beforehand
+- [ ] Decided how teams get formed（random / free / assigned）
+- [ ] The spec template is ready to hand out
+- [ ] You know the Git measurement from the end of session 2（how many can't run `git status`, how many have no GitHub account）
+- [ ] If that number is three or more, you've already decided to extend the Git demo in first half ② by 10 minutes and make the PR optional
+- [ ] Decided how each team's repo works（shared repo / fork / separate folders）
+- [ ] `gh` CLI installed（if you'll create PRs from the terminal）
+
+### Time management
+- If picking a theme is about to pass 15 minutes, the instructor proposes one and settles it
+- If the Git demo in first half ② isn't done in five minutes, switch to “just try it” and push it into the second half
+- The minimum for the second half = spec template filled in + one commit. Not reaching a PR is fine
+
+### Common sticking points
+| Sticking point | What to do |
+|----------------|------------|
+| Can't settle on a theme | Make them pick one from the list above |
+| Doesn't know Git | The minimum: `git init` → `git add <file>` → `git commit` → `git checkout -b`（avoid `git add .` — it sweeps up unrelated generated files） |
+| Doesn't know how to open a PR | Show them the PR button flow in GitHub's web UI |
+| Uneven enthusiasm in the team | Name the roles explicitly and commit to rotating them |

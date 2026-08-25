@@ -1,141 +1,141 @@
-# 第4回：仕上げ＋発表（90分）
+# Session 4: Finishing and presenting（90 minutes）
 
-> **この回の一言ゴール**  
-> 「発表で見せる1操作」をデモし、コースを通じて学んだことを言語化する
-
----
-
-## タイムテーブル
-
-| 時刻 | パート | 内容 |
-|------|--------|------|
-| 0:00 | ゴール説明 | 今日の流れ・発表の型（5分） |
-| 0:05 | 前半 | 仕上げ作業（35分） |
-| 0:40 | 発表 | チームごとにデモ＋発表（35分） |
-| 1:15 | 振り返り | コース全体の振り返り（15分） |
+> **The one-line goal**
+> Demo “the one action you'll show”, and put into words what you learned across the course
 
 ---
 
-## 0:00 ゴール説明（5分）
+## Timetable
 
-> 「今日のゴールは2つ:  
-> ① 動くデモを見せる ② このコースで何が変わったかを一言にする」
-
-### 発表の型（提示）
-
-| 項目 | 目安 |
-|------|------|
-| アプリ紹介 | 「○○を作りました」（10秒） |
-| デモ | 「見せる1操作」を実際にやる（1〜2分） |
-| 工夫した点 | Cursor をどう使ったか（30秒） |
-| 詰まった点 | 何がうまくいかなかったか（30秒） |
-| 合計 | **3分以内** |
-
-> 「スライドは不要です。デモ + 口頭で3分。」
+| Time | Part | Contents |
+|------|------|----------|
+| 0:00 | Goal | Today's flow and the presentation format（5 min） |
+| 0:05 | First half | Finishing work（35 min） |
+| 0:40 | Presentations | Each team demos and presents（35 min） |
+| 1:15 | Reflection | Looking back over the course（15 min） |
 
 ---
 
-## 0:05 前半 — 仕上げ作業（35分）
+## 0:00 Goal（5 minutes）
 
-### やること
+> “Two goals today:
+> ① show a demo that runs ② say in one sentence what this course changed for you”
 
-1. 「発表で見せる1操作」が動くことを確認する
-2. 致命バグがあれば直す（新機能追加は禁止）
-3. デモ手順を決める（「何を開いて、どこを押して、何が起きるか」）
-4. 余裕があれば README に一言（何のアプリか・動かし方）
+### The presentation format（show this）
 
-### 講師の巡回
+| Item | Rough length |
+|------|--------------|
+| Introduce the app | “We built ○○”（10 seconds） |
+| Demo | Actually perform “the one action you'll show”（1–2 minutes） |
+| What you figured out | How you used Cursor（30 seconds） |
+| Where you got stuck | What didn't go well（30 seconds） |
+| Total | **Under 3 minutes** |
 
-| 状況 | 対処 |
-|------|------|
-| まだ動かない | スコープを削る。「見せる1操作」だけ動けばよい |
-| 新機能を追加しようとしている | 止める。「今ある動くものを壊すリスク」を伝える |
-| デモの段取りを決めていない | 「何を開いて何を押す？」を口頭で確認させる |
-| 余裕たっぷりで暇 | リスタートボタンなど小さな改善1つだけ OK |
-
-### このパートの目標
-
-- [ ] 「発表で見せる1操作」がエラーなく動く
-- [ ] デモ手順が口頭で言える（何を開く→何を押す→何が起きる）
+> “No slides needed. A demo plus talking, three minutes.”
 
 ---
 
-## 0:40 発表（35分）
+## 0:05 First half — finishing work（35 minutes）
 
-### 進行
+### What to do
 
-- 1チーム3分（質疑含めて4分目安）
-- 順番は挙手 or 講師指名
-- 全チーム終了後、拍手
+1. Confirm “the one action you'll show” runs
+2. Fix any fatal bugs（adding new features is banned）
+3. Decide the demo steps（“open what, click where, what happens”）
+4. If there's time, one line in the README（what the app is, how to run it）
 
-### 発表フォーマット（再掲）
+### While the instructor circulates
 
-1. 「○○を作りました」
-2. デモ（見せる1操作）
-3. Cursor で工夫したこと
-4. 詰まったこと
+| Situation | What to do |
+|-----------|------------|
+| Still doesn't run | Cut scope. Only “the one action you'll show” has to work |
+| About to add a new feature | Stop them. Spell out the risk of breaking what already runs |
+| Demo steps not decided | Make them say it out loud: “open what, click what?” |
+| Plenty of time, idle | One small improvement is fine, like a restart button |
 
-### 講師の役割
+### The goal for this part
 
-- タイムキーパー（3分で「まとめに入ってください」）
-- デモが動かなくても責めない。「何を作ろうとしたか」を聞く
-- 質問を1つ以上する（受講者同士の質問が出ればそちら優先）
-
-### 質問例（講師から）
-
-- 「仕様に"やらないこと"を書いたのはどれ？ それで助かった場面はあった？」
-- 「バイブで一気に作った部分と仕様で作った部分、diff の大きさはどう違った？」
-- 「チームで PR を使ってみて、よかったこと or 面倒だったことは？」
+- [ ] “The one action you'll show” runs without errors
+- [ ] They can say the demo steps out loud（open what → click what → what happens）
 
 ---
 
-## 1:15 振り返り（15分）
+## 0:40 Presentations（35 minutes）
 
-### 個人振り返り（2分・各自メモ）
+### Running it
 
-次の3つを書いてもらう:
+- Three minutes per team（budget four with questions）
+- Order by volunteering, or the instructor picks
+- Applause after every team has finished
 
-1. **このコースで一番変わったこと**（操作面 or 考え方）
-2. **明日から使いたい型**（Ask→Agent→diff / 仕様を先に書く / PR を出す、など）
-3. **まだ分からないこと**（あれば）
+### The format（again）
 
-### 全体共有（8分）
+1. “We built ○○”
+2. Demo（the one action you'll show）
+3. What you figured out with Cursor
+4. Where you got stuck
 
-数人に発表してもらう（挙手 or 指名）。
+### The instructor's job
 
-### コース全体の振り返り（講師から・5分）
+- Timekeeper（at three minutes, “please start wrapping up”）
+- If the demo doesn't run, don't criticise. Ask what they were trying to build
+- Ask at least one question（if a participant asks one, prefer theirs）
 
-| 回 | やったこと | 身についた型 |
-|----|------------|--------------|
-| 第1回 | 基本操作 | Ask → Agent → diff → Keep |
-| 第2回 | バイブ → 仕様 | 仕様を書いてから作る |
-| 第3回 | チーム開発 | 仕様テンプレ + PR |
-| 第4回 | 仕上げ＋発表 | 小さく完成させてデモする |
+### Example questions（from the instructor）
 
-> 「Cursor は道具です。道具の使い方を知った今、"何を作るか" を考えるのが次のステップです。」
-
-### 今後のリソース
-
-- 自習: `courses/fundamentals/`（06-Rules 以降は必要に応じて）
-- 公式: [cursor.com/docs](https://cursor.com/docs)
-- 困ったら: Agent に聞く。仕様を書いて渡す。diff を読む。
+- “Which items did you put under ‘out of scope’? Was there a moment it saved you?”
+- “Between the part you vibe-coded and the part you built from a spec, how did the diff sizes differ?”
+- “What was good about using PRs in your team, and what was a hassle?”
 
 ---
 
-## 講師チェックリスト（当日用）
+## 1:15 Reflection（15 minutes）
 
-### 事前準備
-- [ ] 各チームのリポジトリ / フォルダが前回から引き継がれている
-- [ ] プロジェクターまたは画面共有でデモが見える環境
-- [ ] タイマー（発表3分計測用）
-- [ ] 振り返りシート or メモ用の場所（紙 / オンラインドキュメント）
+### Personal reflection（2 minutes, everyone writes）
 
-### 時間管理
-- 仕上げが長引いて 0:40 を超えたら「あと5分で発表に入ります」宣言
-- チーム数 × 4分 > 35分 の場合、質疑を省略して3分厳守
-- 全チーム発表後に時間が余ったら、振り返りを厚くする
+Have them write down three things:
 
-### 発表が動かない場合の救済
-- コードを画面に映して「ここまで作った」を見せるだけでもOK
-- 「何を作ろうとしたか + 何で詰まったか」を話すだけでも学びになる
-- 講師が「ここはうまくいっている」を拾ってフィードバックする
+1. **The biggest thing this course changed for you**（an operation, or a way of thinking）
+2. **The pattern you'll use from tomorrow**（Ask→Agent→diff / write the spec first / open a PR…）
+3. **What you still don't understand**（if anything）
+
+### Sharing（8 minutes）
+
+Have a few people speak（volunteers or picked）.
+
+### Looking back over the course（instructor, 5 minutes）
+
+| Session | What we did | The pattern you took away |
+|---------|-------------|---------------------------|
+| Session 1 | Basic operations | Ask → Agent → diff → Keep |
+| Session 2 | Vibe → spec | Write the spec before you build |
+| Session 3 | Team work | The spec template plus PRs |
+| Session 4 | Finishing and presenting | Finish something small and demo it |
+
+> “Cursor is a tool. Now that you know how to use the tool, the next step is deciding *what* to build.”
+
+### Resources from here
+
+- Self-study: [`courses/en/fundamentals/`](../fundamentals/)（06-Rules onwards as you need it）
+- Official: [cursor.com/docs](https://cursor.com/docs)
+- When stuck: ask the Agent. Write the spec and hand it over. Read the diff.
+
+---
+
+## Instructor checklist（for the day）
+
+### Beforehand
+- [ ] Each team's repo / folder has carried over from last session
+- [ ] A projector or screen share so demos are visible
+- [ ] A timer（for the three minutes）
+- [ ] Somewhere to capture the reflection（paper or an online doc）
+
+### Time management
+- If finishing work runs past 0:40, announce “presentations in five minutes”
+- If teams × 4 minutes > 35 minutes, drop the questions and hold to three minutes strictly
+- If there's time left after every team, make the reflection longer
+
+### If a demo doesn't run
+- Putting the code on screen and showing “this is how far we got” is fine
+- Just saying “what we were trying to build and where we got stuck” is a lesson in itself
+- The instructor should pick out “this part is working well” and feed it back
