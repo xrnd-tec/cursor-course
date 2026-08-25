@@ -1,67 +1,70 @@
-# 5. うまく頼む言い方
+# 5. Asking well
 
-モデルより先に、**ゴール・制約・完了条件** を書くと安定します。
+More important than which model you pick is writing down **the goal, the constraints and the definition of done** first. Get those three down and the results become far more stable.
 
-## テンプレ
+## A template
 
 ```text
-【やりたいこと】一言
-【対象】@ファイル or フォルダ（分かる範囲）
-【制約】壊したくないもの / 使ってよい技術
-【完了条件】何があれば終わりか
-【やらなくてよいこと】（任意）
+[What I want] one line
+[Scope] @file or folder（as far as you know）
+[Constraints] what must not break / what technology is allowed
+[Done when] what has to exist for this to be finished
+[Not needed]（optional）
 ```
 
-例:
+Example:
 
 ```text
-【やりたいこと】カートに割引クーポンを足す
-【対象】@practice/cart.js
-【制約】既存の getSubtotal の戻り値の意味は変えない。純 JS のまま
-【完了条件】applyCoupon(code) で SUMMER10 のとき 10% 引きになる
-【やらなくてよいこと】UI、永続化、テストファイル
+[What I want] Add a discount coupon to the cart
+[Scope] @practice/cart.js
+[Constraints] Don't change what the existing getSubtotal returns. Keep it plain JS
+[Done when] applyCoupon(code) applies 10% off for the code SUMMER10
+[Not needed] UI, persistence, test files
 ```
 
-## 言い回しチップス
+## Phrasing tips
 
-| 避ける | 代わりに |
-|--------|----------|
-| いい感じにして | 具体的な見た目・挙動・境界条件 |
-| 全部リファクタ | 対象ファイルと「やる/やらない」 |
-| バグ直して | 期待・実際・再現手順 |
-| 最適に | 速度 / 可読性 / 互換のどれ優先か |
+| Avoid saying | Say this instead |
+|--------------|------------------|
+| Make it nice | Be concrete about appearance, behaviour and edge cases |
+| Refactor everything | Name the files, and what to do / not do |
+| Fix the bug | Expected, actual, and how to reproduce |
+| Optimise it | Which comes first: speed, readability, or compatibility |
 
-## 会話の切り方
+## When to cut the conversation
 
-- **タスクが変わったら新規チャット**（古い前提が邪魔になりにくい）
-- 長くなったらコンテキストリングを見て、必要なら新規に要約を渡して再開
-- 実装中に方針変更したくなったら、**止めずにそのまま送る**（次の区切りで反映される → [01-modes.md](01-modes.md) の steering）
+- **New task, new chat**（old assumptions get less in the way）
+- When the conversation gets long, watch the context ring; if needed, start a new chat and hand it a summary
+- If you want to change direction mid-build, **just send it, don't stop it**（it gets applied at the next break → the steering section of [01-modes.md](01-modes.md)）
 
-## 総合実習（このフォルダで）
+## Combined exercise（in this folder）
 
-Agent に送る:
+Send this to the Agent:
 
 ```text
-practice/ を使って「ミニ買い物デモ」を完成させて。
+Use practice/ to finish a small shopping demo.
 
-要件:
-- cart.js に商品追加・削除・小計・税込合計
-- calculator.js の関数を再利用できるなら使う
-- index.js から一連の操作を console.log で見せる
-- 新規ファイルは最小限
+Requirements:
+- cart.js can add an item, remove an item, produce a subtotal, and a total with tax
+- Reuse functions from calculator.js wherever you can
+- index.js shows the whole flow through console.log
+- Create as few new files as possible
 
-完了条件:
-- `node practice/index.js` がエラーなく動き、金額がログに出る
+Done when:
+- `node practice/index.js` runs without errors and prints the amounts
 ```
 
-動いたら Ask で:
+Once it runs, ask this in Ask mode:
 
 ```text
-今の practice/ の責務分割は適切？改善するなら最小の一手は何？
+Is the way responsibilities are split across practice/ reasonable right now?
+If it should be improved, what is the smallest single step?
 ```
 
 ---
 
-基礎はここまで。発展編へ:
+That's the end of the basics. On to the advanced material:
 
-次: [06-rules.md](06-rules.md)（Rules → Skills → Hooks → MCP → Cloud → PR → 並列 → 安全運用 → Subagents → Plugins → Design Mode → CLI → 外部連携）
+Reference: [Prompting](https://cursor.com/docs/agent/prompting)
+
+Next: [06-rules.md](06-rules.md)（Rules → Skills → Hooks → MCP → Cloud → PR → parallel work → safe operation → Subagents → Plugins → Design Mode → CLI → integrations）
