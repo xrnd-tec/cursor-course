@@ -79,7 +79,7 @@ Ai xong rồi thì cứ đi tiếp các bước sau, không phải chờ.
 | **Mở lần đầu và đăng nhập** | Đăng nhập bằng tài khoản GitHub hoặc Google |
 | **Clone repo này** | `git clone https://github.com/xrnd-tec/cursor-course.git` |
 | **Mở thư mục bằng Cursor** | Mở thư mục `cursor-course/`（File → Open Folder）. Mở ở **IDE view**（code ở giữa, Agent ở bên） |
-| **Node.js（tùy chọn）** | Chỉ cần khi có bài dùng lệnh `node`. Lấy bản LTS ở [https://nodejs.org](https://nodejs.org) |
+| **Node.js** | **Hôm nay không cần cài.** Trang giáo cụ chỉ cần trình duyệt là chạy. Chỉ bài C（phần thử sức）ở chương 6 mới dùng `node`, không có thì bỏ qua cũng không sao |
 
 > **Buổi này lấy IDE view + panel Agent làm mặc định.** Chương 1 sẽ chỉnh cho cả lớp khởi động vào IDE.
 > Phần ngôn ngữ và Auto-review là **mục đọc thêm**（tùy chọn）. Bản gốc của các bước nằm ở mục “Những thiết lập nên chỉnh trước” trong [`00-map.md`](../fundamentals/00-map.md).
@@ -865,7 +865,7 @@ Có người không nộp được thì không truy. **Chỉ đếm số ngườ
 - [ ] Cursor của mình đang là bản mới nhất
 - [ ] Đã mở `practice/index.html` **và xác nhận ①②③ đều đang màu cam, tức trạng thái ban đầu**（đúng trạng thái của `main`）
 - [ ] `applyDiscount` trong `practice/calculator.js` vẫn còn là TODO
-- [ ] Lệnh `node` chạy được（cho bài C）
+- [ ] Lệnh `node` chạy được（**chỉ trên máy giảng viên**. Dùng để quyết có giới thiệu bài C hay không. Đừng bắt học viên cài）
 - [ ] Đã chuẩn bị sẵn URL clone để dán vào chat（phát cho cả lớp lúc 0:00）
 - [ ] Đã hỏi IT xem môi trường cài đặt có cần quyền admin không
 - [ ] **Đã xác nhận prompt được in đầy đủ trên slide**（kiểu vừa giảng vừa làm thì không đọc miệng）

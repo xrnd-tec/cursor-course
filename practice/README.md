@@ -33,4 +33,6 @@ Once you have fixed something and saved it, **reload the browser**. The display 
 
 ## Notes
 
-This is ESM (the `package.json` at the repo root has `"type": "module"`). The terminal exercise runs with `node practice/index.js`.
+**You do not need Node.js to run the page (`index.html`).** The browser is enough.
+
+Node.js is only needed for the terminal exercise that runs `index.js` (`node practice/index.js`). That file is ESM, which is why the `package.json` at the repo root has `"type": "module"`.

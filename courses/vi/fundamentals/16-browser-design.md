@@ -4,6 +4,31 @@ Cursor có sẵn một trình duyệt bên trong. Không phải chuyển sang �
 
 Không cần cài hay cấu hình công cụ ngoài nào.
 
+## Cách mở
+
+**Mở từ command palette. Không có phím tắt riêng nào được gán sẵn.**
+
+1. `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）
+2. Chọn **Open Browser**
+3. Nhập URL muốn mở vào thanh địa chỉ
+
+Có bốn lệnh liên quan.
+
+| Lệnh | Làm gì |
+|------|--------|
+| **Open Browser** | Mở pane trình duyệt |
+| **New Browser Tab** | Mở thêm một tab |
+| **Reload Browser Tab** | Tải lại tab đang xem |
+| **Close Browser Tab** | Đóng tab |
+
+Nếu đã có dev server chạy sẵn trên máy thì Agent **tự tìm ra cổng** và mở（nói ở dưới）. Còn tự mở thì bạn nhập URL vào.
+
+> **Đã kiểm chứng trên máy thật（bản Cursor 3.16 đã cài）rằng bốn lệnh trên có tồn tại.**
+> **Tài liệu chính thức không viết cách mở**（trang [Browser](https://cursor.com/docs/agent/tools/browser) chỉ nói nó “mở ra như một pane bên trong Cursor”）.
+
+> **Cần xác nhận**: các bước chính xác để mở một tệp HTML cục bộ（`practice/index.html`）bằng trình duyệt tích hợp thì vẫn chưa viết được.
+> Hãy chạy thử một lần trên máy thật rồi ghi lại các bước đã chốt vào đây. Chương 1 của buổi 1 phụ thuộc vào các bước này.
+
 ## Agent làm được gì trên trình duyệt
 
 | Làm được gì | Cụ thể |
