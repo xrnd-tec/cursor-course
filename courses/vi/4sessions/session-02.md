@@ -1,713 +1,713 @@
-# 第2回：バイブコーディング → 仕様駆動開発（90分）
+# Buổi 2: Vibe coding → phát triển theo đặc tả（90 phút）
 
-> **この回のゴール（4段）**  
-> 01 バイブコーディングで動くものを出す → 02 同じ依頼から全員が別のものを作ったことに気づく → 03 要件を書いてから作らせる → 04 後から来た要求を、要件に足して通す（挑戦）  
-> **01〜03 まで届けば達成です。04 は挑戦枠**なので、届かなくても失敗ではありません。
+> **Mục tiêu của buổi này（4 bậc）**
+> 01 Dùng vibe coding để ra được một thứ chạy được → 02 Nhận ra cùng một yêu cầu mà cả lớp làm ra những thứ khác nhau → 03 Viết đặc tả trước rồi mới cho làm → 04 Yêu cầu đến sau thì thêm vào đặc tả rồi cho chạy tiếp（phần thử sức）
+> **Lên tới 01–03 là đạt. 04 là phần thử sức**, không tới cũng không phải là thất bại.
 
 ---
 
-## この回の主張（講師が理解しておくこと）
+## Luận điểm của buổi này（giảng viên cần hiểu trước）
 
-**「バイブコーディングは壊れる」とは言わない前提で組んであります。**
+**Kịch bản này được dựng trên tiền đề: KHÔNG nói rằng “vibe coding thì sẽ vỡ”.**
 
-神経衰弱は AI がよく知っているゲームなので、バイブでも普通に完成します。スコアも難易度も制限時間も、頼めば問題なく足せます（**実測で確認済み**）。「壊れるはずだ」という筋書きにすると、実物が成立しないので受講者に見抜かれます。
+Trò lật hình tìm cặp là thứ AI biết rất rõ, nên vibe coding vẫn làm xong bình thường. Điểm số, độ khó, giới hạn thời gian — nhờ thì nó thêm được hết（**đã đo thực tế**）. Dựng kịch bản theo hướng “kiểu gì cũng vỡ” thì thực tế không diễn ra đúng như vậy, và học viên nhìn ra ngay.
 
-この回で示すのは、次の4つです。
+Buổi này cho thấy bốn điều sau.
 
-| バイブコーディングの実際 | どこで体験するか |
+| Vibe coding trên thực tế | Trải nghiệm ở đâu |
 |---|---|
-| **頼んでいないものまで作る** — 指示したものと AI が勝手に決めたものの区別がつかない | 第3章 |
-| **同じ依頼から全員が別のものを作る** — 再現しない | 第3章 |
-| **正しさを判定できない** — 「合っているか」を答える基準が無い | 第4章 |
-| **引き継げない** — 文脈を持たない相手には渡せない | 第4章 |
+| **Nó làm cả những thứ không ai nhờ** — không phân biệt được đâu là thứ mình chỉ định, đâu là thứ AI tự quyết | Chương 3 |
+| **Cùng một yêu cầu, mỗi người ra một thứ khác nhau** — không tái lập được | Chương 3 |
+| **Không phán định được đúng sai** — không có căn cứ nào để trả lời “thế này là đúng chưa” | Chương 4 |
+| **Không bàn giao được** — không đưa cho người không có ngữ cảnh được | Chương 4 |
 
-最後の落としどころは **「バイブが悪いわけではない。切り替え点を見極められるようになる」** です。バイブでうまくいったら、それは失敗ではなく「今回はバイブが正解だった」という学びとして回収できます。うまくいってもいかなくても成立する構成にしてあります。
-
----
-
-## この台本の読み方
-
-**受講者が資料を見ながら手を動かし、講師が説明しながら進める**前提で書いてあります。時間配分もその想定です。各章は5ブロックです（表紙とイントロなど一部の節では欠けることがあります）。
-
-| ブロック | 誰のためのものか |
-|----------|------------------|
-| **［スライド］解説** | Cursor の仕組みの説明。スライドに載せる。出典は `courses/fundamentals/` |
-| **［スライド］受講者がやること** | そのまま配布資料に載せる。プロンプトは全文を載せて、口頭で読み上げない |
-| **講師が話すこと** | 受講者が打っている間・待っている間に話す内容 |
-| **チェックポイント** | 揃うまで待つか、先へ進むかの判断 |
-| **詰まったら** | その章で実際に起きる詰まりと対処 |
-
-解説は [`courses/fundamentals/`](../fundamentals/) から引いています。**内容を直したいときは fundamentals 側を直してください**（台本は抜粋です）。
-
-| 章 | 引いている fundamentals |
-|----|------------------------|
-| 第2章 | [`01-modes`](../fundamentals/01-modes.md)（モデルと Auto） |
-| 第5章 | [`07-skills`](../fundamentals/07-skills.md) · [`05-prompting`](../fundamentals/05-prompting.md) |
-| 第6章 | [`05-prompting`](../fundamentals/05-prompting.md) |
-| 第7章 | [`06-rules`](../fundamentals/06-rules.md) |
-
-> **［口頭で出す］**の印が付いたものは、その場で講師が口頭で伝えるものです。第4章と第5章の「追加要件」がそれです。
-> 発注者から後から言われる、という流れを作るためのタイミング指定で、伏せておく必要はありません。
+Chỗ hạ cánh cuối cùng là **“vibe không phải là cái xấu. Vấn đề là nhận ra điểm cần chuyển sang cách khác.”** Nếu vibe làm xong ngon lành thì đó không phải thất bại, mà thu về được bài học “lần này vibe là lựa chọn đúng”. Cấu trúc buổi học thành lập dù kết quả có ra sao.
 
 ---
 
-## 事前準備（この回に必要なもの）
+## Cách đọc kịch bản này
 
-| 必要なもの | 内容 |
+Kịch bản viết theo giả định: **học viên vừa nhìn tài liệu vừa tự tay làm, giảng viên vừa giảng vừa dẫn nhịp**. Phần chia thời gian cũng vậy. Mỗi chương gồm 5 khối（ở vài phần như trang bìa và mở đầu thì có thể thiếu vài khối）.
+
+| Khối | Dành cho ai |
+|------|-------------|
+| **［Slide］Giải thích** | Giải thích cơ chế của Cursor. Đưa lên slide. Nguồn là `courses/vi/fundamentals/` |
+| **［Slide］Học viên làm gì** | Đưa thẳng lên tài liệu phát. Prompt in đầy đủ, không đọc miệng |
+| **Giảng viên nói gì** | Nội dung nói trong lúc học viên đang gõ, đang chờ |
+| **Điểm kiểm tra** | Căn cứ để quyết định chờ cho đủ hay đi tiếp |
+| **Khi mắc kẹt** | Những chỗ kẹt thật sự xảy ra ở chương đó và cách xử lý |
+
+Phần giải thích lấy từ [`courses/vi/fundamentals/`](../fundamentals/). **Muốn sửa nội dung thì sửa ở phía fundamentals**（kịch bản chỉ là bản trích）.
+
+| Chương | fundamentals được trích |
+|--------|-------------------------|
+| Chương 2 | [`01-modes`](../fundamentals/01-modes.md)（model và Auto） |
+| Chương 5 | [`07-skills`](../fundamentals/07-skills.md) · [`05-prompting`](../fundamentals/05-prompting.md) |
+| Chương 6 | [`05-prompting`](../fundamentals/05-prompting.md) |
+| Chương 7 | [`06-rules`](../fundamentals/06-rules.md) |
+
+> Chỗ nào có dấu **［Nói miệng］**là thứ giảng viên truyền đạt tại chỗ bằng lời. Đó là các “yêu cầu phát sinh” ở chương 4 và chương 5.
+> Việc chỉ định thời điểm là để dựng lại tình huống “chủ đầu tư nói thêm sau”, chứ không cần giấu giếm gì.
+
+---
+
+## Chuẩn bị trước（những thứ buổi này cần）
+
+| Thứ cần có | Nội dung |
 |---|---|
-| `.cursor/skills/requirements/` | 要件作成スキル。テーマを聞いて「やること / 画面 / 操作 / やらないこと」を対話で埋め、要件 Markdown を出す |
-| `.cursor/skills/task-breakdown/` | タスク分解スキル。要件を、1つずつ Agent に渡せる粒度のタスク（完了条件つき）に割る |
+| `.cursor/skills/requirements/` | Skill viết đặc tả. Hỏi về đề tài rồi cùng học viên điền “what it does / screen / interactions / out of scope”, xuất ra một tệp Markdown |
+| `.cursor/skills/task-breakdown/` | Skill chia task. Cắt đặc tả thành các task đủ nhỏ để đưa cho Agent từng cái một, mỗi task có điều kiện hoàn thành |
 
-**この2つがリポジトリに入っていることが前提です。** 第5章・第6章はこれを使います。
-
----
-
-## タイムテーブル
-
-| 時刻 | 章 | 内容 | 主体 |
-|------|----|------|------|
-| 0:00 | 第1章 今日のゴール | 同じゲームを2回作る（5分） | 講師 |
-| 0:05 | 第2章 バイブで作る | 例の1行を各自で打つ（15分） | 全員 |
-| 0:20 | 第3章 見比べる | 隣と画面を見せ合う（10分） | 全員 |
-| 0:30 | 第4章 後出し要求 | 発注者からの追加要求を自分のバイブ版に入れる（15分） | 全員 |
-| 0:45 | 第5章 要件を書く | 要件作成スキルで自分の要件を書く（15分） | 全員 |
-| 1:00 | 第6章 タスクに割って作る | タスク分解 → 1つずつ実装（20分） | 全員 |
-| 1:20 | 第7章 持ち帰るもの | 使い分けの判断・次回予告（10分） | 講師 |
-
-**受講者が手を動かすのは 75 分 / 90 分**です。
-
-> このタイムテーブルが、そのままスライドの章立てです。各章の頭に扉ページが入ります。
-
-> **時間が押したら**: 第6章を削ります（要件が書けていれば目的は半分達成しています）。**第3章と第4章は削りません。** この2つがこの回の本体です。
+**Tiền đề là hai skill này đã có trong repo.** Chương 5 và chương 6 dùng tới chúng.
 
 ---
 
-## 表紙とイントロ — 0:00（第1章に含む）
+## Bảng thời gian
 
-### ［スライド］表紙
+| Giờ | Chương | Nội dung | Ai làm |
+|-----|--------|----------|--------|
+| 0:00 | Chương 1 Mục tiêu hôm nay | Làm cùng một game hai lần（5 phút） | Giảng viên |
+| 0:05 | Chương 2 Làm bằng vibe | Mỗi người tự gõ đúng một câu ví dụ（15 phút） | Cả lớp |
+| 0:20 | Chương 3 Đem ra so | Cho nhau xem màn hình với người bên cạnh（10 phút） | Cả lớp |
+| 0:30 | Chương 4 Yêu cầu phát sinh | Nhét yêu cầu mới của chủ đầu tư vào bản vibe của mình（15 phút） | Cả lớp |
+| 0:45 | Chương 5 Viết đặc tả | Dùng skill viết đặc tả để viết đặc tả của mình（15 phút） | Cả lớp |
+| 1:00 | Chương 6 Chia task rồi làm | Chia task → làm từng cái một（20 phút） | Cả lớp |
+| 1:20 | Chương 7 Mang về | Cách quyết dùng cái nào, và buổi sau（10 phút） | Giảng viên |
+
+**Học viên tự tay làm 75 phút trên tổng 90 phút.**
+
+> Bảng thời gian này chính là cấu trúc chương của slide. Đầu mỗi chương có một trang bìa chương.
+
+> **Nếu trễ giờ**: cắt chương 6（viết được đặc tả là đã đạt một nửa mục đích）. **Không cắt chương 3 và chương 4.** Hai chương đó là phần chính.
+
+---
+
+## Trang bìa và phần mở đầu — 0:00（tính trong chương 1）
+
+### ［Slide］Trang bìa
 
 ```
-バイブコーディングから仕様駆動開発へ
+Từ vibe coding tới phát triển theo đặc tả
 
-Cursor 実践コース　第 2 回 / 全 4 回　・　90分
-（日付）
+Khóa thực hành Cursor　Buổi 2 / 4　·　90 phút
+（ngày）
 ```
 
-### ［スライド］前回の復習（30秒）
+### ［Slide］Ôn lại buổi trước（30 giây）
 
-**前回のサイクルは今日も変わりません。変わるのは「依頼の中身」だけです。**
+**Vòng lặp của buổi trước hôm nay vẫn y nguyên. Thứ thay đổi chỉ là nội dung của yêu cầu.**
 
 ```
-Ask（@ファイル 質問）
-  ↓ 内容を理解
-Agent（@ファイル 依頼 + 完了条件）
-  ↓ diff を読む
-Keep or Undo
+Ask（@tệp + câu hỏi）
+  ↓ hiểu nội dung
+Agent（@tệp + yêu cầu + điều kiện hoàn thành）
+  ↓ đọc diff
+Keep hoặc Undo
 ```
 
-### ［スライド］今日やること
+### ［Slide］Việc của hôm nay
 
-**同じゲームを2回作ります。**
+**Làm cùng một game hai lần.**
 
-| | 作り方 | どこで |
+| | Cách làm | Ở đâu |
 |---|---|---|
-| 1回目 | 何も決めずに「いい感じに作って」 | 第2章 |
-| 2回目 | 先に要件を書いてから作る | 第5章・第6章 |
+| Lần 1 | Không quyết gì cả, chỉ nói “làm cho nó ổn ổn” | Chương 2 |
+| Lần 2 | Viết đặc tả trước rồi mới làm | Chương 5, chương 6 |
 
-**どちらが良いかではなく、どちらをいつ使うかを持ち帰ってもらいます。**
+**Không phải để xem cái nào tốt hơn, mà để mang về câu trả lời: khi nào thì dùng cái nào.**
 
-### 講師が話すこと
+### Giảng viên nói gì
 
-第1回を休んだ人がいたら、復習のスライドだけ丁寧に。それ以外は30秒で流します。
+Có ai vắng buổi 1 thì riêng slide ôn lại hãy nói kỹ. Còn lại chạy trong 30 giây.
 
-**「2回作る」と先に宣言しておくと、1回目の粗さを受講者が気にしなくなります。** ここは飛ばさないでください。
-
----
-
-## 第1章 今日のゴール — 0:00（5分）
-
-> 同じゲームを2回作ります。1回目はバイブコーディング、2回目は要件から。
-
-### ［スライド］受講者がやること
-
-なし。聞くだけです。
-
-### 講師が話すこと
-
-> 「今日は全員同じゲーム『神経衰弱（メモリーマッチ）』を作ります。ただし2回作ります。  
-> 1回目: 何も考えず『いい感じに作って』と頼む（バイブコーディング）  
-> 2回目: 先に要件を書いてから作る（仕様駆動開発）  
-> どっちがうまくいくか、体で覚えてください。」
-
-**2回作ると先に宣言しておくと、1回目の粗さを受講者が気にしなくなります。** ここは飛ばさないこと。
-
-前回の復習を一言だけ（Ask → Agent → diff → Keep のサイクル）。
-
-**今日の4段:**
-
-| 段 | できるようになること | どこでやるか |
-|----|--------------------|------------|
-| 01 | バイブコーディングで動くものを出す | 第2章 |
-| 02 | 同じ依頼から全員が別のものを作ったことに気づく | 第3章 |
-| 03 | 要件を書いてから作らせる | 第5章・第6章 |
-| 04 | 後から来た要求を、要件に足して通す ← **挑戦** | 第6章 |
-
-> **用語の使い分け**: 手法の名前は「バイブコーディング」「仕様駆動開発」。
-> それぞれで作ったものを比べるときは「**バイブ版**」「**仕様版**」と呼びます。受講者にもこの2語で通します。
-
-### チェックポイント
-
-なし。5分で切り上げます。
-
-### 詰まったら
-
-第1回を休んだ人がいたら、Ask → Agent → diff → Keep のサイクルだけ30秒で補足します。
+**Tuyên bố trước rằng “sẽ làm hai lần” thì học viên sẽ không bận tâm chuyện lần 1 còn thô.** Đừng bỏ qua chỗ này.
 
 ---
 
-## 第2章 バイブで作る — 0:05（15分）
+## Chương 1 Mục tiêu hôm nay — 0:00（5 phút）
 
-> 何も決めずに頼むと、どこまで出るか。**全員が自分のバイブ版を持ちます。**
+> Làm cùng một game hai lần. Lần 1 bằng vibe coding, lần 2 bắt đầu từ đặc tả.
 
-### ［スライド］解説 — なぜモデルを固定するのか
+### ［Slide］Học viên làm gì
 
-入力欄には **モード**（Agent / Ask など）と **モデル**（Auto など）が並んでいます。別物です。
+Không có. Chỉ nghe.
 
-| | 何を決めるか | 切り替え |
+### Giảng viên nói gì
+
+> “Hôm nay cả lớp cùng làm một game: trò lật hình tìm cặp（memory match）. Nhưng làm hai lần.
+> Lần 1: không nghĩ gì cả, chỉ nhờ ‘làm cho nó ổn ổn’（vibe coding）
+> Lần 2: viết đặc tả trước rồi mới làm（phát triển theo đặc tả）
+> Bên nào trôi hơn — cứ để cơ thể tự nhớ.”
+
+**Tuyên bố trước rằng sẽ làm hai lần thì học viên sẽ không bận tâm chuyện lần 1 còn thô.** Đừng bỏ qua chỗ này.
+
+Ôn lại buổi trước đúng một câu（vòng Ask → Agent → diff → Keep）.
+
+**Bốn bậc của hôm nay:**
+
+| Bậc | Làm được gì | Làm ở đâu |
+|-----|-------------|-----------|
+| 01 | Dùng vibe coding để ra được một thứ chạy được | Chương 2 |
+| 02 | Nhận ra cùng một yêu cầu mà cả lớp làm ra những thứ khác nhau | Chương 3 |
+| 03 | Viết đặc tả trước rồi mới cho làm | Chương 5, chương 6 |
+| 04 | Yêu cầu đến sau thì thêm vào đặc tả rồi cho chạy tiếp ← **thử sức** | Chương 6 |
+
+> **Cách dùng từ**: tên của phương pháp là “vibe coding” và “phát triển theo đặc tả”.
+> Khi đem hai sản phẩm ra so thì gọi là “**bản vibe**” và “**bản đặc tả**”. Với học viên cũng dùng đúng hai từ này.
+
+### Điểm kiểm tra
+
+Không có. Gói lại trong 5 phút.
+
+### Khi mắc kẹt
+
+Có ai vắng buổi 1 thì bổ sung riêng vòng Ask → Agent → diff → Keep trong 30 giây.
+
+---
+
+## Chương 2 Làm bằng vibe — 0:05（15 phút）
+
+> Không quyết gì mà cứ nhờ thì ra tới đâu. **Mỗi người có một bản vibe của riêng mình.**
+
+### ［Slide］Giải thích — vì sao phải cố định model
+
+Cạnh ô nhập có cả **mode**（Agent / Ask…）lẫn **model**（Auto…）. Hai thứ khác nhau.
+
+| | Quyết định điều gì | Đổi bằng |
 |---|---|---|
-| **モード** | AI の**振る舞い**（編集するか、調べるだけか） | `Shift+Tab` |
-| **モデル** | 依頼を処理する **AI の頭脳そのもの** | `Ctrl+/`（Mac は `Cmd+/`） |
+| **Mode** | **Cách hành xử** của AI（có sửa tệp hay chỉ tra cứu） | `Shift+Tab` |
+| **Model** | **Chính bộ não AI** xử lý yêu cầu | `Ctrl+/`（Mac là `Cmd+/`） |
 
-既定の **Auto** は「モデルを選ばない」ではなく、**Cursor Router がリクエストごとに自動で選んでいる**という意味です。難しいタスクは高性能なモデルへ、簡単なものは低コストなモデルへ振り分けられます。
+Mặc định là **Auto**, không có nghĩa “không chọn model”, mà là **Cursor Router tự chọn cho từng request**. Việc khó thì đẩy sang model mạnh, việc dễ thì đẩy sang model rẻ.
 
-**普段は Auto のままで困りません。** 固定する価値があるのは、今日のように**結果を比べたいとき**です。Auto のままだと、バイブ版と仕様版で別のモデルが動き、差が「やり方の差」なのか「モデルの差」なのか分からなくなります。
+**Ngày thường để Auto là không gặp vấn đề gì.** Chỉ đáng cố định lại khi **muốn so sánh kết quả**, đúng như hôm nay. Cứ để Auto thì bản vibe và bản đặc tả chạy hai model khác nhau, và ta không còn phân biệt được khác biệt đến từ “cách làm” hay từ “model”.
 
-> もっと詳しく: [`01-modes.md`](../fundamentals/01-modes.md)
+> Chi tiết hơn: [`01-modes.md`](../fundamentals/01-modes.md)
 
-### ［スライド］受講者がやること
+### ［Slide］Học viên làm gì
 
-**① モデルを固定する（3分・必須）**
+**① Cố định model（3 phút, bắt buộc）**
 
-入力欄のモデル表示（**Auto** や **High**）をクリックするか `Ctrl+/`（Mac は `Cmd+/`）で、**Auto ではなく特定のモデル**を選びます。
+Bấm vào phần hiển thị model ở ô nhập（**Auto** hoặc **High**）, hoặc `Ctrl+/`（Mac là `Cmd+/`）, rồi chọn **một model cụ thể chứ không phải Auto**.
 
-**今日はこの後もずっと同じモデルを使います。** ここで変えると、後の比較が「やり方の差」ではなく「モデルの差」になってしまいます。
+**Hôm nay từ đây trở đi dùng mãi một model đó.** Đổi ở giữa chừng thì phần so sánh về sau biến thành “khác model” chứ không còn là “khác cách làm”.
 
-**② 作業フォルダを作る（1分）**
+**② Tạo thư mục làm việc（1 phút）**
 
-`session02/` という新しいフォルダを作ります。
+Tạo một thư mục mới tên `session02/`.
 
-**③ 神経衰弱を作らせる（10分）**
+**③ Cho nó làm trò lật hình tìm cặp（10 phút）**
 
-新しいチャットを開いて、次を送ります。**これだけです。**
+Mở một chat mới rồi gửi câu sau. **Chỉ vậy thôi.**
 
 ```text
-神経衰弱ゲームを作って。
-HTML + JS で、ブラウザで遊べるようにして。
-いい感じに。
+Làm cho tôi một game lật hình tìm cặp.
+HTML + JS, chơi được trên trình duyệt.
+Làm sao cho ổn ổn là được.
 ```
 
-**④ 動かす（1分）**
+**④ Chạy thử（1 phút）**
 
-出てきたらブラウザで開いて、遊べることを確認してください。
+Có kết quả rồi thì mở trên trình duyệt, xác nhận chơi được.
 
-### 講師が話すこと
+### Giảng viên nói gì
 
-**①のとき**: この回で唯一、飛ばすと後の比較が成立しなくなる操作です。全員の画面を確認してから進めると安全です。
+**Ở ①**: đây là thao tác duy nhất của buổi này mà bỏ qua thì phần so sánh về sau không thành lập. An toàn nhất là xác nhận màn hình của cả lớp rồi mới đi tiếp.
 
-**③を送った直後の待ち（1〜3分）**: ここが長い待ちになります。次を話しておきます。
+**Ngay sau khi gửi ③ và đang chờ（1–3 phút）**: đây là quãng chờ dài. Hãy nói sẵn mấy điều sau.
 
-- わざと雑に頼んでいること。「いい感じに」は前回「避ける言い方」として挙げたフレーズ
-- **返ってきたら、頼んでいないものが付いていないか探してほしい**こと ← 第3章の予告
+- Rằng ta đang cố tình nhờ một cách cẩu thả. “Làm cho nó ổn ổn” chính là câu đã bị liệt vào “tránh nói” ở buổi trước
+- Rằng **khi có kết quả, hãy đi tìm xem có thứ gì mình không nhờ mà vẫn được gắn thêm vào không** ← báo trước cho chương 3
 
-**④のあと**: 「速い。動くものがすぐ出る。ここまではバイブコーディングの得意分野です。」
+**Sau ④**: “Nhanh. Ra ngay một thứ chạy được. Tới đây vẫn là sở trường của vibe coding.”
 
-**「AI すごい」で終わらせないこと。** 次の章への引きとして使います。
+**Đừng kết thúc ở câu ‘AI đỉnh thật’.** Hãy dùng nó làm móc kéo sang chương sau.
 
-### チェックポイント
+### Điểm kiểm tra
 
-- [ ] モデルが Auto ではない特定のモデルに固定されている（**全員必須**）
-- [ ] 自分のバイブ版がブラウザで動いている
+- [ ] Model đã được cố định vào một model cụ thể, không còn là Auto（**bắt buộc với tất cả**）
+- [ ] Bản vibe của chính mình đang chạy trên trình duyệt
 
-**動かなかった人がいても進みます。** 隣の画面を見せてもらえば第3章は成立します。
+**Có người không chạy được thì vẫn đi tiếp.** Xin xem màn hình người bên cạnh là chương 3 vẫn thành lập.
 
-### 詰まったら
+### Khi mắc kẹt
 
-| 詰まり | 対処 |
-|--------|------|
-| モデルの選び方が分からない | 入力欄のモデル名をクリック。`Ctrl+/`（Mac は `Cmd+/`）でも開く |
-| ブラウザで開けない | Cursor の内蔵ブラウザで開く。ファイルのパスも確認する |
-| ファイルが大量に生成されて混乱 | そのままでよい。この章では整理させない |
-| 動かない | 出たエラーを Agent に貼って直させる。それでもダメなら隣を見せてもらう |
+| Chỗ kẹt | Xử lý |
+|---------|-------|
+| Không biết chọn model ở đâu | Bấm vào tên model ở ô nhập. `Ctrl+/`（Mac là `Cmd+/`）cũng mở ra |
+| Không mở được trên trình duyệt | Mở bằng trình duyệt tích hợp của Cursor. Kiểm tra luôn đường dẫn tệp |
+| Nó sinh ra một đống tệp, rối quá | Cứ để vậy. Chương này không dọn dẹp gì cả |
+| Không chạy | Dán lỗi vừa hiện cho Agent và nhờ sửa. Vẫn không được thì xin xem màn hình người bên cạnh |
 
 ---
 
-## 第3章 見比べる — 0:20（10分）
+## Chương 3 Đem ra so — 0:20（10 phút）
 
-> **この章は教室でしかできません。** 1人でやっても気づけないことを見せます。
+> **Chương này chỉ làm được ở lớp.** Nó cho thấy thứ mà ngồi một mình thì không nhận ra.
 
-### ［スライド］受講者がやること
+### ［Slide］Học viên làm gì
 
-**① 自分のバイブ版を、隣の人と見せ合う（5分）**
+**① Cho người bên cạnh xem bản vibe của mình（5 phút）**
 
-次の項目を、自分のものと隣のものとで比べてください。
+So các mục sau giữa bản của mình và bản của người bên cạnh.
 
-| 比べるもの | 自分 | 隣 |
+| Đem ra so | Của mình | Của bạn bên cạnh |
 |---|---|---|
-| カードは何枚か | | |
-| 表の絵柄は何か（数字 / 絵文字 / 色） | | |
-| スコアや手数は表示されるか | | |
-| 難易度の選択はあるか | | |
-| 見た目（色・レイアウト） | | |
+| Có bao nhiêu lá bài | | |
+| Mặt trước là hình gì（số / emoji / màu） | | |
+| Có hiện điểm hay số lượt không | | |
+| Có cho chọn độ khó không | | |
+| Giao diện（màu, bố cục） | | |
 
-**② 自分が「頼んでいないもの」を数える（3分）**
+**② Đếm những thứ chính mình “không hề nhờ”（3 phút）**
 
-自分が送った依頼は3行だけでした。それ以外に付いてきたものを挙げてください。
+Yêu cầu bạn gửi đi chỉ có ba dòng. Hãy kể ra những thứ ngoài ba dòng đó mà vẫn có mặt.
 
-**③ 一言で答える（2分）**
+**③ Trả lời bằng một câu（2 phút）**
 
-> **あなたが作りたかったものは、どれですか。**
+> **Thứ bạn muốn làm ra, là cái nào trong số này?**
 
-### 講師が話すこと
+### Giảng viên nói gì
 
-**①の間に巡回して、違いを拾っておきます。** カード枚数が違う人、絵柄が違う人、スコアが付いている人と付いていない人。**その場で全体に言うための材料を集めます。**
+**Trong lúc ① thì đi quanh lớp nhặt sẵn các khác biệt.** Người có số lá bài khác, người có hình khác, người có điểm và người không. **Nhặt làm nguyên liệu để nói với cả lớp ngay sau đó.**
 
-**②のとき**: ここが第1のポイントです。
+**Ở ②**: đây là điểm thứ nhất.
 
-> 「スコアも難易度も、誰も頼んでいません。AI が勝手に決めました。**指示したものと、AI が決めたものの区別がつかない**。これがバイブの1つ目の性質です。」
+> “Điểm số, độ khó — không ai nhờ cả. AI tự quyết. **Không phân biệt được đâu là thứ mình chỉ định, đâu là thứ AI tự quyết.** Đó là tính chất thứ nhất của vibe.”
 
-**③のとき**: ここが第2のポイントです。
+**Ở ③**: đây là điểm thứ hai.
 
-> 「同じ3行を全員が打ったのに、全員違うものができました。**もう一度打っても、また違うものが出ます**。動くけれど、狙って作れていない。」
+> “Cả lớp gõ đúng ba dòng như nhau, mà ra toàn thứ khác nhau. **Gõ lại lần nữa thì lại ra một thứ khác nữa.** Chạy thì có chạy, nhưng không nhắm mà làm ra được.”
 
-そして、次の章に渡します。
+Rồi bàn giao sang chương sau.
 
-> 「動いているから、まあいいか。次はそのバイブ版に、**発注者から追加の要求**が来ます。」
+> “Chạy được rồi thì thôi kệ. Nhưng bản vibe đó sắp nhận **yêu cầu bổ sung từ chủ đầu tư**.”
 
-### チェックポイント
+### Điểm kiểm tra
 
-- [ ] 隣と見せ合った（1人の人は講師の画面と比べる）
-- [ ] 「頼んでいないのに付いていたもの」を1つ以上言える
+- [ ] Đã cho nhau xem với người bên cạnh（ai ngồi một mình thì so với màn hình của giảng viên）
+- [ ] Nói được ít nhất một thứ “không nhờ mà vẫn có”
 
-### 詰まったら
+### Khi mắc kẹt
 
-| 詰まり | 対処 |
-|--------|------|
-| 隣が欠席で1人 | 講師のバイブ版か、隣の島の人と比べさせる |
-| 全員よく似ている | 枚数・絵柄・スコアの有無のどれかは必ず割れる。細かく見せる |
-| 「別に困らない」と言われる | 正しい反応。「いま困らないことが、次の章でどうなるか見てください」と返す |
+| Chỗ kẹt | Xử lý |
+|---------|-------|
+| Người bên cạnh vắng, ngồi một mình | Cho so với bản vibe của giảng viên, hoặc với người ở bàn bên |
+| Cả lớp ra giống nhau quá | Kiểu gì cũng lệch ở một trong ba thứ: số lá, hình, có điểm hay không. Cho soi kỹ hơn |
+| Có người bảo “thì cũng có sao đâu” | Phản ứng đó là đúng. Đáp lại: “cái hiện giờ không thấy phiền, chương sau sẽ ra sao — cứ xem tiếp” |
 
 ---
 
-## 第4章 後出し要求 — 0:30（15分）
+## Chương 4 Yêu cầu phát sinh — 0:30（15 phút）
 
-> **この回の山場です。** 発注者から追加要求が来たとき、バイブ版で何が起きるか。
+> **Đây là cao trào của buổi.** Khi chủ đầu tư đưa thêm yêu cầu, bản vibe sẽ ra sao.
 
-### ［口頭で出す］講師がその場で出す追加要求
+### ［Nói miệng］Yêu cầu bổ sung do giảng viên đưa tại chỗ
 
-講師が発注者役として、このタイミングで口頭で伝えます。
+Giảng viên đóng vai chủ đầu tư, tới lúc này thì nói miệng.
 
-> 「発注者から追加の要望です。2つあります。  
-> **① ペアが成立したら、もう一度めくれるようにしてください。**  
-> **② 3回目以降のミスからは、裏に戻るまでの待ち時間を 0.5 秒に短くしてください。**」
+> “Chủ đầu tư có thêm yêu cầu. Hai cái.
+> **① Ghép được một cặp thì cho lật tiếp một lượt nữa.**
+> **② Từ lần sai thứ ba trở đi, rút thời gian chờ trước khi úp lại xuống còn 0,5 giây.**”
 
-この2つは、**AI が神経衰弱の常識からは推測しないルール**です。だからバイブ版には1つも入っていません。
+Hai điều này là **luật mà AI không suy ra được từ hiểu biết thông thường về trò tìm cặp**. Vì vậy bản vibe không có cái nào trong hai cái đó.
 
-### ［スライド］受講者がやること
+### ［Slide］Học viên làm gì
 
-**① 新しいチャットを開く（1分）**
+**① Mở một chat mới（1 phút）**
 
-いま使っているチャットではなく、**新しいチャット**を開きます。
+Không dùng chat đang mở, mà mở **chat mới**.
 
-> **なぜ**: いまのチャットには「さっき何を作ったか」の文脈が残っています。新しいチャットは、その文脈を持っていません。**他人に引き継ぐのと同じ状況**になります。
+> **Vì sao**: chat đang mở còn giữ ngữ cảnh “vừa nãy đã làm ra cái gì”. Chat mới thì không có ngữ cảnh đó. **Nó tạo ra đúng tình huống bàn giao cho người khác.**
 
-**② 追加要求を実装させる（8分）**
+**② Cho nó làm phần yêu cầu bổ sung（8 phút）**
 
-講師が口頭で伝えた2つを、自分の言葉で書いて送ってください。
+Hai điều giảng viên vừa nói miệng, hãy tự viết bằng lời của mình rồi gửi.
 
 ```text
 @session02/
-（講師が言った追加要求を、自分で書いて送る）
-他の挙動は変えないで。
+（tự viết lại yêu cầu bổ sung mà giảng viên vừa nói）
+Đừng đổi những hành vi khác.
 ```
 
-**③ 記録する（6分）**
+**③ Ghi lại（6 phút）**
 
-| 記録すること | 答え |
+| Ghi lại cái gì | Trả lời |
 |---|---|
-| 変更行数（diff の +/-） | |
-| 既存の機能が壊れたか | |
-| **正しく実装されたか、自分で判定できたか** | |
+| Số dòng thay đổi（+/- của diff） | |
+| Có tính năng cũ nào hỏng không | |
+| **Bạn có tự phán định được là nó làm đúng chưa không** | |
 
-3行目が今日いちばん大事な質問です。
+Dòng thứ ba là câu hỏi quan trọng nhất của hôm nay.
 
-### 講師が話すこと
+### Giảng viên nói gì
 
-**①のとき**: 新しいチャットを開くのを飛ばす人が多い箇所です。ここを飛ばすと「文脈を持たない相手に渡す」という状況にならないので、この章が成立しなくなります。
+**Ở ①**: rất nhiều người bỏ qua bước mở chat mới. Bỏ qua chỗ này thì không tạo được tình huống “đưa cho người không có ngữ cảnh”, và cả chương mất ý nghĩa.
 
-**②を送った直後の待ち**: 記録シートの3行目について先に話します。
+**Ngay sau khi gửi ② và đang chờ**: nói trước về dòng thứ ba của bảng ghi.
 
-> 「返ってきたら『正しく入ったか』を確かめてください。**何と照らし合わせますか？**」
+> “Lát nữa có kết quả, hãy kiểm xem nó có vào đúng không. **Bạn đối chiếu với cái gì?**”
 
-**③のとき**: ここが第3・第4のポイントです。
+**Ở ③**: đây là điểm thứ ba và thứ tư.
 
-> 「動いたと思います。AI は優秀なので。でも『0.5 秒になっているか』を、**何を見て確認しましたか**。自分の記憶ですよね。**照らし合わせる先が、あなたの頭の中にしかない**。」
+> “Chắc là chạy được. Vì AI giỏi mà. Nhưng chuyện ‘có đúng là 0,5 giây không’ thì **bạn nhìn vào cái gì để xác nhận**? Nhìn vào trí nhớ của chính mình. **Cái để đối chiếu chỉ nằm trong đầu bạn.**”
 
-> 「そして、いま新しいチャットに渡したときに、AI はコードを最初から読み直しました。**あなた以外の誰も、このコードが何のつもりで書かれたか知りません**。」
+> “Và vừa nãy khi đưa sang chat mới, AI phải đọc lại code từ đầu. **Ngoài bạn ra, không ai biết đoạn code này được viết với ý đồ gì.**”
 
-**多くの人は実装できてしまいます。それでいいです。** この章の主張は「できない」ではなく「**できたかどうかを判定できない**」です。
+**Phần lớn học viên sẽ làm được. Như vậy là ổn.** Luận điểm của chương này không phải “không làm được”, mà là “**làm rồi mà không phán định được là đã làm đúng hay chưa**”.
 
-### チェックポイント
+### Điểm kiểm tra
 
-- [ ] 新しいチャットで依頼した
-- [ ] 記録シートの3行が埋まっている
+- [ ] Đã nhờ trong một chat mới
+- [ ] Ba dòng của bảng ghi đã điền xong
 
-**壊れた人がいたらラッキーです。** 全体に共有して materials にします。壊れなくても構いません。
+**Có ai bị hỏng thì là may.** Đem chia sẻ với cả lớp làm nguyên liệu. Không hỏng cũng chẳng sao.
 
-### 詰まったら
+### Khi mắc kẹt
 
-| 詰まり | 対処 |
-|--------|------|
-| 追加要求を覚えていない | 講師がもう一度言う |
-| 古いチャットで続けてしまった | それも記録に残す。「文脈があると楽だった」も学びとして拾う |
-| 変更行数の数え方が分からない | diff の右上か、Agent パネルの変更バーに +/- が出る |
-| 実装されたか確認できない | **それが正解です。**「確認できませんでした」と記録させる |
-
----
-
-## 第5章 要件を書く — 0:45（15分）
-
-> 2回目です。今度は**自分で要件を書いてから**作ります。
-
-### ［スライド］解説 — Skill とは
-
-**Skill は「この種の作業をするときの手順」をまとめたパッケージ**です。毎回同じ手順を書かなくて済むようになります。
-
-| 仕組み | 役割 | 例 |
-|--------|------|-----|
-| **Rules** | いつも効く方針・制約 | 「コミットは日本語」 |
-| **Skills** | **必要なときだけ読み込む手順書** | 要件の作り方、タスクの割り方 |
-
-置き場所は `.cursor/skills/<名前>/SKILL.md`。呼び出し方は3つあります。
-
-| 呼び方 | 効く範囲 |
-|--------|----------|
-| **自動** | Agent が「使うべき」と判断したとき |
-| **スラッシュ** | `/` を打って選ぶ。**そのメッセージ1回だけ** |
-| **Custom Mode** | `Alt+Enter`（Mac は `Option+Enter`）で固定。**セッション全体** |
-
-**今日は「スラッシュ」で呼びます。**
+| Chỗ kẹt | Xử lý |
+|---------|-------|
+| Không nhớ yêu cầu bổ sung | Giảng viên nói lại |
+| Lỡ làm tiếp trong chat cũ | Cũng ghi lại luôn. “Có ngữ cảnh thì đỡ hơn” cũng là một bài học đáng nhặt |
+| Không biết đếm số dòng thay đổi thế nào | Ở góc trên bên phải của diff, hoặc thanh thay đổi trong panel Agent, có hiện +/- |
+| Không xác nhận được là nó đã làm đúng chưa | **Đó chính là đáp án.** Cho ghi vào là “không xác nhận được” |
 
 ---
 
-**要件に必ず入れる4項目**
+## Chương 5 Viết đặc tả — 0:45（15 phút）
 
-| 項目 | 中身 |
+> Lần thứ hai. Lần này **tự viết đặc tả trước** rồi mới làm.
+
+### ［Slide］Giải thích — Skill là gì
+
+**Skill là gói gom lại “quy trình khi làm loại việc này”.** Nhờ nó mà khỏi phải viết lại cùng một quy trình mỗi lần.
+
+| Cơ chế | Vai trò | Ví dụ |
+|--------|---------|-------|
+| **Rules** | Phương châm, ràng buộc luôn có hiệu lực | “Commit viết bằng tiếng Việt” |
+| **Skills** | **Bản quy trình, chỉ nạp khi cần** | Cách viết đặc tả, cách chia task |
+
+Đặt ở `.cursor/skills/<tên>/SKILL.md`. Có ba cách gọi.
+
+| Cách gọi | Phạm vi tác dụng |
+|----------|------------------|
+| **Tự động** | Khi Agent thấy “nên dùng cái này” |
+| **Dấu gạch chéo** | Gõ `/` rồi chọn. **Chỉ đúng tin nhắn đó** |
+| **Custom Mode** | Cố định bằng `Alt+Enter`（Mac là `Option+Enter`）. **Cả phiên làm việc** |
+
+**Hôm nay gọi bằng dấu gạch chéo.**
+
+---
+
+**Bốn mục nhất định phải có trong đặc tả**
+
+| Mục | Nội dung |
 |---|---|
-| **やること** | 成立するために必要なこと |
-| **画面** | 何が見えて、何が押せるか |
-| **操作** | ユーザーが何をするとどうなるか |
-| **やらないこと** | **今回は作らないと決めるもの** |
+| **What it does** | Những gì cần có để nó thành hình |
+| **Screen** | Nhìn thấy gì, bấm được gì |
+| **Interactions** | Người dùng làm gì thì xảy ra chuyện gì |
+| **Out of scope** | **Những thứ quyết định là lần này không làm** |
 
-4つ目が今日の効きどころです。**AI は書いていないことを勝手に足してくる**ので、先に禁止しておきます。第2章で、頼んでいないスコアや難易度が付いてきたのと同じ理屈です。
+Mục thứ tư mới là chỗ ăn tiền của hôm nay. **AI luôn tự thêm vào những thứ không được viết ra**, nên phải cấm trước. Cùng một cái lý với chuyện điểm số và độ khó tự mọc ra ở chương 2.
 
-> もっと詳しく: [`07-skills.md`](../fundamentals/07-skills.md) · [`05-prompting.md`](../fundamentals/05-prompting.md)
+> Chi tiết hơn: [`07-skills.md`](../fundamentals/07-skills.md) · [`05-prompting.md`](../fundamentals/05-prompting.md)
 
-### ［スライド］受講者がやること
+### ［Slide］Học viên làm gì
 
-**① 要件作成スキルを呼ぶ（2分）**
+**① Gọi skill viết đặc tả（2 phút）**
 
-新しいチャットで、入力欄に `/` を打って **requirements** を選びます。
+Trong một chat mới, gõ `/` ở ô nhập rồi chọn **requirements**.
 
 ```text
-/requirements 神経衰弱（メモリーマッチ）を作りたい
+/requirements Tôi muốn làm game lật hình tìm cặp（memory match）
 ```
 
-**② 対話で要件を埋める（8分）**
+**② Vừa đối thoại vừa điền đặc tả（8 phút）**
 
-スキルが聞いてくることに答えていきます。埋めるのは4つです。
+Trả lời những gì skill hỏi. Cần điền bốn mục.
 
-| 項目 | 中身 |
+| Mục | Nội dung |
 |---|---|
-| **やること** | ゲームとして成立するために必要なこと |
-| **画面** | 何が見えて、何が押せるか |
-| **操作** | ユーザーが何をするとどうなるか |
-| **やらないこと** | **今回は作らないと決めるもの** |
+| **What it does** | Những gì cần có để game thành hình |
+| **Screen** | Nhìn thấy gì, bấm được gì |
+| **Interactions** | Người dùng làm gì thì xảy ra chuyện gì |
+| **Out of scope** | **Những thứ quyết định là lần này không làm** |
 
-**第4章で発注者から言われた2つも、忘れずに要件に書き起こしてください。**
+**Đừng quên chép cả hai điều chủ đầu tư đã nói ở chương 4 vào đặc tả.**
 
-**③ 追加要件を受け取って足す（5分）**
+**③ Nhận thêm một yêu cầu nữa và thêm vào（5 phút）**
 
-講師がもう1つ要求を出します。それを**要件に1行足すだけ**で対応してください。
+Giảng viên sẽ đưa thêm một yêu cầu. Hãy xử lý nó **chỉ bằng cách thêm một dòng vào đặc tả**.
 
-### ［口頭で出す］第2の追加要求
+### ［Nói miệng］Yêu cầu bổ sung thứ hai
 
-**③のタイミングで、講師が口頭で伝えます。**
+**Đúng lúc ③, giảng viên nói miệng.**
 
-> 「もう1つ追加です。**残り2ペアになったら、カードの裏面の色を変えてください。**」
+> “Thêm một cái nữa. **Khi chỉ còn 2 cặp thì đổi màu mặt sau của các lá bài.**”
 
-### 講師が話すこと
+### Giảng viên nói gì
 
-**②の間**: 巡回して、**「やらないこと」が空の人に声をかけます**。ここが空だと、AI がまた勝手に足してきます。
+**Trong lúc ②**: đi quanh lớp và **bắt chuyện với những ai đang để trống mục “Out of scope”**. Trống chỗ đó thì AI lại tự thêm vào nữa.
 
-> 「『やらないこと』が今日の効きどころです。AI は書いていないことを勝手に足すので、**先に禁止しておく**。」
+> “‘Out of scope’ là chỗ ăn tiền của hôm nay. AI luôn tự thêm những thứ không được viết ra, nên **phải cấm trước**.”
 
-**②の後半**: 第4章で言われた2つを要件に書けているか確認します。書けていれば、そこを指して言います。
+**Nửa sau của ②**: kiểm tra xem hai điều ở chương 4 đã được viết vào đặc tả chưa. Viết rồi thì chỉ vào đó mà nói.
 
-> 「さっき口で言われたものが、いま**文字になりました**。これで、あなた以外の人も『合っているか』を判定できます。」
+> “Cái mà vừa nãy chỉ được nói bằng mồm, giờ **đã thành chữ**. Từ giờ, người khác ngoài bạn cũng phán định được là ‘đúng chưa’.”
 
-**③のとき**: ここが今日の答え合わせです。
+**Ở ③**: đây chính là phần đối chiếu đáp án của hôm nay.
 
-> 「同じ『追加要求』が来ました。第4章では、コードを直接触りにいきましたね。**今回は要件に1行足しただけです。** 何が違いましたか。」
+> “Lại tới thêm một ‘yêu cầu bổ sung’. Ở chương 4 thì mình đi sờ thẳng vào code, đúng không. **Lần này chỉ thêm một dòng vào đặc tả.** Khác nhau ở chỗ nào?”
 
-### チェックポイント
+### Điểm kiểm tra
 
-- [ ] 要件の4項目が埋まっている（特に**やらないこと**）
-- [ ] 第4章の追加要求2つが要件に書かれている
-- [ ] 第2の追加要求が要件に1行足されている
+- [ ] Bốn mục của đặc tả đã điền（nhất là **Out of scope**）
+- [ ] Hai yêu cầu bổ sung ở chương 4 đã được viết vào đặc tả
+- [ ] Yêu cầu bổ sung thứ hai đã được thêm một dòng vào đặc tả
 
-**要件が完璧である必要はありません。** 埋まっていれば次へ進みます。
+**Đặc tả không cần hoàn hảo.** Điền xong là đi tiếp.
 
-### 詰まったら
+### Khi mắc kẹt
 
-| 詰まり | 対処 |
-|--------|------|
-| スキルが呼べない | `/` を打って一覧から探す。出なければ `.cursor/skills/` があるか確認 |
-| 「やらないこと」が思いつかない | 「難易度選択」「制限時間」「アニメーション」「外部ライブラリ」を例示する |
-| 要件が大きくなりすぎた | 「やること」を5項目までに削らせる。残りは「やらないこと」へ |
-| 対話が終わらない | 8分で打ち切る。埋まっていない項目は空のまま進む |
-
----
-
-## 第6章 タスクに割って作る — 1:00（20分）
-
-> 要件を、1つずつ渡せる大きさに割ってから作ります。
-
-### ［スライド］解説 — 1回の依頼に1つだけ
-
-第1回で「曖昧な依頼は曖昧な結果になる」をやりました。**タスク分解は、その具体的なやり方**です。1回の依頼はこの形にします。
-
-```text
-【やりたいこと】一言
-【対象】@ファイル or フォルダ
-【制約】壊したくないもの
-【完了条件】何があれば終わりか
-```
-
-**完了条件があると、返ってきたものを判定できます。** 第4章で「判定する基準が自分の頭の中にしかなかった」のと、ここが対になります。
-
-長くなったら**新しいチャット**に切り替えます。古い前提を引きずらないためです。
-
-> もっと詳しく: [`05-prompting.md`](../fundamentals/05-prompting.md)
-
-### ［スライド］受講者がやること
-
-**① タスクに割る（5分）**
-
-```text
-/task-breakdown （書いた要件を渡す）
-```
-
-**3〜5個**に割れれば十分です。多すぎたら削ってください。
-
-**② 1つずつ実装する（15分）**
-
-**新しいチャット**を開いて、タスクを**1つだけ**渡します。
-
-```text
-（タスク1の内容）
-完了条件: （タスクに書かれている完了条件）
-他の機能は変えないで。
-```
-
-diff を読んで Keep したら、次のタスクへ。
-
-**③ 完了ライン**
-
-- [ ] カードが並んで、めくれる
-- [ ] 一致／不一致の判定ができる
-- [ ] 全ペアが揃ったらクリア表示が出る
-- [ ] **第4章・第5章で来た追加要求のどれか1つが入っている**
-
-### 講師が話すこと
-
-**①のとき**: 「1回の依頼で1つだけ」が今日の型です。第1回で「曖昧な依頼は曖昧な結果になる」をやりました。**タスク分解は、その具体的なやり方**です。
-
-**②の待ち時間**: 巡回しながら、次を確認します。
-
-- 要件を渡さずにバイブしている人 → 声をかける
-- 1回の依頼に2つ以上詰め込んでいる人 → 「1つずつ」を伝える
-
-**時間が来たら未完成のまま止めます。** この章の目的は完成ではなく、**渡し方の型を1回やること**です。
-
-### チェックポイント
-
-- [ ] タスクが3〜5個に割れている
-- [ ] 少なくとも2つのタスクを実装して Keep した
-
-**完成しなくて構いません。** 完了ライン4つのうち2つで十分です。
-
-### 詰まったら
-
-| 詰まり | 対処 |
-|--------|------|
-| タスクが10個以上に割れた | 要件が大きすぎる。「やらないこと」を増やして割り直す |
-| 1つずつが面倒で全部渡した | 止めない。**結果を後で比べる材料**になる |
-| 時間が足りない | 完了ライン2つで打ち切る。第7章を削らない |
-| バイブ版と混ざった | フォルダを分ける（`session02/` と `session02-spec/`） |
+| Chỗ kẹt | Xử lý |
+|---------|-------|
+| Không gọi được skill | Gõ `/` rồi tìm trong danh sách. Không thấy thì kiểm tra xem có `.cursor/skills/` không |
+| Không nghĩ ra “Out of scope” | Gợi ý sẵn: “chọn độ khó”, “giới hạn thời gian”, “animation”, “thư viện ngoài” |
+| Đặc tả phình to quá | Bắt cắt “What it does” xuống còn tối đa 5 mục. Phần dư đẩy sang “Out of scope” |
+| Đối thoại mãi không xong | Cắt ở phút thứ 8. Mục nào chưa điền thì để trống rồi đi tiếp |
 
 ---
 
-## 第7章 持ち帰るもの — 1:20（10分）
+## Chương 6 Chia task rồi làm — 1:00（20 phút）
 
-> 使い分けの判断、そして次回。**ここは短縮しません。**
-> 内訳: 振り返り3 + おぼえて帰ること2 + バイブが悪いわけではない1 + この先1 + 次回予告1 + 次回に向けた確認2 = 10分
+> Cắt đặc tả thành những phần đủ nhỏ để đưa từng cái một, rồi mới làm.
 
-### ［スライド］受講者がやること
+### ［Slide］Giải thích — mỗi lần nhờ chỉ một việc
 
-- 振り返りの3つの問いに答える
-- 最後に、次回に向けた確認で**挙手**する（`git status` が動くか / GitHub アカウントがあるか）
+Buổi 1 đã học “yêu cầu mơ hồ thì kết quả cũng mơ hồ”. **Chia task chính là cách làm cụ thể của điều đó.** Mỗi lần nhờ thì theo khuôn này.
 
-### 講師が話すこと
+```text
+【Muốn làm gì】một câu
+【Phạm vi】@tệp hoặc thư mục
+【Ràng buộc】cái gì không được làm hỏng
+【Điều kiện hoàn thành】có gì thì coi như xong
+```
 
-**振り返り（受講者に聞く・3分）**
+**Có điều kiện hoàn thành thì mới phán định được thứ nó trả về.** Nó đối xứng đúng với chuyện ở chương 4: “căn cứ để phán định chỉ nằm trong đầu mình”.
 
-1. 同じ「追加要求」を、バイブ版に入れたときと要件に足したときで、**何が違いましたか**
-2. 「正しく実装されたか」を、それぞれどうやって確認しましたか
-3. 明日、同じゲームをもう一度作れと言われたら、どちらの方法を使いますか
+Hội thoại dài ra thì chuyển sang **chat mới**. Để khỏi kéo theo tiền đề cũ.
 
-**今日おぼえて帰ること（3つ・2分）**
+> Chi tiết hơn: [`05-prompting.md`](../fundamentals/05-prompting.md)
 
-1. **バイブは速い。ただし狙って作れない**（頼んでいないものが付いてくる／同じ依頼でも別のものが出る）
-2. **要件は「他人に渡せる形」にすること**（やること + **やらないこと**）
-3. **追加は1つずつ、完了条件つき**
+### ［Slide］Học viên làm gì
 
-**バイブコーディングが悪いわけではありません（1分）**
+**① Chia thành task（5 phút）**
 
-> 「バイブコーディングは『最初のプロトタイプ』や『調査』には向いています。今日、実際に数分で動くものが出ましたよね。**あれは本物の強みです。**  
-> ただし『ちゃんと動く状態を維持しながら、他の人と一緒に育てる』には要件が要ります。  
-> **使い分けの判断ができること**が今日のゴールです。」
+```text
+/task-breakdown （đưa bản đặc tả vừa viết）
+```
 
-**この先にあるもの（1分・スライド1枚）**
+Cắt được **3–5 task** là đủ. Nhiều quá thì cắt bớt.
 
-今日書いたのは「この1回のための要件」でした。**毎回守らせたい約束は、`.cursor/rules/` に置いておけます。**
+**② Làm từng cái một（15 phút）**
 
-| 仕組み | いつ効くか |
-|--------|------------|
-| **Rules** | **いつも**（毎回のプロンプトに書かなくてよい方針・制約） |
-| **Skills** | 必要なときだけ（手順書） |
-| **要件** | その案件だけ |
+Mở **chat mới** và đưa **đúng một** task.
 
-「コミットメッセージは日本語」「テストは依頼されない限り作らない」のような、**チームやリポジトリの約束**が Rules です。第3回のチーム開発で使います。
+```text
+（nội dung của task 1）
+Điều kiện hoàn thành: （điều kiện hoàn thành ghi trong task）
+Đừng đổi những tính năng khác.
+```
 
-> もっと詳しく: [`06-rules.md`](../fundamentals/06-rules.md)
+Đọc diff, Keep xong thì sang task tiếp theo.
 
-**次回予告（1分）**
+**③ Vạch hoàn thành**
 
-> 「第3回は自分たちでテーマを決めてアプリを作り始めます。今日やった『要件を先に書く』を、チームでやるとどうなるか。ブランチ・PR・レビューの最小フローも入れます。」
+- [ ] Các lá bài xếp ra và lật được
+- [ ] Phán định được khớp / không khớp
+- [ ] Ghép đủ mọi cặp thì hiện màn hình hoàn thành
+- [ ] **Có ít nhất một trong các yêu cầu bổ sung ở chương 4 và chương 5 đã vào**
 
-### チェックポイント（次回に向けた実測・全員／2分）
+### Giảng viên nói gì
 
-第3回は Git と PR を使います。**ここで実測しておきます。** 当日に発覚すると、後半40分が Git 講習になります。
+**Ở ①**: “mỗi lần nhờ chỉ một việc” là khuôn của hôm nay. Buổi 1 đã học “yêu cầu mơ hồ thì kết quả cũng mơ hồ”. **Chia task chính là cách làm cụ thể của điều đó.**
 
-- [ ] ターミナルで `git status` が動く
-- [ ] GitHub アカウントを持っている
+**Trong quãng chờ ở ②**: vừa đi quanh lớp vừa để ý mấy điểm sau.
 
-どちらか欠けている人に挙手してもらい、**講師は人数を控えておきます**。3人以上なら第3回の PR を任意に切り替える判断材料になります。
+- Ai không đưa đặc tả mà lại vibe tiếp → nhắc
+- Ai nhét từ hai việc trở lên vào một lần nhờ → nhắc “từng cái một”
 
-### 詰まったら
+**Hết giờ thì dừng, kể cả khi chưa xong.** Mục đích của chương này không phải làm xong, mà là **chạy đúng một lần cái khuôn cách đưa việc**.
 
-振り返りの1問目に誰も答えられない場合は、講師が第4章の記録シートを指します。数字が出ているので答えやすくなります。
+### Điểm kiểm tra
 
-### 宿題（任意）
+- [ ] Đã cắt được 3–5 task
+- [ ] Đã làm và Keep ít nhất 2 task
 
-- `courses/fundamentals/05-prompting.md` を読む（うまい頼み方のテンプレ）
-- 今日の要件に自分で1行足して、機能を1つ増やしてみる
+**Không xong cũng không sao.** Đạt 2 trên 4 mục ở vạch hoàn thành là đủ.
+
+### Khi mắc kẹt
+
+| Chỗ kẹt | Xử lý |
+|---------|-------|
+| Cắt ra hơn 10 task | Đặc tả to quá. Thêm vào “Out of scope” rồi cắt lại |
+| Thấy đưa từng cái phiền quá nên đưa hết một lượt | Đừng ngăn. **Đó lại là nguyên liệu để so kết quả về sau** |
+| Không đủ giờ | Cắt ở 2 mục hoàn thành. Không được cắt chương 7 |
+| Lẫn lộn với bản vibe | Tách thư mục ra（`session02/` và `session02-spec/`） |
 
 ---
 
-## 付録: 見本の最小仕様（答え合わせ用）
+## Chương 7 Mang về — 1:20（10 phút）
 
-**受講者に最初から配ってはいけません。** 第5章で自分の要件が書けなかった人への救済、または講師が「こう書けていれば十分」を示すために使います。
+> Cách quyết dùng cái nào, và buổi sau. **Chương này không rút ngắn.**
+> Phân bổ: nhìn lại 3 + điều cần nhớ 2 + vibe không phải cái xấu 1 + phía trước 1 + giới thiệu buổi sau 1 + xác nhận cho buổi sau 2 = 10 phút
+
+### ［Slide］Học viên làm gì
+
+- Trả lời ba câu hỏi nhìn lại
+- Cuối cùng, **giơ tay** ở phần xác nhận cho buổi sau（`git status` có chạy không / có tài khoản GitHub không）
+
+### Giảng viên nói gì
+
+**Nhìn lại（hỏi học viên, 3 phút）**
+
+1. Cùng một “yêu cầu bổ sung”, lúc nhét vào bản vibe và lúc thêm vào đặc tả, **khác nhau ở chỗ nào**
+2. Chuyện “nó làm đúng chưa”, ở mỗi bên bạn xác nhận bằng cách nào
+3. Ngày mai bị bảo làm lại đúng game đó, bạn sẽ dùng cách nào
+
+**Ba điều cần nhớ khi ra về（2 phút）**
+
+1. **Vibe thì nhanh. Nhưng không nhắm mà làm ra được**（thứ không nhờ vẫn mọc ra / cùng một yêu cầu vẫn ra thứ khác）
+2. **Đặc tả phải ở dạng đưa được cho người khác**（what it does + **out of scope**）
+3. **Bổ sung thì từng cái một, kèm điều kiện hoàn thành**
+
+**Vibe coding không phải là cái xấu（1 phút）**
+
+> “Vibe coding hợp với ‘nguyên mẫu đầu tiên’ và ‘đi khảo sát’. Hôm nay chỉ vài phút là ra thứ chạy được, đúng không. **Đó là thế mạnh thật.**
+> Nhưng để ‘vừa giữ cho nó chạy đúng vừa cùng người khác nuôi nó lớn’ thì cần đặc tả.
+> **Quyết được khi nào dùng cái nào** — đó mới là mục tiêu của hôm nay.”
+
+**Thứ nằm ở phía trước（1 phút, 1 slide）**
+
+Thứ hôm nay viết ra là “đặc tả cho đúng một lần này”. **Còn những giao ước muốn bắt tuân thủ mọi lúc thì đặt được vào `.cursor/rules/`.**
+
+| Cơ chế | Có hiệu lực khi nào |
+|--------|---------------------|
+| **Rules** | **Luôn luôn**（phương châm, ràng buộc, khỏi phải viết lại trong từng prompt） |
+| **Skills** | Chỉ khi cần（bản quy trình） |
+| **Đặc tả** | Chỉ trong dự án đó |
+
+Những thứ kiểu “commit viết bằng tiếng Việt”, “không tạo test trừ khi được yêu cầu” — tức **giao ước của team và của repo** — chính là Rules. Buổi 3 sẽ dùng tới khi làm việc nhóm.
+
+> Chi tiết hơn: [`06-rules.md`](../fundamentals/06-rules.md)
+
+**Giới thiệu buổi sau（1 phút）**
+
+> “Buổi 3 thì các nhóm tự chọn đề tài và bắt đầu làm ứng dụng. Cái ‘viết đặc tả trước’ hôm nay, đem vào làm theo nhóm thì sẽ ra sao. Có thêm cả luồng tối thiểu về branch, PR và review.”
+
+### Điểm kiểm tra（đo thực tế cho buổi sau, cả lớp, 2 phút）
+
+Buổi 3 dùng Git và PR. **Đo ngay tại đây.** Để tới hôm đó mới phát hiện thì 40 phút cuối biến thành lớp dạy Git.
+
+- [ ] Chạy được `git status` trong terminal
+- [ ] Có tài khoản GitHub
+
+Cho những ai thiếu một trong hai giơ tay, và **giảng viên ghi lại số người**. Từ 3 người trở lên thì đó là căn cứ để chuyển phần PR của buổi 3 thành tùy chọn.
+
+### Khi mắc kẹt
+
+Nếu không ai trả lời được câu nhìn lại số 1, giảng viên chỉ vào bảng ghi ở chương 4. Có sẵn con số nên dễ trả lời hơn.
+
+### Bài tập về nhà（tùy chọn）
+
+- Đọc [`05-prompting.md`](../fundamentals/05-prompting.md)（khuôn mẫu để nhờ cho đúng ý）
+- Tự thêm một dòng vào đặc tả hôm nay và làm thêm một tính năng
+
+---
+
+## Phụ lục: bản đặc tả tối thiểu mẫu（để đối chiếu đáp án）
+
+**Không được phát cho học viên ngay từ đầu.** Dùng để cứu những ai không viết nổi đặc tả ở chương 5, hoặc để giảng viên cho thấy “viết được tới mức này là đủ”.
 
 ```markdown
-# 神経衰弱（メモリーマッチ）要件
+# Requirements — Memory match
 
-## やること
+## What it does
 
-- 8ペア（16枚）のカードを裏向きにシャッフルして並べる
-- プレイヤーはカードを2枚めくる
-- 2枚が同じ柄なら表のまま残す（ペア成立）
-- 2枚が違う柄なら1秒後に裏に戻す
-- **ペアが成立したら、もう一度めくれる**
-- **3回目以降のミスからは、裏に戻すまでの待ち時間を 0.5 秒に短縮する**
-- **残り2ペアになったら、カードの裏面の色を変える**
-- 全ペアが揃ったらクリア（「おめでとう」を表示）
+- Xáo 8 cặp（16 lá）rồi xếp úp xuống
+- Người chơi lật 2 lá
+- Hai lá cùng hình thì để ngửa luôn（ghép thành cặp）
+- Hai lá khác hình thì sau 1 giây úp lại
+- **Ghép được một cặp thì được lật tiếp một lượt nữa**
+- **Từ lần sai thứ ba trở đi, rút thời gian chờ trước khi úp lại xuống 0,5 giây**
+- **Khi chỉ còn 2 cặp thì đổi màu mặt sau của các lá bài**
+- Ghép đủ mọi cặp thì hoàn thành（hiện “Chúc mừng”）
 
-## 画面
+## Screen
 
-- カードは 4×4 のグリッドで配置する
-- 裏面は統一デザイン（色ベタでよい）
-- 表面はペアが分かる記号（絵文字 or 数字）
+- Xếp bài theo lưới 4×4
+- Mặt sau dùng chung một thiết kế（tô màu trơn là được）
+- Mặt trước là ký hiệu phân biệt được cặp（emoji hoặc số）
 
-## 操作
+## Interactions
 
-- カードをクリックでめくる
-- めくれるのは一度に2枚まで（3枚目は無反応）
-- すでに表のカードは押せない
+- Click vào lá bài để lật
+- Mỗi lượt chỉ lật được tối đa 2 lá（lá thứ ba không phản hồi）
+- Lá đã ngửa thì không bấm được
 
-## やらないこと
+## Out of scope
 
-- 難易度選択
-- 制限時間
-- スコア・ランキング
-- アニメーション（flip 演出なし。表示切り替えだけ）
-- 外部ライブラリ・API
-- 永続化（リロードでリセットでよい）
+- Chọn độ khó
+- Giới hạn thời gian
+- Điểm số, bảng xếp hạng
+- Animation（không có hiệu ứng lật, chỉ đổi hiển thị）
+- Thư viện ngoài, API
+- Lưu trữ lâu dài（reload mà mất hết cũng được）
 ```
 
-**★印の3行**（ペア成立で再度めくれる / 0.5 秒 / 残り2ペアで裏面変化）が、この回の切り札です。**AI が神経衰弱の常識からは推測しないルール**なので、バイブ版には出てきません。
+**Ba dòng in đậm**（ghép cặp thì lật tiếp / 0,5 giây / còn 2 cặp thì đổi màu mặt sau）là quân bài tẩy của buổi này. Đó là **những luật mà AI không suy ra được từ hiểu biết thông thường về trò tìm cặp**, nên bản vibe không thể có.
 
 ---
 
-## 講師チェックリスト（当日用）
+## Checklist cho giảng viên（dùng trong ngày）
 
-### 前日までに
-- [ ] 第1回でクローンできていない人がいないか確認した（いれば当日の頭で対応する）
-- [ ] **`.cursor/skills/requirements/` と `.cursor/skills/task-breakdown/` がリポジトリに入っている**
-- [ ] 自分でも一度、第2章〜第6章を通しでやってみた（**必須**。追加要求が推測されるかは AI の版で変わる）
-- [ ] Cursor の内蔵ブラウザで HTML を開けることを確認した
-- [ ] 使用するモデルを1つ決めてある（Auto ではなく固定）
-- [ ] `session02/` `session02-spec/` フォルダが空の状態
-- [ ] **追加要求3つ（下表）を、出すタイミングごとに把握している**
+### Trước hôm đó
+- [ ] Đã kiểm tra xem còn ai chưa clone được từ buổi 1 không（còn thì xử lý ngay đầu buổi）
+- [ ] **`.cursor/skills/requirements/` và `.cursor/skills/task-breakdown/` đã có trong repo**
+- [ ] Tự mình đã chạy thử một lượt từ chương 2 tới chương 6（**bắt buộc**. AI phiên bản khác nhau thì khả năng đoán ra yêu cầu bổ sung cũng khác）
+- [ ] Đã xác nhận mở được HTML bằng trình duyệt tích hợp của Cursor
+- [ ] Đã chọn sẵn một model để dùng（cố định, không phải Auto）
+- [ ] Thư mục `session02/` và `session02-spec/` đang trống
+- [ ] **Nắm rõ ba yêu cầu bổ sung（bảng dưới）và thời điểm đưa ra từng cái**
 
-### 追加要求の一覧（講師のみ）
+### Danh sách yêu cầu bổ sung（chỉ giảng viên）
 
-| 出すタイミング | 内容 |
+| Đưa lúc nào | Nội dung |
 |---|---|
-| 第4章 冒頭 | ペアが成立したら、もう一度めくれる |
-| 第4章 冒頭 | 3回目以降のミスからは、裏に戻る待ち時間を 0.5 秒に |
-| 第5章 ③ | 残り2ペアになったら、カードの裏面の色を変える |
+| Đầu chương 4 | Ghép được một cặp thì cho lật tiếp một lượt nữa |
+| Đầu chương 4 | Từ lần sai thứ ba trở đi, rút thời gian chờ trước khi úp lại xuống 0,5 giây |
+| Chương 5, mục ③ | Khi chỉ còn 2 cặp thì đổi màu mặt sau của các lá bài |
 
-**AI がこれを推測してしまう版が出たら、要求を差し替えてください。** 条件は「実装コストが低い」かつ「神経衰弱の常識では出てこない」。
+**Gặp phiên bản AI đoán ra được mấy cái này thì hãy thay yêu cầu khác.** Điều kiện là “chi phí hiện thực thấp” và “không nằm trong hiểu biết thông thường về trò tìm cặp”.
 
-### 章ごとの時間管理
-- 第2章は15分で切る。完璧なものより「動いた」の勢いが大事
-- 第3章・第4章は**削らない**。この回の本体
-- 第6章で 1:20 を超えたら、完成していなくても止める
-- 第7章は何があっても10分確保する
+### Quản lý thời gian theo chương
+- Chương 2 cắt ở 15 phút. Cái đà “chạy được rồi” quan trọng hơn một sản phẩm hoàn hảo
+- **Không cắt** chương 3 và chương 4. Đó là phần chính của buổi
+- Chương 6 mà quá 1:20 thì dừng, kể cả chưa xong
+- Chương 7 dù có chuyện gì cũng giữ đủ 10 phút
 
-### 進行の想定
-- モデル固定（第2章①）と新しいチャット（第4章①）は、飛ばされるとその章が成立しない。確認してから進む形で時間を組んである
-- 追加要求は、第4章冒頭と第5章③で講師が口頭で出す前提
-- バイブ版がうまくできた人がいた場合、「バイブでも十分だった」はこの回の正しい学びの一部として扱える
+### Giả định về cách chạy
+- Cố định model（chương 2 ①）và mở chat mới（chương 4 ①）— bỏ qua là chương đó mất ý nghĩa. Thời gian đã tính theo hướng xác nhận xong rồi mới đi tiếp
+- Yêu cầu bổ sung được đưa bằng miệng ở đầu chương 4 và ở mục ③ của chương 5
+- Có ai làm bản vibe ra ngon lành thì “vibe vậy là đủ rồi” cũng là một phần bài học đúng đắn của buổi này
 
-### よくある詰まりポイント
-| 詰まり | 対処 |
-|--------|------|
-| Agent が大量のファイルを生成して混乱 | 第2章では整理させない。第6章の要件に「1ファイルで完結してよい」を書かせる |
-| ブラウザで開けない | Cursor の内蔵ブラウザで開く。ファイルのパスも確認する |
-| 要件を渡したのに余計な機能が付く | 「やらないこと」を強調して渡し直す。これ自体が良い教材になる |
-| バイブのほうがうまくいったと感じる | 正直にそう伝える。小規模ならそのとおり。規模が上がると逆転しやすい |
-| 結果がバラついて比較にならない | モデルが Auto のままになっていないか確認。第2章と第6章で同じモデルに固定する |
+### Những chỗ hay kẹt
+| Chỗ kẹt | Xử lý |
+|---------|-------|
+| Agent sinh ra cả đống tệp, rối | Chương 2 không dọn. Tới chương 6 thì cho viết vào đặc tả “gói gọn trong một tệp cũng được” |
+| Không mở được trên trình duyệt | Mở bằng trình duyệt tích hợp của Cursor. Kiểm tra luôn đường dẫn tệp |
+| Đưa đặc tả rồi mà vẫn mọc thêm tính năng thừa | Nhấn mạnh “Out of scope” rồi đưa lại. Bản thân chuyện này đã là một giáo cụ tốt |
+| Có người thấy vibe lại trôi hơn | Cứ nói thật là đúng vậy. Quy mô nhỏ thì đúng thế. Quy mô lớn lên thì hay đảo chiều |
+| Kết quả tản mát quá, không so được | Kiểm tra xem model có còn để Auto không. Chương 2 và chương 6 phải cùng một model cố định |
 
-> **提出物は未定です。** 必要なら第4章の記録シート（変更行数・壊れたか・判定できたか）を回収してください。
+> **Bài nộp thì chưa chốt.** Cần thì thu bảng ghi ở chương 4（số dòng thay đổi, có hỏng không, có phán định được không）.
