@@ -1,227 +1,222 @@
-# 実践コース案：90分 × 4回
+# Khóa thực hành: 90 phút × 4 buổi
 
-このリポジトリの `courses/fundamentals/`（0〜13）と `practice/` は **Cursor 操作の自習教材**。  
-本ドキュメントは、それとは別に運営する **実践コース（全4回）** の構成案をまとめたもの。
+`courses/vi/fundamentals/`（0–19）và `practice/` trong repo này là **tài liệu tự học thao tác Cursor**.
+Tài liệu này thì khác: nó là bản thiết kế tổng thể của **khóa thực hành（4 buổi）** được vận hành riêng.
 
-## 各回の詳細（分単位の進行台本）
+## Chi tiết từng buổi（kịch bản chạy theo từng phút）
 
-本ドキュメントは全体設計。当日の司会進行は各回のファイルを使う。
+Tài liệu này là thiết kế tổng thể. Hôm chạy lớp thì dùng tệp của từng buổi.
 
-| 回 | ファイル | テーマ |
-|----|----------|--------|
-| 第1回 | [session-01.md](session-01.md) | 基本操作（Ask → Agent → diff → Keep） |
-| 第2回 | [session-02.md](session-02.md) | バイブコーディング → 仕様駆動（神経衰弱） |
-| 第3回 | [session-03.md](session-03.md) | チーム開発演習・前半（テーマ決め / 仕様 / PR） |
-| 第4回 | [session-04.md](session-04.md) | 仕上げ＋発表 |
+| Buổi | Tệp | Chủ đề |
+|------|-----|--------|
+| Buổi 1 | [session-01.md](session-01.md) | Thao tác cơ bản（Ask → Agent → diff → Keep） |
+| Buổi 2 | [session-02.md](session-02.md) | Vibe coding → phát triển theo đặc tả（trò lật hình tìm cặp） |
+| Buổi 3 | [session-03.md](session-03.md) | Làm việc nhóm, nửa đầu（chọn đề tài / đặc tả / PR） |
+| Buổi 4 | [session-04.md](session-04.md) | Hoàn thiện và trình bày |
 
-## コース全体のゴール
+## Mục tiêu của cả khóa
 
-このコースを終えると、受講者は次ができるようになる。
+Học xong khóa này, học viên làm được những việc sau.
 
-1. Cursor の基本操作で、小さな改修・機能追加を自分で進められる
-2. 「バイブコーディング」の限界を体感し、**仕様を決めてから作る**と安定することを説明・実践できる
-3. チームでテーマを決め、短いサイクルでアプリを動かし、発表できる
+1. Tự mình làm được những chỉnh sửa nhỏ và thêm tính năng, bằng các thao tác cơ bản của Cursor
+2. Cảm nhận được ranh giới của “vibe coding”, và giải thích cũng như thực hành được rằng **quyết đặc tả trước rồi mới làm** thì ổn định hơn
+3. Cả nhóm chọn được đề tài, cho ứng dụng chạy qua những vòng ngắn, và đem đi trình bày được
 
-既存の自習教材（`courses/fundamentals/00〜13`）は、主に **第1回の参照** と **復習用** として使う。発展編の全部を4回に詰めない。
+Tài liệu tự học sẵn có（`courses/vi/fundamentals/00–19`）chủ yếu dùng làm **tài liệu tham chiếu cho buổi 1** và **để ôn lại**. Đừng nhồi toàn bộ phần nâng cao vào 4 buổi.
 
-## 1回の共通フォーマット（90分）
+## Khuôn chung của một buổi（90 phút）
 
-| パート | 目安 | やること |
-|--------|------|----------|
-| ゴール説明 | 5〜8分 | その回で「できること」を1〜2文で固定する |
-| 前半・説明しながら手を動かす | 35〜40分 | 講師デモを追従。止まらず「型」を1つ通す |
-| 後半・課題実践 | 35〜40分 | 個人／チームで同じ型を再現・応用 |
-| まとめ | 5〜8分 | 今日の勝ちパターン＋次回予告 |
+| Phần | Ước lượng | Làm gì |
+|------|-----------|--------|
+| Nói mục tiêu | 5–8 phút | Chốt trong 1–2 câu “buổi này làm được gì” |
+| Nửa đầu: vừa giảng vừa làm | 35–40 phút | Học viên bám theo. Không dừng lại, chạy trọn một cái khuôn |
+| Nửa sau: làm bài | 35–40 phút | Cá nhân hoặc nhóm tái hiện và áp dụng đúng khuôn đó |
+| Tổng kết | 5–8 phút | Cái được của hôm nay + giới thiệu buổi sau |
 
-前半が長引くと後半が死ぬ。前半の完了条件は「完璧な説明」ではなく **型が1本通ったこと**。
+Nửa đầu kéo dài thì nửa sau chết. Điều kiện hoàn thành của nửa đầu không phải là “giảng hoàn hảo”, mà là **đã chạy trọn một cái khuôn**.
 
-## 受講者数の上限（講師1人あたり）
+## Giới hạn số học viên（trên mỗi giảng viên）
 
-このコース設計が成立する人数には上限がある。**超えると第4回が破綻する。**
+Thiết kế khóa học này chỉ thành lập trong một số lượng người nhất định. **Vượt qua là buổi 4 vỡ.**
 
-| 制約 | 計算 | 上限 |
-|------|------|------|
-| 第4回の発表枠 | 35分 ÷ 1チーム3分（質疑なし） | 11チーム |
-| 第4回の発表枠 | 35分 ÷ 1チーム4分（質疑込み） | **8チーム** |
-| 第3回・第4回の巡回サポート | 講師1人が後半40分で回れる数 | **6〜8チーム** |
+| Ràng buộc | Cách tính | Giới hạn |
+|-----------|-----------|----------|
+| Khung trình bày ở buổi 4 | 35 phút ÷ 3 phút một nhóm（không hỏi đáp） | 11 nhóm |
+| Khung trình bày ở buổi 4 | 35 phút ÷ 4 phút một nhóm（có hỏi đáp） | **8 nhóm** |
+| Đi hỗ trợ quanh lớp ở buổi 3 và 4 | Số nhóm một giảng viên đi hết trong 40 phút nửa sau | **6–8 nhóm** |
 
-**目安: 8チーム / 受講者24人まで（講師1人）。** これを超えるなら講師かサポーターを増やし、
-第4回の発表を2部屋に分けるなどの対応を先に決めておく。
-
----
-
-## 第1回：基本操作（90分）
-
-### この回のゴール
-
-Cursor のモード・`@`・Tab / Ctrl+K / Agent を使い分け、小さな改修を自分で完了できる。
-
-### 前半（一緒に手を動かす）
-
-- 全体像（Tab / Ctrl+K / Agent の使い分け）
-- モード切替（Ask / Agent / Plan の最低限）
-- `@` でファイル・フォルダを渡す
-- Agent で差分を見て Keep / Undo
-- 参照: `courses/fundamentals/00-map.md` 〜 `05-prompting.md`（全部読ませない。必要な箇所だけ）
-
-### 後半（課題実践）
-
-- `practice/` の短い課題（例: calculator に関数追加、説明→実装のモード切替）
-- README の「今すぐ試す」相当を、各自のペースで完走
-
-### 完了の定義（この回の線）
-
-- [ ] Ask と Agent を切り替えて依頼できる
-- [ ] `@` で意図したファイルを渡せる
-- [ ] Agent の差分を確認し、Keep / Undo できる
-- [ ] `practice/` の課題を1つ以上完了した
-
-### やらないこと
-
-- Rules / Skills / Hooks / MCP / Cloud Agents の深掘り（必要なら一言紹介まで）
-- 本格アプリ開発の開始
+**Mốc: tối đa 8 nhóm / 24 học viên（một giảng viên）.** Vượt quá thì phải tăng giảng viên hoặc trợ giảng, và chốt trước phương án kiểu chia buổi 4 thành hai phòng.
 
 ---
 
-## 第2回：バイブコーディング → 仕様駆動（ゲーム実践）（90分）
+## Buổi 1: Thao tác cơ bản（90 phút）
 
-### この回のゴール
+### Mục tiêu của buổi
 
-バイブで一気に作ると「つぎはぎ」で破綻しやすいこと、仕様を決めてから作ると安定することを **体感** できる。
+Biết chọn giữa các mode, `@`, Tab / Ctrl+K / Agent, và tự hoàn thành được một chỉnh sửa nhỏ.
 
-### 題材（講師側で固定）
+### Nửa đầu（cùng làm）
 
-**神経衰弱（メモリーマッチ）**
+- Toàn cảnh（chọn giữa Tab / Ctrl+K / Agent）
+- Đổi mode（tối thiểu Ask / Agent / Plan）
+- Đưa tệp và thư mục bằng `@`
+- Xem diff của Agent rồi Keep / Undo
+- Tham chiếu: `courses/vi/fundamentals/00-map.md` đến `05-prompting.md`（đừng bắt đọc hết, chỉ chỗ cần）
 
-理由: ルールが既知で、カード枚数・めくり・一致判定などが仕様化しやすい。動くものがすぐ見える。
+### Nửa sau（làm bài）
 
-### 前半（一緒に手を動かす）
+- Các bài ngắn trong `practice/`（ví dụ: thêm hàm vào calculator, đổi mode giữa giải thích và hiện thực）
+- Mỗi người tự chạy hết phần tương đương “Thử ngay” trong README
 
-1. **バイブで一気に作る** — 「神経衰弱を作って」程度の曖昧依頼で動くものを出す
-2. **つぎはぎで壊す** — スコア／難易度／タイマーなどを足し、破綻や意図しない変更を見せる
-3. **最小仕様を渡して立て直す** — やること／やらないことを短く書き、Plan → Agent で通す
+### Định nghĩa hoàn thành（vạch của buổi này）
 
-### 後半（課題実践）
+- [ ] Đổi qua lại được giữa Ask và Agent để nhờ việc
+- [ ] Đưa được đúng tệp mình muốn bằng `@`
+- [ ] Xem được diff của Agent và Keep / Undo được
+- [ ] Hoàn thành ít nhất một bài trong `practice/`
 
-- 渡された最小仕様に沿って、神経衰弱を完成（または立て直し）させる
-- 余裕があれば仕様に書かれたオプション機能を1つだけ追加
+### Không làm
 
-### 完了の定義（この回の線）
-
-最低限、次が動くこと。綺麗さ・演出は不要。
-
-- [ ] 表裏のあるカードが並ぶ
-- [ ] 2枚めくって一致／不一致を判定できる
-- [ ] （余裕があれば）手数 **または** タイマーのどちらか1つ
-- [ ] 「バイブだと崩れた／仕様だと通った」を自分の言葉で言える
-
-### 最小仕様に必ず書くこと（案）
-
-- **やること**: カード枚数、めくり操作、一致判定、勝敗 or クリア条件
-- **やらないこと**: オンライン対戦、凝ったアニメ、永続化、外部API など
-
-### やらないこと
-
-- 自テーマのアプリ開始（第3回以降）
-- チーム開発フローの本格導入
+- Đào sâu Rules / Skills / Hooks / MCP / Cloud Agents（cần thì nhắc một câu là đủ）
+- Bắt đầu phát triển ứng dụng thực thụ
 
 ---
 
-## 第3回：チーム開発演習（前半）（90分）
+## Buổi 2: Vibe coding → phát triển theo đặc tả（90 phút）
 
-### この回のゴール
+### Mục tiêu của buổi
 
-チームでテーマを決め、役割と最小の Git / PR フローを回しながら、アプリ開発に着手できる。
+Tự tay **trải nghiệm** bốn tính chất thực tế của vibe coding, và biết được điểm nào thì nên chuyển sang viết đặc tả trước.
 
-### テーマ制約（暴走防止）
+> **Đừng dựng bài theo hướng “vibe coding thì sẽ vỡ”.** Trò lật hình tìm cặp là thứ AI biết rất rõ nên vibe vẫn làm xong bình thường（đã đo thực tế）. Chi tiết xem phần “Luận điểm của buổi này” ở đầu [session-02.md](session-02.md).
 
-各自／各チームでテーマを決めるが、次を守る。
+### Đề tài（giảng viên cố định sẵn）
 
-- 1画面〜数画面
-- 外部API なし（または1つまで）
-- **発表で見せる1操作** を先に決める
-- 第4回終了時点の目標は「完璧」ではなく **デモ可能な動作**
+**Trò lật hình tìm cặp（memory match）**
 
-### 前半（一緒に手を動かす）
+Lý do: luật ai cũng biết, mà số lá bài, thao tác lật, cách phán định khớp… đều dễ viết thành đặc tả. Lại ra được thứ chạy được ngay.
 
-- チーム役割の型（例: ドライバー／仕様係／レビュアー）
-- 最小 Git フロー: feature ブランチ → PR → レビュー1人 → マージ
-- 「発表で見せる1操作」を先に書く練習
-- 必要なら Rules / PR 連携は触りだけ（`courses/fundamentals/06` / `11` 参照可）
+### Nửa đầu（cùng làm）
 
-### 後半（課題実践）
+1. **Làm một lèo bằng vibe** — nhờ một câu mơ hồ cỡ “làm cho tôi trò lật hình tìm cặp” rồi ra được thứ chạy được
+2. **Đem ra so với nhau** — nhìn thấy cả lớp cùng một yêu cầu mà ra những thứ khác nhau, và thấy những thứ không ai nhờ vẫn được gắn vào
+3. **Nhận yêu cầu phát sinh** — thử nhét yêu cầu mới của chủ đầu tư vào bản vibe, và nhận ra mình không có gì để phán định là nó đã làm đúng hay chưa
 
-- テーマ決定（制約内）
-- 最小仕様（やること／やらないこと／デモ1操作）を書く
-- リポジトリ／ブランチを用意し、実装開始
+### Nửa sau（làm bài）
 
-### 完了の定義（この回の線）
+- Tự viết đặc tả（what it does / screen / interactions / out of scope）, chia thành task rồi làm từng cái một
+- Yêu cầu phát sinh thì xử lý bằng cách thêm vào đặc tả
 
-- [ ] チームのテーマと「デモで見せる1操作」が決まっている
-- [ ] 最小仕様（やること／やらないこと）がある
-- [ ] 少なくとも1本の PR（または同等の変更共有）を経験した
-- [ ] 動く途中成果（画面 or 主要処理の一部）がある
+### Định nghĩa hoàn thành（vạch của buổi này）
 
-### やらないこと
+Tối thiểu là những thứ sau chạy được. Không cần đẹp, không cần hiệu ứng.
 
-- 大規模設計・インフラ構築
-- 発表用スライドの作り込み（第4回）
+- [ ] Các lá bài có mặt trước mặt sau, xếp ra được
+- [ ] Lật 2 lá và phán định được khớp / không khớp
+- [ ] Có ít nhất một trong các yêu cầu phát sinh đã vào
+- [ ] Tự nói được bằng lời của mình: lần này vibe và đặc tả khác nhau ở chỗ nào
 
----
+### Không làm
 
-## 第4回：演習の続き ＋ 発表（90分）
-
-### この回のゴール
-
-アプリをデモ可能な状態まで仕上げ、短い発表で「何を・どう Cursor で作ったか」を共有できる。
-
-### 前半（一緒に手を動かす）
-
-- 仕上げチェックリスト（動作確認、致命バグ、README 最短、デモ手順）
-- 発表の型（3分想定）: 課題 → 仕様 → デモ → Cursor で効いたこと／詰まったこと
-- 時間配分の確認（実装残り時間 vs 発表枠）
-
-### 後半（課題実践）
-
-- 実装の仕上げ
-- 発表・デモ
-- 短い振り返り（バイブ vs 仕様、チームで効いたこと）
-
-### 完了の定義（この回の線）
-
-- [ ] 「発表で見せる1操作」がデモできる
-- [ ] チームで発表した（時間内・型に沿う）
-- [ ] 振り返りを1つ以上共有した（例: 仕様が効いた場面）
-
-### やらないこと
-
-- 新機能の大幅追加（デモが壊れない範囲に限定）
-- 本番デプロイ必須化
+- Bắt đầu ứng dụng đề tài riêng（từ buổi 3）
+- Đưa hẳn quy trình làm việc nhóm vào
 
 ---
 
-## 既存教材との関係
+## Buổi 3: Làm việc nhóm（nửa đầu）（90 phút）
 
-| 教材 | 役割 |
-|------|------|
-| `courses/fundamentals/00〜05` | 第1回の参照・復習 |
-| `courses/fundamentals/06〜13` | 必要箇所だけ参照（全部やらない） |
-| `practice/` | 第1回のドリル |
-| 本ドキュメント | 実践コース（4回）の進行正本 |
-| `docs/` | プロジェクト資料（制作タスクなど） |
+### Mục tiêu của buổi
 
-自習教材の「基礎→発展を全部通す」と、本コースの「90分×4で成果まで」は目的が違う。混同しない。
+Cả nhóm chốt được đề tài, vừa chạy vai trò và luồng Git / PR tối thiểu vừa bắt tay vào làm ứng dụng.
 
-## 未決・次に詰めること
+### Ràng buộc về đề tài（để khỏi phình）
 
-- [x] 各回の詳細アジェンダ（分単位の司会進行）→ `session-01.md` 〜 `session-04.md`
-- [x] 第2回用の神経衰弱「最小仕様」→ `session-02.md` の「配布物: 最小仕様」に記載（配布形式への落とし込みは別途）
-- [ ] 第2回用のスターター／完成例の置き場（`practice/` とは分離推奨）
-- [ ] 第3〜4回のチーム人数・リポジトリ運用（共有 or fork）
-- [x] 発表の持ち時間と人数に応じたタイムテーブル → 上の「受講者数の上限」に記載
-- [x] README から本ドキュメントへの導線
+Mỗi người / mỗi nhóm tự chọn đề tài, nhưng phải giữ những điều sau.
 
-## 関連
+- Một tới vài màn hình
+- Không dùng API ngoài（hoặc tối đa một cái）
+- **Chốt trước một thao tác sẽ đem ra demo**
+- Mục tiêu tới cuối buổi 4 không phải “hoàn hảo”, mà là **chạy được để demo**
 
-- 自習マップ: [../fundamentals/00-map.md](../fundamentals/00-map.md)
-- コース資料一覧: [../README.md](../README.md)
+### Nửa đầu（cùng làm）
+
+- Khuôn phân vai trong nhóm（ví dụ: người gõ / người giữ đặc tả / người review）
+- Luồng Git tối thiểu: nhánh feature → PR → một người review → merge
+- Tập viết trước “một thao tác đem ra demo”
+- Cần thì chạm sơ qua Rules và phần kết nối PR（xem `courses/vi/fundamentals/06` và `11`）
+
+### Nửa sau（làm bài）
+
+- Chốt đề tài（trong ràng buộc）
+- Viết đặc tả tối thiểu（what it does / out of scope / một thao tác demo）
+- Chuẩn bị repo và nhánh, bắt đầu làm
+
+### Định nghĩa hoàn thành（vạch của buổi này）
+
+- [ ] Nhóm đã chốt đề tài và “một thao tác đem ra demo”
+- [ ] Đã có đặc tả tối thiểu（what it does / out of scope）
+- [ ] Đã trải qua ít nhất một PR（hoặc một cách chia sẻ thay đổi tương đương）
+- [ ] Có kết quả dở dang mà chạy được（một màn hình, hoặc một phần xử lý chính）
+
+### Không làm
+
+- Thiết kế quy mô lớn, dựng hạ tầng
+- Chăm chút slide trình bày（để buổi 4）
+
+---
+
+## Buổi 4: Làm nốt và trình bày（90 phút）
+
+### Mục tiêu của buổi
+
+Hoàn thiện ứng dụng tới mức demo được, và chia sẻ trong một bài trình bày ngắn: “đã làm cái gì, làm bằng Cursor như thế nào”.
+
+### Nửa đầu（cùng làm）
+
+- Checklist hoàn thiện（chạy thử, bug chí mạng, README ngắn nhất, các bước demo）
+- Khuôn trình bày（dự tính 3 phút）: vấn đề → đặc tả → demo → chỗ nào Cursor ăn / chỗ nào bị kẹt
+- Xác nhận phân bổ thời gian（thời gian code còn lại so với khung trình bày）
+
+### Nửa sau（làm bài）
+
+- Hoàn thiện phần hiện thực
+- Trình bày và demo
+- Nhìn lại ngắn gọn（vibe so với đặc tả, cái gì ăn khi làm nhóm）
+
+### Định nghĩa hoàn thành（vạch của buổi này）
+
+- [ ] Demo được “một thao tác đem ra demo”
+- [ ] Nhóm đã trình bày（đúng giờ, theo khuôn）
+- [ ] Đã chia sẻ ít nhất một điều rút ra（ví dụ: chỗ nào đặc tả phát huy）
+
+### Không làm
+
+- Thêm tính năng lớn（chỉ trong mức không làm vỡ demo）
+- Bắt buộc phải deploy lên production
+
+---
+
+## Quan hệ với tài liệu sẵn có
+
+| Tài liệu | Vai trò |
+|----------|---------|
+| `courses/vi/fundamentals/00–05` | Tham chiếu và ôn lại cho buổi 1 |
+| `courses/vi/fundamentals/06–19` | Chỉ tham chiếu chỗ cần（đừng làm hết） |
+| `practice/` | Bài tập tay cho buổi 1 |
+| Tài liệu này | Bản gốc về tiến trình của khóa thực hành（4 buổi） |
+
+Tài liệu tự học nhắm tới “đi hết cơ bản rồi tới nâng cao”, còn khóa này nhắm tới “90 phút × 4 để ra kết quả”. Hai mục đích khác nhau, đừng lẫn.
+
+## Còn chưa chốt
+
+- [x] Agenda chi tiết từng buổi（kịch bản dẫn chương trình theo phút）→ `session-01.md` đến `session-04.md`
+- [x] Bản đặc tả tối thiểu cho buổi 2 → ghi ở phần phụ lục của `session-02.md`
+- [ ] Chỗ đặt bản khởi tạo / bản mẫu hoàn chỉnh cho buổi 2（nên tách khỏi `practice/`）
+- [ ] Số người mỗi nhóm và cách vận hành repo ở buổi 3–4（dùng chung hay fork）
+- [x] Bảng thời gian theo số người và thời lượng trình bày → ghi ở mục “Giới hạn số học viên” bên trên
+- [x] Đường dẫn từ README tới tài liệu này
+
+## Liên quan
+
+- Bản đồ tự học: [../fundamentals/00-map.md](../fundamentals/00-map.md)
+- Danh sách tài liệu khóa học: [../README.md](../README.md)

@@ -1,210 +1,211 @@
-# 第3回：チーム開発演習・前半（90分）
+# Buổi 3: Thực hành làm việc nhóm, nửa đầu（90 phút）
 
-> **この回の一言ゴール**  
-> チームでテーマを決め、仕様を書き、PR を1本出す
-
----
-
-## タイムテーブル
-
-| 時刻 | パート | 内容 |
-|------|--------|------|
-| 0:00 | ゴール説明 | チーム開発で今日やること（5分） |
-| 0:05 | 前半① | チーム・テーマ決め（15分） |
-| 0:20 | 前半② | 最小仕様と Git/PR の型（20分） |
-| 0:40 | 後半 | 実装開始＋PR 体験（40分） |
-| 1:20 | まとめ | 進捗確認・次回予告（10分） |
+> **Mục tiêu một câu của buổi này**
+> Cả nhóm chốt đề tài, viết đặc tả, và ra được một PR
 
 ---
 
-## 0:00 ゴール説明（5分）
+## Bảng thời gian
 
-> 「今日から自分たちでテーマを決めてアプリを作ります。  
-> ルールは4つだけ:  
-> ① テーマ制約を守る ② 仕様を先に書く ③ PR を出す ④ 第4回でデモできる状態を目指す」
-
-前回の振り返り（一言）: 仕様 → 新しいチャット → 1つずつ追加。
-
----
-
-## 0:05 前半① — チーム・テーマ決め（15分）
-
-### チーム編成
-
-- 2〜3人（人数に応じて調整）
-- 1人チームも可（ただし第4回で PR を見せる工夫が要る）
-
-### テーマ制約
-
-受講者に提示して守らせる:
-
-| 制約 | 理由 |
-|------|------|
-| 1画面〜数画面 | 第4回までに終わるスコープ |
-| 外部API なし（または1つまで） | 環境差でハマらない |
-| **「発表で見せる1操作」を先に決める** | ゴールがブレない |
-| 完成 = デモ可能な動作（完璧さ不要） | 時間内に着地 |
-
-### テーマ例（迷っている人向け）
-
-- ToDoアプリ（追加・完了・削除）
-- じゃんけんゲーム（対CPU、勝敗カウント）
-- クイズアプリ（3問出して正答率を表示）
-- タイマー / ストップウォッチ
-- 簡易メモ帳（保存は localStorage）
-
-### このパートの完了
-
-- [ ] チームが決まっている
-- [ ] テーマが1つ決まっている
-- [ ] 「発表で見せる1操作」が一言で言える
-
-> 迷って15分使い切る人がいたら講師が1つ提案して決める。
+| Giờ | Phần | Nội dung |
+|-----|------|----------|
+| 0:00 | Nói mục tiêu | Hôm nay làm gì trong phần làm việc nhóm（5 phút） |
+| 0:05 | Nửa đầu ① | Chia nhóm, chốt đề tài（15 phút） |
+| 0:20 | Nửa đầu ② | Đặc tả tối thiểu và khuôn Git / PR（20 phút） |
+| 0:40 | Nửa sau | Bắt tay vào làm + trải nghiệm PR（40 phút） |
+| 1:20 | Tổng kết | Xác nhận tiến độ, giới thiệu buổi sau（10 phút） |
 
 ---
 
-## 0:20 前半② — 最小仕様と Git/PR の型（20分）
+## 0:00 Nói mục tiêu（5 phút）
 
-### 仕様テンプレ（配布）
+> “Từ hôm nay các bạn tự chọn đề tài và làm ứng dụng.
+> Chỉ có bốn luật:
+> ① Giữ đúng ràng buộc về đề tài ② Viết đặc tả trước ③ Ra một PR ④ Nhắm tới trạng thái demo được ở buổi 4”
 
-前回と同じ構造。チームで埋める。
+Nhìn lại buổi trước（một câu）: đặc tả → chat mới → thêm từng cái một.
+
+---
+
+## 0:05 Nửa đầu ① — Chia nhóm, chốt đề tài（15 phút）
+
+### Chia nhóm
+
+- 2–3 người（điều chỉnh theo sĩ số）
+- Nhóm một người cũng được（nhưng phải nghĩ cách cho thấy PR ở buổi 4）
+
+### Ràng buộc về đề tài
+
+Đưa ra cho học viên và bắt giữ đúng:
+
+| Ràng buộc | Lý do |
+|-----------|-------|
+| Một tới vài màn hình | Phạm vi kịp xong trước buổi 4 |
+| Không API ngoài（hoặc tối đa một cái） | Khỏi sa lầy vì khác môi trường |
+| **Chốt trước “một thao tác đem ra demo”** | Để mục tiêu khỏi trôi |
+| Hoàn thành = chạy được để demo（không cần hoàn hảo） | Hạ cánh trong thời gian có |
+
+### Vài đề tài gợi ý（cho ai đang phân vân）
+
+- Ứng dụng ToDo（thêm, đánh dấu xong, xóa）
+- Oẳn tù tì（đấu với máy, đếm thắng thua）
+- Ứng dụng đố vui（ra 3 câu rồi hiện tỉ lệ đúng）
+- Đồng hồ hẹn giờ / bấm giờ
+- Sổ ghi chú đơn giản（lưu bằng localStorage）
+
+### Hoàn thành phần này
+
+- [ ] Đã chia xong nhóm
+- [ ] Đã chốt một đề tài
+- [ ] Nói được “một thao tác đem ra demo” bằng một câu
+
+> Có ai phân vân tới mức xài hết 15 phút thì giảng viên đề xuất một cái và chốt luôn.
+
+---
+
+## 0:20 Nửa đầu ② — Đặc tả tối thiểu và khuôn Git / PR（20 phút）
+
+### Mẫu đặc tả（phát cho học viên）
+
+Cùng cấu trúc với buổi trước. Cả nhóm cùng điền.
 
 ```markdown
-# アプリ名: ____________
+# Tên ứng dụng: ____________
 
-## やること
-- （箇条書き 3〜5個）
+## What it does
+- （gạch đầu dòng, 3–5 mục）
 
-## 画面
-- （何が見える / 何が押せる）
+## Screen
+- （nhìn thấy gì / bấm được gì）
 
-## 操作
-- （ユーザーが何をするとどうなるか）
+## Interactions
+- （người dùng làm gì thì xảy ra chuyện gì）
 
-## やらないこと
-- （明示的に切る）
+## Out of scope
+- （cắt ra một cách rõ ràng）
 
-## 発表で見せる1操作
-- 「○○を押すと△△になる」
+## Một thao tác đem ra demo
+- “Bấm ○○ thì thành △△”
 ```
 
-### Git / PR の最小フロー（講師デモ）
+### Luồng Git / PR tối thiểu（giảng viên demo）
 
-> **前提の確認**: 第2回のまとめで `git status` と GitHub アカウントを実測してある。
-> 未達が3人以上なら、**PR は任意**に切り替えてよい。この回の本質は PR そのものではなく
-> 「変更を他人に見せて確認してもらう」体験なので、ブランチを push して diff を見せ合うだけでも成立する。
+> **Xác nhận tiền đề**: ở phần tổng kết buổi 2 đã đo thực tế `git status` và tài khoản GitHub.
+> Nếu có từ 3 người trở lên chưa đạt, **chuyển PR sang tùy chọn** cũng được. Bản chất của buổi này
+> không phải bản thân cái PR, mà là trải nghiệm “đưa thay đổi của mình cho người khác xem và xác nhận”,
+> nên chỉ cần push nhánh lên rồi cho nhau xem diff cũng đã thành lập.
 
-**リポジトリの準備:**
+**Chuẩn bị repo:**
 
 ```bash
-# 各チーム用のフォルダを作る or 新規リポジトリを用意する
+# Tạo thư mục cho từng nhóm, hoặc chuẩn bị một repo mới
 mkdir team-app && cd team-app && git init
 ```
 
-**ブランチの型:**
+**Khuôn nhánh:**
 
 ```
-main（壊さない）
-  └── feature/xxx（作業ブランチ）
+main（không được làm hỏng）
+  └── feature/xxx（nhánh làm việc）
 ```
 
-**PR の型（デモ）:**
+**Khuôn PR（demo）:**
 
-1. `main` から `feature/add-html-skeleton` を切る
-2. 最小の変更（HTML のガワだけ）を commit
-3. `gh pr create`（または GitHub 上で PR 作成）
-4. レビュアーが diff を見て Approve → Merge
+1. Cắt nhánh `feature/add-html-skeleton` từ `main`
+2. Commit một thay đổi tối thiểu（chỉ khung HTML）
+3. `gh pr create`（hoặc tạo PR trên giao diện GitHub）
+4. Người review đọc diff rồi Approve → Merge
 
-> 「PR = "ここまで作ったよ" の共有ポイント。レビューは深い指摘じゃなくて "diff 読んだ、OK" で十分。」
+> “PR = điểm chia sẻ ‘tôi làm tới đây rồi’. Review thì không cần nhận xét sâu, ‘đọc diff rồi, OK’ là đủ.”
 
-### 役割の型（提案）
+### Khuôn phân vai（đề xuất）
 
-チーム内で毎回ローテーションしてもよい:
+Trong nhóm có thể xoay vòng mỗi lần:
 
-| 役割 | やること |
-|------|----------|
-| ドライバー | Cursor で実装する |
-| 仕様係 | 仕様を書く / Agent への依頼文を書く |
-| レビュアー | PR の diff を読んで OK / 質問を出す |
+| Vai | Làm gì |
+|-----|--------|
+| Người gõ | Hiện thực bằng Cursor |
+| Người giữ đặc tả | Viết đặc tả / viết câu nhờ cho Agent |
+| Người review | Đọc diff của PR rồi OK hoặc đặt câu hỏi |
 
-> 2人チームならドライバーとレビュアーを交互に。
-
----
-
-## 0:40 後半 — 実装開始＋PR体験（40分）
-
-### やること
-
-1. **仕様テンプレを埋める**（10分以内に。完璧じゃなくてよい）
-2. **リポジトリ / フォルダを用意する**
-3. **`feature/` ブランチを切って実装開始**
-4. **1つ commit して PR を出す**（最低1本）
-
-### 講師の巡回ポイント
-
-| 状況 | 対処 |
-|------|------|
-| 仕様を書かずにコードに入っている | 「発表で見せる1操作、決まってる？」と聞く |
-| 仕様が大きすぎる（10項目以上） | 「3〜5個に削って。やらないことを増やして」 |
-| Git で詰まっている | ブランチ作成〜PR 作成をハンズオンで一緒にやる |
-| 全員がドライバーで誰もレビューしない | 「1本 PR が出たら、誰かが diff 読んで」を促す |
-| 1人で全部やっていてチームが機能しない | 役割ローテーションを促す |
-
-### このパートの目標
-
-- [ ] 仕様テンプレが埋まっている
-- [ ] リポジトリ（or フォルダ）が用意されている
-- [ ] 少なくとも1本の commit がある
-- [ ] PR を1本出した（難しければ、ブランチを push して diff を見せ合うでも可）
+> Nhóm hai người thì luân phiên giữa người gõ và người review.
 
 ---
 
-## 1:20 まとめ（10分）
+## 0:40 Nửa sau — Bắt tay vào làm + trải nghiệm PR（40 phút）
 
-### 進捗確認（各チーム一言）
+### Làm gì
 
-- テーマは？
-- 発表で見せる1操作は？
-- いま何ができていて、次回何をやる？
+1. **Điền mẫu đặc tả**（trong vòng 10 phút. Không cần hoàn hảo）
+2. **Chuẩn bị repo / thư mục**
+3. **Cắt nhánh `feature/` rồi bắt đầu làm**
+4. **Commit một cái rồi ra PR**（ít nhất một cái）
 
-### 今日の勝ちパターン
+### Những chỗ giảng viên đi quanh lớp cần để ý
 
-1. **テーマ制約を守る**（小さく作る）
-2. **仕様を先に埋める**（やること + やらないこと + 見せる1操作）
-3. **PR = diff を読む習慣**（完璧なレビューじゃなくてよい）
+| Tình huống | Xử lý |
+|------------|-------|
+| Chưa viết đặc tả đã lao vào code | Hỏi: “thao tác đem ra demo chốt chưa?” |
+| Đặc tả to quá（từ 10 mục trở lên） | “Cắt xuống 3–5 mục. Thêm vào Out of scope” |
+| Kẹt ở Git | Làm cùng họ từ đầu tới cuối: tạo nhánh cho tới tạo PR |
+| Cả nhóm ai cũng gõ, không ai review | Nhắc: “ra được một PR thì phải có người đọc diff” |
+| Một người ôm hết, nhóm không chạy | Nhắc chuyện xoay vòng vai |
 
-### 次回予告
+### Mục tiêu của phần này
 
-> 「次回は仕上げて発表します。  
-> "発表で見せる1操作" がデモできる状態がゴール。  
-> 新機能追加より、動く状態の維持を優先してください。」
-
-### 次回までにやること（任意）
-
-- 実装の続き（無理しなくてよい。次回の前半40分でも進められる）
-- 行き詰まったら `courses/fundamentals/06-rules.md` を読んで Rules を1つ試してみる
+- [ ] Mẫu đặc tả đã điền xong
+- [ ] Đã có repo（hoặc thư mục）
+- [ ] Có ít nhất một commit
+- [ ] Đã ra một PR（khó quá thì push nhánh lên rồi cho nhau xem diff cũng được）
 
 ---
 
-## 講師チェックリスト（当日用）
+## 1:20 Tổng kết（10 phút）
 
-### 事前準備
-- [ ] チーム分けの方針を決めている（ランダム / 自由 / 指名）
-- [ ] 仕様テンプレを配布できる状態
-- [ ] 第2回まとめの Git 確認の結果を把握している（`git status` が動かない人・GitHub アカウントが無い人の人数）
-- [ ] 上記が3人以上いる場合、前半②の Git デモを10分延長し、後半の PR を任意に切り替える判断をしておく
-- [ ] 各チームのリポジトリ方針を決めている（共有リポ / fork / フォルダ分け）
-- [ ] `gh` CLI がインストール済み（PR 作成をターミナルからやる場合）
+### Xác nhận tiến độ（mỗi nhóm một câu）
 
-### 時間管理
-- テーマ決めで15分を超えそうなら講師が提案して決定する
-- 前半②の Git デモは5分以内に終わらなければ「とにかくやってみよう」で後半に回す
-- 後半の最低ライン = 仕様テンプレ完成 + 1 commit。PR まで行けなくてもよい
+- Đề tài là gì?
+- Một thao tác đem ra demo là gì?
+- Hiện giờ đã làm được gì, buổi sau làm gì?
 
-### よくある詰まりポイント
-| 詰まり | 対処 |
-|--------|------|
-| テーマが決まらない | 上のテーマ例から1つ選ばせる |
-| Git の操作が分からない | 最低限: `git init` → `git add <ファイル>` → `git commit` → `git checkout -b`（`git add .` は無関係な生成物を巻き込むので避ける） |
-| PR の作り方が分からない | GitHub の Web UI で PR ボタンを押す手順を見せる |
-| チーム内で温度差がある | 役割を明示してローテーションを約束する |
+### Cái được của hôm nay
+
+1. **Giữ đúng ràng buộc về đề tài**（làm nhỏ thôi）
+2. **Điền đặc tả trước**（what it does + out of scope + một thao tác demo）
+3. **PR = thói quen đọc diff**（không cần review hoàn hảo）
+
+### Giới thiệu buổi sau
+
+> “Buổi sau làm nốt rồi trình bày.
+> Mục tiêu là trạng thái demo được ‘một thao tác đem ra demo’.
+> Hãy ưu tiên giữ cho nó chạy được, hơn là thêm tính năng mới.”
+
+### Việc làm trước buổi sau（tùy chọn）
+
+- Làm tiếp phần hiện thực（đừng gắng. Nửa đầu 40 phút của buổi sau vẫn làm tiếp được）
+- Bí quá thì đọc [`06-rules.md`](../fundamentals/06-rules.md) và thử đặt một Rule
+
+---
+
+## Checklist cho giảng viên（dùng trong ngày）
+
+### Chuẩn bị trước
+- [ ] Đã chốt cách chia nhóm（ngẫu nhiên / tự do / chỉ định）
+- [ ] Mẫu đặc tả ở trạng thái phát được ngay
+- [ ] Đã nắm kết quả đo Git ở phần tổng kết buổi 2（bao nhiêu người không chạy được `git status`, bao nhiêu người chưa có tài khoản GitHub）
+- [ ] Nếu con số trên từ 3 người trở lên, đã quyết trước phương án: kéo dài phần demo Git ở nửa đầu ② thêm 10 phút và chuyển PR ở nửa sau sang tùy chọn
+- [ ] Đã chốt cách vận hành repo cho từng nhóm（repo dùng chung / fork / chia thư mục）
+- [ ] Đã cài `gh` CLI（nếu định tạo PR từ terminal）
+
+### Quản lý thời gian
+- Phần chốt đề tài mà sắp quá 15 phút thì giảng viên đề xuất và chốt luôn
+- Phần demo Git ở nửa đầu ② mà không xong trong 5 phút thì chuyển sang “cứ làm thử đi” và đẩy sang nửa sau
+- Vạch tối thiểu của nửa sau = điền xong mẫu đặc tả + 1 commit. Không tới được PR cũng không sao
+
+### Những chỗ hay kẹt
+| Chỗ kẹt | Xử lý |
+|---------|-------|
+| Không chốt được đề tài | Bắt chọn một cái trong danh sách gợi ý bên trên |
+| Không biết thao tác Git | Tối thiểu: `git init` → `git add <tệp>` → `git commit` → `git checkout -b`（tránh `git add .` vì nó kéo theo cả những thứ được sinh ra không liên quan） |
+| Không biết tạo PR | Cho xem các bước bấm nút PR trên giao diện web của GitHub |
+| Nhiệt độ trong nhóm chênh nhau | Nêu rõ vai và hứa sẽ xoay vòng |

@@ -1,141 +1,141 @@
-# 第4回：仕上げ＋発表（90分）
+# Buổi 4: Làm nốt và trình bày（90 phút）
 
-> **この回の一言ゴール**  
-> 「発表で見せる1操作」をデモし、コースを通じて学んだことを言語化する
-
----
-
-## タイムテーブル
-
-| 時刻 | パート | 内容 |
-|------|--------|------|
-| 0:00 | ゴール説明 | 今日の流れ・発表の型（5分） |
-| 0:05 | 前半 | 仕上げ作業（35分） |
-| 0:40 | 発表 | チームごとにデモ＋発表（35分） |
-| 1:15 | 振り返り | コース全体の振り返り（15分） |
+> **Mục tiêu một câu của buổi này**
+> Demo được “một thao tác đem ra demo”, và nói thành lời những gì đã học qua cả khóa
 
 ---
 
-## 0:00 ゴール説明（5分）
+## Bảng thời gian
 
-> 「今日のゴールは2つ:  
-> ① 動くデモを見せる ② このコースで何が変わったかを一言にする」
-
-### 発表の型（提示）
-
-| 項目 | 目安 |
-|------|------|
-| アプリ紹介 | 「○○を作りました」（10秒） |
-| デモ | 「見せる1操作」を実際にやる（1〜2分） |
-| 工夫した点 | Cursor をどう使ったか（30秒） |
-| 詰まった点 | 何がうまくいかなかったか（30秒） |
-| 合計 | **3分以内** |
-
-> 「スライドは不要です。デモ + 口頭で3分。」
+| Giờ | Phần | Nội dung |
+|-----|------|----------|
+| 0:00 | Nói mục tiêu | Mạch của hôm nay, khuôn trình bày（5 phút） |
+| 0:05 | Nửa đầu | Làm nốt（35 phút） |
+| 0:40 | Trình bày | Từng nhóm demo và trình bày（35 phút） |
+| 1:15 | Nhìn lại | Nhìn lại cả khóa（15 phút） |
 
 ---
 
-## 0:05 前半 — 仕上げ作業（35分）
+## 0:00 Nói mục tiêu（5 phút）
 
-### やること
+> “Hôm nay có hai mục tiêu:
+> ① Cho xem một bản demo chạy được ② Nói thành một câu: khóa học này đã thay đổi điều gì ở bạn”
 
-1. 「発表で見せる1操作」が動くことを確認する
-2. 致命バグがあれば直す（新機能追加は禁止）
-3. デモ手順を決める（「何を開いて、どこを押して、何が起きるか」）
-4. 余裕があれば README に一言（何のアプリか・動かし方）
+### Khuôn trình bày（đưa ra trước）
 
-### 講師の巡回
+| Mục | Ước lượng |
+|-----|-----------|
+| Giới thiệu ứng dụng | “Bọn em làm ○○”（10 giây） |
+| Demo | Làm thật “một thao tác đem ra demo”（1–2 phút） |
+| Chỗ đã nghĩ ra cách làm | Đã dùng Cursor như thế nào（30 giây） |
+| Chỗ bị kẹt | Cái gì đã không trôi（30 giây） |
+| Tổng | **Trong vòng 3 phút** |
 
-| 状況 | 対処 |
-|------|------|
-| まだ動かない | スコープを削る。「見せる1操作」だけ動けばよい |
-| 新機能を追加しようとしている | 止める。「今ある動くものを壊すリスク」を伝える |
-| デモの段取りを決めていない | 「何を開いて何を押す？」を口頭で確認させる |
-| 余裕たっぷりで暇 | リスタートボタンなど小さな改善1つだけ OK |
-
-### このパートの目標
-
-- [ ] 「発表で見せる1操作」がエラーなく動く
-- [ ] デモ手順が口頭で言える（何を開く→何を押す→何が起きる）
+> “Không cần slide. Demo cộng nói miệng, 3 phút.”
 
 ---
 
-## 0:40 発表（35分）
+## 0:05 Nửa đầu — Làm nốt（35 phút）
 
-### 進行
+### Làm gì
 
-- 1チーム3分（質疑含めて4分目安）
-- 順番は挙手 or 講師指名
-- 全チーム終了後、拍手
+1. Xác nhận “một thao tác đem ra demo” chạy được
+2. Có bug chí mạng thì sửa（cấm thêm tính năng mới）
+3. Chốt các bước demo（“mở cái gì, bấm chỗ nào, rồi xảy ra chuyện gì”）
+4. Còn thời gian thì viết một câu vào README（là ứng dụng gì, chạy thế nào）
 
-### 発表フォーマット（再掲）
+### Giảng viên đi quanh lớp
 
-1. 「○○を作りました」
-2. デモ（見せる1操作）
-3. Cursor で工夫したこと
-4. 詰まったこと
+| Tình huống | Xử lý |
+|------------|-------|
+| Vẫn chưa chạy | Cắt bớt phạm vi. Chỉ cần “một thao tác đem ra demo” chạy là được |
+| Đang định thêm tính năng mới | Ngăn lại. Nói rõ “rủi ro làm hỏng thứ đang chạy” |
+| Chưa chốt trình tự demo | Bắt nói miệng: “mở cái gì rồi bấm cái gì?” |
+| Dư thời gian, đang rảnh | Cho phép đúng một cải thiện nhỏ, kiểu thêm nút restart |
 
-### 講師の役割
+### Mục tiêu của phần này
 
-- タイムキーパー（3分で「まとめに入ってください」）
-- デモが動かなくても責めない。「何を作ろうとしたか」を聞く
-- 質問を1つ以上する（受講者同士の質問が出ればそちら優先）
-
-### 質問例（講師から）
-
-- 「仕様に"やらないこと"を書いたのはどれ？ それで助かった場面はあった？」
-- 「バイブで一気に作った部分と仕様で作った部分、diff の大きさはどう違った？」
-- 「チームで PR を使ってみて、よかったこと or 面倒だったことは？」
+- [ ] “Một thao tác đem ra demo” chạy không lỗi
+- [ ] Nói miệng được các bước demo（mở gì → bấm gì → xảy ra gì）
 
 ---
 
-## 1:15 振り返り（15分）
+## 0:40 Trình bày（35 phút）
 
-### 個人振り返り（2分・各自メモ）
+### Cách chạy
 
-次の3つを書いてもらう:
+- Mỗi nhóm 3 phút（tính cả hỏi đáp thì ước lượng 4 phút）
+- Thứ tự thì giơ tay hoặc giảng viên chỉ định
+- Xong hết các nhóm thì vỗ tay
 
-1. **このコースで一番変わったこと**（操作面 or 考え方）
-2. **明日から使いたい型**（Ask→Agent→diff / 仕様を先に書く / PR を出す、など）
-3. **まだ分からないこと**（あれば）
+### Khuôn trình bày（nhắc lại）
 
-### 全体共有（8分）
+1. “Bọn em làm ○○”
+2. Demo（một thao tác đem ra demo）
+3. Chỗ đã nghĩ ra cách làm với Cursor
+4. Chỗ bị kẹt
 
-数人に発表してもらう（挙手 or 指名）。
+### Vai của giảng viên
 
-### コース全体の振り返り（講師から・5分）
+- Bấm giờ（tới 3 phút thì nói “vào phần kết luận giúp mình”）
+- Demo không chạy cũng đừng trách. Hãy hỏi “các bạn định làm cái gì”
+- Đặt ít nhất một câu hỏi（học viên hỏi nhau được thì ưu tiên cái đó）
 
-| 回 | やったこと | 身についた型 |
-|----|------------|--------------|
-| 第1回 | 基本操作 | Ask → Agent → diff → Keep |
-| 第2回 | バイブ → 仕様 | 仕様を書いてから作る |
-| 第3回 | チーム開発 | 仕様テンプレ + PR |
-| 第4回 | 仕上げ＋発表 | 小さく完成させてデモする |
+### Vài câu hỏi mẫu（từ giảng viên）
 
-> 「Cursor は道具です。道具の使い方を知った今、"何を作るか" を考えるのが次のステップです。」
-
-### 今後のリソース
-
-- 自習: `courses/fundamentals/`（06-Rules 以降は必要に応じて）
-- 公式: [cursor.com/docs](https://cursor.com/docs)
-- 困ったら: Agent に聞く。仕様を書いて渡す。diff を読む。
+- “Trong đặc tả, mục nào các bạn viết vào ‘Out of scope’? Có lúc nào nhờ nó mà đỡ không?”
+- “Phần làm một lèo bằng vibe và phần làm theo đặc tả, kích thước diff khác nhau thế nào?”
+- “Dùng PR trong nhóm thì được gì, và chỗ nào phiền?”
 
 ---
 
-## 講師チェックリスト（当日用）
+## 1:15 Nhìn lại（15 phút）
 
-### 事前準備
-- [ ] 各チームのリポジトリ / フォルダが前回から引き継がれている
-- [ ] プロジェクターまたは画面共有でデモが見える環境
-- [ ] タイマー（発表3分計測用）
-- [ ] 振り返りシート or メモ用の場所（紙 / オンラインドキュメント）
+### Nhìn lại cá nhân（2 phút, mỗi người tự ghi）
 
-### 時間管理
-- 仕上げが長引いて 0:40 を超えたら「あと5分で発表に入ります」宣言
-- チーム数 × 4分 > 35分 の場合、質疑を省略して3分厳守
-- 全チーム発表後に時間が余ったら、振り返りを厚くする
+Cho viết ra ba điều:
 
-### 発表が動かない場合の救済
-- コードを画面に映して「ここまで作った」を見せるだけでもOK
-- 「何を作ろうとしたか + 何で詰まったか」を話すだけでも学びになる
-- 講師が「ここはうまくいっている」を拾ってフィードバックする
+1. **Điều thay đổi nhiều nhất ở bạn qua khóa này**（về thao tác, hoặc về cách nghĩ）
+2. **Cái khuôn muốn dùng từ ngày mai**（Ask→Agent→diff / viết đặc tả trước / ra PR…）
+3. **Điều vẫn còn chưa hiểu**（nếu có）
+
+### Chia sẻ chung（8 phút）
+
+Mời vài người nói（giơ tay hoặc chỉ định）.
+
+### Nhìn lại cả khóa（giảng viên nói, 5 phút）
+
+| Buổi | Đã làm gì | Khuôn đã nhập tâm |
+|------|-----------|-------------------|
+| Buổi 1 | Thao tác cơ bản | Ask → Agent → diff → Keep |
+| Buổi 2 | Vibe → đặc tả | Viết đặc tả rồi mới làm |
+| Buổi 3 | Làm việc nhóm | Mẫu đặc tả + PR |
+| Buổi 4 | Làm nốt và trình bày | Làm nhỏ cho xong rồi đem demo |
+
+> “Cursor là một công cụ. Giờ đã biết cách dùng công cụ rồi, bước tiếp theo là nghĩ xem ‘làm cái gì’.”
+
+### Tài nguyên về sau
+
+- Tự học: [`courses/vi/fundamentals/`](../fundamentals/)（từ 06-Rules trở đi thì tùy nhu cầu）
+- Chính thức: [cursor.com/docs](https://cursor.com/docs)
+- Bí thì: hỏi Agent. Viết đặc tả rồi đưa. Đọc diff.
+
+---
+
+## Checklist cho giảng viên（dùng trong ngày）
+
+### Chuẩn bị trước
+- [ ] Repo / thư mục của từng nhóm đã được mang tiếp từ buổi trước
+- [ ] Môi trường xem được demo bằng máy chiếu hoặc chia sẻ màn hình
+- [ ] Đồng hồ bấm giờ（để đo 3 phút trình bày）
+- [ ] Chỗ để ghi phần nhìn lại（giấy hoặc tài liệu online）
+
+### Quản lý thời gian
+- Phần làm nốt mà kéo quá 0:40 thì tuyên bố “5 phút nữa vào phần trình bày”
+- Nếu số nhóm × 4 phút > 35 phút thì bỏ hỏi đáp, giữ nghiêm 3 phút
+- Trình bày xong hết mà còn dư giờ thì làm phần nhìn lại dày hơn
+
+### Cứu vãn khi demo không chạy
+- Chỉ cần chiếu code lên và cho thấy “bọn em làm tới đây” cũng được
+- Chỉ nói “định làm cái gì + kẹt ở đâu” thì cũng đã là bài học
+- Giảng viên hãy nhặt ra “chỗ này các bạn làm tốt” để phản hồi lại
