@@ -1,1007 +1,886 @@
-# 第1回：基本操作（90分）
+# Buổi 1: Thao tác cơ bản（90 phút）
 
-> **この回のゴール（4段）**  
-> 01 Cursor の基本操作を覚える → 02 既存のコードを AI に説明させる → 03 不具合を AI に直させる → 04 新しい機能を AI に実装させる（挑戦）  
-> **01〜03 まで届けば達成です。04 は挑戦枠**なので、届かなくても失敗ではありません。
+> **Mục tiêu của buổi này（4 bậc）**
+> 01 Thuộc các thao tác cơ bản của Cursor → 02 Bắt AI giải thích code có sẵn → 03 Bắt AI sửa lỗi → 04 Bắt AI làm một tính năng mới（phần thử sức）
+> **Lên tới 01–03 là đạt. 04 là phần thử sức**, không tới cũng không phải là thất bại.
 
-> **今日の教材は、壊れた買い物カートのページです。** `practice/index.html` を開くと、
-> ①割引が効かない ②小計が NaN ③クーポンが未実装 の3か所がオレンジで表示されています。
-> **この3つを AI に直させて、画面が直るところまでを見るのが今日です。**
-
----
-
-## 台本の全体の流れ
-
-1. 00-1 この台本の読み方
-2. 00-2 セットアップ手順
-3. 00-3 タイムテーブル
-4. 0-1 表紙とイントロ
-5. 第1章〜第7章
-6. 講師チェックリスト
+> **Giáo cụ hôm nay là một trang giỏ hàng đang hỏng.** Mở `practice/index.html` lên,
+> bạn sẽ thấy 3 chỗ hiện màu cam: ① giảm giá không ăn ② tổng phụ ra NaN ③ coupon chưa làm.
+> **Việc của hôm nay là bắt AI sửa cả 3 chỗ đó, và nhìn thấy màn hình trở lại bình thường.**
 
 ---
 
-## この台本の読み方
+## Toàn bộ mạch của kịch bản
 
-### この節の流れ
-
-1. 00-1 読み方の要点
-
-### 00-1 読み方の要点
-
-**受講者が資料を見ながら手を動かし、講師が説明しながら進める**前提で書いてあります。時間配分もその想定です。
-
-プロンプトは資料に全文を載せ、画面の位置はスクリーンショットで示すので、別途の実演は前提にしていません。実際の進め方は現場で調整してください。
-
-見出しの番号は **`N-M` = 第N章のステップM** です（例: `1-2`）。第1章の前は **`00-M`**（読み方・セットアップ・タイムテーブル）、イントロは **`0-1`** です。各章の先頭に **この章の流れ**、章の前の節には **この節の流れ**（目次）があります。
-
-各章は5ブロックで書いてあります（イントロなど一部の節では欠けることがあります）。
-
-
-| ブロック               | 誰のためのものか                                            |
-| ------------------ | --------------------------------------------------- |
-| **［スライド］解説**       | Cursor の仕組みの説明。スライドに載せる。出典は `courses/fundamentals/` |
-| **［スライド］受講者がやること** | そのまま配布資料に載せる。プロンプトは全文を載せて、口頭で読み上げない                 |
-| **講師が話すこと**        | 受講者が打っている間・待っている間に話す内容                              |
-| **チェックポイント**       | 揃うまで待つか、先へ進むかの判断                                    |
-| **詰まったら**          | その章で実際に起きる詰まりと対処                                    |
-
-
-解説はすべて `[courses/fundamentals/](../fundamentals/)` から引いています。**内容を直したいときは fundamentals 側を直してください**（台本は抜粋です）。
-
-
-| 章   | 引いている fundamentals                                                                                  |
-| --- | --------------------------------------------------------------------------------------------------- |
-| 第1章 | `[00-map](../fundamentals/00-map.md)`（最初にそろえる設定）                                                    |
-| 第3章 | `[00-map](../fundamentals/00-map.md)` · `[04-tab-and-inline](../fundamentals/04-tab-and-inline.md)` |
-| 第4章 | `[01-modes](../fundamentals/01-modes.md)` · `[03-context](../fundamentals/03-context.md)`           |
-| 第5章 | `[02-shortcuts](../fundamentals/02-shortcuts.md)`                                                   |
-| 第6章 | `[05-prompting](../fundamentals/05-prompting.md)`                                                   |
-| 第7章 | `[13-safety-ignore](../fundamentals/13-safety-ignore.md)`                                           |
-
-
-> **［口頭で出す］**の印が付いたものは、その場で講師が口頭で伝えるものです。第1回にはありません。
-
-Agent に送ると 30〜60 秒返ってきません。全員が同時に待つ時間になるので、その枠で話す内容を各章に用意してあります。
+1. 00-1 Cách đọc kịch bản này
+2. 00-2 Các bước chuẩn bị
+3. 00-3 Bảng thời gian
+4. 0-1 Trang bìa và phần mở đầu
+5. Chương 1 đến chương 7
+6. Checklist cho giảng viên
 
 ---
 
+## Cách đọc kịch bản này
 
+### Mạch của phần này
 
-## セットアップ手順（当日 0:00 で一緒にやる）
+1. 00-1 Những điểm chính khi đọc
 
-### この節の流れ
+### 00-1 Những điểm chính khi đọc
 
-1. 00-2 当日の準備一覧
+Kịch bản viết theo giả định: **học viên vừa nhìn tài liệu vừa tự tay làm, giảng viên vừa giảng vừa dẫn nhịp**. Phần chia thời gian cũng dựa trên giả định đó.
 
-### 00-2 当日の準備一覧
+Prompt được in đầy đủ trong tài liệu, vị trí trên màn hình thì có ảnh chụp, nên không cần giảng viên thao tác mẫu riêng. Cách chạy thực tế thì tùy lớp mà điều chỉnh.
 
-受講者が事前にインストールできる環境ではないことを前提にしています。**当日 0:00 からの15分で、講師と一緒に上から順に進めます。**
-すでに終わっている人には、待たずに先の手順へ進んでもらって構いません。
+Số ở tiêu đề đọc là **`N-M` = bước M của chương N**（ví dụ `1-2`）. Phần trước chương 1 là **`00-M`**（cách đọc, chuẩn bị, bảng thời gian）, phần mở đầu là **`0-1`**. Đầu mỗi chương có **Mạch của chương**, các phần trước chương thì có **Mạch của phần này**.
 
+Mỗi chương gồm 5 khối（ở vài phần như mở đầu thì có thể thiếu vài khối）.
 
-| 項目                  | 手順                                                                                    |
-| ------------------- | ------------------------------------------------------------------------------------- |
-| **Cursor のダウンロード**  | [https://cursor.com](https://cursor.com) から OS に合わせてインストール                            |
-| **初回起動・サインイン**      | GitHub または Google アカウントでサインイン                                                         |
-| **このリポジトリをクローン**    | `git clone https://github.com/xrnd-tec/cursor-course.git`                             |
-| **Cursor でフォルダを開く** | `cursor-course/` フォルダを Cursor で開く（File → Open Folder）。**IDE ビュー**（中央にコード、横に Agent）で開く |
-| **Node.js（任意）**     | `node` コマンドを使う課題がある場合のみ。[https://nodejs.org](https://nodejs.org) の LTS 版              |
+| Khối | Dành cho ai |
+| ---- | ----------- |
+| **［Slide］Giải thích** | Giải thích cơ chế của Cursor. Đưa lên slide. Nguồn là `courses/vi/fundamentals/` |
+| **［Slide］Học viên làm gì** | Đưa thẳng lên tài liệu phát. Prompt in đầy đủ, không đọc miệng |
+| **Giảng viên nói gì** | Nội dung nói trong lúc học viên đang gõ, đang chờ |
+| **Điểm kiểm tra** | Căn cứ để quyết định chờ cho đủ hay đi tiếp |
+| **Khi mắc kẹt** | Những chỗ kẹt thật sự xảy ra ở chương đó và cách xử lý |
 
+Toàn bộ phần giải thích đều lấy từ [`courses/vi/fundamentals/`](../fundamentals/). **Muốn sửa nội dung thì sửa ở phía fundamentals**（kịch bản chỉ là bản trích）.
 
-> **この回は IDE ビュー + Agent パネルが前提です。** 第1章で起動を IDE に揃えます。  
-> 日本語化・Auto-review は**コラム**（任意）。手順の正本は [`00-map.md`](../fundamentals/00-map.md) の「最初にそろえる設定」。
+| Chương | fundamentals được trích |
+| ------ | ----------------------- |
+| Chương 1 | [`00-map`](../fundamentals/00-map.md)（những thiết lập nên chỉnh trước） |
+| Chương 3 | [`00-map`](../fundamentals/00-map.md) · [`04-tab-and-inline`](../fundamentals/04-tab-and-inline.md) |
+| Chương 4 | [`01-modes`](../fundamentals/01-modes.md) · [`03-context`](../fundamentals/03-context.md) |
+| Chương 5 | [`02-shortcuts`](../fundamentals/02-shortcuts.md) |
+| Chương 6 | [`05-prompting`](../fundamentals/05-prompting.md) |
+| Chương 7 | [`13-safety-ignore`](../fundamentals/13-safety-ignore.md) |
 
-> **教材のページは Cursor の内蔵ブラウザで開きます。** 追加のインストールは要りません。
-> `practice/index.html` をダブルクリックして OS のブラウザで開くと、ES モジュールがブロックされて数字が出ません。
+> Chỗ nào có dấu **［Nói miệng］**là thứ giảng viên truyền đạt ngay tại chỗ bằng lời. Buổi 1 không có mục nào như vậy.
 
-> **講師へ**: ダウンロードを一斉に始めると、回線が詰まることがあります。落ちてくるまでの待ち時間に、
-> 「よくある詰まり」と **Agents Window → IDE** を先回りで案内しておくと、15 分に収まりやすくなります。
-
----
-
-
-
-## タイムテーブル
-
-
-### この節の流れ
-
-1. 00-3 90分の流れ
-
-### 00-3 90分の流れ
-
-| 時刻   | 章               | 内容                                | 主体  |
-| ---- | --------------- | --------------------------------- | --- |
-| 0:00 | （イントロ）          | 表紙・コース全体・今日やること（ダウンロード待ちに）        | 講師  |
-| 0:00 | 第1章 環境をそろえる     | インストール・クローン・起動（15分）               | 全員  |
-| 0:15 | 第2章 今日のゴール      | 今日の4段（5分）                         | 講師  |
-| 0:20 | 第3章 三つの道具       | Tab / Ctrl+K / Agent を1つずつ触る（10分） | 全員  |
-| 0:30 | 第4章 Ask と Agent | Ask で聞く → Agent で実装する（15分）        | 全員  |
-| 0:45 | 第5章 差分を読む       | 自分の diff を読んで Keep する（10分）        | 全員  |
-| 0:55 | 第6章 ハンズオン       | `practice/` 課題を自分でやる（25分）         | 全員  |
-| 1:20 | 第7章 持ち帰るもの      | 今日おぼえて帰ること・次回予告（10分）              | 講師  |
-
-
-**受講者が手を動かすのは 75 分 / 90 分**です。講師が一方的に話す時間は第2章と第7章の 15 分だけ。
-
-> このタイムテーブルが、そのままスライドの章立てです。各章の頭に扉ページが入ります。
-> **イントロは時間枠を持ちません。** 第1章のダウンロード待ちに重ねて話します。
-
-> **セットアップで詰まった人が多い場合**: 第3章を3分に圧縮し、第6章の課題を A だけに絞ります。**第4・5章は圧縮しません**（この2つが今日の本体です）。
+Gửi cho Agent xong thì 30–60 giây không thấy hồi âm. Đó là quãng cả lớp cùng chờ, nên mỗi chương đều có sẵn nội dung để nói lấp vào quãng đó.
 
 ---
 
+## Các bước chuẩn bị（làm cùng nhau lúc 0:00）
 
+### Mạch của phần này
 
-## 表紙とイントロ — 0:00（ダウンロードを待っている数分で話す）
+1. 00-2 Danh sách chuẩn bị trong ngày
 
-> **章にはしません。** インストールのダウンロードを待っている時間に話します。
-> 全員の手が空いている唯一のタイミングなので、ここで今日の位置づけを渡しておきます。
+### 00-2 Danh sách chuẩn bị trong ngày
 
+Kịch bản giả định học viên không có điều kiện cài trước. **15 phút đầu tính từ 0:00, cả lớp cùng giảng viên làm lần lượt từ trên xuống.**
+Ai xong rồi thì cứ đi tiếp các bước sau, không phải chờ.
 
+| Mục | Các bước |
+| --- | -------- |
+| **Tải Cursor** | Vào [https://cursor.com](https://cursor.com), cài bản đúng hệ điều hành |
+| **Mở lần đầu và đăng nhập** | Đăng nhập bằng tài khoản GitHub hoặc Google |
+| **Clone repo này** | `git clone https://github.com/xrnd-tec/cursor-course.git` |
+| **Mở thư mục bằng Cursor** | Mở thư mục `cursor-course/`（File → Open Folder）. Mở ở **IDE view**（code ở giữa, Agent ở bên） |
+| **Node.js（tùy chọn）** | Chỉ cần khi có bài dùng lệnh `node`. Lấy bản LTS ở [https://nodejs.org](https://nodejs.org) |
 
-### この節の流れ
+> **Buổi này lấy IDE view + panel Agent làm mặc định.** Chương 1 sẽ chỉnh cho cả lớp khởi động vào IDE.
+> Phần ngôn ngữ và Auto-review là **mục đọc thêm**（tùy chọn）. Bản gốc của các bước nằm ở mục “Những thiết lập nên chỉnh trước” trong [`00-map.md`](../fundamentals/00-map.md).
 
-1. 0-1 表紙〜今日の約束
+> **Trang giáo cụ được mở bằng trình duyệt tích hợp của Cursor.** Không phải cài thêm gì.
+> Nếu double-click `practice/index.html` để mở bằng trình duyệt của hệ điều hành thì ES module bị chặn và các con số không hiện ra.
 
-### 0-1 表紙〜今日の約束
+> **Gửi giảng viên**: cả lớp cùng tải một lúc thì dễ nghẽn mạng. Trong lúc chờ tải, hãy đi trước một bước:
+> nói luôn “những chỗ hay kẹt” và cách chuyển **Agents Window → IDE**, thì 15 phút mới đủ.
 
-#### ［スライド］表紙
+---
+
+## Bảng thời gian
+
+### Mạch của phần này
+
+1. 00-3 Mạch 90 phút
+
+### 00-3 Mạch 90 phút
+
+| Giờ | Chương | Nội dung | Ai làm |
+| --- | ------ | -------- | ------ |
+| 0:00 | （Mở đầu） | Trang bìa, toàn cảnh khóa học, việc của hôm nay（nói trong lúc chờ tải） | Giảng viên |
+| 0:00 | Chương 1 Chuẩn bị môi trường | Cài, clone, khởi động（15 phút） | Cả lớp |
+| 0:15 | Chương 2 Mục tiêu hôm nay | Bốn bậc của hôm nay（5 phút） | Giảng viên |
+| 0:20 | Chương 3 Ba công cụ | Chạm lần lượt Tab / Ctrl+K / Agent（10 phút） | Cả lớp |
+| 0:30 | Chương 4 Ask và Agent | Hỏi bằng Ask → làm bằng Agent（15 phút） | Cả lớp |
+| 0:45 | Chương 5 Đọc diff | Đọc diff của chính mình rồi Keep（10 phút） | Cả lớp |
+| 0:55 | Chương 6 Thực hành | Tự làm bài trong `practice/`（25 phút） | Cả lớp |
+| 1:20 | Chương 7 Mang về | Những gì cần nhớ hôm nay, và buổi sau（10 phút） | Giảng viên |
+
+**Học viên tự tay làm 75 phút trên tổng 90 phút.** Giảng viên nói một chiều chỉ có 15 phút ở chương 2 và chương 7.
+
+> Bảng thời gian này chính là cấu trúc chương của slide. Đầu mỗi chương có một trang bìa chương.
+> **Phần mở đầu không chiếm khung giờ nào.** Nó được nói chồng lên quãng chờ tải ở chương 1.
+
+> **Nếu nhiều người kẹt ở phần chuẩn bị**: nén chương 3 xuống 3 phút, và bài ở chương 6 chỉ giữ lại bài A. **Không nén chương 4 và 5** — hai chương đó là phần chính của hôm nay.
+
+---
+
+## Trang bìa và phần mở đầu — 0:00（nói trong vài phút chờ tải）
+
+> **Không tính thành chương.** Nói trong lúc đang chờ tải bản cài.
+> Đây là lúc duy nhất tay ai cũng rảnh, nên tranh thủ trao luôn bối cảnh của buổi học.
+
+### Mạch của phần này
+
+1. 0-1 Từ trang bìa tới lời hứa hôm nay
+
+### 0-1 Từ trang bìa tới lời hứa hôm nay
+
+#### ［Slide］Trang bìa
 
 ```
-Cursor の基本操作
+Thao tác cơ bản của Cursor
 
-Cursor 実践コース　第 1 回 / 全 4 回　・　90分
-（日付）
+Khóa thực hành Cursor　Buổi 1 / 4　·　90 phút
+（ngày）
 ```
 
+#### ［Slide］Về khóa học này
 
+**Bốn buổi để đi tới chỗ “cả nhóm làm được một ứng dụng và đem đi trình bày”.**
 
-#### ［スライド］このコースについて
+| Buổi | Làm gì | Xong thì làm được gì |
+| ---- | ------ | -------------------- |
+| **Buổi 1（hôm nay）** | Thao tác cơ bản | Bắt AI sửa lỗi, và đọc được diff nó tạo ra |
+| Buổi 2 | Vibe coding → phát triển theo đặc tả | Viết yêu cầu trước rồi mới cho làm |
+| Buổi 3 | Làm việc nhóm（nửa đầu） | Cả nhóm viết đặc tả và ra được một PR |
+| Buổi 4 | Hoàn thiện và trình bày | Demo được một thứ chạy thật |
 
-**4回で「チームでアプリを作って発表できる」ところまで行きます。**
+#### ［Slide］Việc của hôm nay
 
+**Bắt AI sửa một trang giỏ hàng đang hỏng.**
 
-| 回           | やること               | 終わったときにできること          |
-| ----------- | ------------------ | --------------------- |
-| **第1回（今日）** | 基本操作               | AI に不具合を直させて、その差分を読める |
-| 第2回         | バイブコーディング → 仕様駆動開発 | 要件を書いてから作らせられる        |
-| 第3回         | チーム開発（前半）          | チームで仕様を書き、PR を出せる     |
-| 第4回         | 仕上げと発表             | 動くものをデモできる            |
+Mở `practice/index.html` lên là thấy 3 chỗ hỏng, hiện màu cam.
 
+| | Chỗ hiển thị đang hỏng |
+| --- | --- |
+| ① Apply a discount | Giảm 10% của 1,000 mà vẫn **là 1,000** |
+| ② Cart subtotal | **NaN** |
+| ③ Use a coupon | **not implemented** |
 
+**Ba chỗ đó đổi sang màu xanh đậm là hôm nay đạt.**
 
+#### ［Slide］Ba lời hứa của hôm nay
 
-#### ［スライド］今日やること
+1. **Không cần nhớ hết.** Hôm nay chỉ dùng đúng ba công cụ
+2. **Gần như không có lúc nào chỉ ngồi nhìn.** 75 trên 90 phút là tự tay làm
+3. **Kẹt thì nhìn màn hình người bên cạnh.** Vẫn không ra thì giơ tay
 
-**壊れた買い物カートのページを、AI に直させます。**
+#### Giảng viên nói gì
 
-`practice/index.html` を開くと、オレンジで3か所が壊れています。
+Vừa nhìn tiến độ tải vừa chạy bốn slide trên. **Ai tải xong rồi thì cứ làm tiếp phần chuẩn bị, không phải chờ.**
 
+Nhưng **chỉ sang chương 2 khi cả lớp đã mở được trang**（điểm kiểm tra của chương 1）. Nghĩa là: việc cá nhân thì cho đi trước, còn nhịp chương thì phải đều.
 
-|           | 壊れている表示                        |
-| --------- | ------------------------------ |
-| ① 割引を計算する | 1,000円の10%引きなのに **1,000 円のまま** |
-| ② カートの小計  | **NaN**                        |
-| ③ クーポンを使う | **未実装**                        |
+Có ai hỏi “hôm nay mình làm ra cái gì?” thì trả lời: **không làm ra cái gì cả**. Hôm nay là buổi **sửa thứ đã có sẵn**. Làm ra cái mới thì từ buổi 2.
 
+#### Khi mắc kẹt
 
-**この3つが紺色の金額に変わったら、今日は達成です。**
-
-#### ［スライド］今日の約束（3つ）
-
-1. **全部覚えなくていい。** 今日使う道具は3つだけです
-2. **見ているだけの時間はほぼありません。** 90分のうち75分は自分の手を動かします
-3. **詰まったら隣の画面を見る。** それでも分からなければ手を挙げてください
-
-
-
-#### 講師が話すこと
-
-ダウンロードの進み具合を見ながら、上の4枚を流します。**落ちてきた人は、待たずにセットアップの続きを進めて構いません。**
-
-ただし、**第2章へ進むのは全員がページを開けてからです**（第1章のチェックポイント）。個人の作業は先へ行ってよく、章の進行だけ揃える、という切り分けです。
-
-「今日は何を作るんですか」と聞かれたら、**作りません**と答えます。今日は**既にあるものを直す**回です。作るのは第2回からです。
-
-#### 詰まったら
-
-
-| 詰まり               | 対処                                 |
-| ----------------- | ---------------------------------- |
-| 「もう Cursor 入ってます」 | 待たずに `practice/index.html` を開いてもらう |
-| ダウンロードが全員終わらない    | イントロを話し切ったら、終わった人から第1章へ進めてよい       |
-
+| Chỗ kẹt | Xử lý |
+| ------- | ----- |
+| “Em cài Cursor rồi” | Cho mở luôn `practice/index.html`, không phải chờ |
+| Cả lớp mãi không tải xong | Nói hết phần mở đầu rồi cho ai xong trước đi tiếp chương 1 |
 
 ---
 
+## Chương 1 Chuẩn bị môi trường — 0:00（15 phút）
 
+> Cài Cursor và mở được trang giáo cụ. **Ai rảnh tay thì cứ đi tiếp, nhưng chỉ chuyển sang chương 2 khi cả lớp đã mở được trang.**
 
-## 第1章 環境をそろえる — 0:00（15分）
+### Mạch của chương
 
-> Cursor を入れて、教材のページを開くところまで。**手が空いた人は先へ進んで構いませんが、第2章へ移るのは全員が開けてからです。**
+1. 1-1 Từ cài đặt tới lúc mở được trang
+2. 1-2 Những thứ chỉnh trước（bắt buộc + đọc thêm）
 
+### 1-1 Từ cài đặt tới lúc mở được trang
 
+#### ［Slide］Học viên làm gì
 
-### この章の流れ
-
-1. 1-1 インストール〜ページを開く
-2. 1-2 最初にそろえる（必須＋コラム）
-
-### 1-1 インストール〜ページを開く
-
-#### ［スライド］受講者がやること
-
-1. [https://cursor.com](https://cursor.com) から Cursor をダウンロードしてインストールする
-2. Cursor を起動し、GitHub か Google のアカウントでサインインする
-3. ターミナルで教材を落とす
+1. Vào [https://cursor.com](https://cursor.com) tải Cursor về và cài
+2. Mở Cursor, đăng nhập bằng tài khoản GitHub hoặc Google
+3. Lấy giáo cụ về bằng terminal
 
 ```bash
 git clone https://github.com/xrnd-tec/cursor-course.git
 ```
 
-4. Cursor で `cursor-course/` フォルダを開く（File → Open Folder）
-5. `practice/index.html` を **Cursor の内蔵ブラウザ**で開く
-6. 「ミニ買い物カート」のページが出たら準備完了
+4. Mở thư mục `cursor-course/` bằng Cursor（File → Open Folder）
+5. Mở `practice/index.html` bằng **trình duyệt tích hợp của Cursor**
+6. Thấy trang “Mini Shopping Cart” hiện ra là xong phần chuẩn bị
 
-### 1-2 最初にそろえる（必須＋コラム）
+### 1-2 Những thứ chỉnh trước（bắt buộc + đọc thêm）
 
-#### ［スライド］最初にそろえる（必須1＋コラム）
+#### ［Slide］Những thứ chỉnh trước（1 bắt buộc + đọc thêm）
 
-ページが開けたら、**今日使う画面だけ全員で揃えます。** 言語と Auto-review はコラムです（先に終わった人向け／持ち帰り）。
+Mở được trang rồi thì **cả lớp chỉnh cho giống nhau đúng phần màn hình dùng hôm nay.** Phần ngôn ngữ và Auto-review là mục đọc thêm（cho ai xong sớm / để mang về）.
 
-**必須 — 起動を IDE にする**
+**Bắt buộc — cho Cursor khởi động vào IDE**
 
-1. **Cursor Settings → General → Startup → Window Restoration** を **Last Used Windows**
-2. **IDE ビュー**（中央にコード）であることを確認する。Agents Window なら `Ctrl+Shift+P`（Mac は `Cmd+Shift+P`）→ **Open Editor Window**
-3. 次回も IDE で開くように、**IDE から** Cursor を終了する癖をつける（今日は終了しなくてよい）
+1. Vào **Cursor Settings → General → Startup → Window Restoration**, chọn **Last Used Windows**
+2. Xác nhận đang ở **IDE view**（code nằm giữa）. Nếu đang là Agents Window thì `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ **Open Editor Window**
+3. Tập thói quen **thoát Cursor từ IDE view** để lần sau cũng mở vào IDE（hôm nay không cần thoát）
 
-> 古い UI では **Agents → Open Agents Window on startup** を OFF、という案内でした。詳しくは [`00-map.md`](../fundamentals/00-map.md)。
+> Ở giao diện cũ, hướng dẫn là tắt **Agents → Open Agents Window on startup**. Chi tiết xem [`00-map.md`](../fundamentals/00-map.md).
 
-**コラム — 表示言語を日本語にする（任意）**
+**Đọc thêm — về ngôn ngữ giao diện**
 
-IDE で `Ctrl+Shift+P`（Mac は `Cmd+Shift+P`）→ `Configure Display Language` → **Japanese** → 完全再起動。  
-VS Code 由来のメニューは日本語になります。**Agent / Cursor Settings は 2026年8月時点ではほぼ英語のまま**（設定ミスではない）。
+Giao diện Cursor là **tiếng Anh**, và tiếng Việt không nằm trong các ngôn ngữ hiển thị chính thức của VS Code. Muốn tự xem danh sách thì trong IDE bấm `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ `Configure Display Language`.
+Ngoài ra, phần riêng của Cursor như **Agent / Cursor Settings thì tính đến tháng 8/2026 gần như vẫn là tiếng Anh**, kể cả khi đổi được ngôn ngữ hiển thị. Đó không phải lỗi cấu hình.
 
-**コラム — Auto-review（任意・個人開発向け）**
+**Đọc thêm — Auto-review（tùy chọn, hợp với làm cá nhân）**
 
-**Settings → Agents → Approvals & Execution** の Run Mode を **Auto-review** にすると、安全そうなコマンドは自動・危険度が高ければ確認、になります。今日の実習では必須ではありません。
+Đặt Run Mode ở **Settings → Agents → Approvals & Execution** thành **Auto-review** thì lệnh có vẻ an toàn sẽ tự chạy, còn lệnh rủi ro cao mới hỏi. Bài hôm nay không bắt buộc phải bật.
 
-> 正本: [`00-map.md`](../fundamentals/00-map.md) の「最初にそろえる設定」
+> Bản gốc: mục “Những thiết lập nên chỉnh trước” trong [`00-map.md`](../fundamentals/00-map.md)
 
-#### 講師が話すこと
+#### Giảng viên nói gì
 
-ダウンロードは全員同時だと回線が詰まります。**落ちてくるまでの数分が最初の待ち時間**なので、そこで「よくある詰まり」を先回りで案内します。黙って待たせないこと。
+Cả lớp tải cùng lúc thì nghẽn mạng. **Vài phút chờ tải chính là quãng chờ đầu tiên**, nên hãy đi trước một bước mà nói “những chỗ hay kẹt”. Đừng để cả lớp ngồi im chờ.
 
-待ち時間に一言だけ:
+Trong quãng chờ, nói đúng một câu:
 
-> 「起動したら見慣れない画面（Agents Window）が出ることがあります。壊れていません。**今日使うのは IDE（中央にコード）です。** 次のスライドで揃えます。」
+> “Khởi động lên có thể ra một màn hình lạ（Agents Window）. Không phải hỏng đâu. **Hôm nay mình dùng IDE — cái có code nằm ở giữa.** Slide sau sẽ chỉnh cho giống nhau.”
 
-ページが開けたら、**必須の IDE だけ全員で確認**します。日本語化と Auto-review は**コラム**です。先に終わった人にやってもらうか、「持ち帰りでよい」と伝えて止めません。
+Mở được trang rồi thì **cả lớp chỉ cùng xác nhận đúng mục bắt buộc là IDE**. Ngôn ngữ và Auto-review là **mục đọc thêm**. Ai xong sớm thì cho làm thử, còn lại nói “để mang về cũng được”, đừng giữ cả lớp lại.
 
-ページが揃ったら、**オレンジの3か所を指して**今日やることを説明します。
+Khi trang đã lên đủ, **chỉ vào ba chỗ màu cam** và nói việc của hôm nay.
 
-> 「①割引が効いていない ②小計が NaN ③クーポンが未実装。**今日はこの3つを AI に直させます。**
-> 直すと、この数字が紺色に変わります。」
+> “① giảm giá không ăn ② tổng phụ ra NaN ③ coupon chưa làm. **Hôm nay mình bắt AI sửa cả ba.**
+> Sửa xong thì mấy con số này đổi sang màu xanh đậm.”
 
-先に終わった人には、待たずにページを触っていてもらいます。**止める必要はありません。**
+Ai xong sớm thì cứ để họ nghịch trang đó. **Không cần giữ lại.**
 
-#### チェックポイント
+#### Điểm kiểm tra
 
-**全員がここに到達するまで、第2章へ進みません。** 揃えるのはこの1回だけです（先に終わった人を止める必要はありません）。
+**Chưa sang chương 2 chừng nào cả lớp chưa tới đây.** Chỉ phải đợi cho đều đúng một lần này（còn ai xong sớm thì không cần giữ）.
 
-- [ ] Cursor が起動している
-- [ ] サインインが完了している（右上にアカウントアイコンが出る）
-- [ ] **IDE ビュー**で `cursor-course/` を開いている（サイドバーにファイルツリーが見える）
-- [ ] **Cursor の内蔵ブラウザに「ミニ買い物カート」のページが出ている**
-- [ ] ページの①②③がオレンジで表示されている
+- [ ] Cursor đã khởi động
+- [ ] Đã đăng nhập xong（góc trên bên phải hiện icon tài khoản）
+- [ ] Đang mở `cursor-course/` ở **IDE view**（sidebar thấy cây thư mục）
+- [ ] **Trình duyệt tích hợp của Cursor đang hiện trang “Mini Shopping Cart”**
+- [ ] Ba mục ①②③ trên trang đang hiện màu cam
 
-「この画面が見えていれば OK です」と伝えて次へ。
+Nói “thấy đúng màn hình này là được” rồi đi tiếp.
 
-#### 詰まったら
+#### Khi mắc kẹt
 
-
-| 詰まり                         | 対処                                                                                                                                                                                                                                      |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ダウンロードが遅い                   | 全員同時だと詰まることがある。落ちてくるまでは待ちで、その間に他の人を見る                                                                                                                                                                                                   |
-| どのビルドか分からない（Mac）            | Apple Silicon か Intel か。不明ならアップルメニュー → このMacについて → チップ欄                                                                                                                                                                                 |
-| インストールに管理者権限が要る             | その場で解決できないことがある。事前に IT へ確認しておく                                                                                                                                                                                                          |
-| サインインできない                   | GitHub / Google アカウントを持っているか確認。なければメールで作成                                                                                                                                                                                               |
-| フォルダが開けない                   | Cursor を起動 → File → Open Folder → `cursor-course/` を選ぶ                                                                                                                                                                                  |
-| サイドバーが出ない                   | `Ctrl+B`（Mac は `Cmd+B`）でトグル                                                                                                                                                                                                             |
-| git clone していない             | ターミナルで `git clone https://github.com/xrnd-tec/cursor-course.git`                                                                                                                                                                        |
-| **ページは出たが数字が「…」のまま**        | OS のブラウザで直接開いている可能性がある。Cursor の内蔵ブラウザで開き直す                                                                                                                                                                                              |
-| ページが真っ白                     | 内蔵ブラウザを再読み込み。それでも直らなければ隣の画面を見せてもらう                                                                                                                                                                                                      |
-| 起動したら見慣れない画面（Agents Window） | ① `Ctrl+Shift+P`（Mac は `Cmd+Shift+P`）→ **Open Editor Window**（または画面の IDE へ戻る）② Cursor Settings で `startup` と検索 → **Window Restoration** を **Last Used Windows** ③ **IDE から** Cursor を終了する。詳しくは `[00-map.md](../fundamentals/00-map.md)` |
-| メニューが英語のまま / 日本語にしたい        | IDE で `Ctrl+Shift+P` → `Configure Display Language` → **Japanese**。再起動。Agent / Cursor Settings は 2026年8月時点では英語のまま（設定ミスではない）                                                                                                             |
-
+| Chỗ kẹt | Xử lý |
+| ------- | ----- |
+| Tải chậm | Cả lớp tải cùng lúc thì hay nghẽn. Cứ chờ, trong lúc đó đi xem những người khác |
+| Không biết lấy bản nào（Mac） | Apple Silicon hay Intel. Không rõ thì Apple menu → About This Mac → dòng Chip |
+| Cài đòi quyền admin | Có khi không giải quyết tại chỗ được. Nên hỏi IT từ trước |
+| Không đăng nhập được | Kiểm tra xem có tài khoản GitHub / Google chưa. Chưa có thì tạo bằng email |
+| Không mở được thư mục | Mở Cursor → File → Open Folder → chọn `cursor-course/` |
+| Không thấy sidebar | Bật/tắt bằng `Ctrl+B`（Mac là `Cmd+B`） |
+| Chưa git clone | Trong terminal chạy `git clone https://github.com/xrnd-tec/cursor-course.git` |
+| **Trang lên rồi nhưng số vẫn là “…”** | Nhiều khả năng đang mở bằng trình duyệt của hệ điều hành. Mở lại bằng trình duyệt tích hợp của Cursor |
+| Trang trắng trơn | Tải lại trình duyệt tích hợp. Vẫn không được thì xin xem màn hình người bên cạnh |
+| Khởi động ra màn hình lạ（Agents Window） | ① `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ **Open Editor Window** ② Trong Cursor Settings tìm `startup` → đặt **Window Restoration** thành **Last Used Windows** ③ Thoát Cursor **từ IDE view**. Chi tiết xem [`00-map.md`](../fundamentals/00-map.md) |
+| Menu vẫn tiếng Anh | Đúng như vậy. Tiếng Việt không có trong ngôn ngữ hiển thị chính thức, và phần riêng của Cursor thì vẫn là tiếng Anh. Không phải lỗi cấu hình |
 
 ---
 
+## Chương 2 Mục tiêu hôm nay — 0:15（5 phút）
 
+> Bốn bậc thang. Quyết định trước xem sẽ leo tới đâu. **Chương này giảng viên chỉ nói.**
 
-## 第2章 今日のゴール — 0:15（5分）
+### Mạch của chương
 
-> 4段のはしごです。どこまで登るかを、先に決めておきます。**この章は講師が話すだけ**です。
+1. 2-1 Chốt bốn bậc của hôm nay
 
+### 2-1 Chốt bốn bậc của hôm nay
 
+#### ［Slide］Học viên làm gì
 
-### この章の流れ
+Không có. Chỉ nghe.
 
-1. 2-1 今日の4段を共有する
+#### Giảng viên nói gì
 
-### 2-1 今日の4段を共有する
+> “Hôm nay có bốn bậc. Cứ lần lượt leo từ 01, không cần nhớ hết mọi thứ. Tới 03 là đủ rồi. 04 là phần thử sức.”
 
-#### ［スライド］受講者がやること
+**Bốn bậc của hôm nay:**
 
-なし。聞くだけです。
+| Bậc | Làm được gì | Làm ở đâu | Chỗ nào trên màn hình được sửa |
+| --- | ----------- | --------- | ------------------------------ |
+| 01 | Thuộc các thao tác cơ bản của Cursor | Chương 3 | Dòng chào ở tiêu đề đổi |
+| 02 | Bắt AI giải thích code có sẵn | Chương 4（hỏi bằng Ask, có gắn `@`） | — |
+| 03 | Bắt AI sửa lỗi | Chương 6, bài A | **② tổng phụ hiện ra** |
+| 04 | Bắt AI làm tính năng mới ← **thử sức** | Chương 4 / chương 6, bài B | **① giảm giá ăn** / **③ coupon chạy** |
 
-#### 講師が話すこと
+> Chương 4 có làm `applyDiscount`, nên **cả lớp đều đi qua cửa vào của bậc 04 một lần ở chương 4**. Bài B chỉ là phần áp dụng thêm.
 
-> 「今日は4段あります。01 から順に上がるだけで、全部覚える必要はありません。03 まで来れば十分。04 は挑戦枠です。」
+> 03 là vạch đích chung của cả lớp. Không tới được 04 thì để dành buổi sau cũng không sao.
 
-**今日の4段:**
+> Vị trí của buổi này trong cả khóa **đã nói ở phần mở đầu**. Ở đây chỉ tập trung vào bốn bậc của hôm nay.
 
+#### Điểm kiểm tra
 
-| 段   | できるようになること                | どこでやるか                | 画面のどこが直るか                   |
-| --- | ------------------------- | --------------------- | --------------------------- |
-| 01  | Cursor の基本操作を覚える          | 第3章                   | 見出しの挨拶が変わる                  |
-| 02  | 既存のコードを AI に説明させる         | 第4章（Ask で `@` を付けて聞く） | —                           |
-| 03  | 不具合を AI に直させる             | 第6章・課題 A              | **② 小計が出る**                 |
-| 04  | 新しい機能を AI に実装させる ← **挑戦** | 第4章 / 第6章・課題 B        | **① 割引が効く** / **③ クーポンが動く** |
+Không có. Gói lại trong 5 phút rồi sang chương 3.
 
+#### Khi mắc kẹt
 
-> 第4章で `applyDiscount` を実装するので、**04 の入口は第4章で全員が一度通ります**。課題 B はその応用です。
-
-> 03 が全員の到達ラインです。04 に届かなくても、次回に持ち越せば構いません。
-
-> コース全体の位置づけは**イントロで話し済み**です。ここでは今日の4段だけに絞ります。
-
-
-
-#### チェックポイント
-
-なし。5分で切り上げて第3章へ。
-
-#### 詰まったら
-
-「全部覚えないといけないのか」と身構えている人がいたら、**03 までが全員のラインだ**と繰り返します。ここで緊張を落とすと、後の章で手が動きます。
+Thấy ai đang căng thẳng kiểu “chẳng lẽ phải nhớ hết à”, hãy nhắc lại rằng **vạch chung của cả lớp chỉ tới 03**. Gỡ được cái căng đó ở đây thì các chương sau tay mới chịu chạy.
 
 ---
 
+## Chương 3 Ba công cụ — 0:20（10 phút）
 
+> `Tab`, `Ctrl+K`, Agent. Chạm lần lượt từng cái, tự tay.
 
-## 第3章 三つの道具 — 0:20（10分）
+### Mạch của chương
 
-> `Tab`、`Ctrl+K`、Agent。3つを1つずつ、自分で触ります。
+1. 3-1 Ba công cụ（giải thích）
+2. 3-2 Chạm thử（Tab / Ctrl+K / Agent）
 
+### 3-1 Ba công cụ（giải thích）
 
+#### ［Slide］Giải thích
 
-### この章の流れ
+**Cursor là một editor dòng VS Code, được gắn thêm “một AI đọc được, viết được và chạy được code”.** Có ba cách để nhờ AI.
 
-1. 3-1 三つの道具（解説）
-2. 3-2 触ってみる（Tab / Ctrl+K / Agent）
+| Cách | Làm từ màn hình | Windows | Mac | Dùng để | Tình huống điển hình |
+| ---- | --------------- | ------- | --- | ------- | -------------------- |
+| **Tab** | （không có） | （tự động） | （tự động） | Gợi ý phần tiếp theo khi đang gõ | Viết nốt hàm, thêm import, đoạn lặp mẫu |
+| **Sửa inline** | （không có） | `Ctrl+K` | `Cmd+K` | Chỉ sửa vùng đang chọn | “Đổi hàm này thành async”, “Sửa lại câu chữ này” |
+| **Agent** | Panel Agent bên phải | `Ctrl+I` | `Cmd+I` | Vừa trò chuyện vừa động tới nhiều tệp | Thêm tính năng, tra cứu, refactor, sửa bug |
 
-### 3-1 三つの道具（解説）
+> **Phím tắt trong khóa này lấy Windows làm chuẩn.** Người dùng Mac đọc phần trong ngoặc.
 
-#### ［スライド］解説
+> **Màn hình hôm nay là IDE view（code ở giữa）+ panel Agent bên phải.** Hôm nay không cần mở Agents Window（→ [`00-map.md`](../fundamentals/00-map.md)）.
 
-**Cursor は、VS Code 系のエディタに「コードを読んで・書いて・実行できる AI」が載ったもの**です。AI に頼む手段は3つあります。
+**Tab đang nhìn vào cái gì**: code xung quanh, những sửa đổi gần đây, thông tin từ linter. Vì vậy nó mạnh ở khoản “viết tiếp đúng mạch đang viết”.
 
+| Khi Tab phát huy | Khi đừng giao cho Tab |
+| ---------------- | --------------------- |
+| Những đoạn lặp cùng khuôn | Logic cần phán đoán về đặc tả |
+| Bổ sung import, bổ sung kiểu | Tính toán liên quan bảo mật hoặc tiền |
+| Viết tiếp mạch đang viết | Những chỗ bắt buộc phải review |
 
-| 手段          | 画面からやる        | Windows  | Mac     | 用途              | 典型シーン                     |
-| ----------- | ------------- | -------- | ------- | --------------- | ------------------------- |
-| **Tab**     | （なし）          | （自動）     | （自動）    | 入力中に続きを提案       | 関数の続き、import、繰り返しパターン     |
-| **インライン編集** | （なし）          | `Ctrl+K` | `Cmd+K` | 選択範囲だけ直す        | 「この関数を async に」「この文言を変えて」 |
-| **Agent**   | 右側の Agent パネル | `Ctrl+I` | `Cmd+I` | 会話しながら複数ファイルを扱う | 機能追加、調査、リファクタ、バグ修正        |
+**`Ctrl+K`（Mac là `Cmd+K`）hợp và không hợp với gì**
 
+- Hợp: đổi tên hoặc rút gọn riêng hàm này, sửa lại câu chữ này, viết lại khối này
+- Không hợp: thêm tính năng trải trên nhiều tệp → **Agent**; “rốt cuộc cái này chạy thế nào?” → **Ask**
 
-> **このコースのショートカット表記は Windows が基本です。** Mac の人は括弧内を読んでください。
-
-> **今日の画面は IDE ビュー（中央にコード）+ 右の Agent パネルです。** Agents Window は今日は開かなくてよい（→ `[00-map.md](../fundamentals/00-map.md)`）。
-
-**Tab が見ているもの**: 周囲のコード・最近の編集・リンターの情報。だから「いま書いている流れの続き」に強い。
-
-
-| Tab が活きるとき   | Tab に任せないとき  |
-| ------------ | ------------ |
-| 似たパターンの繰り返し  | 仕様判断が必要なロジック |
-| import や型の補完 | セキュリティやお金の計算 |
-| 「今書いてる流れ」の続き | レビューが必須の箇所   |
-
-
-`Ctrl+K`**（Mac は** `Cmd+K`**）の向き / 不向き**
-
-- 向く: この関数だけリネーム / 簡潔化、この文言を直す、このブロックを書き換える
-- 向かない: 複数ファイルにまたがる機能追加 → **Agent**、「そもそもどう動いている？」 → **Ask**
-
-**使い分け早見**
+**Bảng chọn nhanh**
 
 ```text
-今打っている続きが欲しい     → Tab
-この選択範囲だけ直したい     → Ctrl+K
-調査したい / まだ書くな       → Ask
-作って・直して・動かして     → Agent
-大きいので方針から           → Plan
+Muốn viết tiếp đoạn đang gõ      → Tab
+Chỉ muốn sửa vùng đang chọn      → Ctrl+K
+Muốn tra cứu / khoan hãy viết    → Ask
+Làm đi, sửa đi, chạy thử đi      → Agent
+Việc lớn, bàn hướng đi trước     → Plan
 ```
 
-> もっと詳しく: `[00-map.md](../fundamentals/00-map.md)` · `[04-tab-and-inline.md](../fundamentals/04-tab-and-inline.md)`
+> Chi tiết hơn: [`00-map.md`](../fundamentals/00-map.md) · [`04-tab-and-inline.md`](../fundamentals/04-tab-and-inline.md)
 
+### 3-2 Chạm thử（Tab / Ctrl+K / Agent）
 
+#### ［Slide］Học viên làm gì（10 phút）
 
-### 3-2 触ってみる（Tab / Ctrl+K / Agent）
+Làm lần lượt từ trên xuống. Ở ① và ② mở hai tệp khác nhau.
 
-#### ［スライド］受講者がやること（10分）
+**① Gọi Tab ra（3 phút）**
 
-上から順に触ってください。①と②で開くファイルが違います。
+Mở `practice/calculator.js`, đặt con trỏ vào trong `applyDiscount` rồi gõ dở dang một thứ gì đó. Thấy chữ xám hiện ra thì `Tab` để nhận, `Esc` để bỏ.
 
-**① Tab を出す（3分）**
+**② Sửa đúng một chỗ bằng `Ctrl+K`（5 phút）**
 
-`practice/calculator.js` を開き、`applyDiscount` の中にカーソルを置いて、何か書きかけてください。灰色の文字が出たら `Tab` で採用、`Esc` で却下。
-
-**②** `Ctrl+K` **で1か所だけ直す（5分）**
-
-`practice/greeter.js` を開き、`greet` 関数全体を選択して `Ctrl+K`（Mac は `Cmd+K`）。次を貼り付けて送ります。
+Mở `practice/greeter.js`, bôi đen toàn bộ hàm `greet` rồi bấm `Ctrl+K`（Mac là `Cmd+K`）. Dán câu sau vào và gửi.
 
 ```text
-英語の挨拶を、丁寧な日本語の挨拶に変えて。
+Đổi lời chào tiếng Anh thành một lời chào lịch sự bằng tiếng Việt.
 ```
 
-出てきたら **Accept**（採用）か **Reject**（取り消し）。
+Kết quả hiện ra thì bấm **Accept**（nhận）hoặc **Reject**（bỏ）.
 
-**Accept したら、ブラウザを再読み込みしてください。ページの見出しが変わります。**
+**Ai đã Accept thì tải lại trình duyệt. Tiêu đề của trang sẽ đổi.**
 
-**③ Agent の入力欄を開く（2分）**
+**③ Mở ô nhập của Agent（2 phút）**
 
-`Ctrl+I`（Mac は `Cmd+I`）。**まだ何も送りません。** 開くだけです。
+`Ctrl+I`（Mac là `Cmd+I`）. **Chưa gửi gì cả.** Chỉ mở ra thôi.
 
-#### 講師が話すこと
+#### Giảng viên nói gì
 
-**①に入る前**: 資料の表記は Windows 基準で、Mac の人は `Ctrl` を `Cmd` に読み替えること（`Shift+Tab` は両方同じ）。**ショートカットが効かない人は、画面のボタンから操作してよい**と先に言っておきます。受講者がキーバインドを変えていることがあり、ここでつまずくと後が続きません。
+**Trước khi vào ①**: nhắc rằng tài liệu ghi phím tắt theo Windows, người dùng Mac đọc `Ctrl` thành `Cmd`（`Shift+Tab` thì hai bên như nhau）. Và nói trước rằng **ai bấm phím tắt không ăn thì cứ thao tác bằng nút trên màn hình**. Có người đã đổi keybinding, kẹt ở đây là hỏng cả buổi.
 
-**①の待ち中**: 灰色が出るまで数秒かかることがある、と先に言っておくと受講者が焦りません。入力途中なので赤い波線が出ますが、それは想定どおりだと添えます。
+**Trong lúc chờ ở ①**: nói trước rằng chữ xám có khi mất vài giây mới ra, để học viên khỏi cuống. Gõ dở thì có gạch chân đỏ, nói thêm rằng như vậy là đúng dự tính.
 
-**②の待ち中**: 確定ボタンの表記が2種類あることを説明します。インラインの入力欄は **Accept / Reject**、行単位の差分は **Keep / Undo**（旧版はどちらも Accept / Reject）。**次の章で必ず使うので、ここで一度言っておきます。**
+**Trong lúc chờ ở ②**: giải thích rằng nút xác nhận có hai kiểu chữ. Ô nhập inline thì ghi **Accept / Reject**, còn diff theo dòng thì ghi **Keep / Undo**（bản cũ thì cả hai đều là Accept / Reject）. **Chương sau chắc chắn dùng tới, nên nói luôn ở đây.**
 
-**②の再読み込み後**: ここが今日**初めて自分の変更が画面に出る**瞬間です。「いま直したのはコードですが、変わったのは画面です」と一言添えると、この後の章が生きます。
+**Sau khi tải lại ở ②**: đây là lần đầu trong hôm nay **thay đổi của chính học viên hiện lên màn hình**. Thêm một câu “vừa nãy sửa là code, nhưng thứ thay đổi là màn hình” thì các chương sau mới sống.
 
-**③のあと**: 「Tab は『続き』、Ctrl+K は『ここだけ』、Agent は『会話しながら』。今日は主に Agent を使います。」
+**Sau ③**: “Tab là ‘viết tiếp’, Ctrl+K là ‘chỉ chỗ này’, Agent là ‘vừa nói chuyện vừa làm’. Hôm nay chủ yếu dùng Agent.”
 
-#### チェックポイント
+#### Điểm kiểm tra
 
-- [ ] Tab の灰色提案を一度は見た
-- [ ] `Ctrl+K` で1回変更して Accept か Reject した
-- [ ] **再読み込みして、ページの見出しが変わったのを見た**（Accept した人）
-- [ ] Agent の入力欄が開いている
+- [ ] Đã nhìn thấy gợi ý xám của Tab ít nhất một lần
+- [ ] Đã sửa một lần bằng `Ctrl+K` rồi Accept hoặc Reject
+- [ ] **Đã tải lại và thấy tiêu đề trang đổi**（với người đã Accept）
+- [ ] Ô nhập của Agent đang mở
 
-**Tab が出なかった人がいても進みます。** 今日の本体は第4・5章です。ここで止まらないこと。
+**Có người không gọi được Tab thì vẫn đi tiếp.** Phần chính của hôm nay là chương 4 và 5. Đừng dừng ở đây.
 
-#### 詰まったら
+#### Khi mắc kẹt
 
-
-| 詰まり            | 対処                                                                              |
-| -------------- | ------------------------------------------------------------------------------- |
-| Tab の提案が出ない    | 数秒待つ。それでも出なければ飛ばしてよい。右下の Tab インジケータがオフになっていることもある                               |
-| `Ctrl+K` が効かない | Mac は `Cmd+K`。キーバインドを変えている人は、選択してから右クリックメニューを探す                                 |
-| 別ウィンドウが開いた     | Agent が別ウィンドウで開く版がある。右上の Agent ボタンか `Alt+Ctrl+J`（Mac は `Option+Cmd+J`）で右パネルに戻せる |
-
+| Chỗ kẹt | Xử lý |
+| ------- | ----- |
+| Tab không ra gợi ý | Chờ vài giây. Vẫn không ra thì bỏ qua. Cũng có khi chỉ báo Tab ở góc dưới bên phải đang tắt |
+| `Ctrl+K` không ăn | Mac là `Cmd+K`. Ai đã đổi keybinding thì bôi đen rồi tìm trong menu chuột phải |
+| Mở ra một cửa sổ khác | Có bản mở Agent ở cửa sổ riêng. Đưa về panel bên phải bằng nút Agent ở góc trên bên phải, hoặc `Alt+Ctrl+J`（Mac là `Option+Cmd+J`） |
 
 ---
 
+## Chương 4 Ask và Agent — 0:30（15 phút）
 
+> **Đây là trọng tâm của hôm nay.** Hỏi bằng Ask rồi sửa bằng Agent. Cả lớp tự tay chạy trọn một vòng này.
 
-## 第4章 Ask と Agent — 0:30（15分）
+### Mạch của chương
 
-> **今日の中心です。** Ask で調べてから Agent で直す。この1サイクルを全員が自分の手で回します。
+1. 4-1 Ask, Agent và `@`（giải thích）
+2. 4-2 Chạy trọn một vòng（Ask → Agent）
 
+### 4-1 Ask, Agent và `@`（giải thích）
 
+#### ［Slide］Giải thích
 
-### この章の流れ
+**Mode là thứ quyết định cách hành xử của AI.** Nó hiện ở góc dưới bên trái ô nhập; bấm vào để chọn, hoặc `Shift+Tab` để chuyển lần lượt.
 
-1. 4-1 Ask と Agent / @（解説）
-2. 4-2 1サイクルを回す（Ask → Agent）
+| Mode | Hợp với việc gì | Có sửa tệp không |
+| ---- | --------------- | ---------------- |
+| **Agent** | Thêm tính năng, refactor, sửa bug, chạy test | Có |
+| **Plan** | Việc lớn: thống nhất hướng trước rồi mới làm | Làm sau khi duyệt kế hoạch |
+| **Debug** | Truy bug khó tái hiện, vừa truy vừa thu bằng chứng | Có |
+| **Multitask** | Chạy song song nhiều việc độc lập | Có（song song） |
+| **Ask** | Tra cứu, giải thích, bàn thiết kế（chưa muốn nó viết） | **Không（chỉ đọc）** |
 
-### 4-1 Ask と Agent / @（解説）
+**Hôm nay chỉ dùng hai cái: Ask và Agent.** Còn lại để khi nào cần.
 
-#### ［スライド］解説
+> Đổi mode là bắt đầu một ngữ cảnh hội thoại mới cho mode đó. Đổi việc thì mở chat mới cũng là cách hay.
 
-**モードは、AI の振る舞いを決めるもの**です。入力欄の左下に出ていて、クリックで選ぶか `Shift+Tab` で順送りできます。
+**Mode và model là hai thứ khác nhau.** Chúng nằm sát nhau cạnh ô nhập nên rất dễ lẫn.
 
+| | Quyết định điều gì | Đổi bằng |
+| --- | --- | --- |
+| **Mode** | **Cách hành xử** của AI（có sửa tệp không, có ra kế hoạch trước không） | `Shift+Tab` |
+| **Model** | **Chính bộ não AI** xử lý yêu cầu | `Ctrl+/`（Mac là `Cmd+/`） |
 
-| モード           | 向いていること                | ファイル編集          |
-| ------------- | ---------------------- | --------------- |
-| **Agent**     | 機能追加・リファクタ・バグ修正・テスト実行  | する              |
-| **Plan**      | 大きい変更の方針を先に合意してから実装    | 計画承認後に実装        |
-| **Debug**     | 再現が難しいバグを、証拠を取りながら追う   | する              |
-| **Multitask** | 独立した複数の作業を並列で進める       | する（並列に）         |
-| **Ask**       | 調査・説明・設計の相談（まだ書かせたくない） | **しない（読み取りのみ）** |
-
-
-**今日は Ask と Agent の2つだけ**使います。残りは必要になってから。
-
-> モードを切り替えると、そのモード用の新しい会話コンテキストになります。タスクが変わったら新規チャットも有効です。
-
-**モードとモデルは別物です。** 入力欄の近くに並んでいるので混同しやすいところです。
-
-
-|         | 何を決めるか                       | 切り替え                    |
-| ------- | ---------------------------- | ----------------------- |
-| **モード** | AI の**振る舞い**（編集するか、計画を先に出すか） | `Shift+Tab`             |
-| **モデル** | 依頼を処理する **AI の頭脳そのもの**       | `Ctrl+/`（Mac は `Cmd+/`） |
-
-
-既定の **Auto** は「モデルを選ばない」ではなく、**Cursor Router がリクエストごとに自動で選んでいる**という意味です。難しいタスクは高性能なモデルへ、簡単なものは低コストなモデルへ振り分けられます。**今日はそのままで構いません。**
+Mặc định là **Auto**, không có nghĩa “không chọn model”, mà là **Cursor Router tự chọn cho từng request**. Việc khó thì đẩy sang model mạnh, việc dễ thì đẩy sang model rẻ. **Hôm nay cứ để nguyên.**
 
 ---
 
-`@` **は、会話に載せる情報を指定するもの**です。入力欄で `@` を打つと選べます。
+**`@` là thứ để chỉ định thông tin đưa vào hội thoại.** Gõ `@` ở ô nhập là chọn được.
 
+| Chỉ định | Khi nào dùng |
+| -------- | ------------ |
+| `@<file>` | “Lấy tệp này làm tiền đề để nói / để sửa” |
+| `@<folder>/` | “Chỉ nhìn trong phạm vi này” |
+| `@Docs` | Tham chiếu tài liệu đã đăng ký |
+| `@Terminals` | Cho AI xem lỗi hoặc kết quả chạy |
+| `@Past Chats` | Nối tiếp hội thoại trước |
+| `@Commit` / `@Branch` | Diff chưa commit, hoặc diff so với main |
 
-| 指定                    | 使いどころ                 |
-| --------------------- | --------------------- |
-| `@ファイル名`              | 「このファイルを前提に話して / 直して」 |
-| `@フォルダ/`              | 「この範囲だけ見て」            |
-| `@Docs`               | 登録済みドキュメントを参照         |
-| `@Terminals`          | エラー出力や実行結果を見せる        |
-| `@Past Chats`         | 以前の会話の続き              |
-| `@Commit` / `@Branch` | 未コミット差分や main との差分    |
+Cách nghĩ: **biết rõ tệp liên quan thì `@` thẳng vào. Không biết thì đừng gắn, để Agent tự tìm.**
 
+| Yêu cầu yếu | Yêu cầu tốt |
+| ----------- | ----------- |
+| `Sửa bug đi` | `@practice/cart.js @Terminals` Sửa lỗi “tổng phụ ra NaN”. Cách tái hiện: thêm vào addItem một món không có price, rồi gọi getSubtotal. |
 
-考え方は **「関係ファイルが分かっているなら** `@` **する。分からないなら付けず、Agent に探させる」**。
+**Đừng gắn quá tay**: `@` nguyên một thư mục lớn không liên quan chỉ tổ thành nhiễu. **Hôm nay một tệp là đủ.**
 
+> Chi tiết hơn: [`01-modes.md`](../fundamentals/01-modes.md) · [`03-context.md`](../fundamentals/03-context.md)
 
-| 弱い依頼    | 良い依頼                                                                                                    |
-| ------- | ------------------------------------------------------------------------------------------------------- |
-| `バグ直して` | `@practice/cart.js @Terminals` 「小計が NaN になる」問題を直して。 再現手順: addItem に price 未定義の商品を入れたあと getSubtotal を呼ぶ。 |
+### 4-2 Chạy trọn một vòng（Ask → Agent）
 
+#### ［Slide］Học viên làm gì（15 phút）
 
-**やりすぎ注意**: 無関係な大きいフォルダを全部 `@` するとノイズになります。**今日は1ファイルだけで十分**です。
+**① Chuyển sang mode Ask（2 phút）**
 
-> もっと詳しく: `[01-modes.md](../fundamentals/01-modes.md)` · `[03-context.md](../fundamentals/03-context.md)`
+Mở ô nhập bằng `Ctrl+I`（Mac là `Cmd+I`）, bấm vào tên mode ở góc dưới bên trái rồi chọn **Ask**（`Shift+Tab` thì chuyển lần lượt）.
 
-
-
-### 4-2 1サイクルを回す（Ask → Agent）
-
-#### ［スライド］受講者がやること（15分）
-
-**① Ask モードにする（2分）**
-
-`Ctrl+I`（Mac は `Cmd+I`）で入力欄を開き、左下のモード名をクリックして **Ask** を選びます（`Shift+Tab` はモードを順送りします）。
-
-**② Ask で聞く（4分）**
+**② Hỏi bằng Ask（4 phút）**
 
 ```text
 @practice/calculator.js
-このファイルの役割を3行で説明して。
-そのうえで、画面の「割引を計算する」が効かない理由を教えて。
+Giải thích vai trò của tệp này trong 3 dòng.
+Sau đó cho biết vì sao mục "Apply a discount" trên màn hình lại không ăn.
 ```
 
-**③ Agent モードに戻す（1分）**
+**③ Quay lại mode Agent（1 phút）**
 
-モード名をクリックして **Agent** を選びます。
+Bấm vào tên mode rồi chọn **Agent**.
 
-**④ Agent に実装させる（8分）**
+**④ Cho Agent làm（8 phút）**
 
 ```text
 @practice/calculator.js
-applyDiscount(amount, percent) を実装して。
-例: applyDiscount(1000, 10) → 900
-TODOコメントは残さなくてよい
+Hãy hiện thực applyDiscount(amount, percent).
+Ví dụ: applyDiscount(1000, 10) → 900
+Không cần giữ lại comment TODO
 ```
 
-送ったら**差分（diff）が出るまで待ちます**。まだ Keep しないでください。次の章で読んでから決めます。
+Gửi xong thì **chờ diff hiện ra**. Chưa Keep vội. Chương sau đọc xong rồi mới quyết.
 
-#### 講師が話すこと
+#### Giảng viên nói gì
 
-**①のとき**: モードは入力欄の左下に出ています。**切り替わったかどうかを必ず自分の目で確認させます。** Ask のまま実装を頼む／Agent のまま質問する、が最初の詰まりどころです。
+**Ở ①**: mode hiện ở góc dưới bên trái ô nhập. **Bắt học viên tự mắt xác nhận là nó đã đổi chưa.** Để nguyên Ask mà nhờ code, hoặc để nguyên Agent mà đặt câu hỏi — đó là chỗ kẹt đầu tiên.
 
-**②を送った直後の待ち（30〜60秒）**: `@` で渡せるものの話をします。「`@` でファイルを指定すると、そのファイルを読んで答えてくれる」を最初に言い、ファイルだけでなくフォルダ、`@Terminals`（エラー出力）も渡せる。ただし**今日は1ファイルだけで十分**。
+**Ngay sau khi gửi ② và đang chờ（30–60 giây）**: nói về những thứ `@` đưa được. Nói trước câu “gắn `@` vào một tệp thì nó đọc tệp đó rồi trả lời”, rồi thêm rằng ngoài tệp còn gắn được thư mục và `@Terminals`（kết quả lỗi）. Nhưng **hôm nay một tệp là đủ**.
 
-**③のとき**: 「Ask は『調べる・確認する』、Agent は『変える』。この使い分けが最初の型です。」
+**Ở ③**: “Ask là ‘tra cứu, xác nhận’, Agent là ‘thay đổi’. Phân biệt được hai cái đó là khuôn đầu tiên.”
 
-**④を送った直後の待ち（1分前後）**: **次の章の予習をここで済ませます。** 「返ってきたら緑と赤の画面が出ます。緑が追加、赤が削除。それを1行ずつ読むのが次の章です」と先に言っておくと、返ってきた瞬間に全員が読み始められます。
+**Ngay sau khi gửi ④ và đang chờ（khoảng 1 phút）**: **học trước chương sau ngay tại đây.** Nói trước rằng “lát nữa nó trả về thì màn hình sẽ ra xanh với đỏ. Xanh là thêm, đỏ là xóa. Đọc từng dòng cái đó chính là chương sau” — như vậy vừa có kết quả là cả lớp bắt đầu đọc được ngay.
 
-入力欄のモデル表示（**Auto** や **High**）を聞かれたら、**今日はそのままでよい**と答えます。
+Có ai hỏi về phần model ở ô nhập（**Auto** hay **High**）thì trả lời **hôm nay cứ để nguyên**.
 
-#### チェックポイント
+#### Điểm kiểm tra
 
-- [ ] Ask で答えが返ってきた（画面①が効かない理由を自分の言葉で言える）
-- [ ] Agent モードに戻せた
-- [ ] `applyDiscount` の差分が画面に出ている（**まだ Keep していない**）
+- [ ] Ask đã trả lời（tự nói được bằng lời của mình vì sao mục ① không ăn）
+- [ ] Đã quay về được mode Agent
+- [ ] Diff của `applyDiscount` đang hiện trên màn hình（**chưa Keep**）
 
-**Ask と Agent の切り替えで詰まっている人が3人以上いたら、全員を止めて補足します。** ここが分からないと今日が終わります。
+**Nếu có từ 3 người trở lên kẹt ở chỗ đổi Ask / Agent, hãy dừng cả lớp lại và giảng thêm.** Không hiểu chỗ này thì hôm nay coi như hết.
 
-#### 詰まったら
+#### Khi mắc kẹt
 
-
-| 詰まり               | 対処                                    |
-| ----------------- | ------------------------------------- |
-| モードが切り替わらない       | 入力欄左下の現在のモード名をクリックする。`Shift+Tab` は順送り |
-| `@` で候補が出ない       | ファイル名を少し入力するとサジェストが出る                 |
-| 差分が出ない            | Agent パネルをスクロールして「変更がありません」が出ていないか確認  |
-| Ask のまま実装を頼んでしまった | Ask は編集しない。モードを戻してもう一度送る              |
-| 先に Keep してしまった    | 問題なし。第5章は Keep 済みの状態からでも読める           |
-
+| Chỗ kẹt | Xử lý |
+| ------- | ----- |
+| Không đổi được mode | Bấm vào đúng tên mode hiện tại ở góc dưới bên trái ô nhập. `Shift+Tab` là chuyển lần lượt |
+| Gõ `@` không ra gợi ý | Gõ thêm vài chữ của tên tệp thì gợi ý hiện ra |
+| Không thấy diff | Cuộn panel Agent xem có dòng “không có thay đổi nào” không |
+| Lỡ nhờ code trong khi vẫn ở Ask | Ask không sửa tệp. Đổi mode rồi gửi lại |
+| Lỡ Keep trước mất rồi | Không sao. Chương 5 đọc được cả khi đã Keep |
 
 ---
 
+## Chương 5 Đọc diff — 0:45（10 phút）
 
+> Đọc **diff do chính mình tạo ra**. Nhìn màn hình người khác thì không lên tay được.
 
-## 第5章 差分を読む — 0:45（10分）
+### Mạch của chương
 
-> **自分が出した差分**を読みます。他人の画面を見ても読む力はつきません。
+1. 5-1 Cách đọc diff（giải thích）
+2. 5-2 Đọc rồi Keep
 
+### 5-1 Cách đọc diff（giải thích）
 
+#### ［Slide］Giải thích
 
-### この章の流れ
+**Thay đổi của Agent được áp thẳng vào tệp ngay trong lúc nó làm.** Không phải “xem đề xuất rồi mới áp”, mà bạn xem diff **khi tệp đã bị sửa rồi**. Chính vì thế mới phải đọc trước khi quyết.
 
-1. 5-1 diff の読み方（解説）
-2. 5-2 読んで Keep する
+| Nhìn cái gì | Nghĩa là |
+| ----------- | -------- |
+| **Xanh** | Dòng được thêm |
+| **Đỏ** | Dòng bị xóa |
 
-### 5-1 diff の読み方（解説）
+| Nút để quyết | Nghĩa | Nằm ở đâu |
+| ------------ | ----- | --------- |
+| **Keep** | Nhận | Góc dưới bên phải của diff, hoặc thanh thay đổi ở đáy panel Agent |
+| **Undo** | Bỏ và trả về như cũ | Như trên |
+| **Review** | Xem gộp toàn bộ thay đổi | Đáy panel Agent |
+| **Restore Checkpoint** | Lùi hẳn về thời điểm đó | Cạnh tin nhắn tương ứng |
 
-#### ［スライド］解説
+> **Lưu ý cách hiển thị chữ**: diff theo dòng ghi là **Keep / Undo**, riêng sửa inline bằng `Ctrl+K` thì ghi là **Accept / Reject**. **Ý nghĩa như nhau**（bản cũ thì cả hai đều là Accept / Reject）.
 
-**Agent の変更は、作業中にファイルへ適用されていきます。** 「提案を見てから反映」ではなく、**もう書き換わっている**状態で差分を見ます。だから読んでから決めます。
+**Dù nghĩ là “đã nhận hết rồi”, vẫn nên tập thói quen kiểm lại lần cuối bằng git hoặc bằng mắt.**
 
+> Chi tiết hơn: [`02-shortcuts.md`](../fundamentals/02-shortcuts.md)
 
-| 見るもの  | 意味     |
-| ----- | ------ |
-| **緑** | 追加された行 |
-| **赤** | 削除された行 |
+### 5-2 Đọc rồi Keep
 
+#### ［Slide］Học viên làm gì（10 phút）
 
+**① Đọc diff của mình, từng dòng（4 phút）**
 
-| 決めるボタン                 | 意味            | どこにある                      |
-| ---------------------- | ------------- | -------------------------- |
-| **Keep**               | 採用する          | 差分の右下、または Agent パネル下部の変更バー |
-| **Undo**               | 取り消して元に戻す     | 同上                         |
-| **Review**             | 変更全体をまとめて確認する | Agent パネル下部                |
-| **Restore Checkpoint** | その時点まで大きく巻き戻す | 対象メッセージの横                  |
+Đọc diff của `applyDiscount` vừa tạo ở chương trước. Vừa đọc vừa tự hỏi ba câu:
 
+- Có thứ gì ngoài phần mình nhờ bị thay đổi không
+- Những dòng bị xóa（màu đỏ）, mất đi có sao không
+- `applyDiscount(1000, 10)` liệu có ra 900 không
 
-> **表記の注意**: 行単位の差分は **Keep / Undo**、`Ctrl+K` のインライン編集だけは **Accept / Reject** と表示されます。**意味は同じ**です（旧版はどちらも Accept / Reject）。
+**② Keep（2 phút）**
 
-**「全部受け入れたつもり」でも、git や目視で最終確認する癖をつけてください。**
+Đọc thấy thuyết phục thì **Keep**. Không thuyết phục thì **Undo** để trả về rồi nhờ lại.
 
-> もっと詳しく: `[02-shortcuts.md](../fundamentals/02-shortcuts.md)`
+Muốn lùi nhiều thì dùng **Restore Checkpoint** cạnh tin nhắn để về đúng thời điểm đó.
 
+**③ Kiểm chứng trên màn hình（2 phút）**
 
+Tải lại trình duyệt.
 
-### 5-2 読んで Keep する
+| Trước đó | Sau khi tải lại |
+| -------- | --------------- |
+| ① After discount **1,000**（cam） | ① After discount **900**（xanh đậm） |
 
-#### ［スライド］受講者がやること（10分）
+Số không đổi thì hoặc là chưa Keep được, hoặc là phần hiện thực sai.
 
-**① 自分の差分を1行ずつ読む（4分）**
+**④ Đối chiếu đáp án bằng Ask（2 phút）**
 
-前の章で出した `applyDiscount` の差分を読みます。次の3つを自分に問いながら読んでください。
-
-- 頼んだこと以外が変わっていないか
-- 消えている行（赤）は、消えて困らないか
-- `applyDiscount(1000, 10)` が 900 になりそうか
-
-**② Keep する（2分）**
-
-読んで納得できたら **Keep**。納得できなければ **Undo** で戻して、もう一度頼み直します。
-
-大きく戻したいときは、メッセージ横の **Restore Checkpoint** でその時点まで戻せます。
-
-**③ 画面で確かめる（2分）**
-
-ブラウザを再読み込みしてください。
-
-
-| 直前まで                    | 再読み込み後             |
-| ----------------------- | ------------------ |
-| ① 割引後 **1,000 円**（オレンジ） | ① 割引後 **900 円**（紺） |
-
-
-数字が変わらなければ、Keep できていないか、実装が違っています。
-
-**④ Ask で答え合わせをする（2分）**
-
-モードを **Ask** に切り替えて送ります。
+Chuyển sang mode **Ask** rồi gửi.
 
 ```text
 @practice/calculator.js
-applyDiscount(1000, 10) の期待値は何？ 今の実装で合ってる？
+Giá trị mong đợi của applyDiscount(1000, 10) là bao nhiêu? Cách hiện thực hiện tại có đúng không?
 ```
 
+#### Giảng viên nói gì
 
+**Trong lúc ①**: đi quanh lớp, hỏi một hai người “bạn đang nhìn chỗ nào”. Trả lời không được cũng không sao. Mục đích là tạo ra **trạng thái đang cố đọc**.
 
-#### 講師が話すこと
+**Ở ③**: đây là khoảnh khắc đã nhất của hôm nay. Cả lớp cùng xác nhận **màu cam đổi thành xanh đậm**. “Sửa code, thế là màn hình cũng được sửa. Tới đây là trọn một vòng.”
 
-**①の間**: 巡回しながら「どこを見ていますか」と1〜2人に聞きます。答えられなくてよい。**読もうとしている状態**を作るのが目的です。
-
-**③のとき**: 今日いちばん気持ちのいい瞬間です。**オレンジが紺に変わる**のを全員で確認します。「コードを直したら、画面が直りました。ここまでが1サイクルです。」
-
-**④を送った直後の待ち**: 今日の型をまとめて話します。
+**Ngay sau khi gửi ④ và đang chờ**: chốt lại khuôn của hôm nay.
 
 ```
-Ask（@ファイル 質問）
-  ↓ 内容を理解
-Agent（@ファイル 依頼 + 完了条件）
-  ↓ diff を読む
-Keep or Undo（旧版では Accept or Reject）
+Ask（@tệp + câu hỏi）
+  ↓ hiểu nội dung
+Agent（@tệp + yêu cầu + điều kiện hoàn thành）
+  ↓ đọc diff
+Keep hoặc Undo（bản cũ là Accept hoặc Reject）
 ```
 
-そして今日いちばん大事な一言を、ここで言います。
+Rồi nói câu quan trọng nhất của hôm nay, ngay tại đây.
 
-> 「Keep する前に必ず diff を読む。これが Cursor を安全に使う土台になります。」
+> “Trước khi Keep thì nhất định phải đọc diff. Đó là nền móng để dùng Cursor một cách an toàn.”
 
+#### Điểm kiểm tra
 
+- [ ] Đã đọc diff rồi mới Keep（không phải bấm bừa）
+- [ ] **Mục ① trên màn hình đã đổi thành “900”**
+- [ ] Phần đối chiếu đáp án bằng Ask đã trả về
 
-#### チェックポイント
+#### Khi mắc kẹt
 
-- [ ] 差分を読んでから Keep した（読まずに押していないか）
-- [ ] **画面①が「900 円」に変わった**
-- [ ] Ask の答え合わせが返ってきた
-
-
-
-#### 詰まったら
-
-
-| 詰まり                  | 対処                                                 |
-| -------------------- | -------------------------------------------------- |
-| Keep / Undo ボタンが見えない | diff の右下、または Agent パネル下部の変更バー。旧版では Accept / Reject |
-| Undo したら消えすぎた        | メッセージ横の **Restore Checkpoint** でその時点まで戻す           |
-| 実装が間違っている            | 直させる前に Ask で「どこが違う？」と聞かせる。答えを講師が言わない               |
-
+| Chỗ kẹt | Xử lý |
+| ------- | ----- |
+| Không thấy nút Keep / Undo | Góc dưới bên phải của diff, hoặc thanh thay đổi ở đáy panel Agent. Bản cũ ghi là Accept / Reject |
+| Undo xong thì mất quá nhiều | Dùng **Restore Checkpoint** cạnh tin nhắn để về đúng thời điểm đó |
+| Phần hiện thực sai | Đừng cho sửa ngay. Bắt hỏi bằng Ask “sai ở chỗ nào?” trước. Giảng viên không đưa đáp án |
 
 ---
 
+## Chương 6 Thực hành — 0:55（25 phút）
 
+> Từ đây giảng viên không giảng nữa. Chỉ đi quanh lớp.
 
-## 第6章 ハンズオン — 0:55（25分）
+### Mạch của chương
 
-> ここからは講師は話しません。巡回するだけです。
+1. 6-1 Khuôn của một yêu cầu tốt（giải thích）
+2. 6-2 Bài A / B / C
 
+### 6-1 Khuôn của một yêu cầu tốt（giải thích）
 
+#### ［Slide］Giải thích
 
-### この章の流れ
-
-1. 6-1 うまく頼む形（解説）
-2. 6-2 課題 A / B / C
-
-### 6-1 うまく頼む形（解説）
-
-#### ［スライド］解説
-
-**うまく頼むコツは、モデルより先に「ゴール・制約・完了条件」を書くこと**です。今日の課題のプロンプトも、この形になっています。
+**Bí quyết nhờ cho đúng ý không nằm ở model, mà ở chỗ viết ra trước “mục tiêu, ràng buộc, điều kiện hoàn thành”.** Prompt của các bài hôm nay cũng theo đúng khuôn này.
 
 ```text
-【やりたいこと】一言
-【対象】@ファイル or フォルダ（分かる範囲）
-【制約】壊したくないもの / 使ってよい技術
-【完了条件】何があれば終わりか
-【やらなくてよいこと】（任意）
+【Muốn làm gì】một câu
+【Phạm vi】@tệp hoặc thư mục（trong chừng mực bạn biết）
+【Ràng buộc】cái gì không được làm hỏng / được dùng công nghệ nào
+【Điều kiện hoàn thành】có gì thì coi như xong
+【Không cần làm】（tùy chọn）
 ```
 
+| Tránh nói | Nói thế này thay vào |
+| --------- | -------------------- |
+| Làm cho nó ổn ổn | Cụ thể về giao diện, hành vi, trường hợp biên |
+| Refactor hết đi | Nêu rõ tệp nào, và “làm gì / không làm gì” |
+| Sửa bug đi | Mong đợi là gì, thực tế ra sao, tái hiện thế nào |
+| Tối ưu vào | Ưu tiên tốc độ, dễ đọc hay tương thích |
 
-| 避ける言い方  | 代わりに                |
-| ------- | ------------------- |
-| いい感じにして | 具体的な見た目・挙動・境界条件     |
-| 全部リファクタ | 対象ファイルと「やる / やらない」  |
-| バグ直して   | 期待・実際・再現手順          |
-| 最適に     | 速度 / 可読性 / 互換のどれ優先か |
+**Đổi việc thì mở chat mới.** Tiền đề cũ sẽ bớt vướng chân.
 
+> Chi tiết hơn: [`05-prompting.md`](../fundamentals/05-prompting.md)
 
-**タスクが変わったら新規チャット。** 古い前提が邪魔になりにくくなります。
+### 6-2 Bài A / B / C
 
-> もっと詳しく: `[05-prompting.md](../fundamentals/05-prompting.md)`
+#### ［Slide］Học viên làm gì
 
+**Bài A（cả lớp, vạch tối thiểu）— mục tiêu 03: sửa lỗi → màn hình ②**
 
-
-### 6-2 課題 A / B / C
-
-#### ［スライド］受講者がやること
-
-**課題 A（全員・最低ライン）— ゴール 03：不具合を直す → 画面②**
-
-画面②の小計が **NaN** になっています。`practice/cart.js` の `getSubtotal` を直します。
-**Ask で確認してから Agent で依頼する**、第4章と同じ順番です。
+Mục ② trên màn hình đang ra **NaN**. Sửa `getSubtotal` trong `practice/cart.js`.
+**Hỏi bằng Ask trước rồi mới nhờ Agent** — đúng thứ tự như chương 4.
 
 ```text
 【Ask】
 @practice/cart.js
-getSubtotal の現状の問題点を1〜2個教えて。
-直す前に確認したいだけ。
+Cho tôi 1–2 vấn đề của getSubtotal hiện tại.
+Tôi chỉ muốn xác nhận trước khi sửa.
 ```
 
 ```text
 【Agent】
 @practice/cart.js
-getSubtotal を次の条件で改善して。
-- price か qty が undefined / null のアイテムはスキップ
-- 空カートが 0 を返す今の挙動は変えない
-- 既存の関数名・引数は変えない
+Cải thiện getSubtotal theo các điều kiện sau.
+- Bỏ qua những item có price hoặc qty là undefined / null
+- Giữ nguyên hành vi hiện tại là giỏ rỗng trả về 0
+- Không đổi tên hàm và tham số sẵn có
 ```
 
-差分を読んで Keep したら、**ブラウザを再読み込み**してください。
+Đọc diff rồi Keep xong thì **tải lại trình duyệt**.
 
+| Trước đó | Sau khi tải lại |
+| -------- | --------------- |
+| ② Subtotal **NaN**（cam） | ② Subtotal **480**（xanh đậm） |
 
-| 直前まで               | 再読み込み後            |
-| ------------------ | ----------------- |
-| ② 小計 **NaN**（オレンジ） | ② 小計 **480 円**（紺） |
-
-
-**課題 B（余裕があれば）— ゴール 04：新しい機能を実装する → 画面③**
+**Bài B（nếu còn thời gian）— mục tiêu 04: làm một tính năng mới → màn hình ③**
 
 ```text
 【Agent】
 @practice/cart.js @practice/calculator.js
-cart.js に applyCoupon(code) を追加して。
-- SUMMER10 のとき getSubtotal の 10% 引きを返す
-- 無効なコードのとき getSubtotal をそのまま返す
-- calculator.js の applyDiscount を使ってよい
-- 新規ファイルは作らない
+Thêm applyCoupon(code) vào cart.js.
+- Với mã SUMMER10 thì trả về getSubtotal đã giảm 10%
+- Với mã không hợp lệ thì trả về nguyên getSubtotal
+- Được phép dùng applyDiscount trong calculator.js
+- Không tạo tệp mới
 ```
 
-Keep して再読み込みすると、画面③の「未実装」が消えて金額が出ます。**これで3か所すべてが紺色になります。**
+Keep rồi tải lại thì chữ “not implemented” ở mục ③ biến mất và số tiền hiện ra. **Tới đây thì cả ba chỗ đều đã sang màu xanh đậm.**
 
-**課題 C（さらに余裕があれば）— ゴール 03：エラーから直す**
+**Bài C（nếu còn dư thời gian nữa）— mục tiêu 03: sửa từ thông báo lỗi**
 
-同じロジックを、今度は**ターミナルで**動かします。`practice/index.js` はまだ空のプレースホルダです。
+Vẫn logic đó, nhưng lần này chạy **trong terminal**. `practice/index.js` hiện mới chỉ là chỗ giữ chỗ, còn trống.
 
 ```text
 【Agent】
 @practice/index.js @practice/cart.js
-index.js に、カートの中身と小計を console.log で出す処理を書いて。
-完了条件: node practice/index.js がエラーなく動き、金額がログに出る
+Viết vào index.js phần in nội dung giỏ hàng và tổng phụ ra bằng console.log.
+Điều kiện hoàn thành: node practice/index.js chạy không lỗi và in ra số tiền
 ```
 
-**エラーが出たら、ターミナルの出力をそのまま Agent に貼り付けて直してもらってください。** これがエラー対応の型です。
+**Nếu ra lỗi, hãy dán nguyên phần output của terminal vào cho Agent và nhờ nó sửa.** Đó chính là khuôn xử lý lỗi.
 
-#### 講師が話すこと
+#### Giảng viên nói gì
 
-**話しません。** 巡回してサポートします。
+**Không nói gì.** Đi quanh lớp hỗ trợ.
 
-詰まっている人に答えを教えないこと。**「Ask で聞いてみてください」**と返すのが基本です。今日の型を体に入れるのがこの25分の目的なので、講師が答えを出すと目的を外します。
+Đừng đưa đáp án cho người đang kẹt. Câu trả lời mặc định là **“thử hỏi Ask xem”**. Mục đích của 25 phút này là đưa cái khuôn của hôm nay vào người, nên giảng viên đưa đáp án là chệch mất mục đích.
 
-#### チェックポイント
+#### Điểm kiểm tra
 
-- [ ] 全員が課題 A の Agent 依頼まで到達した
-- [ ] **画面②が「480 円」になった人が半数を超えた**
+- [ ] Cả lớp đã tới được bước nhờ Agent ở bài A
+- [ ] **Quá nửa lớp đã thấy màn hình ② đổi thành “480”**
 
-課題 A が終わっていない人が多ければ、B と C は案内しません。
+Nếu còn nhiều người chưa xong bài A thì không giới thiệu bài B và C.
 
-#### 詰まったら
+#### Khi mắc kẹt
 
-
-| 詰まり                           | 対処                                         |
-| ----------------------------- | ------------------------------------------ |
-| 何を頼めばいいか分からない                 | スライドのプロンプトをそのまま貼らせる。自分で書くのは今日の課題ではない       |
-| Agent が余計なところまで変えた            | Undo して、依頼に「他は変えないで」を足させる                  |
-| **直したのに画面が変わらない**             | ブラウザの再読み込みを忘れている。Keep できているかも確認            |
-| 課題 B で applyDiscount が無いと言われる | 第4章で Undo した人。先に `applyDiscount` を実装させる    |
-| 課題 B で画面③が「未実装」のまま            | 関数名が `applyCoupon` になっているか確認（`export` も必要） |
-| `node` が無い                    | 課題 C は飛ばしてよい                               |
-
+| Chỗ kẹt | Xử lý |
+| ------- | ----- |
+| Không biết phải nhờ cái gì | Cho dán thẳng prompt trên slide. Tự viết prompt không phải là bài của hôm nay |
+| Agent sửa lan sang chỗ không cần | Undo, rồi thêm vào yêu cầu câu “đừng đổi những phần khác” |
+| **Sửa rồi mà màn hình không đổi** | Quên tải lại trình duyệt. Kiểm tra luôn xem đã Keep chưa |
+| Bài B báo là không có applyDiscount | Người đã Undo ở chương 4. Cho hiện thực `applyDiscount` trước |
+| Bài B mà mục ③ vẫn là “not implemented” | Kiểm tra tên hàm có đúng là `applyCoupon` không（và có `export` không） |
+| Máy không có `node` | Bỏ qua bài C cũng được |
 
 ---
 
+## Chương 7 Mang về — 1:20（10 phút）
 
+> Những gì cần nhớ hôm nay, phần nộp bài, và buổi sau. **Chương này không rút ngắn.**
 
-## 第7章 持ち帰るもの — 1:20（10分）
+> Kể cả khi phần chuẩn bị bị trễ khiến chương 3 phải nén lại, chương này vẫn giữ đủ 10 phút.
 
-> 今日おぼえて帰ること、提出、そして次回。**ここは短縮しません。**
+### Mạch của chương
 
-> セットアップで詰まって第3章が圧縮された場合も、この章は10分確保します。
+1. 7-1 Mang về · nộp bài · an toàn · buổi sau
 
+### 7-1 Mang về · nộp bài · an toàn · buổi sau
 
+#### ［Slide］Học viên làm gì
 
-### この章の流れ
+**Nộp bài（30 giây）**
 
-1. 7-1 持ち帰り・提出・安全・次回
+**Chụp đúng một tấm màn hình của mình**, dán vào khung chat hoặc thư mục chung.
 
-### 7-1 持ち帰り・提出・安全・次回
+> “Chỉ cần một chỗ màu cam đổi sang xanh đậm là đủ. Chưa sửa hết cũng không sao.”
 
-#### ［スライド］受講者がやること
+#### Giảng viên nói gì
 
-**提出（30秒）**
+**Ba điều cần nhớ khi ra về:**
 
-**自分の画面のスクリーンショットを1枚だけ**、チャットか共有フォルダに貼ってください。
+1. **Hỏi bằng Ask cho chắc rồi mới nhờ Agent**（đừng sửa ngay lập tức）
+2. **Chỉ rõ đối tượng bằng `@`**（yêu cầu mơ hồ thì kết quả cũng mơ hồ）
+3. **Đọc diff rồi mới Keep**（đừng tin Cursor quá mức）
 
-> 「オレンジが1つでも紺に変わっていれば十分です。全部直っていなくて大丈夫。」
+**Một lời nhắc duy nhất（30 giây）:**
 
+> “Hôm nay là repo để học nên làm gì cũng được. Nhưng **khi làm y như vậy trên repo của công ty thì phải cẩn thận: đừng để Agent đọc API key hay dữ liệu khách hàng.**”
 
+**［Slide］Giải thích — mặc định đã được bảo vệ tới đâu**
 
-#### 講師が話すこと
+| Đối tượng | Mặc định |
+| --------- | -------- |
+| Đọc và tìm kiếm tệp | Không cần duyệt |
+| Ghi đè tệp | **Lưu ngay lập tức**. Chính vì vậy mới cần quản lý phiên bản |
+| Chạy lệnh terminal | **Theo Run Mode**（làm cá nhân thì Auto-review） |
+| Mạng | Không gọi tùy tiện được. Chỉ giới hạn ở GitHub, link chỉ định trực tiếp, tìm kiếm web… |
 
-**今日おぼえて帰ること（3つだけ）:**
+Thứ không muốn cho đọc thì loại ra bằng `.cursorignore`. Nhưng ưu tiên cao nhất vẫn là **ngay từ đầu đừng đặt thông tin bí mật vào repo**.
 
-1. **Ask で確認してから Agent で依頼する**（いきなり変えない）
-2. `@` **で対象を明示する**（曖昧な依頼は曖昧な結果になる）
-3. **diff を読んでから Keep**（Cursor を信頼しすぎない）
+Làm cá nhân thì nên dùng **Auto-review**（mục đọc thêm ở chương 1）. Ở **Settings → Agents → Approvals & Execution**.
 
-**一言だけ注意（30秒）:**
+> Chi tiết hơn: [`13-safety-ignore.md`](../fundamentals/13-safety-ignore.md) · [`00-map.md`](../fundamentals/00-map.md)（những thiết lập nên chỉnh trước）
 
-> 「今日は学習用のリポジトリなので何をしても大丈夫です。ただし**業務のリポジトリで同じことをするときは、API キーや顧客データを Agent に読ませない**よう気をつけてください。」
-
-**［スライド］解説 — 既定でどこまで守られているか**
-
-
-| 対象           | 既定の扱い                                   |
-| ------------ | --------------------------------------- |
-| ファイルの読み取り・検索 | 承認不要                                    |
-| ファイルの書き換え    | **即座に保存される**。だからバージョン管理が前提              |
-| ターミナルのコマンド実行 | **Run Mode に従う**（個人開発なら Auto-review）    |
-| ネットワーク       | 任意の通信は不可。GitHub・直接指定したリンク・Web 検索などに限られる |
-
-
-読ませたくないものは `.cursorignore` で外せます。ただし**秘密はそもそもリポジトリに置かない**のが最優先です。
-
-個人開発なら **Auto-review** がおすすめです（第1章のコラム）。**Settings → Agents → Approvals & Execution**。
-
-> もっと詳しく: [`13-safety-ignore.md`](../fundamentals/13-safety-ignore.md) · [`00-map.md`](../fundamentals/00-map.md)（最初にそろえる設定）
-
-**やらなかったこと（次回以降）:**
+**Những thứ hôm nay chưa làm（để các buổi sau）:**
 
 - Rules / Skills / Hooks / MCP / Cloud Agents
-- Git / PR / チーム開発
-- 本格アプリ開発
+- Git / PR / làm việc nhóm
+- Phát triển ứng dụng thực thụ
 
-「これらは第2回以降で必要なときに触れます。今日動かせたことの方が大事です。」
+“Những cái này sẽ chạm tới ở buổi 2 trở đi, khi nào cần. Việc hôm nay chạy được thứ gì đó mới là quan trọng hơn.”
 
-**次回予告:**
+**Giới thiệu buổi sau:**
 
-> 「次回は神経衰弱を作ります。まず『何も考えずに』作ってもらいます。その後、要件を書いてから作り直す。どっちがうまくいくか、体で覚えてください。」
+> “Buổi sau mình làm trò lật hình tìm cặp. Đầu tiên cứ ‘không nghĩ gì cả’ mà làm. Sau đó viết yêu cầu ra rồi làm lại. Bên nào trôi hơn — cứ để cơ thể tự nhớ.”
 
+#### Điểm kiểm tra
 
+Phần nộp bài là để nắm được **ai đã sửa tới đâu** mà không cần đi quanh lớp. Nhìn còn mấy chỗ màu cam là biết ngay. Đó là căn cứ để quyết cách vào buổi 2.
 
-#### チェックポイント
+#### Khi mắc kẹt
 
-提出は「**誰がどこまで直せたか**」を巡回なしで把握するためのものです。オレンジが何個残っているかで一目で分かります。第2回の入り方を決める材料になります。
+Có người không nộp được thì không truy. **Chỉ đếm số người nộp được.**
 
-#### 詰まったら
+#### Link ôn lại（tự học）
 
-提出が出せない人がいても追いません。**出せた人の数だけ**を数えます。
-
-#### 復習リンク（自習用）
-
-- `[courses/fundamentals/00-map.md](../fundamentals/00-map.md)` — 全体像・最初にそろえる設定（起動 / 日本語 / Auto-review）
-- `[courses/fundamentals/01-modes.md](../fundamentals/01-modes.md)` — モード詳細
-- `[courses/fundamentals/03-context.md](../fundamentals/03-context.md)` — `@` の全種類
-- `[courses/fundamentals/05-prompting.md](../fundamentals/05-prompting.md)` — うまい頼み方
+- [`00-map.md`](../fundamentals/00-map.md) — toàn cảnh, những thiết lập nên chỉnh trước（khởi động / ngôn ngữ / Auto-review）
+- [`01-modes.md`](../fundamentals/01-modes.md) — chi tiết về các mode
+- [`03-context.md`](../fundamentals/03-context.md) — đầy đủ các loại `@`
+- [`05-prompting.md`](../fundamentals/05-prompting.md) — cách nhờ cho đúng ý
 
 ---
 
+## Checklist cho giảng viên（dùng trong ngày）
 
+#### Trước hôm đó
 
-## 講師チェックリスト（当日用）
+- [ ] Đã kiểm tra mạng của phòng học tải được từ cursor.com
+- [ ] Cursor của mình đang là bản mới nhất
+- [ ] Đã mở `practice/index.html` **và xác nhận ①②③ đều đang màu cam, tức trạng thái ban đầu**（đúng trạng thái của `main`）
+- [ ] `applyDiscount` trong `practice/calculator.js` vẫn còn là TODO
+- [ ] Lệnh `node` chạy được（cho bài C）
+- [ ] Đã chuẩn bị sẵn URL clone để dán vào chat（phát cho cả lớp lúc 0:00）
+- [ ] Đã hỏi IT xem môi trường cài đặt có cần quyền admin không
+- [ ] **Đã xác nhận prompt được in đầy đủ trên slide**（kiểu vừa giảng vừa làm thì không đọc miệng）
+- [ ] **Slide có ảnh chụp chỉ rõ vị trí trên màn hình**（chỗ tên mode, chỗ diff, chỗ Keep / Undo）
+- [ ] Đã tự đi qua một lần cách đưa Agents Window về IDE（mục “Khi mắc kẹt” của chương 1）
 
+#### Quản lý thời gian theo chương
 
+- Chương 1 mà quá 0:20 thì nén chương 3 xuống 3 phút（**không nén chương 4 và 5**）
+- Kết thúc chương 5 mà **đã quá 0:55** thì chương 6 chỉ giữ bài A
+- Chương 7 thì dù có chuyện gì cũng giữ đủ 10 phút
 
-#### 前日までに
+#### Giả định về cách chạy
 
-- [ ] 会場のネットワークから cursor.com のダウンロードが通ることを確認した
-- [ ] 自分の Cursor が最新版
-- [ ] `practice/index.html` **を開いて、①②③がすべてオレンジの初期状態**であることを確認した（`main` の状態）
-- [ ] `practice/calculator.js` の `applyDiscount` が TODO のまま
-- [ ] `node` コマンドが動く（課題 C 用）
-- [ ] clone の URL をチャットに貼れる状態にした（0:00 で全員に配る）
-- [ ] インストールに管理者権限が要る環境か、IT に確認した
-- [ ] **スライドにプロンプトが全文載っていることを確認した**（並走型では口頭で読み上げない）
-- [ ] **画面の位置を示すスクリーンショットがスライドに入っている**（モード名の場所・diff・Keep / Undo の位置）
-- [ ] Agents Window → IDE の戻し方を一度自分で通した（第1章の「詰まったら」）
-
-
-
-#### 章ごとの時間管理
-
-- 第1章が 0:20 を過ぎたら、第3章を3分に圧縮する（**第4・5章は圧縮しない**）
-- 第5章が終わった時点で **0:55 を超えていたら**、第6章は課題 A だけに絞る
-- 第7章は何があっても10分確保する
-
-
-
-#### 進行の想定
-
-- プロンプトはスライドに出す。口頭で読み上げると打ち間違いから遅れが出やすい
-- 送信直後に待ち時間が出る。各章の「講師が話すこと」はその枠を埋めるためのもの
-- 全員を揃えるのは第1章だけの想定。他は打ち切って進む形で時間を組んである
-- 受講者が詰まったときは、隣の画面を見せてもらうのが早い
-
+- Prompt thì đưa lên slide. Đọc miệng dễ sinh gõ sai rồi trễ giờ
+- Gửi xong là có quãng chờ. Phần “Giảng viên nói gì” của mỗi chương chính là để lấp quãng đó
+- Chỉ chờ cho cả lớp đều nhau đúng ở chương 1. Các chương khác thì cắt và đi tiếp
+- Học viên kẹt thì cách nhanh nhất là xin xem màn hình người bên cạnh
