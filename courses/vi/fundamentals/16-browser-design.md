@@ -6,11 +6,16 @@ Không cần cài hay cấu hình công cụ ngoài nào.
 
 ## Cách mở
 
-**Mở từ command palette. Không có phím tắt riêng nào được gán sẵn.**
+**Tệp trên máy thì mở bằng chuột phải.**
+
+1. Trong cây thư mục ở sidebar, chuột phải vào `practice/index.html`
+2. Chọn **Open In Browser**
+
+Còn muốn mở một URL thì mở từ command palette. **Không có phím tắt riêng nào được gán sẵn.**
 
 1. `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）
 2. Chọn **Open Browser**
-3. Nhập URL muốn mở vào thanh địa chỉ
+3. Nhập URL vào thanh địa chỉ
 
 Có bốn lệnh liên quan.
 
@@ -21,13 +26,10 @@ Có bốn lệnh liên quan.
 | **Reload Browser Tab** | Tải lại tab đang xem |
 | **Close Browser Tab** | Đóng tab |
 
-Nếu đã có dev server chạy sẵn trên máy thì Agent **tự tìm ra cổng** và mở（nói ở dưới）. Còn tự mở thì bạn nhập URL vào.
+Nếu đã có dev server chạy sẵn trên máy thì Agent **tự tìm ra cổng** và mở（nói ở dưới）.
 
-> **Đã kiểm chứng trên máy thật（bản Cursor 3.16 đã cài）rằng bốn lệnh trên có tồn tại.**
-> **Tài liệu chính thức không viết cách mở**（trang [Browser](https://cursor.com/docs/agent/tools/browser) chỉ nói nó “mở ra như một pane bên trong Cursor”）.
-
-> **Cần xác nhận**: các bước chính xác để mở một tệp HTML cục bộ（`practice/index.html`）bằng trình duyệt tích hợp thì vẫn chưa viết được.
-> Hãy chạy thử một lần trên máy thật rồi ghi lại các bước đã chốt vào đây. Chương 1 của buổi 1 phụ thuộc vào các bước này.
+> **Đã kiểm chứng trên máy thật（Cursor 3.16）. Tài liệu chính thức không viết cách mở**
+> （trang [Browser](https://cursor.com/docs/agent/tools/browser) chỉ nói nó “mở ra như một pane bên trong Cursor”）.
 
 ## Agent làm được gì trên trình duyệt
 

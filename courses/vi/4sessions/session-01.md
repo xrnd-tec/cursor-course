@@ -210,7 +210,7 @@ git clone https://github.com/xrnd-tec/cursor-course.git
 ```
 
 4. Mở thư mục `cursor-course/` bằng Cursor（File → Open Folder）
-5. Mở `practice/index.html` bằng **trình duyệt tích hợp của Cursor**
+5. Trong sidebar, **chuột phải** vào `practice/index.html` → chọn **Open In Browser**（nó mở bằng trình duyệt tích hợp của Cursor）
 6. Thấy trang “Mini Shopping Cart” hiện ra là xong phần chuẩn bị
 
 ### 1-2 Những thứ chỉnh trước（bắt buộc + đọc thêm）
