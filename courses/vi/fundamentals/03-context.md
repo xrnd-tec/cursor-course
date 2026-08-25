@@ -8,8 +8,8 @@ Cách nghĩ theo tài liệu chính thức: **biết rõ tệp liên quan thì `
 
 | Chỉ định | Khi nào dùng |
 |----------|--------------|
-| `@tên-tệp` | “Lấy tệp này làm tiền đề để nói / để sửa” |
-| `@thư-mục/` | “Chỉ nhìn trong phạm vi này thôi” |
+| `@<file>` | “Lấy tệp này làm tiền đề để nói / để sửa” |
+| `@<folder>/` | “Chỉ nhìn trong phạm vi này thôi” |
 | `@Docs` | Tham chiếu tài liệu đã đăng ký（thêm mới cũng được） |
 | `@Terminals` | Cho AI xem lỗi hoặc kết quả chạy |
 | `@Past Chats` | Nối tiếp cuộc hội thoại trước |

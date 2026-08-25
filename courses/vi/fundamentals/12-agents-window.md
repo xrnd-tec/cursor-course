@@ -1,75 +1,75 @@
-# 12. Agents Window / Worktrees（おすすめ）
+# 12. Agents Window / Worktrees（nên đọc）
 
-`/multitask` そのものは [01-modes.md](01-modes.md) で説明しました。この章では、**それを回すための場所（Agents Window）** と **衝突を防ぐ仕組み（worktree）** だけを扱います。
+Bản thân `/multitask` đã nói ở [01-modes.md](01-modes.md). Chương này chỉ bàn **chỗ để chạy nó（Agents Window）** và **cơ chế tránh đụng nhau（worktree）**.
 
-## Agents Window は「もう1つのビュー」
+## Agents Window là “kiểu màn hình thứ hai”
 
-Cursor には **IDE ビュー**（従来のエディタ）と **Agents Window** の2つがあり、行き来できます（→ [00-map.md](00-map.md)）。
+Cursor có **IDE view**（editor quen thuộc）và **Agents Window**, đi lại giữa hai bên được（→ [00-map.md](00-map.md)）.
 
-開き方は `Ctrl + Shift + P`（Mac は `Cmd + Shift + P`）のコマンドパレットで **Agents Window** を選ぶのが確実です。**いつでも IDE ビューに戻れますし、両方同時に開いておけます。** 起動のたびに Agents Window が開く場合のそろえ方は [00-map.md](00-map.md) の「最初にそろえる設定」。
+Cách mở chắc ăn nhất là mở command palette bằng `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）rồi chọn **Agents Window**. **Lúc nào quay lại IDE view cũng được, và mở cả hai cùng lúc cũng được.** Nếu cứ khởi động là vào Agents Window, cách chỉnh nằm ở mục “Những thiết lập nên chỉnh trước” trong [00-map.md](00-map.md).
 
-### Agents Window にあるもの
+### Trong Agents Window có gì
 
-| | 中身 |
+| | Nội dung |
 |---|---|
-| **Agent タブ** | 複数のチャットを**並べて / グリッドで**同時に表示する。リポジトリをまたいでもよい |
-| **内蔵ブラウザ** | 動いているアプリを開き、Agent に操作させる（→ [16-browser-design.md](16-browser-design.md)） |
-| **Design Mode** | 画面の要素を指して修正を頼む。`Ctrl+Shift+D` |
-| **実行環境の選択** | ローカル / worktree / クラウド / リモート SSH |
+| **Agent tabs** | Hiện nhiều cuộc chat cùng lúc, **xếp cạnh nhau hoặc theo lưới**. Khác repo cũng được |
+| **Trình duyệt tích hợp** | Mở ứng dụng đang chạy và để Agent thao tác lên đó（→ [16-browser-design.md](16-browser-design.md)） |
+| **Design Mode** | Chỉ vào phần tử trên màn hình rồi nhờ sửa. `Ctrl+Shift+D` |
+| **Chọn nơi chạy** | Cục bộ / worktree / cloud / SSH từ xa |
 
-エージェントを走らせる場所が、ローカルだけでなく worktree やクラウドも選べるのがこの画面の要点です。
+Điểm cốt lõi của màn hình này là bạn chọn được nơi cho agent chạy — không chỉ máy mình mà cả worktree lẫn cloud.
 
-### 開かなくてよい場面のほうが多い
+### Phần lớn thời gian không cần mở nó
 
-**1人で1つの作業をしているなら、IDE ビューのままで困りません。** 内蔵ブラウザも IDE ビューで開けます。
+**Nếu một người làm một việc thì cứ ở IDE view, chẳng thiếu gì.** Trình duyệt tích hợp cũng mở được trong IDE view.
 
-Agents Window を開く価値があるのは、次のどちらかに当てはまるときだけです。
+Agents Window chỉ đáng mở khi rơi vào một trong hai trường hợp:
 
-- **複数のエージェントを同時に走らせたい**（並べて進捗を見たい）
-- **ローカル以外で走らせたい**（worktree / クラウド / リモート SSH）
+- **Muốn chạy nhiều agent cùng lúc**（muốn xếp cạnh nhau để nhìn tiến độ）
+- **Muốn chạy ở nơi khác máy mình**（worktree / cloud / SSH từ xa）
 
-「新しい画面があるから使わなければ」と考える必要はありません。
+Không cần nghĩ kiểu “có màn hình mới thì phải dùng”.
 
-> `Ctrl+Shift+A`（Mac は `Cmd+Shift+A`）は Cursor 3.16 では**行コメントの切り替え**などに割り当たっており、Agents Window ではありません。
+> `Ctrl+Shift+A`（Mac là `Cmd+Shift+A`）ở Cursor 3.16 đang được gán cho việc **bật/tắt comment dòng**, không phải Agents Window.
 
 ## Worktrees
 
-git の worktree は、**同じリポジトリの別ブランチを、別のディレクトリに同時にチェックアウトする**仕組みです。エージェントを並列で走らせるとき、同じファイルを取り合わないために使います。
+Worktree của git là cơ chế **checkout đồng thời nhiều branch của cùng một repo ra nhiều thư mục khác nhau**. Khi chạy song song nhiều agent, ta dùng nó để chúng không giành nhau cùng một tệp.
 
-Cursor 側にも worktree 用の操作が用意されています。
+Phía Cursor cũng có sẵn các thao tác cho worktree.
 
-| 操作 | 何をするか |
-|------|------------|
-| Open new window in worktree | worktree のフォルダを新しいウィンドウで開く |
-| Open terminal in worktree | worktree の場所でターミナルを開く |
-| Copy worktree path | worktree のパスをコピーする |
+| Thao tác | Làm gì |
+|----------|--------|
+| Open new window in worktree | Mở thư mục worktree trong một cửa sổ mới |
+| Open terminal in worktree | Mở terminal ngay tại chỗ của worktree |
+| Copy worktree path | Copy đường dẫn của worktree |
 
-## 3つを混同しない
+## Đừng lẫn ba thứ này
 
-| 言葉 | 何を決めるか |
-|------|--------------|
-| **Agents Window** | 複数エージェントを **どこで見るか** |
-| **`/multitask`** | 仕事を **同時にやるか**（→ [01-modes.md](01-modes.md)） |
-| **Worktrees** | 作業を **どこまで隔離するか** |
+| Từ | Quyết định điều gì |
+|----|--------------------|
+| **Agents Window** | **Nhìn** nhiều agent **ở đâu** |
+| **`/multitask`** | Có làm các việc **cùng lúc** hay không（→ [01-modes.md](01-modes.md)） |
+| **Worktrees** | **Cách ly** công việc tới mức nào |
 
-「並列」と「隔離」は別の話です。**並列にしても隔離しなければ、同じファイルを複数のエージェントが書いて壊れます。**
+“Song song” và “cách ly” là hai chuyện khác nhau. **Song song mà không cách ly thì nhiều agent cùng ghi vào một tệp và hỏng.**
 
-## いつ使うか
+## Khi nào dùng
 
-- 無関係な2作業を同時に進めたい → `/multitask`
-- 同じファイルを安全に並行実験したい → **worktree**（別チェックアウト）
-- 手元で1ファイルだけ直す → 普通の Agent パネルで十分。並列にしない
+- Muốn chạy đồng thời hai việc không liên quan → `/multitask`
+- Muốn thí nghiệm song song trên cùng một tệp một cách an toàn → **worktree**（checkout riêng）
+- Chỉ sửa một tệp tại chỗ → panel Agent bình thường là đủ, đừng song song làm gì
 
-## 実習
+## Thực hành
 
 Ask:
 
 ```text
-@courses/fundamentals/01-modes.md
-Multitask と worktree を併用すると良い例・やめた方がいい例を
-それぞれ1つずつ挙げて。
+@courses/vi/fundamentals/01-modes.md
+Nêu mỗi loại một ví dụ: trường hợp nên dùng Multitask kèm worktree,
+và trường hợp không nên.
 ```
 
-余裕があれば Agents Window を開き、小さな無関係な2依頼で `/multitask` を一度試す。
+Còn thời gian thì mở Agents Window và thử `/multitask` một lần với hai yêu cầu nhỏ không liên quan nhau.
 
-次: [13-safety-ignore.md](13-safety-ignore.md)
+Tiếp theo: [13-safety-ignore.md](13-safety-ignore.md)

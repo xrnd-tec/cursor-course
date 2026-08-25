@@ -1,91 +1,91 @@
-# 14. Subagents（サブエージェント）
+# 14. Subagents
 
-Subagent は、メインの Agent が **仕事を切り出して渡す専用のエージェント** です。自分専用のコンテキストを持つので、メインの会話を汚さずに調査・検証・修正を任せられます。
+Subagent là **agent chuyên trách mà Agent chính cắt việc ra rồi giao cho**. Nó có ngữ cảnh riêng, nên bạn giao được việc tra cứu, kiểm chứng, sửa lỗi mà không làm bẩn cuộc hội thoại chính.
 
-`/multitask`（[01-modes.md](01-modes.md)）が「並列にする」という**やり方**の名前なら、Subagent は「誰に振るか」という**相手**の定義です。
+Nếu `/multitask`（[01-modes.md](01-modes.md)）là tên của **cách làm** — làm song song — thì Subagent là định nghĩa về **đối tượng**: giao cho ai.
 
-## 何が嬉しいか
+## Được lợi gì
 
-- 長い調査の結果だけがメインの会話に返ってくる（途中の大量の読み込みが載らない）
-- 役割ごとにモデル・ツール権限を変えられる（例: レビュー役は読み取り専用）
-- 複数の Subagent を同時に走らせられる
+- Cuộc hội thoại chính chỉ nhận về kết quả của cả một đợt tra cứu dài（không phải gánh đống nội dung đã đọc dọc đường）
+- Đổi được model và quyền dùng tool theo từng vai（ví dụ: vai review thì chỉ-đọc）
+- Chạy được nhiều Subagent cùng lúc
 
-## 置き場所
+## Đặt ở đâu
 
-| 種類 | パス |
-|------|------|
-| プロジェクト | `.cursor/agents/` |
-| 個人 | `~/.cursor/agents/` |
+| Loại | Đường dẫn |
+|------|-----------|
+| Theo dự án | `.cursor/agents/` |
+| Cá nhân | `~/.cursor/agents/` |
 
-`.claude/agents/` や `.codex/agents/` も互換で読み込まれます。他ツールの資産をそのまま使えます。
+`.claude/agents/` và `.codex/agents/` cũng được đọc để tương thích, nên tài sản từ công cụ khác dùng lại được ngay.
 
-## 定義ファイル
+## Tệp định nghĩa
 
-Markdown + YAML フロントマターです。
+Là Markdown + YAML frontmatter.
 
 ```markdown
 ---
 name: cart-verifier
-description: practice/ のカート実装を読み、仕様どおりか検証するときに使う。コードは書き換えない。
+description: Dùng khi cần đọc phần giỏ hàng trong practice/ và kiểm chứng xem có đúng đặc tả không. Không sửa code.
 model: inherit
 readonly: true
 is_background: false
 ---
 
-practice/cart.js と calculator.js を読み、次を報告する。
+Đọc practice/cart.js và calculator.js, rồi báo cáo những điểm sau.
 
-1. 小計・割引・税込の計算が仕様どおりか
-2. 壊れている点があれば再現手順つきで
-3. コードの変更は絶対にしない
+1. Phần tính tổng phụ, giảm giá, tổng gồm thuế có đúng đặc tả không
+2. Nếu có chỗ hỏng thì nêu kèm cách tái hiện
+3. Tuyệt đối không sửa code
 ```
 
-| フィールド | 意味 |
-|------------|------|
-| `name` | 呼び出し名。フォルダ／ファイル名と揃える |
-| `description` | **いつ使うか**。Agent はここを見て自動で振るか判断する |
-| `model` | `inherit`（親と同じ）か、特定のモデル ID |
-| `readonly` | `true` で読み取り専用。レビュー役・調査役に有効 |
-| `is_background` | `true` でバックグラウンド実行 |
+| Trường | Ý nghĩa |
+|--------|---------|
+| `name` | Tên để gọi. Đặt trùng tên thư mục / tên tệp |
+| `description` | **Dùng vào lúc nào**. Agent nhìn đây để quyết có tự giao việc hay không |
+| `model` | `inherit`（giống agent cha）hoặc một model ID cụ thể |
+| `readonly` | `true` là chỉ-đọc. Rất hợp với vai review, vai tra cứu |
+| `is_background` | `true` là chạy nền |
 
-## 呼び出し方
+## Cách gọi
 
-1. **自動** — Agent が `description` を見て、必要と判断したら勝手に振る
-2. **明示** — `/cart-verifier 仕様どおりか見て` のようにスラッシュで指名する
-3. **自然文** — 「cart-verifier に確認させて」でも通る
-4. **並列** — 複数を同時に指名すると同時に走る
+1. **Tự động** — Agent đọc `description`, thấy cần thì tự giao
+2. **Chỉ định** — gõ gạch chéo để gọi đích danh, kiểu `/cart-verifier xem có đúng đặc tả không`
+3. **Nói bình thường** — “cho cart-verifier kiểm tra giùm” cũng chạy
+4. **Song song** — gọi đích danh nhiều cái thì chúng chạy cùng lúc
 
-Cloud 側では、Subagent を**隔離された仮想マシン**（プロジェクトのクリーンなコピー）で走らせることもできます。並列でテストを回しても互いに壊し合いません。
+Ở phía cloud, Subagent còn chạy được trong **máy ảo cách ly**（một bản sao sạch của dự án）. Chạy test song song mà không phá lẫn nhau.
 
-## Rules / Skills / Subagents の使い分け
+## Phân biệt Rules / Skills / Subagents
 
-| 仕組み | 何を決めるか |
-|--------|--------------|
-| **Rules** | いつも効く方針（[06-rules.md](06-rules.md)） |
-| **Skills** | 手順書。誰がやるかは決めない（[07-skills.md](07-skills.md)） |
-| **Subagents** | **誰にやらせるか**。専用の文脈・権限・モデルを持つ |
+| Cơ chế | Quyết định điều gì |
+|--------|--------------------|
+| **Rules** | Phương châm luôn có hiệu lực（[06-rules.md](06-rules.md)） |
+| **Skills** | Bản quy trình. Không quy định ai làm（[07-skills.md](07-skills.md)） |
+| **Subagents** | **Giao cho ai làm**. Có ngữ cảnh, quyền và model riêng |
 
-## 注意
+## Lưu ý
 
-- `description` が曖昧だと自動で呼ばれない。「いつ使うか」を必ず書く
-- 書き換えさせたくない役割には `readonly: true` を付ける
-- 増やしすぎると Agent がどれを呼ぶか迷う。まず1つから
+- `description` mơ hồ thì sẽ không được gọi tự động. Nhất định phải viết “dùng vào lúc nào”
+- Vai nào không được phép sửa thì gắn `readonly: true`
+- Tạo quá nhiều thì Agent lúng túng không biết gọi cái nào. Bắt đầu từ một cái thôi
 
-## 実習
+## Thực hành
 
-Agent モードで:
+Ở mode Agent:
 
 ```text
-.cursor/agents/cart-verifier.md を作って。
-practice/ のカート実装を読んで仕様どおりか報告するだけの読み取り専用サブエージェントにして。
-コードは書き換えない設定にすること。
+Tạo .cursor/agents/cart-verifier.md.
+Làm thành một sub-agent chỉ-đọc, chỉ đọc phần giỏ hàng trong practice/ rồi báo cáo
+xem có đúng đặc tả không. Phải cấu hình để nó không sửa code.
 ```
 
-新規チャットで:
+Rồi mở chat mới:
 
 ```text
-/cart-verifier practice/ のカートを検証して
+/cart-verifier Kiểm chứng phần giỏ hàng trong practice/
 ```
 
-参考: [Subagents](https://cursor.com/docs/subagents)
+Tham khảo: [Subagents](https://cursor.com/docs/subagents)
 
-次: [15-plugins.md](15-plugins.md)
+Tiếp theo: [15-plugins.md](15-plugins.md)

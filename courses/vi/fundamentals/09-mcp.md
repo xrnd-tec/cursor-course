@@ -1,46 +1,46 @@
 # 9. MCP（Model Context Protocol）
 
-MCP は、Agent が **外部ツール／データ**（Issue トラッカー、DB、ブラウザ、社内 API など）に繋がるための共通インタフェースです。チャットにコピペせず、ツール呼び出しで取りに行きます。
+MCP là giao diện chung để Agent nối tới **công cụ và dữ liệu bên ngoài**（trình quản lý issue, DB, trình duyệt, API nội bộ…）. Thay vì copy-paste vào khung chat, Agent gọi tool để tự đi lấy.
 
-## 何が嬉しいか
+## Được lợi gì
 
-- Linear / GitHub / Notion / Datadog などと会話から連携
-- 「今の Issue を見て直して」がコピペ無しで通る
-- 社内の読み取り専用 API を安全に渡せる（権限設計は自分たち次第）
+- Nối thẳng Linear / GitHub / Notion / Datadog… ngay trong hội thoại
+- Câu “đọc issue hiện tại rồi sửa đi” chạy được mà không cần dán gì
+- Đưa API chỉ-đọc của nội bộ vào một cách an toàn（phần phân quyền vẫn là việc của các bạn）
 
-## Cursor 側のイメージ
+## Hình dung phía Cursor
 
-1. MCP サーバを設定（設定 UI または mcp.json）
-2. サーバが **tools / resources** を公開
-3. Agent が必要ならそのツールを呼ぶ（承認が出ることも）
+1. Cấu hình một MCP server（qua giao diện Settings hoặc `mcp.json`）
+2. Server công bố **tools / resources** của nó
+3. Agent gọi tool đó khi thấy cần（đôi khi sẽ hỏi bạn duyệt）
 
-学習段階では「全部繋ぐ」より、**用途が1つはっきりしたサーバを1つ** がおすすめです。
+Ở giai đoạn học, đừng “nối hết mọi thứ” — nên bắt đầu bằng **đúng một server có mục đích rõ ràng**.
 
-## Rules / Skills との関係
+## Quan hệ với Rules / Skills
 
-| 仕組み | 役割 |
-|--------|------|
-| MCP | **外のシステム**に触る能力 |
-| Skill | その触り方・手順の型 |
-| Rule | 「本番 DB を壊す操作は禁止」などの制約 |
+| Cơ chế | Vai trò |
+|--------|---------|
+| MCP | Khả năng chạm tới **hệ thống bên ngoài** |
+| Skill | Khuôn mẫu về cách chạm, theo quy trình nào |
+| Rule | Ràng buộc kiểu “cấm mọi thao tác phá DB production” |
 
-「繋がる」だけだと危ないので、誰が何を呼べるかもセットで考えます。
+Chỉ “nối được” thôi thì nguy hiểm, nên phải nghĩ kèm luôn: ai được gọi cái gì.
 
-## 注意
+## Lưu ý
 
-- 書き込み系ツールは権限制限・承認を強く
-- 秘密鍵・PAT をリポジトリにコミットしない
-- 動かないときはサーバ状態（要認証・エラー）を先に見る
+- Với tool có ghi dữ liệu, siết chặt phân quyền và bắt duyệt tay
+- Đừng commit khóa bí mật hay PAT vào repo
+- Khi không chạy, hãy xem trạng thái server trước（cần đăng nhập? đang lỗi?）
 
-## 実習（調査）
+## Thực hành（tra cứu）
 
-Ask モードで:
+Ở mode Ask:
 
 ```text
-Cursor で MCP を1つ追加する手順を、このマシン向けに要約して。
-学習用なら何を最初に繋ぐのが安全か、候補を3つ挙げて。
+Tóm tắt các bước thêm một MCP vào Cursor trên chính máy này.
+Nếu chỉ để học thì nối cái gì trước là an toàn? Nêu 3 phương án.
 ```
 
-実際にサーバを足すときは、接続先の公式手順＋ Cursor Settings の MCP を確認してください。
+Khi thêm server thật, hãy làm theo hướng dẫn chính thức của bên được nối, đối chiếu với mục MCP trong Cursor Settings.
 
-次: [10-cloud-agents.md](10-cloud-agents.md)
+Tiếp theo: [10-cloud-agents.md](10-cloud-agents.md)

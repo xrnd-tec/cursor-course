@@ -1,30 +1,30 @@
 # 8. Hooks
 
-Hook は Agent のライフサイクルに割り込む **自動化・ガードレール** です。方針（Rules）や手順（Skills）と違い、シェルやスクリプトで **許可・拒否・加工・監査** ができます。
+Hook là phần **tự động hóa và hàng rào an toàn** chen vào vòng đời của Agent. Khác với phương châm（Rules）hay quy trình（Skills）, Hook dùng shell hoặc script nên **cho phép, từ chối, chỉnh sửa và ghi nhật ký** được.
 
-## 置き場所
+## Đặt ở đâu
 
-| 階層 | 設定 | スクリプト例 |
-|------|------|--------------|
-| Enterprise | OS 共通の設定ディレクトリ | 管理者が配布 |
-| Team | クラウドのダッシュボード（Enterprise のみ） | 全メンバーに配る |
-| プロジェクト | `.cursor/hooks.json` | `.cursor/hooks/*.sh` |
-| ユーザー | `~/.cursor/hooks.json` | `~/.cursor/hooks/*.sh` |
+| Cấp | Tệp cấu hình | Ví dụ script |
+|-----|--------------|--------------|
+| Enterprise | Thư mục cấu hình chung của hệ điều hành | Quản trị viên phát xuống |
+| Team | Dashboard trên cloud（chỉ Enterprise） | Phát cho toàn bộ thành viên |
+| Dự án | `.cursor/hooks.json` | `.cursor/hooks/*.sh` |
+| Người dùng | `~/.cursor/hooks.json` | `~/.cursor/hooks/*.sh` |
 
-**優先順位は上ほど強い**（Enterprise → Team → プロジェクト → ユーザー）。チームで共有したいならプロジェクト Hook を推奨します。
+**Càng ở trên càng mạnh**（Enterprise → Team → dự án → người dùng）. Muốn chia sẻ trong team thì nên dùng hook cấp dự án.
 
-## よく使うイベント（学習用に絞る）
+## Những event hay dùng（thu hẹp lại cho việc học）
 
-| イベント | 用途 |
-|----------|------|
-| `beforeShellExecution` | 危険なコマンドを止める／確認する |
-| `afterFileEdit` | 編集後にフォーマットなど |
-| `beforeSubmitPrompt` | プロンプトに秘密情報が無いかチェック |
-| `sessionStart` | セッション開始時のセットアップ |
+| Event | Dùng để làm gì |
+|-------|----------------|
+| `beforeShellExecution` | Chặn hoặc hỏi lại trước những lệnh nguy hiểm |
+| `afterFileEdit` | Format sau khi sửa tệp, v.v. |
+| `beforeSubmitPrompt` | Kiểm tra prompt có lọt thông tin bí mật không |
+| `sessionStart` | Chuẩn bị lúc bắt đầu phiên |
 
-このほかに、ツール実行の前後（`preToolUse` / `postToolUse` / `postToolUseFailure`）、サブエージェントの前後（`subagentStart` / `subagentStop`）、MCP 実行の前後、ファイル読み取り前（`beforeReadFile`）、応答後（`afterAgentResponse`）、Tab 補完の前後、ワークスペースを開いたときなどがあります。まず1つだけで十分です。
+Ngoài ra còn có: trước/sau khi chạy tool（`preToolUse` / `postToolUse` / `postToolUseFailure`）, trước/sau sub-agent（`subagentStart` / `subagentStop`）, trước/sau khi chạy MCP, trước khi đọc tệp（`beforeReadFile`）, sau khi Agent trả lời（`afterAgentResponse`）, trước/sau gợi ý Tab, và khi mở workspace. Lúc đầu chỉ cần đúng một cái là đủ.
 
-## 最小イメージ
+## Hình dung tối thiểu
 
 ```json
 {
@@ -39,35 +39,35 @@ Hook は Agent のライフサイクルに割り込む **自動化・ガード�
 }
 ```
 
-Hook は **stdin の JSON を読み、stdout に JSON で応答**する形が基本です（詳細は公式／create-hook スキル）。最初は「ログだけ出す観察 Hook」から始めると安全です。
+Dạng cơ bản của Hook là **đọc JSON từ stdin và trả JSON ra stdout**（chi tiết xem tài liệu chính thức hoặc skill create-hook）. An toàn nhất là bắt đầu bằng một hook chỉ quan sát, chỉ in log ra.
 
-各 Hook には次のオプションを付けられます。
+Mỗi Hook gắn thêm được những tùy chọn sau.
 
-| オプション | 意味 |
-|------------|------|
-| `type` | `"command"`（既定）か `"prompt"`。後者は**スクリプトではなく LLM に判定させる** |
-| `matcher` | 対象を絞る（ツール種別・サブエージェント種別・コマンドのパターン） |
-| `timeout` | 秒数 |
-| `failClosed` | `true` で、Hook が失敗したときに**通さない** |
+| Tùy chọn | Ý nghĩa |
+|----------|---------|
+| `type` | `"command"`（mặc định）hoặc `"prompt"`. Cái sau là **để LLM phán đoán chứ không chạy script** |
+| `matcher` | Thu hẹp đối tượng（loại tool, loại sub-agent, mẫu lệnh） |
+| `timeout` | Số giây |
+| `failClosed` | Đặt `true` thì **không cho đi qua** khi Hook lỗi |
 
-応答の JSON では `permission` に `allow` / `deny` / `ask` を返せます。終了コード `2` は `deny` と同じ扱いです。
+Trong JSON trả về, trường `permission` nhận `allow` / `deny` / `ask`. Thoát với mã `2` được xử lý y như `deny`.
 
-## 注意
+## Lưu ý
 
-- 失敗時にすべてブロック（`failClosed: true`）すると開発が止まりやすい。既定は「失敗したら通す」
-- まず観察 → 必要なら拒否、の順がおすすめ
-- Secrets を Hook のログに出さない
+- Chặn hết khi lỗi（`failClosed: true`）dễ làm cả việc phát triển đứng lại. Mặc định là “lỗi thì vẫn cho đi qua”
+- Nên đi theo thứ tự: quan sát trước, thấy cần thì mới từ chối
+- Đừng để secrets lọt vào log của Hook
 
-## 実習（読む／設計する）
+## Thực hành（đọc và thiết kế）
 
-Ask モードで:
+Ở mode Ask:
 
 ```text
-このリポジトリ向けに、beforeShellExecution で
-「rm -rf /」「git push --force」だけ拒否する Hook の設計を書いて。
-まだファイルは作らないで。
+Cho repo này, hãy viết thiết kế một Hook dùng beforeShellExecution
+chỉ để từ chối đúng hai lệnh “rm -rf /” và “git push --force”.
+Chưa tạo tệp nào cả.
 ```
 
-方針が納得できたら Agent で実装を頼んでください。
+Thấy hướng đi hợp lý rồi thì nhờ Agent viết thật.
 
-次: [09-mcp.md](09-mcp.md)
+Tiếp theo: [09-mcp.md](09-mcp.md)

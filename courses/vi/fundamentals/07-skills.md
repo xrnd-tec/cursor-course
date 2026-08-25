@@ -1,19 +1,19 @@
 # 7. Skills
 
-Skill は「この種の作業をするときの手順」をまとめたパッケージです。Rules が常時の方針なら、Skills は **必要なときだけ読み込むプレイブック** です。
+Skill là một gói gom lại “quy trình khi làm loại việc này”. Nếu Rules là phương châm luôn bật, thì Skills là **cuốn cẩm nang chỉ nạp vào khi cần**.
 
-## 置き場所
+## Đặt ở đâu
 
-| 種類 | パス | スコープ |
-|------|------|----------|
-| プロジェクト | `.cursor/skills/<名前>/SKILL.md` または `.agents/skills/<名前>/SKILL.md` | このリポジトリ |
-| 個人 | `~/.cursor/skills/<名前>/SKILL.md` または `~/.agents/skills/<名前>/SKILL.md` | 自分の全プロジェクト |
+| Loại | Đường dẫn | Phạm vi |
+|------|-----------|---------|
+| Theo dự án | `.cursor/skills/<tên>/SKILL.md` hoặc `.agents/skills/<tên>/SKILL.md` | Repo này |
+| Cá nhân | `~/.cursor/skills/<tên>/SKILL.md` hoặc `~/.agents/skills/<tên>/SKILL.md` | Mọi dự án của bạn |
 
-`.claude/skills/` も互換で読み込まれるので、他ツール向けに書いた資産をそのまま置けます。サブフォルダで分類しても認識されます。
+`.claude/skills/` cũng được đọc để tương thích, nên tài sản viết cho công cụ khác đặt nguyên vào đó vẫn dùng được. Xếp vào thư mục con để phân loại thì vẫn nhận ra.
 
-> Cursor 本体の内蔵スキルは `~/.cursor/skills-cursor/` にあります。**触らない・上書きしない。**
+> Skill dựng sẵn của chính Cursor nằm ở `~/.cursor/skills-cursor/`. **Đừng động vào, đừng ghi đè.**
 
-最小構成:
+Cấu trúc tối thiểu:
 
 ```text
 .cursor/skills/mini-cart-check/
@@ -23,53 +23,53 @@ Skill は「この種の作業をするときの手順」をまとめたパッ�
 ```markdown
 ---
 name: mini-cart-check
-description: practice/ のカート実装を確認し、責務と不足を短く報告するときに使う
+description: Dùng khi cần kiểm tra phần giỏ hàng trong practice/ và báo cáo ngắn gọn trách nhiệm từng phần cùng những chỗ còn thiếu
 ---
 
 # Mini cart check
 
-1. practice/cart.js / calculator.js / index.js を読む
-2. 追加・削除・小計・税込の有無を表にする
-3. 壊れている点があれば再現手順つきで1つだけ指摘する
-4. コード変更はユーザーが求めたときだけ
+1. Đọc practice/cart.js / calculator.js / index.js
+2. Lập bảng xem đã có thêm món, xóa món, tổng phụ, tổng gồm thuế hay chưa
+3. Nếu có chỗ hỏng thì chỉ ra đúng một chỗ, kèm cách tái hiện
+4. Chỉ sửa code khi người dùng yêu cầu
 ```
 
-フロントマターの必須項目は **`name` と `description` の2つだけ**です。`name` は小文字・数字・ハイフンのみで、**親フォルダ名と一致させます**。
+Trong frontmatter chỉ **bắt buộc hai trường: `name` và `description`**. `name` chỉ gồm chữ thường, số và dấu gạch ngang, và **phải trùng tên thư mục cha**.
 
-## description が重要
+## `description` mới là chỗ quan trọng
 
-Agent は **description を見て**「この会話にこの Skill を使うか」を判断します。  
-「何のとき使うか」を description に書いておくのがコツです。
+Agent **nhìn vào `description`** để quyết định có dùng Skill này cho cuộc hội thoại hay không.
+Mẹo là viết rõ “dùng vào lúc nào” ngay trong `description`.
 
-## 3つの呼び出し方
+## Ba cách gọi
 
-| 呼び方 | 効く範囲 | 操作 |
-|--------|----------|------|
-| **自動** | 必要と判断されたとき | 何もしない。Agent が description を見て決める |
-| **スラッシュ** | **そのメッセージ1回だけ** | 入力欄で `/` → Skill 名を選ぶ |
-| **Custom Mode** | **セッション全体** | Skill を選んで `Alt+Enter`（Mac は `Option+Enter`）、または **Use as Mode** |
+| Cách gọi | Phạm vi tác dụng | Thao tác |
+|----------|------------------|----------|
+| **Tự động** | Khi Agent thấy cần | Không làm gì cả. Agent tự đọc `description` rồi quyết |
+| **Dấu gạch chéo** | **Chỉ đúng một tin nhắn đó** | Gõ `/` ở ô nhập rồi chọn tên Skill |
+| **Custom Mode** | **Cả phiên làm việc** | Chọn Skill rồi `Alt+Enter`（Mac là `Option+Enter`）, hoặc chọn **Use as Mode** |
 
-Custom Mode にすると入力欄にバッジが出て、会話の間ずっとその手順が効きます。「今日はこの規約でレビューし続けてほしい」というときはこれです（→ [01-modes.md](01-modes.md)）。
+Đưa lên Custom Mode thì một badge hiện ở ô nhập và quy trình đó có hiệu lực suốt cuộc hội thoại. Kiểu “hôm nay cứ review theo đúng quy ước này giùm” thì dùng cách này（→ [01-modes.md](01-modes.md)）.
 
-## Rules との使い分け
+## Phân biệt với Rules
 
-- 毎回守らせたい → **Rule**
-- 「PR を作る」「週次レポート」「この API の直し方」など手順が長い → **Skill**
-- イベントで止めたい／直したい → **Hook**（次章）
+- Muốn bắt tuân thủ mọi lúc → **Rule**
+- Quy trình dài như “tạo PR”, “báo cáo tuần”, “cách sửa API này” → **Skill**
+- Muốn chặn hoặc sửa ngay khi có sự kiện → **Hook**（chương sau）
 
-## 実習
+## Thực hành
 
-Agent に:
+Nói với Agent:
 
 ```text
-.cursor/skills/mini-cart-check/SKILL.md を上記の最小構成で作って。
-余計なファイルは増やさないで。
+Tạo .cursor/skills/mini-cart-check/SKILL.md theo đúng cấu trúc tối thiểu ở trên.
+Đừng sinh thêm tệp thừa.
 ```
 
-新規チャットで:
+Rồi mở chat mới:
 
 ```text
-practice/ のカート実装をチェックして（Skill があれば従って）
+Kiểm tra phần giỏ hàng trong practice/（có Skill thì làm theo）
 ```
 
-次: [08-hooks.md](08-hooks.md)
+Tiếp theo: [08-hooks.md](08-hooks.md)

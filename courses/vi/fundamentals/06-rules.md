@@ -1,16 +1,16 @@
 # 6. Project Rules（`.cursor/rules`）
 
-毎回のプロンプトに書かなくてよい **チーム／リポジトリの約束** を Rules に置きます。Agent がその前提で動きます。
+Những **giao ước của team / của repo** mà bạn không muốn phải gõ lại trong từng prompt thì đặt vào Rules. Agent sẽ lấy đó làm tiền đề để làm việc.
 
-## Rules / Skills / Hooks の違い（先にこれだけ）
+## Rules / Skills / Hooks khác nhau chỗ nào（chỉ cần nắm bấy nhiêu trước）
 
-| 仕組み | 役割 | 典型例 |
-|--------|------|--------|
-| **Rules** | いつも効く方針・制約 | 「コミットは日本語」「CSS は modules」 |
-| **Skills** | 特定タスクの手順書 | PR 作成手順、週次レポートの型 |
-| **Hooks** | イベント時にプログラムで介入 | 危険な shell を止める、編集後フォーマット |
+| Cơ chế | Vai trò | Ví dụ điển hình |
+|--------|---------|-----------------|
+| **Rules** | Phương châm, ràng buộc luôn có hiệu lực | “Commit viết bằng tiếng Việt”, “CSS dùng modules” |
+| **Skills** | Bản hướng dẫn cho một loại việc cụ thể | Quy trình tạo PR, khuôn báo cáo hằng tuần |
+| **Hooks** | Chen vào bằng chương trình khi có sự kiện | Chặn shell nguy hiểm, format sau khi sửa tệp |
 
-## 置き場所
+## Đặt ở đâu
 
 ```text
 .cursor/rules/
@@ -18,52 +18,52 @@
   practice-js.mdc
 ```
 
-各ファイルは `.mdc`（Markdown + YAML フロントマター）です。
+Mỗi tệp là `.mdc`（Markdown + YAML frontmatter）.
 
 ```markdown
 ---
-description: practice/ の JS は ESM・小さな関数優先
+description: JS trong practice/ dùng ESM, ưu tiên hàm nhỏ
 globs: practice/**/*.js
 alwaysApply: false
 ---
 
 # practice JS
 
-- `export` を使う（CommonJS にしない）
-- 1 関数は短く。副作用は index 側に寄せる
+- Dùng `export`（không dùng CommonJS）
+- Mỗi hàm viết ngắn. Dồn side effect về phía index
 ```
 
-### フロントマターの意味
+### Ý nghĩa các trường frontmatter
 
-| フィールド | 用途 |
-|------------|------|
-| `description` | ルール一覧に出る短い説明 |
-| `globs` | このパターンのファイル作業時に効かせる |
-| `alwaysApply` | `true` なら毎回必ず載せる |
+| Trường | Dùng để làm gì |
+|--------|----------------|
+| `description` | Mô tả ngắn hiện ra trong danh sách rule |
+| `globs` | Chỉ có hiệu lực khi làm việc với tệp khớp mẫu này |
+| `alwaysApply` | Đặt `true` thì lần nào cũng nạp vào |
 
-**User Rules**（Cursor Settings）は個人全プロジェクト向け。**Project Rules** はリポジトリ共有向け、と覚えるとよいです。
+Nhớ thế này cho dễ: **User Rules**（trong Cursor Settings）là cho cá nhân bạn ở mọi dự án; **Project Rules** là để chia sẻ trong repo.
 
-## 書き方のコツ
+## Mẹo viết
 
-- 短く具体的に（長い百科事典より、守れる 5〜15 行）
-- 「やる / やらない」を書く
-- ファイル種別に分ける（`alwaysApply: true` の乱用はコンテキストを食う）
+- Ngắn và cụ thể（5–15 dòng giữ được còn hơn một cuốn bách khoa không ai theo）
+- Viết rõ “làm gì / không làm gì”
+- Chia theo loại tệp（lạm dụng `alwaysApply: true` sẽ ngốn ngữ cảnh）
 
-## 実習
+## Thực hành
 
-Agent モードで:
+Ở mode Agent:
 
 ```text
-このリポジトリ用に .cursor/rules/practice-js.mdc を作って。
-practice/**/*.js にだけ効くようにして。
-内容は「ESM」「関数は小さく」「テストは依頼されない限り作らない」の3点だけ。
+Tạo cho repo này tệp .cursor/rules/practice-js.mdc.
+Chỉ có hiệu lực với practice/**/*.js.
+Nội dung đúng ba điểm: “dùng ESM”, “hàm viết nhỏ”, “không tạo test trừ khi được yêu cầu”.
 ```
 
-できたら新規チャット（Ask）で:
+Xong thì mở chat mới（Ask）:
 
 ```text
 @practice/calculator.js
-新しい関数を1つ足すなら、このプロジェクトのルール上どう書くべき？
+Nếu thêm một hàm mới, theo rule của dự án này thì phải viết thế nào?
 ```
 
-次: [07-skills.md](07-skills.md)
+Tiếp theo: [07-skills.md](07-skills.md)

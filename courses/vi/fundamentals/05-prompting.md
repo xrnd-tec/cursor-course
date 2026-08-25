@@ -34,7 +34,7 @@ Ví dụ:
 ## Khi nào nên cắt cuộc hội thoại
 
 - **Đổi việc thì mở chat mới**（tiền đề cũ đỡ vướng chân）
-- Khi hội thoại dài ra, nhìn vòng ngữ cảnh; cần thì mở chat mới và đưa vào một bản tóm tắt để đi tiếp
+- Khi hội thoại dài ra, nhìn context ring; cần thì mở chat mới và đưa vào một bản tóm tắt để đi tiếp
 - Đang làm dở mà muốn đổi hướng thì **cứ gửi luôn, đừng dừng lại**（nó sẽ áp vào ở nhịp nghỉ kế tiếp → phần steering ở [01-modes.md](01-modes.md)）
 
 ## Thực hành tổng hợp（ngay trong thư mục này）

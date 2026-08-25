@@ -1,48 +1,48 @@
-# 11. Bugbot / PR レビュー連携
+# 11. Bugbot / kết nối review PR
 
-実装後の品質ゲートとして、Cursor 周りの **PR レビュー自動化** を知っておくとチーム開発が楽になります。
+Biết về phần **tự động hóa review PR** quanh Cursor, coi như một cổng chất lượng sau khi code xong, sẽ làm việc nhóm nhẹ đi nhiều.
 
-## 登場人物（ざっくり）
+## Các nhân vật（nói gọn）
 
-| 名前 | 役割 |
-|------|------|
-| **あなた＋Agent** | ブランチで実装、コミット、PR 作成 |
-| **Bugbot**（などの PR ボット） | PR 差分を見てバグやリスクを指摘 |
-| **人間レビュアー** | 仕様・設計・最終判断 |
+| Tên | Vai trò |
+|-----|---------|
+| **Bạn + Agent** | Code trên branch, commit, tạo PR |
+| **Bugbot**（hoặc bot PR tương tự） | Đọc diff của PR rồi chỉ ra bug và rủi ro |
+| **Người review** | Đặc tả, thiết kế, và quyết định cuối cùng |
 
-環境によって名前や有効化手順は異なります。要点は「**チャット内のレビュー**」と「**PR 上の自動レビュー**」を混ぜないこと。
+Tên gọi và cách bật thay đổi tùy môi trường. Điểm cần nhớ là đừng trộn lẫn **review trong khung chat** với **review tự động trên PR**.
 
-## Bugbot の位置づけ
+## Bugbot đứng ở đâu
 
-Bugbot は [Cloud Agents](10-cloud-agents.md) の一機能です。PR の差分を読み、指摘と修正案をコメントで残します。PR が更新されるたびに自動で走らせることも、手動で呼ぶこともできます。
+Bugbot là một tính năng của [Cloud Agents](10-cloud-agents.md). Nó đọc diff của PR rồi để lại nhận xét và đề xuất sửa dưới dạng comment. Bạn cho nó chạy tự động mỗi lần PR cập nhật, hoặc gọi tay khi cần.
 
-**Autofix** を使うと、見つけたバグを直す Cloud Agent がそのまま立ち上がります。指摘 → 修正 → PR 反映までが1本に繋がるので、**指摘を読まずにマージする**という事故が起きやすくなります。出てきた修正も差分で読む、は変わりません。
+Dùng **Autofix** thì một Cloud Agent sẽ khởi động luôn để sửa những bug vừa tìm ra. Chuỗi nhận xét → sửa → đưa vào PR nối liền một mạch, nên **cũng dễ sinh ra tai nạn: merge mà chưa đọc nhận xét**. Bản sửa nó đưa ra vẫn phải đọc bằng diff như thường.
 
-## チャットでできること（学習リポジトリでも）
+## Làm được gì ngay trong chat（kể cả ở repo học này）
 
-- Agent に「この差分をレビューして」と頼む（ローカル変更）
-- Ask で「マージ前チェックリスト」を作らせる
-- `gh pr create` 前提の手順を Skill 化する（[07-skills.md](07-skills.md)）
+- Nhờ Agent “review giúp diff này”（với thay đổi cục bộ）
+- Nhờ Ask lập một checklist trước khi merge
+- Đóng gói quy trình dựa trên `gh pr create` thành Skill（[07-skills.md](07-skills.md)）
 
-## PR 連携で覚える流れ
+## Luồng cần thuộc khi làm việc với PR
 
-1. 小さくコミットできる単位でブランチを切る  
-2. PR を作る（タイトルと Test plan）  
-3. 自動レビューの指摘をトリアージ（全部直す／意図的に残す）  
-4. 人間レビューで仕様を確認  
+1. Cắt branch theo đơn vị commit được nhỏ gọn
+2. Tạo PR（có tiêu đề và Test plan）
+3. Phân loại các nhận xét tự động（sửa hết / cố ý để nguyên）
+4. Người review kiểm tra phần đặc tả
 
-学習用のこのリポジトリでは、まず **1→2 の型** だけ身につければ十分です。
+Ở repo học này, chỉ cần thuộc **khuôn 1 → 2** là đủ.
 
-## 実習
+## Thực hành
 
 Ask:
 
 ```text
-現在の practice/ と courses/ の変更を想定して、
-小さな学習用 PR のタイトル案と Test plan（チェックリスト3項目）を書いて。
-まだ push / PR 作成はしないで。
+Giả sử có thay đổi trong practice/ và courses/ hiện tại,
+hãy viết một tiêu đề PR nhỏ kiểu bài tập và một Test plan gồm 3 mục checklist.
+Chưa push, chưa tạo PR.
 ```
 
-チームで Bugbot が入っているリポジトリでは、実 PR で指摘の読み方を1回経験するのが最短です。
+Nếu team bạn đã gắn Bugbot vào repo, cách nhanh nhất là trải nghiệm đọc nhận xét một lần trên PR thật.
 
-次: [12-agents-window.md](12-agents-window.md)
+Tiếp theo: [12-agents-window.md](12-agents-window.md)

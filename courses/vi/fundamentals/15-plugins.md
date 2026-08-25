@@ -1,56 +1,56 @@
-# 15. Plugins とマーケットプレイス
+# 15. Plugins và marketplace
 
-ここまでに出てきた **Rules / Skills / Subagents / Hooks / MCP** は、それぞれ別のファイルに置く別々の仕組みでした。Plugin は、それらを **1つの配布単位にまとめたもの** です。
+**Rules / Skills / Subagents / Hooks / MCP** xuất hiện từ đầu tới giờ đều là những cơ chế riêng biệt, nằm ở những tệp riêng biệt. Plugin là thứ **gom tất cả lại thành một đơn vị để phát đi**.
 
-「この職場のやり方一式」を1回のインストールで配れる、と考えると近いです。
+Nghĩ thế này thì gần: “trọn bộ cách làm việc của chỗ này” được phát đi chỉ bằng một lần cài.
 
-## Plugin に入るもの
+## Trong Plugin có gì
 
-| 中身 | 対応する章 |
-|------|------------|
+| Thành phần | Chương tương ứng |
+|------------|------------------|
 | Rules | [06-rules.md](06-rules.md) |
 | Skills | [07-skills.md](07-skills.md) |
 | Agents（Subagents） | [14-subagents.md](14-subagents.md) |
 | Hooks | [08-hooks.md](08-hooks.md) |
-| MCP サーバ | [09-mcp.md](09-mcp.md) |
-| Commands | スラッシュで呼ぶ定型コマンド |
+| MCP server | [09-mcp.md](09-mcp.md) |
+| Commands | Lệnh có sẵn gọi bằng dấu gạch chéo |
 
-## 2つの規格
+## Hai chuẩn
 
-| 規格 | マニフェスト | 中身 |
-|------|--------------|------|
-| **Agent Plugins** | ルートの `plugin.json` | Skills と MCP が中心。ベンダー中立で、他ツールでも動く |
-| **Cursor Plugins** | `.cursor-plugin/plugin.json` | 上記に加えて Rules・Hooks・Commands など Cursor 固有のものも入る |
+| Chuẩn | Manifest | Chứa gì |
+|-------|----------|---------|
+| **Agent Plugins** | `plugin.json` ở thư mục gốc | Chủ yếu là Skills và MCP. Trung lập với nhà cung cấp, chạy được ở công cụ khác |
+| **Cursor Plugins** | `.cursor-plugin/plugin.json` | Ngoài những thứ trên còn có Rules, Hooks, Commands — phần riêng của Cursor |
 
-Cursor は両方を読み込みます。移植性を優先するなら前者、Cursor に閉じた運用なら後者です。
+Cursor đọc được cả hai. Ưu tiên tính di động thì chọn cái đầu; vận hành khép kín trong Cursor thì chọn cái sau.
 
-## 入手経路
+## Lấy ở đâu
 
-- **Marketplace** — Cursor 公式。審査済みのものが並ぶ
-- **Team Marketplace** — Teams / Enterprise で自社用の配布棚を持てる。グループごとに公開範囲を制限し、**既定オフ / 既定オン / 必須** を選べる
-- **ローカル開発** — `~/.cursor/plugins/local` に置くと読み込まれる。自作の動作確認はここ
-- **Deeplink** — MCP 設定を URL で共有してインストールさせる
+- **Marketplace** — kho chính thức của Cursor, những thứ đã qua kiểm duyệt
+- **Team Marketplace** — Teams / Enterprise có kệ phát hành riêng của công ty. Giới hạn phạm vi theo nhóm, và chọn được **mặc định tắt / mặc định bật / bắt buộc**
+- **Phát triển cục bộ** — đặt vào `~/.cursor/plugins/local` là được nạp. Chỗ để tự thử cái mình viết
+- **Deeplink** — chia sẻ cấu hình MCP bằng URL để người khác cài
 
-インストール後の管理は **Customize パネル**から行います。ユーザー / チーム / ワークスペースのどの階層に入れるかもここで選べます。
+Sau khi cài thì quản lý ở **panel Customize**. Chọn cài vào cấp nào — người dùng, team hay workspace — cũng ở đây.
 
-## いつ Plugin にするか
+## Khi nào nên đóng thành Plugin
 
-- 1人で使う → ファイルを直接置けばよい（Rules や Skill 単体）
-- **チーム全員に同じ前提を配りたい** → Plugin
-- 新しいメンバーの環境構築を1手で済ませたい → Plugin
+- Một mình dùng → cứ đặt thẳng tệp vào là được（một Rule hay một Skill lẻ）
+- **Muốn cả team có chung một tiền đề** → Plugin
+- Muốn dựng môi trường cho thành viên mới chỉ bằng một thao tác → Plugin
 
-逆に、まだ形が固まっていない手順を Plugin にすると更新が面倒になります。**まず単体で回して、定着してから束ねる**のが順番です。
+Ngược lại, đóng gói một quy trình còn chưa định hình thì về sau cập nhật rất phiền. Thứ tự đúng là **cho chạy lẻ trước, ổn định rồi mới bó lại**.
 
-## 実習（調査）
+## Thực hành（tra cứu）
 
-Ask モードで:
+Ở mode Ask:
 
 ```text
-このリポジトリの .cursor/ にあるもの（rules / skills / agents / hooks）を一覧にして。
-もし1つの Plugin にまとめるなら、どれを入れてどれを外すべきか理由つきで提案して。
-まだファイルは作らないで。
+Liệt kê những thứ đang có trong .cursor/ của repo này（rules / skills / agents / hooks）.
+Nếu gom thành một Plugin thì nên đưa cái nào vào, bỏ cái nào ra? Nêu lý do.
+Chưa tạo tệp nào cả.
 ```
 
-参考: [Plugins](https://cursor.com/docs/plugins)
+Tham khảo: [Plugins](https://cursor.com/docs/plugins)
 
-次: [16-browser-design.md](16-browser-design.md)
+Tiếp theo: [16-browser-design.md](16-browser-design.md)

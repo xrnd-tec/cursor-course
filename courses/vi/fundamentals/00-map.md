@@ -84,8 +84,8 @@ Tham khảo: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 - **Giữa editor**: chỗ viết code như thường lệ. Gợi ý Tab hiện ra ở đây
 - **Panel Agent（bên phải, hoặc theo bố cục riêng）**: chỗ trò chuyện với AI. Chọn mode ở đây
 - **Agents Window**: màn hình xếp nhiều agent chạy song song. Trình duyệt tích hợp và Design Mode cũng ở đây
-- **Khung diff**: những chỗ Agent đã sửa. Quyết bằng **Keep**（nhận）/ **Undo**（bỏ）
-- **Vòng ngữ cảnh（context ring）**: gần ô nhập. Cho biết cuộc hội thoại đang dùng bao nhiêu ngữ cảnh
+- **Diff view**: những chỗ Agent đã sửa. Quyết bằng **Keep**（nhận）/ **Undo**（bỏ）
+- **Context ring**: gần ô nhập. Cho biết cuộc hội thoại đang dùng bao nhiêu ngữ cảnh
 
 > **Lưu ý cách hiển thị chữ**: ở Cursor 3.16, diff của Agent ghi là **Keep / Undo / Review**.
 > Riêng thanh sửa inline của `Ctrl+K` thì ghi là **Accept / Reject**. Ý nghĩa như nhau.

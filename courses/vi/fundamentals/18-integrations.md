@@ -1,63 +1,64 @@
-# 18. 外部サービス連携
+# 18. Kết nối dịch vụ ngoài
 
-[09-mcp.md](09-mcp.md) の MCP が「自分たちで繋ぐ」仕組みなのに対し、こちらは **Cursor 側が用意している公式の連携**です。設定さえすれば、**Cursor を開いていない場所から Agent を動かせます**。
+MCP ở [09-mcp.md](09-mcp.md) là cơ chế “tự mình đi nối”. Còn đây là **những kết nối chính thức do phía Cursor dựng sẵn**. Chỉ cần cấu hình xong là **kích hoạt được Agent từ những nơi không hề mở Cursor**.
 
-## 主な連携先
+## Những nơi nối được
 
-| 種類 | サービス |
-|------|----------|
-| チャット | Slack / Microsoft Teams |
-| Issue・タスク | Jira / Linear / Notion |
-| リポジトリ | GitHub / GitLab / Azure DevOps / Bitbucket |
-| 他エディタ | JetBrains / Xcode |
+| Loại | Dịch vụ |
+|------|---------|
+| Chat | Slack / Microsoft Teams |
+| Issue · task | Jira / Linear / Notion |
+| Repository | GitHub / GitLab / Azure DevOps / Bitbucket |
+| Editor khác | JetBrains / Xcode |
 
-## 例: Slack から動かす
+## Ví dụ: kích hoạt từ Slack
 
-スレッドで `@Cursor` に話しかけると、[Cloud Agents](10-cloud-agents.md) が動きます。
+Nhắn `@Cursor` trong thread thì [Cloud Agents](10-cloud-agents.md) chạy.
 
 ```text
-@Cursor ログイン画面のバグを直して
-@Cursor dev ブランチで API のレスポンス形式を更新して
+@Cursor Sửa bug ở màn hình đăng nhập
+@Cursor Cập nhật định dạng response của API trên branch dev
 ```
 
-- メッセージからリポジトリ・ブランチ・モデルを読み取って実行する
-- **スレッドの文脈を読む**ので、議論の流れをそのまま前提にできる
-- 終わったら PR を作ってリンクを返す
+- Nó đọc repo, branch và model ngay từ nội dung tin nhắn rồi chạy
+- Nó **đọc được ngữ cảnh của cả thread**, nên lấy luôn mạch thảo luận làm tiền đề
+- Xong việc thì tạo PR và trả link về
 
-使うには、連携ダッシュボードから Slack アプリを入れ、既定のリポジトリと課金設定を済ませておく必要があります。
+Muốn dùng thì phải cài Slack app từ dashboard tích hợp, rồi đặt sẵn repo mặc định và phần thanh toán.
 
 ## Deeplink
 
-MCP やプラグインの設定を **URL 1本で配れる**仕組みです。手順書に「この URL を踏んでください」と書けるので、チームの環境構築が揃いやすくなります。
+Là cơ chế **phát cấu hình MCP hoặc plugin chỉ bằng một URL**. Trong tài liệu hướng dẫn viết “bấm vào URL này” là xong, nên môi trường của cả team dễ đồng đều hơn.
 
-## MCP との使い分け
+## Phân biệt với MCP
 
-| | 公式連携 | MCP |
-|--|----------|-----|
-| 用意する人 | Cursor | 自分たち |
-| 繋がる先 | 主要 SaaS | 社内 API・DB・任意のツール |
-| 入口 | Slack など**外から** Agent を起動できる | Cursor の会話の**中から**呼ぶ |
+| | Kết nối chính thức | MCP |
+|--|--------------------|-----|
+| Ai chuẩn bị | Cursor | Chính các bạn |
+| Nối tới đâu | Các SaaS phổ biến | API nội bộ, DB, công cụ bất kỳ |
+| Cửa vào | Kích hoạt Agent **từ bên ngoài**, ví dụ Slack | Gọi **từ bên trong** cuộc hội thoại của Cursor |
 
-「Slack で言えば PR が返ってくる」は公式連携、「社内在庫 DB を見て直す」は MCP です。
+“Nhắn trên Slack là có PR trả về” là kết nối chính thức; “đọc DB tồn kho nội bộ rồi sửa” là MCP.
 
-## 注意
+## Lưu ý
 
-- 外から起動できるということは、**チャットに書いた内容がそのまま実行される**ということ。誰が起動できるかを決めておく
-- 権限は最小から。まず読み取り中心の連携で慣れる
+- Kích hoạt được từ bên ngoài nghĩa là **những gì viết trong chat sẽ được đem đi chạy thật**. Phải chốt trước ai được phép kích hoạt
+- Quyền thì bắt đầu từ mức tối thiểu. Làm quen bằng những kết nối thiên về chỉ-đọc trước
 
-## 実習（設計）
+## Thực hành（thiết kế）
 
-Ask モードで:
+Ở mode Ask:
 
 ```text
-次の3つを、公式連携 / MCP / どちらも不要 のどれで実現するのが妥当か、理由つきで振り分けて。
-1) Slack で報告されたバグを、その場で直して PR にしたい
-2) 社内の在庫 API を見て価格ロジックを直したい
-3) 手元の practice/cart.js を1行直したい
+Ba việc sau nên làm bằng kết nối chính thức / MCP / hay không cần cái nào?
+Phân loại kèm lý do.
+1) Bug được báo trên Slack, muốn sửa ngay tại chỗ và ra PR
+2) Muốn đọc API tồn kho nội bộ rồi sửa logic giá
+3) Muốn sửa một dòng trong practice/cart.js ngay trên máy
 ```
 
-参考: [Integrations](https://cursor.com/docs) · [Slack 連携](https://cursor.com/docs/integrations/slack)
+Tham khảo: [Integrations](https://cursor.com/docs) · [Slack](https://cursor.com/docs/integrations/slack)
 
 ---
 
-これで一通りです。手を動かす順番は [00-map.md](00-map.md) の一覧を参照してください。
+Vậy là hết một lượt. Thứ tự bắt tay vào làm thì xem danh sách trong [00-map.md](00-map.md).

@@ -1,6 +1,10 @@
 # Tài liệu khóa học（tiếng Việt）
 
-> **Phím tắt trong tài liệu này viết theo Windows, Mac để trong ngoặc.**
+> **Giao diện Cursor là tiếng Anh, nên mọi nhãn trên màn hình trong tài liệu này đều để nguyên tiếng Anh**
+> — Ask, Agent, Keep, Undo, Settings, Run Mode… Dịch chúng sang tiếng Việt chỉ khiến bạn không tìm thấy
+> nút cần bấm. Phần giải thích thì bằng tiếng Việt.
+>
+> **Phím tắt viết theo Windows, Mac để trong ngoặc.**
 > Ví dụ: `Ctrl+K`（Mac là `Cmd+K`）. Phím nào hai hệ giống nhau như `Tab`, `Shift+Tab` thì không ghi ngoặc.
 
 | Đường dẫn | Nội dung |

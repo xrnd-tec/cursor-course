@@ -1,96 +1,96 @@
-# 16. 内蔵ブラウザと Design Mode
+# 16. Trình duyệt tích hợp và Design Mode
 
-Cursor にはブラウザが載っています。別のアプリに切り替えず、**動いている画面を Cursor の中で見られる**だけでなく、**Agent がそのブラウザを操作できる**のが本題です。
+Cursor có sẵn một trình duyệt bên trong. Không phải chuyển sang ứng dụng khác, bạn **xem được màn hình đang chạy ngay trong Cursor** — nhưng điểm chính là **Agent thao tác được lên chính trình duyệt đó**.
 
-外部ツールのインストールや設定は要りません。
+Không cần cài hay cấu hình công cụ ngoài nào.
 
-## Agent がブラウザにできること
+## Agent làm được gì trên trình duyệt
 
-| できること | 中身 |
-|------------|------|
-| **移動** | URL を開く、リンクをたどる、戻る／進む、再読み込み |
-| **クリック** | ボタン・リンク・フォーム要素。ダブルクリック / 右クリック / ホバーも |
-| **入力** | フォームやテキスト欄に文字を入れる |
-| **スクロール** | 長いページを送って目的の場所を出す |
-| **スクリーンショット** | 画面を撮って、レイアウトの確認に使う |
-| **コンソールの読み取り** | ブラウザのコンソールのメッセージ・エラー・ログを読む |
-| **ネットワークの確認** | HTTP のリクエストとレスポンスを見る（Agent パネル） |
+| Làm được gì | Cụ thể |
+|-------------|--------|
+| **Di chuyển** | Mở URL, đi theo link, back / forward, tải lại |
+| **Click** | Nút, link, phần tử form. Cả double-click / right-click / hover |
+| **Nhập liệu** | Gõ chữ vào form và ô văn bản |
+| **Cuộn** | Cuộn trang dài để lộ ra chỗ cần |
+| **Screenshot** | Chụp màn hình để đối chiếu bố cục |
+| **Đọc console** | Đọc message, error, log trong console của trình duyệt |
+| **Xem network** | Xem request và response HTTP（ở panel Agent） |
 
-つまり「**直して、自分で開いて、自分で確かめる**」まで一続きで頼めます。エラーをコピーして貼る手間が減ります。
+Nói cách khác, bạn nhờ được cả một mạch: **sửa xong, tự mở lên, tự kiểm chứng**. Đỡ hẳn công copy lỗi rồi dán vào.
 
 ```text
-http://localhost:3000 を開いて、ログインを試して。
-コンソールにエラーが出ていたら原因を教えて。
+Mở http://localhost:3000 và thử đăng nhập.
+Nếu console có lỗi thì cho tôi biết nguyên nhân.
 ```
 
-### 開発サーバーを自分で見つける
+### Nó tự tìm ra dev server
 
-すでに動いているローカルの開発サーバーを検知して、**正しいポートを使います**。サーバーを二重に立てたり、ポートを当てずっぽうで探したりしません。
+Nó phát hiện dev server đang chạy sẵn trên máy và **dùng đúng cổng đó**. Không dựng thêm một server thứ hai, cũng không mò cổng theo kiểu đoán.
 
-### 状態が残る
+### Trạng thái được giữ lại
 
-Cookie・localStorage・sessionStorage・IndexedDB は**セッションをまたいで保持**されます（ワークスペースごとに分離）。ログインし直さずに続きから確認できます。
+Cookie, localStorage, sessionStorage và IndexedDB **được giữ qua các phiên**（tách riêng theo từng workspace）. Không phải đăng nhập lại, kiểm tra tiếp từ chỗ đang dở.
 
-## 承認のしかた
+## Cách duyệt thao tác
 
-ブラウザ操作には3段階あります。
+Thao tác trình duyệt có ba mức.
 
-| モード | 動き |
-|--------|------|
-| **手動承認**（推奨） | 操作のたびに確認する |
-| **許可リスト** | 許可した操作だけ自動で走る |
-| **自動実行** | 確認なしで実行する。**慎重に** |
+| Mức | Hành vi |
+|-----|---------|
+| **Duyệt tay**（khuyến nghị） | Hỏi bạn ở từng thao tác |
+| **Allowlist** | Chỉ những thao tác đã cho phép mới tự chạy |
+| **Tự động** | Chạy không hỏi. **Cẩn thận** |
 
-Teams / Enterprise では、管理者が「自動で開いてよいドメイン」を制限できます（手動で開くぶんには制限されません）。
+Với Teams / Enterprise, quản trị viên giới hạn được những domain nào được mở tự động（mở bằng tay thì không bị chặn）.
 
 ## Design Mode
 
-ブラウザ表示中に **`Ctrl+Shift+D`**（Mac は `Cmd+Shift+D`）で切り替えます。UI を**言葉で説明する代わりに、画面上で指す**ためのモードです。
+Khi đang xem trình duyệt, bấm **`Ctrl+Shift+D`**（Mac là `Cmd+Shift+D`）để bật. Đây là mode để **chỉ thẳng vào màn hình thay vì mô tả UI bằng lời**.
 
-| 操作 | キー |
-|------|------|
-| Design Mode の切り替え | `Ctrl+Shift+D` |
-| 範囲を選ぶ | `Shift` + ドラッグ |
-| 選んだ要素をチャットに追加 | `Ctrl+L`（Mac は `Cmd+L`） |
-| 選んだ要素を入力欄に追加 | `Alt`+クリック（Mac は `Option`+クリック） |
+| Thao tác | Phím |
+|----------|------|
+| Bật / tắt Design Mode | `Ctrl+Shift+D` |
+| Chọn một vùng | `Shift` + kéo |
+| Đưa phần tử đã chọn vào chat | `Ctrl+L`（Mac là `Cmd+L`） |
+| Đưa phần tử đã chọn vào ô nhập | `Alt`+click（Mac là `Option`+click） |
 
-選んだ要素の**コード・レイアウト・周囲との関係**がまとめて Agent に渡ります。
+**Code, bố cục và quan hệ với xung quanh** của phần tử được chọn sẽ được đưa hết sang cho Agent.
 
-> UI の修正依頼は言葉にすると長くなります（「ヘッダーの右側にある3つ並んだアイコンのうち真ん中」）。指せるなら指す方が速く、間違いも減ります。
+> Yêu cầu sửa UI mà diễn đạt bằng lời thì rất dài（“cái ở giữa trong ba icon xếp ngang bên phải header”）. Chỉ được thì chỉ vẫn nhanh hơn và ít sai hơn.
 
-## どこにあるか
+## Nó nằm ở đâu
 
-ブラウザは **Cursor の中のペイン**として開きます。**IDE ビューのまま開けます**（実機で確認。Agents Window に切り替える必要はありません）。
+Trình duyệt mở ra dưới dạng **một pane bên trong Cursor**. **Mở ngay trong IDE view được**（đã kiểm chứng trên máy thật; không cần chuyển sang Agents Window）.
 
-**Design Mode** は、公式ドキュメント上は **Agents Window のブラウザ**の機能として説明されています（→ [12-agents-window.md](12-agents-window.md)）。
+Riêng **Design Mode** thì trong tài liệu chính thức được mô tả như một tính năng của **trình duyệt trong Agents Window**（→ [12-agents-window.md](12-agents-window.md)）.
 
-`@Browser` で、ブラウザの文脈を会話に載せることもできます（→ [03-context.md](03-context.md)）。
+Bạn cũng đưa được ngữ cảnh của trình duyệt vào hội thoại bằng `@Browser`（→ [03-context.md](03-context.md)）.
 
-## 向くこと / 向かないこと
+## Hợp và không hợp
 
-- **向く**: 見た目の調整、余白・配置、「押しても動かない」系の不具合、動作確認、コンソールエラーの調査
-- **向かない**: 計算ロジックやデータ構造の修正。これは普通に Agent へ依頼する
+- **Hợp**: chỉnh giao diện, canh khoảng cách và vị trí, lỗi kiểu “bấm mà không thấy gì”, kiểm tra vận hành, truy lỗi trong console
+- **Không hợp**: sửa logic tính toán hay cấu trúc dữ liệu. Việc đó cứ nhờ Agent như bình thường
 
-## 注意
+## Lưu ý
 
-- **OS のブラウザでローカルの HTML を直接（`file://`）開くと、ES モジュールの読み込みがブロックされます。** Cursor の内蔵ブラウザで開けば動きます（実機で確認）
-- 自動実行を有効にしたまま、外部サイトを触らせない。まず手動承認から
+- **Mở tệp HTML cục bộ trực tiếp bằng trình duyệt của hệ điều hành（`file://`）thì việc nạp ES module bị chặn.** Mở bằng trình duyệt tích hợp của Cursor thì chạy（đã kiểm chứng trên máy thật）
+- Đừng để chế độ tự động rồi cho nó động vào trang bên ngoài. Hãy bắt đầu bằng duyệt tay
 
-## 実習
+## Thực hành
 
-1. 何か動くページを用意する（`practice/index.html` でよい）
-2. Cursor のブラウザで開く
-3. Agent に次を頼む
+1. Chuẩn bị một trang chạy được（dùng `practice/index.html` là được）
+2. Mở nó bằng trình duyệt của Cursor
+3. Nhờ Agent:
 
 ```text
-いま開いているページを見て、うまく動いていない箇所を3つ挙げて。
-コンソールにエラーが出ていたらそれも教えて。
-まだ直さないで。
+Nhìn trang đang mở và nêu 3 chỗ đang không chạy đúng.
+Console có lỗi thì cho tôi biết luôn.
+Chưa sửa gì cả.
 ```
 
-4. `Ctrl+Shift+D` で Design Mode にし、要素を1つ選んで修正を依頼する
-5. 差分を読んでから Keep する（画面から指しても、確認の手順は変わりません）
+4. Bấm `Ctrl+Shift+D` để vào Design Mode, chọn một phần tử rồi nhờ sửa
+5. Đọc diff xong mới Keep（chỉ từ màn hình thì các bước kiểm tra vẫn y nguyên）
 
-参考: [Browser](https://cursor.com/docs/agent/tools/browser) · [Design Mode](https://cursor.com/docs/agent/design-mode) · [Cursor 3.0](https://cursor.com/changelog/3-0)
+Tham khảo: [Browser](https://cursor.com/docs/agent/tools/browser) · [Design Mode](https://cursor.com/docs/agent/design-mode) · [Cursor 3.0](https://cursor.com/changelog/3-0)
 
-次: [17-cli.md](17-cli.md)
+Tiếp theo: [17-cli.md](17-cli.md)
