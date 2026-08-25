@@ -1,84 +1,84 @@
 ---
 name: task-breakdown
-description: 要件を、1つずつ Agent に渡せる大きさのタスク（完了条件つき）に割るときに使う。実装はしない。
+description: Use when you need to split requirements into tasks small enough to hand to an Agent one at a time, each with its own definition of done. Does not write code.
 ---
 
-# タスクに割る
+# Split it into tasks
 
-要件を受け取って、**1回の依頼で1つずつ渡せる大きさ**のタスクに分けるためのスキル。
+A skill for taking requirements and cutting them into tasks **small enough to hand over one per request**.
 
-**コードは書かない。** タスク一覧を出すところまで。
+**Do not write code.** Stop once the task list exists.
 
-## 進め方
+## How to run it
 
-### 1. 要件を読む
+### 1. Read the requirements
 
-渡された要件（無ければ `session02-spec/requirements.md`）を読む。要件が無い場合は、**先に要件を作るよう促す**。タスクから始めない。
+Read whatever was handed to you (or `session02-spec/requirements.md` if nothing was). If there are no requirements, **push them to write the requirements first**. Do not start from tasks.
 
-### 2. 3〜5個に割る
+### 2. Cut it into 3–5 tasks
 
-**多くても5個。** それ以上に割れるなら、要件が大きすぎる。「やらないこと」を増やして削るよう提案する。
+**Five at the very most.** If it genuinely needs more than that, the requirements are too big — suggest moving things into “Out of scope” to shrink it.
 
-割り方の順番:
+Cut in this order:
 
-1. **まず動く土台**（画面が出る / 一番外側の流れ）
-2. **中心の仕組み**（そのものの成立に必要な処理）
-3. **判定・終了条件**
-4. **独自ルール**（要件にしか書かれていない挙動）
-5. **仕上げ**（見た目・細かい操作）
+1. **Something that runs first** (the screen appears / the outermost flow)
+2. **The core mechanism** (the processing the thing cannot exist without)
+3. **Rules for judging and finishing**
+4. **The project-specific rules** (behaviour that only exists in these requirements)
+5. **Polish** (appearance, small interactions)
 
-**1番目は必ず「動く状態になる」タスクにする。** 部品だけ作って動かないタスクを先頭に置かない。
+**The first task must always leave the project in a running state.** Never put a task at the front that builds a part but runs nothing.
 
-### 3. 一覧を書き出す
+### 3. Write the list out
 
-**この形を崩さない。**
+**Keep this shape exactly.**
 
 ```markdown
-# タスク一覧
+# Task list
 
-## 1. （タスク名）
+## 1. (task name)
 
-- やること: （1〜2行）
-- 完了条件: （何が起きたら終わりか。画面で確認できる形で書く）
-- 触るファイル: （分かれば）
+- What to do: (1–2 lines)
+- Done when: (what has to happen. Write it so it can be checked on screen)
+- Files touched: (if you know)
 
-## 2. （タスク名）
+## 2. (task name)
 
 ...
 ```
 
-保存先は、指定が無ければ **`session02-spec/tasks.md`**。
+Unless told otherwise, save it to **`session02-spec/tasks.md`**.
 
-### 4. 渡し方を示す
+### 4. Show how to hand it over
 
-一覧の最後に、**そのままコピーして使える依頼文**を1つ付ける。
+At the end of the list, add **one request you can copy and paste as-is**.
 
 ```text
-（タスク1のやること）
-完了条件: （タスク1の完了条件）
-他の機能は変えないで。
+(what to do, from task 1)
+Done when: (the "done when" from task 1)
+Do not change any other feature.
 ```
 
-## 完了条件の書き方
+## How to write “Done when”
 
-**「画面で確認できること」を書く。** コードの状態ではなく、目で見て分かる形にする。
+**Write something you can confirm on screen.** Not the state of the code — something you can see with your eyes.
 
-| 良い完了条件 | 弱い完了条件 |
+| Good | Weak |
 |---|---|
-| カードを2枚めくると、一致・不一致が画面で分かる | 判定ロジックが実装されている |
-| 全ペアが揃うと「おめでとう」が表示される | クリア処理が動く |
-| 3回目のミス以降、裏に戻るまでが速くなる | 待ち時間が可変になっている |
+| Flip two cards and the screen shows whether they match | The matching logic is implemented |
+| When every pair is matched, “Congratulations” appears | The clear-screen handler runs |
+| From the third mistake onward, cards flip back faster | The wait time is variable |
 
-完了条件が書けないタスクは、**タスクの切り方が悪い**。割り直す。
+If you cannot write a “Done when” for a task, **the task was cut badly**. Cut it again.
 
-## タスクの独立性
+## Keeping tasks independent
 
-- 前のタスクが終わっていないと確認できないものは、**順番を明示する**
-- 同じファイルの同じ場所を2つのタスクが触るなら、**1つにまとめる**
+- If a task cannot be checked until an earlier one is finished, **state the order explicitly**
+- If two tasks touch the same part of the same file, **merge them into one**
 
-## やらないこと
+## Out of scope for this skill
 
-- コードを書く / 実装する
-- 6個以上に割る
-- 完了条件を省く
-- 要件に書かれていないタスクを足す
+- Writing code, or implementing anything
+- Cutting it into six or more tasks
+- Leaving out “Done when”
+- Adding tasks that are not in the requirements

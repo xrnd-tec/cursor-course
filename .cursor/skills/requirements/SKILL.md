@@ -1,89 +1,90 @@
 ---
 name: requirements
-description: 作りたいものを対話で聞き取り、「やること / 画面 / 操作 / やらないこと」の4項目にまとめた要件 Markdown を作るときに使う。実装はしない。
+description: Use when you need to interview someone about what they want to build and turn it into a requirements document covering four sections — what it does, the screen, the interactions, and what is out of scope. Does not write code.
 ---
 
-# 要件をつくる
+# Write the requirements
 
-作りたいものを聞き取って、**AI に渡せる形の要件**に落とすためのスキル。
+A skill for interviewing someone about what they want to build and turning it into **requirements in a shape you can hand to an AI**.
 
-**コードは書かない。** 要件が固まるまで実装に入らないこと。
+**Do not write code.** Do not start implementing until the requirements are settled.
 
-## 進め方
+## How to run it
 
-### 1. まとめて質問する（1回だけ）
+### 1. Ask everything at once (one round only)
 
-質問を小出しにしない。**次の4つをまとめて1回で聞く。**
+Do not dribble the questions out. **Ask these four together, in one message.**
 
 ```
-1. 何を作りますか（一言で）
-2. それが「できた」と言えるのは、何ができたときですか（2〜4個）
-3. 画面には何が見えて、何が押せますか
-4. 今回は作らないものはありますか（あとで足せるもの、無くても成立するもの）
+1. What are you building (one sentence)?
+2. What has to work before you would call it done (2–4 things)?
+3. What is visible on screen, and what can be clicked?
+4. Is there anything you are deliberately NOT building this time
+   (things you could add later, things it works fine without)?
 ```
 
-答えが足りなくても、**追加の質問は最大1回まで**。それ以上は聞かずに、こちらで埋めて確認を取る。
+If the answers are thin, you get **one follow-up round at most**. After that, fill the gaps yourself and confirm.
 
-### 2. 埋まっていない項目を埋める
+### 2. Fill the gaps
 
-答えが薄い項目は、**こちらから案を出して「これでいいですか」と聞く**。ゼロから考えさせない。
+Where an answer is thin, **propose something and ask “is this right?”** Do not make them design it from nothing.
 
-とくに **「やらないこと」が空のまま進めない**。空なら、その題材でありがちなものを3つ挙げて選んでもらう。
+Above all, **do not move on while “out of scope” is empty**. If it is empty, name three things that people commonly leave out for this kind of project and let them pick.
 
-> 例（ゲームの場合）: 難易度選択 / 制限時間 / スコアやランキング / アニメーション / 外部ライブラリ / 保存（リロードで消えてよい）
+> Example (for a game): difficulty levels / a time limit / score or leaderboard / animation / external libraries / saving (fine if a reload wipes it)
 
-### 3. 要件を書き出す
+### 3. Write the requirements out
 
-**この形を崩さない。**
+**Keep this shape exactly.**
 
 ```markdown
-# （作るもの）の要件
+# Requirements — (what you are building)
 
-## やること
+## What it does
 
-- （箇条書き。3〜7個）
+- (bullets, 3–7 of them)
 
-## 画面
+## Screen
 
-- （何が見えるか / どう並ぶか）
+- (what is visible / how it is laid out)
 
-## 操作
+## Interactions
 
-- （ユーザーが何をするとどうなるか）
-- （できないこと・無反応にすることも書く）
+- (what happens when the user does something)
+- (also write down what does nothing, and what is not allowed)
 
-## やらないこと
+## Out of scope
 
-- （今回は作らないもの）
+- (what you are not building this time)
 ```
 
-保存先は、指定が無ければ **`session02-spec/requirements.md`**。
+Unless told otherwise, save it to **`session02-spec/requirements.md`**.
 
-### 4. 確認する
+### 4. Confirm
 
-書き出したら、**次の2点だけ**を口頭で確認する。
+Once it is written, check **just these two points** out loud.
 
-- 「やること」に、**AI が常識で補ってしまいそうにない独自ルール**が入っているか
-- 「やらないこと」が1つ以上あるか
+- Does “What it does” contain a **rule specific to this project that an AI would not guess on its own**?
+- Is there at least one item under “Out of scope”?
 
-## 書き方のきまり
+## Rules for writing it
 
-| 良い書き方 | 避ける書き方 |
+| Write it like this | Not like this |
 |---|---|
-| 2枚が違う柄なら1秒後に裏に戻す | いい感じに戻す |
-| カードは 4×4 のグリッドに並べる | 見やすく並べる |
-| めくれるのは一度に2枚まで（3枚目は無反応） | 変な操作は防ぐ |
+| If the two cards do not match, flip them back after 1 second | Flip them back nicely |
+| Lay the cards out in a 4×4 grid | Lay them out so they look good |
+| At most two cards can be face up at a time (a third click does nothing) | Prevent weird interactions |
 
-- **数字を入れる**（何枚・何秒・何個）
-- **1行に1つのことだけ書く**
-- 実装方法（ライブラリ名・関数名）は書かない。**何がどうなるか**だけ書く
+- **Put numbers in** (how many cards, how many seconds, how many items)
+- **One idea per line**
+- Do not write implementation (library names, function names). Write **what happens**, not how
 
-## あとから要件が増えたとき
+## When a requirement arrives later
 
-「追加でこれも」と言われたら、**コードを直しに行かない**。まず要件ファイルの該当する節に1行足し、それから実装を依頼する形にする。
+If someone says “oh, and also this”, **do not go and edit the code**. Add one line to the right section of the requirements file first, then ask for the implementation.
 
-## やらないこと
+## Out of scope for this skill
 
-- コードを書く / ファイルを生成する（要件ファイル以外）
-- 質問を何度も往復する（合計2回まで）
-- 要件を勝手に大きくする（言われていない機能を「やること」に足さない）
+- Writing code, or creating files other than the requirements file
+- Going back and forth with questions (two rounds total, maximum)
+- Growing the requirements on your own (never add a feature nobody asked for)

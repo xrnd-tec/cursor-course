@@ -1,8 +1,8 @@
 /**
- * 実行デモ（総合実習でここを育てる）
- * いまはプレースホルダです。
+ * Runnable demo (you grow this one in the combined exercise)
+ * It is a placeholder for now.
  *
- * 目標: node practice/index.js で買い物の流れがログに出る
+ * Goal: `node practice/index.js` prints a shopping flow to the log
  */
 
-console.log("practice/index.js — ここにカート操作のデモを書いてみよう");
+console.log("practice/index.js — write a cart demo here");

@@ -1,5 +1,5 @@
 /**
- * 超小型カート（@参照と Agent 実習用）
+ * A very small cart (for practising @ references and the Agent)
  */
 
 const items = [];
@@ -17,6 +17,6 @@ export function listItems() {
 }
 
 export function getSubtotal() {
-  // TODO: price や qty が欠けたアイテムがあると NaN になる。耐えるように直してみよう
+  // TODO: this returns NaN when an item is missing price or qty. Make it survive that
   return items.reduce((sum, item) => sum + item.price * item.qty, 0);
 }

@@ -1,5 +1,5 @@
 /**
- * 名前を整形して挨拶する（Tab / Cmd+K 用）
+ * Formats a name and greets (for Tab and Ctrl+K practice)
  */
 
 export function formatName(name) {

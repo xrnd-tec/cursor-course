@@ -1,33 +1,36 @@
 # practice/
 
-小さな買い物カートです。**`index.html` を開くと、いま何が壊れているかが画面で見えます。**
+A small shopping cart. **Open `index.html` and you can see on screen exactly what is broken right now.**
 
-## 開き方
+> These files are kept in **English only**, so the Vietnamese and English tracks of the course
+> both point at the same code. Nothing here needs translating.
 
-**`index.html` を Cursor の内蔵ブラウザで開いてください。** 追加のインストールは要りません。
+## How to open it
 
-ES モジュールを使っているので、ファイルをダブルクリックして OS のブラウザで開くと**読み込みがブロックされ、数字が「…」のまま**になります（`file://` の制約）。
+**Open `index.html` in the browser built into Cursor.** Nothing else to install.
 
-## ファイル
+The page uses ES modules, so if you double-click the file and open it in your operating system's browser, **loading is blocked and the numbers stay as “…”** (a `file://` restriction).
 
-| ファイル | 中身 | 向いている練習 |
-|----------|------|----------------|
-| `index.html` | 画面。下の3ファイルをそのまま動かしている | 触らなくてよい |
-| `calculator.js` | 四則演算と `applyDiscount`（**未実装**） | Agent で関数実装、Ask で説明 |
-| `cart.js` | カート。`getSubtotal` が **NaN になるバグ**あり | `@` 参照、バグ修正 |
-| `greeter.js` | 挨拶。画面の見出しに出ている | Tab / `Ctrl+K` |
-| `index.js` | ターミナル実習用のエントリ | 総合実習 |
+## Files
 
-## 画面で見えること
+| File | What is in it | Good practice for |
+|------|---------------|-------------------|
+| `index.html` | The screen. It runs the three files below as they are | Leave it alone |
+| `calculator.js` | Arithmetic plus `applyDiscount` (**not implemented**) | Implementing a function with Agent, explaining with Ask |
+| `cart.js` | The cart. `getSubtotal` has a **bug that produces NaN** | `@` references, fixing a bug |
+| `greeter.js` | The greeting shown in the page heading | Tab, `Ctrl+K` |
+| `index.js` | Entry point for the terminal exercise | The combined exercise |
 
-| 画面 | いまの状態 | 直すファイル |
-|------|-----------|-------------|
-| ① 割引を計算する | **割引されない**（金額が変わらない） | `calculator.js` の `applyDiscount` |
-| ② カートの小計 | **NaN** と表示される | `cart.js` の `getSubtotal` |
-| ③ クーポンを使う | **未実装** と表示される | `cart.js` に `applyCoupon` を追加する |
+## What you can see on screen
 
-直して保存したら、**ブラウザを再読み込み**してください。表示が変わります。
+| On screen | State right now | File to fix |
+|-----------|-----------------|-------------|
+| 1. Apply a discount | **No discount happens** (the amount does not change) | `applyDiscount` in `calculator.js` |
+| 2. Cart subtotal | Shows **NaN** | `getSubtotal` in `cart.js` |
+| 3. Use a coupon | Shows **not implemented** | Add `applyCoupon` to `cart.js` |
 
-## メモ
+Once you have fixed something and saved it, **reload the browser**. The display changes.
 
-ESM です（リポジトリ直下の `package.json` に `"type": "module"` があります）。ターミナルから動かす実習は `node practice/index.js` です。
+## Notes
+
+This is ESM (the `package.json` at the repo root has `"type": "module"`). The terminal exercise runs with `node practice/index.js`.

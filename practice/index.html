@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>practice — ミニ買い物カート</title>
+    <title>practice — Mini Shopping Cart</title>
     <style>
-      /* deck-creator のテーマに合わせた配色
-         背景 #F7F7F8 ／ 文字 #14161A ／ メイン #282882（濃紺）／ 差し色 #F35A29 */
+      /* Colours match the deck-creator theme
+         background #F7F7F8 / text #14161A / primary #282882 (deep navy) / accent #F35A29 */
       :root {
-        color-scheme: light; /* デッキに合わせて白ベース固定 */
+        color-scheme: light; /* pinned to a light base so it matches the deck */
         --bg: #f7f7f8;
         --surface: #ffffff;
         --fg: #14161a;
@@ -33,14 +33,14 @@
           radial-gradient(1200px 400px at 50% -200px, var(--accent-soft), transparent 70%),
           var(--bg);
         color: var(--fg);
-        font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, -apple-system, sans-serif;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         line-height: 1.75;
         -webkit-font-smoothing: antialiased;
       }
 
       main { max-width: 640px; margin: 0 auto; }
 
-      /* ── ヘッダー ───────────────────────────────── */
+      /* ── Header ─────────────────────────────────── */
       .eyebrow {
         font-size: 11px;
         font-weight: 700;
@@ -69,10 +69,10 @@
         color: var(--muted);
         margin: 0 0 clamp(32px, 6vw, 52px);
         font-size: 14px;
-        max-width: 46ch;
+        max-width: 52ch;
       }
 
-      /* ── カード ─────────────────────────────────── */
+      /* ── Cards ──────────────────────────────────── */
       section {
         position: relative;
         background: var(--surface);
@@ -120,7 +120,7 @@
         white-space: nowrap;
       }
 
-      /* ── 表 ─────────────────────────────────────── */
+      /* ── Tables ─────────────────────────────────── */
       table { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
       th, td {
         text-align: left;
@@ -141,7 +141,7 @@
       td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
       td.missing { color: var(--ng); }
 
-      /* ── 数値の結果 ─────────────────────────────── */
+      /* ── Numeric readouts ───────────────────────── */
       .readout {
         display: flex;
         align-items: baseline;
@@ -164,7 +164,7 @@
       .result.bad { color: var(--ng); }
       .result.good { color: var(--ok); }
 
-      /* ── 状態の注記 ─────────────────────────────── */
+      /* ── Status notes ───────────────────────────── */
       .note {
         display: none;
         align-items: flex-start;
@@ -188,7 +188,7 @@
         margin-top: 8px;
       }
 
-      /* ── 入力 ───────────────────────────────────── */
+      /* ── Inputs ─────────────────────────────────── */
       .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
       .row .sep { color: var(--muted); font-size: 13px; }
       input {
@@ -250,23 +250,23 @@
       <p class="eyebrow">practice</p>
       <h1 id="greeting">…</h1>
       <p class="lead">
-        このページは <code>practice/</code> の JS をそのまま動かしています。コードを直して保存したら、ブラウザを再読み込みしてください。
+        This page runs the JavaScript in <code>practice/</code> directly. Fix the code, save it, then reload the browser.
       </p>
 
       <section>
         <div class="head">
           <span class="badge">1</span>
-          <h2>割引を計算する</h2>
+          <h2>Apply a discount</h2>
           <span class="src">calculator.js — applyDiscount()</span>
         </div>
         <div class="row">
           <input id="amount" type="number" value="1000" />
-          <span class="sep">円の</span>
+          <span class="sep">minus</span>
           <input id="percent" type="number" value="10" />
-          <span class="sep">％引き</span>
+          <span class="sep">%</span>
         </div>
         <div class="readout">
-          <span class="label">割引後</span>
+          <span class="label">After discount</span>
           <span id="discounted" class="result">…</span>
         </div>
         <p class="note" id="discountNote"></p>
@@ -275,21 +275,21 @@
       <section>
         <div class="head">
           <span class="badge">2</span>
-          <h2>カートの小計</h2>
+          <h2>Cart subtotal</h2>
           <span class="src">cart.js — getSubtotal()</span>
         </div>
         <table>
           <thead>
             <tr>
-              <th>商品</th>
-              <th class="num">単価</th>
-              <th class="num">個数</th>
+              <th>Item</th>
+              <th class="num">Unit price</th>
+              <th class="num">Qty</th>
             </tr>
           </thead>
           <tbody id="items"></tbody>
         </table>
         <div class="readout">
-          <span class="label">小計</span>
+          <span class="label">Subtotal</span>
           <span id="subtotal" class="result">…</span>
         </div>
         <p class="note" id="subtotalNote"></p>
@@ -298,21 +298,21 @@
       <section>
         <div class="head">
           <span class="badge">3</span>
-          <h2>クーポンを使う</h2>
+          <h2>Use a coupon</h2>
           <span class="src">cart.js — applyCoupon()</span>
         </div>
         <div class="row">
           <input id="code" type="text" value="SUMMER10" style="width: 140px" />
-          <button id="applyCouponBtn">適用する</button>
+          <button id="applyCouponBtn">Apply</button>
         </div>
         <div class="readout">
-          <span class="label">適用後</span>
+          <span class="label">After coupon</span>
           <span id="couponResult" class="result">…</span>
         </div>
         <p class="note" id="couponNote"></p>
       </section>
 
-      <footer>Cursor 実践コース — practice/</footer>
+      <footer>Cursor hands-on course — practice/</footer>
     </main>
 
     <script type="module">
@@ -321,28 +321,28 @@
       import * as cart from "./cart.js";
 
       const $ = (id) => document.getElementById(id);
-      const yen = (n) => `${n.toLocaleString("ja-JP")} 円`;
+      const fmt = (n) => n.toLocaleString("en-US");
 
       function setNote(el, text, kind) {
         el.textContent = text ?? "";
         el.className = text ? `note show ${kind}` : "note";
       }
 
-      // 挨拶（greeter.js）
-      $("greeting").textContent = greet("ゲスト");
+      // Greeting (greeter.js)
+      $("greeting").textContent = greet("Guest");
 
-      // ── ① 割引 ──────────────────────────────────────────────
+      // ── 1. Discount ─────────────────────────────────────────
       function renderDiscount() {
         const amount = Number($("amount").value);
         const percent = Number($("percent").value);
         const result = applyDiscount(amount, percent);
         const el = $("discounted");
 
-        el.textContent = Number.isFinite(result) ? yen(result) : String(result);
+        el.textContent = Number.isFinite(result) ? fmt(result) : String(result);
 
         if (result === amount && percent !== 0) {
           el.className = "result bad";
-          setNote($("discountNote"), "割引されていません。applyDiscount() がまだ実装されていないためです。", "bad");
+          setNote($("discountNote"), "No discount was applied, because applyDiscount() is not implemented yet.", "bad");
         } else {
           el.className = "result good";
           setNote($("discountNote"), null);
@@ -351,10 +351,10 @@
       $("amount").addEventListener("input", renderDiscount);
       $("percent").addEventListener("input", renderDiscount);
 
-      // ── ② カート ────────────────────────────────────────────
-      cart.addItem("りんご", 120, 2);
-      cart.addItem("みかん", 80, 3);
-      cart.addItem("バナナ", undefined, 1); // わざと単価が欠けている
+      // ── 2. Cart ─────────────────────────────────────────────
+      cart.addItem("Apple", 120, 2);
+      cart.addItem("Orange", 80, 3);
+      cart.addItem("Banana", undefined, 1); // unit price is missing on purpose
 
       function renderCart() {
         $("items").innerHTML = cart
@@ -363,7 +363,7 @@
             (item) => `<tr>
               <td>${item.name}</td>
               <td class="num${item.price === undefined ? " missing" : ""}">${
-                item.price === undefined ? "未設定" : item.price
+                item.price === undefined ? "not set" : item.price
               }</td>
               <td class="num">${item.qty}</td>
             </tr>`
@@ -372,30 +372,30 @@
 
         const subtotal = cart.getSubtotal();
         const el = $("subtotal");
-        el.textContent = Number.isFinite(subtotal) ? yen(subtotal) : String(subtotal);
+        el.textContent = Number.isFinite(subtotal) ? fmt(subtotal) : String(subtotal);
 
         if (!Number.isFinite(subtotal)) {
           el.className = "result bad";
-          setNote($("subtotalNote"), "単価が入っていない商品があると、小計が計算できません（バナナの単価が「未設定」です）。", "bad");
+          setNote($("subtotalNote"), "The subtotal cannot be computed while an item has no unit price (Banana is \"not set\").", "bad");
         } else {
           el.className = "result good";
           setNote($("subtotalNote"), null);
         }
       }
 
-      // ── ③ クーポン ──────────────────────────────────────────
+      // ── 3. Coupon ───────────────────────────────────────────
       function renderCoupon() {
         const el = $("couponResult");
 
         if (typeof cart.applyCoupon !== "function") {
-          el.textContent = "未実装";
+          el.textContent = "not implemented";
           el.className = "result bad";
-          setNote($("couponNote"), "cart.js に applyCoupon() がありません。追加すると、ここが動きます。", "bad");
+          setNote($("couponNote"), "cart.js has no applyCoupon(). Add one and this line starts working.", "bad");
           return;
         }
 
         const result = cart.applyCoupon($("code").value);
-        el.textContent = Number.isFinite(result) ? yen(result) : String(result);
+        el.textContent = Number.isFinite(result) ? fmt(result) : String(result);
         el.className = "result good";
         setNote($("couponNote"), null);
       }
