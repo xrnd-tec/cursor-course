@@ -127,29 +127,30 @@ Anyone already finished is welcome to move ahead without waiting.
 
 ### The shape of this section
 
-1. 0-1 From the cover to today's promises
+1. 0-1 From the cover to how today runs
 
-### 0-1 From the cover to today's promises
+### 0-1 From the cover to how today runs
 
 #### ［Slide］Cover
 
 ```
 Cursor: basic operations
 
-Cursor hands-on course　Session 1 / 4　·　90 minutes
+Cursor hands-on course　Session 1 / 5　·　90 minutes
 （date）
 ```
 
 #### ［Slide］About this course
 
-**Four sessions to get to “a team can build an app and present it”.**
+**Five sessions to get to “a team can build an app and present it”.**
 
 | Session | What we do | What you can do afterwards |
 |---------|------------|----------------------------|
 | **Session 1（today）** | Basic operations | Have the AI fix a defect, and read the diff it produced |
-| Session 2 | Vibe coding → spec-driven development | Write the requirements before you have it built |
-| Session 3 | Team development（first half） | Write a spec as a team and open a PR |
-| Session 4 | Finishing and presenting | Demo something that runs |
+| Session 2 | Vibe coding | Explain what happens when you ask without deciding anything |
+| Session 3 | Spec-driven development | Write the requirements before you have it built |
+| Session 4 | Team development（first half） | Write a spec as a team and open a PR |
+| Session 5 | Finishing and presenting | Demo something that runs |
 
 #### ［Slide］What we're doing today
 
@@ -165,7 +166,7 @@ Open `practice/index.html` and three things are broken, marked in orange.
 
 **When those three turn navy, today is a success.**
 
-#### ［Slide］Today's three promises
+#### ［Slide］How today runs（three points）
 
 1. **You don't have to remember everything.** We use exactly three tools today
 2. **There's almost no time just watching.** 75 of the 90 minutes are your own hands
@@ -841,7 +842,7 @@ For individual work, **Auto-review** is a good idea（the optional reading in ch
 
 **Next session:**
 
-> “Next time we build memory match. First you'll build it ‘without thinking’. Then you'll write the requirements and build it again. Which one goes better — let your hands find out.”
+> “Next time we build a memory game. You'll ask for it without deciding anything — just ‘make it nice’ — and at the end everyone shows their game to the others.”
 
 #### Checkpoint
 
