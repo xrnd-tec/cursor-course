@@ -52,6 +52,16 @@ Each Hook takes these options.
 
 In the JSON response, `permission` can be `allow` / `deny` / `ask`. Exit code `2` is treated the same as `deny`.
 
+## Building a loop with the `stop` hook
+
+The `stop` hook is called **when the agent finishes its work**. If the JSON response contains `followup_message`（a string）, Cursor **sends it automatically as the next user message**. If it is empty or left out, the agent stops there.
+
+- The input includes `loop_count`（how many times the `stop` hook has already sent a message automatically in this conversation, counting from 0）
+- The limit on automatic messages is **5 by default**. You can change it with `loop_limit`; `null` removes the limit
+- `subagentStop`（when a subagent finishes）can also return `followup_message`. It uses the same `loop_limit`
+
+Example: run the tests, return “Fix the failing tests” if any fail, and return nothing if they all pass. This gives you a loop that “keeps fixing until the tests pass”. For how to build loops, see [21-goals-loops.md](21-goals-loops.md).
+
 ## Watch out for
 
 - Blocking everything on failure（`failClosed: true`）easily brings development to a halt. The default is “let it through on failure”

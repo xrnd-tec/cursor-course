@@ -1,4 +1,4 @@
-# 11. Bugbot and PR review
+# 11. Bugbot, Agent Review and PR review
 
 Knowing about **automated PR review** around Cursor, as a quality gate after you've written the code, makes team work considerably lighter.
 
@@ -16,7 +16,31 @@ Names and how you enable them differ by environment. The point is not to mix up 
 
 Bugbot is a feature of [Cloud Agents](10-cloud-agents.md). It reads the PR diff and leaves comments with findings and suggested fixes. You can have it run automatically every time the PR updates, or call it by hand.
 
-With **Autofix**, a Cloud Agent starts up to fix the bugs it found. Finding → fixing → landing in the PR becomes one continuous line, which also **makes it easier to merge without reading the findings at all**. The fixes it produces still have to be read as a diff.
+With **Autofix**, a Cloud Agent starts up to fix the bugs it found. Finding → fixing → landing in the PR becomes one continuous line, which also **makes it easier to merge without reading the findings at all**. The fixes it produces still have to be read as a diff. Autofix is out of beta and available to everyone who uses Bugbot.
+
+### Pricing（from May 2026）
+
+- Per-seat pricing is gone; it is now **billed by actual usage**. On Teams it comes out of on-demand usage; on individual plans it comes out of the included usage
+- A review costs **$1.00–1.50 on average**, depending on the size of the PR
+- You can choose how deep the review goes（effort）. There is also a setting to look only at what changed since the previous review
+
+## Agent Review（review on your machine）
+
+Where Bugbot runs on GitHub PRs, **Agent Review runs in Cursor on your machine, before you commit or push**. No GitHub setup is needed.
+
+| How to call it | What it reviews |
+|----------------|-----------------|
+| After the Agent finishes, **Review → Find Issues** | The changes from that piece of work |
+| Run it from the **Source Control panel** | All your local changes, compared with the `main` branch |
+| Type **`/agent-review`** in the chat input | Reviews on the spot |
+| Turn it on in settings | Runs automatically on every commit |
+
+There are two depths to choose from.
+
+| Depth | Good for |
+|-------|----------|
+| **Quick** | Fast and uses little usage. Small diffs or formatting changes |
+| **Deep** | Takes more time and usage. Complex logic or security-related code |
 
 ## What you can do in the chat（even in this learning repo）
 
@@ -45,6 +69,6 @@ Don't push and don't create a PR yet.
 
 If your team already has Bugbot on a repo, the fastest route is to read its findings once on a real PR.
 
-Reference: [Bugbot](https://cursor.com/docs/bugbot)
+Reference: [Bugbot](https://cursor.com/docs/bugbot) · [Agent Review](https://cursor.com/docs/agent/agent-review) · [Updates to Bugbot（May 2026）](https://cursor.com/blog/may-2026-bugbot-changes) · [Bugbot Autofix](https://cursor.com/blog/bugbot-autofix)
 
 Next: [12-agents-window.md](12-agents-window.md)

@@ -58,10 +58,8 @@ When you run out, the options are **add on-demand usage** or **upgrade the plan*
 | Situation | Judgement |
 |-----------|-----------|
 | Session 1（basics） | Expected to work on the free plan. Only a handful of Agent requests |
-| Session 2（fixing the model） | **Careful here.** Chapter 2 asks everyone to move off Auto to a specific model. Whether the free plan can do this is unverified |
-| Sessions 3 and 4（team work） | Requests multiply by headcount. Some people may exhaust their allowance |
-
-**Before session 2, the instructor should check on their own machine whether the free plan can fix a model.** If it can't, drop “fix the model” from the required steps in chapter 2 and switch to having **everyone stay on Auto**（the comparison conditions still match).
+| Sessions 2 and 3（building a game） | The Agent runs many times. The model **stays on Auto** and is not fixed |
+| Sessions 4 and 5（team work） | Requests multiply by headcount. Some people may exhaust their allowance |
 
 ## Watch out for
 
@@ -70,4 +68,4 @@ When you run out, the options are **add on-demand usage** or **upgrade the plan*
 
 Reference: [Pricing](https://cursor.com/pricing) · [Plans（Help）](https://cursor.com/help/account-and-billing/pricing) · [Models & Pricing](https://cursor.com/docs/models-and-pricing)
 
-Back to: [00-map.md](00-map.md)
+Next: [20-git.md](20-git.md)

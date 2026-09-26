@@ -106,11 +106,12 @@ Tham khảo: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 - Hiểu MCP, Cloud Agents và review PR đứng ở đâu
 - Nắm được những điểm cần cẩn thận về thông tin bí mật, giới hạn chạy lệnh và chạy agent song song
 
-### Ứng dụng 14–18 — phát cho cả team, cho chạy tự động
+### Ứng dụng 14–21 — phát cho cả team, cho chạy tự động
 
 - Cắt được một phần việc giao cho Subagent
 - Gói cả bộ thành Plugin để phát đi
 - Kích hoạt Agent từ màn hình, terminal hoặc dịch vụ ngoài
+- Xác định mục tiêu, cách kiểm tra và điểm dừng để agent tự lặp lại công việc
 
 ## Danh sách chương
 
@@ -125,8 +126,8 @@ Tham khảo: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 | [07](07-skills.md) | Skills |
 | [08](08-hooks.md) | Hooks |
 | [09](09-mcp.md) | MCP |
-| [10](10-cloud-agents.md) | Cloud Agents（Builds / Automations） |
-| [11](11-bugbot-pr.md) | Bugbot / review PR |
+| [10](10-cloud-agents.md) | Cloud Agents（Builds / Automations / Subscriptions / Projects） |
+| [11](11-bugbot-pr.md) | Bugbot / Agent Review / review PR |
 | [12](12-agents-window.md) | Agents Window / Worktrees |
 | [13](13-safety-ignore.md) | Thông tin bí mật · giới hạn chạy lệnh · vận hành an toàn |
 | [14](14-subagents.md) | Subagents |
@@ -135,5 +136,7 @@ Tham khảo: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 | [17](17-cli.md) | CLI |
 | [18](18-integrations.md) | Kết nối dịch vụ ngoài |
 | [19](19-plans.md) | Gói dịch vụ và mức sử dụng |
+| [20](20-git.md) | Kết nối Git（branch · commit · PR · Issue） |
+| [21](21-goals-loops.md) | Mục tiêu và vòng lặp（`/goal` · `/loop` · Steering · hook `stop`） |
 
 Tiếp theo: [01-modes.md](01-modes.md)

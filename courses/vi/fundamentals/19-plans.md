@@ -58,10 +58,8 @@ Dùng hết thì có hai lựa chọn: **thêm phần on-demand** hoặc **nâng
 | Tình huống | Phán định |
 |------------|-----------|
 | Buổi 1（thao tác cơ bản） | Dự tính là bản miễn phí chạy được. Số lần nhờ Agent chỉ vài lần |
-| Buổi 2（cố định model） | **Cần chú ý.** Chương 2 yêu cầu chuyển model từ Auto sang một model cụ thể. Bản miễn phí có làm được việc này không thì chưa kiểm chứng |
-| Buổi 3 và 4（làm việc nhóm） | Số lượt nhờ nhân theo số người. Có thể có người dùng hết hạn mức |
-
-**Trước buổi 2, giảng viên hãy tự kiểm tra trên máy mình xem “bản miễn phí có cố định model được không”.** Nếu không được thì bỏ phần “cố định model” ở chương 2 khỏi danh sách bắt buộc, chuyển sang cách cho **cả lớp cùng để nguyên Auto**（điều kiện so sánh vẫn đồng đều）.
+| Buổi 2 và 3（làm game） | Chạy Agent nhiều lần. Model **giữ nguyên Auto**, không cố định |
+| Buổi 4 và 5（làm việc nhóm） | Số lượt nhờ nhân theo số người. Có thể có học viên dùng hết hạn mức |
 
 ## Lưu ý
 
@@ -70,4 +68,4 @@ Dùng hết thì có hai lựa chọn: **thêm phần on-demand** hoặc **nâng
 
 Tham khảo: [Pricing](https://cursor.com/pricing) · [Plans（Help）](https://cursor.com/help/account-and-billing/pricing) · [Models & Pricing](https://cursor.com/docs/models-and-pricing)
 
-Quay lại: [00-map.md](00-map.md)
+Tiếp theo: [20-git.md](20-git.md)
