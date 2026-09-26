@@ -148,7 +148,7 @@ Khóa thực hành Cursor　Buổi 1 / 5　·　90 phút
 | ---- | ------ | -------------------- |
 | **Buổi 1（hôm nay）** | Thao tác cơ bản | Bắt AI sửa lỗi, và đọc được diff nó tạo ra |
 | Buổi 2 | Vibe coding | Giải thích được chuyện gì xảy ra khi nhờ AI mà không quyết định gì trước |
-| Buổi 3 | Phát triển theo yêu cầu | Viết yêu cầu trước rồi mới cho AI làm |
+| Buổi 3 | Phát triển theo spec | Viết yêu cầu trước rồi mới cho AI làm |
 | Buổi 4 | Làm việc nhóm（nửa đầu） | Cả nhóm viết yêu cầu và mở được PR |
 | Buổi 5 | Hoàn thiện và trình bày | Demo được một thứ chạy thật |
 
