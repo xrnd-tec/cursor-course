@@ -4,13 +4,13 @@
 
 ## Tiếng Việt
 
-Tài liệu dành cho người **đã dùng Cursor đôi lần**, để một lần nắm chắc **panel hội thoại, các mode, phím tắt và cách tham chiếu bằng `@`**. Ngoài phần tự học còn có **khóa thực hành 90 phút × 4 buổi**.
+Tài liệu dành cho người **đã dùng Cursor đôi lần**, để một lần nắm chắc **panel hội thoại, các mode, phím tắt và cách tham chiếu bằng `@`**. Ngoài phần tự học còn có **khóa thực hành 90 phút × 5 buổi**.
 
 **→ Bắt đầu ở [`courses/vi/`](courses/vi/)**
 
 ## English
 
-Material for people who have **used Cursor a few times** and want to lock down **the chat panel, the modes, the shortcuts, and `@` references** in one pass. It also contains a **hands-on course of 4 sessions × 90 minutes**.
+Material for people who have **used Cursor a few times** and want to lock down **the chat panel, the modes, the shortcuts, and `@` references** in one pass. It also contains a **hands-on course of 5 sessions × 90 minutes**.
 
 **→ Start at [`courses/en/`](courses/en/)**
 
@@ -24,7 +24,7 @@ Material for people who have **used Cursor a few times** and want to lock down *
 | [`courses/en/`](courses/en/) | Course material（English） |
 | [`practice/`](practice/) | Sample code you edit by hand（English, shared by both languages） |
 | [`slides/`](slides/) | Class slides as PDF（sessions 1–2 · Vietnamese / English / Japanese） |
-| [`.cursor/skills/`](.cursor/skills/) | Skills used in session 2（English） |
+| [`.cursor/skills/`](.cursor/skills/) | Skills used from session 3（English） |
 
 `practice/` and `.cursor/skills/` are kept in **English only**: both language tracks point at the same files, so there is a single source of truth for the code you edit.
 

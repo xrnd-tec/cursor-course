@@ -9,8 +9,8 @@
 
 | Đường dẫn | Nội dung |
 |-----------|----------|
-| [fundamentals/](fundamentals/) | Bài tự học thao tác Cursor（0–19） |
-| [4sessions/](4sessions/) | Khóa thực hành（90 phút × 4 buổi） |
+| [fundamentals/](fundamentals/) | Bài tự học thao tác Cursor（0–21） |
+| [4sessions/](4sessions/) | Khóa thực hành（90 phút × 5 buổi） |
 
 ## Học thế nào
 
@@ -21,7 +21,7 @@
 3. Làm phần **Thực hành** ở cuối mỗi bài, ngay trong [`practice/`](../../practice/)
 4. Gặp thao tác chưa rõ thì hỏi thẳng trong panel
 
-Phần cơ bản（0–5）nên đọc theo thứ tự. Phần nâng cao（6–19）là tài liệu tra cứu ngược, cần chương nào thì mở chương đó.
+Phần cơ bản（0–5）nên đọc theo thứ tự. Phần nâng cao（6–21）là tài liệu tra cứu ngược, cần chương nào thì mở chương đó.
 
 ### Nếu bạn đứng lớp
 
@@ -51,7 +51,7 @@ Không cần đọc theo thứ tự. **Khi nào cần thì mở chương đó.**
 | Muốn chặn tự động những lệnh nguy hiểm | [08. Hooks](fundamentals/08-hooks.md) |
 | Muốn nối Cursor với Issue, DB hay công cụ ngoài | [09. MCP](fundamentals/09-mcp.md) |
 | Muốn việc nặng chạy tiếp khi mình rời máy | [10. Cloud Agents](fundamentals/10-cloud-agents.md) |
-| Muốn tự động hóa review PR | [11. Bugbot / review PR](fundamentals/11-bugbot-pr.md) |
+| Muốn tự động hóa review PR | [11. Bugbot / Agent Review / review PR](fundamentals/11-bugbot-pr.md) |
 | Muốn chạy nhiều agent cùng lúc | [12. Agents Window / Worktrees](fundamentals/12-agents-window.md) |
 | Không muốn AI đọc thông tin bí mật | [13. Thông tin bí mật · giới hạn chạy lệnh](fundamentals/13-safety-ignore.md) |
 | Muốn giao việc tra cứu, kiểm chứng cho agent khác | [14. Subagents](fundamentals/14-subagents.md) |
@@ -60,6 +60,8 @@ Không cần đọc theo thứ tự. **Khi nào cần thì mở chương đó.**
 | Muốn chạy Cursor từ CI hoặc script | [17. CLI](fundamentals/17-cli.md) |
 | Muốn kích hoạt từ Slack hay Issue | [18. Kết nối dịch vụ ngoài](fundamentals/18-integrations.md) |
 | Muốn biết dùng miễn phí được tới đâu, hết hạn mức thì sao | [19. Gói dịch vụ và mức sử dụng](fundamentals/19-plans.md) |
+| Muốn tạo branch, commit, PR và quản lý Issue ngay trong Cursor | [20. Kết nối Git](fundamentals/20-git.md) |
+| Muốn agent tự lặp lại công việc cho tới khi đạt mục tiêu | [21. Mục tiêu và vòng lặp](fundamentals/21-goals-loops.md) |
 
 ## Nơi để tự tay làm
 

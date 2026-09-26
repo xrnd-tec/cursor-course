@@ -8,8 +8,8 @@
 
 | Path | Contents |
 |------|----------|
-| [fundamentals/](fundamentals/) | Self-study lessons on using Cursor（0–19） |
-| [4sessions/](4sessions/) | The hands-on course（90 minutes × 4） |
+| [fundamentals/](fundamentals/) | Self-study lessons on using Cursor（0–21） |
+| [4sessions/](4sessions/) | The hands-on course（90 minutes × 5） |
 
 ## How to use it
 
@@ -20,7 +20,7 @@
 3. Do the **Exercise** at the end of each lesson, in [`practice/`](../../practice/)
 4. When an operation isn't clear, just ask in the panel
 
-Read the basics（0–5）in order. The advanced material（6–19）is a reference to look things up in — open the chapter you need, when you need it.
+Read the basics（0–5）in order. The advanced material（6–21）is a reference to look things up in — open the chapter you need, when you need it.
 
 ### If you are running the class
 
@@ -50,7 +50,7 @@ No need to read in order. **Open the chapter when you need it.**
 | Automatically block dangerous commands | [08. Hooks](fundamentals/08-hooks.md) |
 | Connect Cursor to issues, a database or another tool | [09. MCP](fundamentals/09-mcp.md) |
 | Keep heavy work moving while you're away | [10. Cloud Agents](fundamentals/10-cloud-agents.md) |
-| Automate PR review | [11. Bugbot and PR review](fundamentals/11-bugbot-pr.md) |
+| Automate PR review | [11. Bugbot, Agent Review and PR review](fundamentals/11-bugbot-pr.md) |
 | Run several agents at once | [12. Agents Window and Worktrees](fundamentals/12-agents-window.md) |
 | Keep the AI away from secrets | [13. Secrets and execution limits](fundamentals/13-safety-ignore.md) |
 | Hand investigation or verification to another agent | [14. Subagents](fundamentals/14-subagents.md) |
@@ -59,6 +59,8 @@ No need to read in order. **Open the chapter when you need it.**
 | Run Cursor from CI or a script | [17. The CLI](fundamentals/17-cli.md) |
 | Trigger it from Slack or an issue | [18. Integrations](fundamentals/18-integrations.md) |
 | Know how far the free plan goes, and what happens when you run out | [19. Plans and usage](fundamentals/19-plans.md) |
+| Create branches, commits and PRs, and manage issues, inside Cursor | [20. Git integration](fundamentals/20-git.md) |
+| Have the agent keep working by itself until it reaches a goal | [21. Goals and loops](fundamentals/21-goals-loops.md) |
 
 ## Where you get your hands dirty
 

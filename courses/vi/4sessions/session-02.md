@@ -1,713 +1,837 @@
-# Buổi 2: Vibe coding → phát triển theo đặc tả（90 phút）
+# Buổi 2: Vibe coding（90 phút）
 
-> **Mục tiêu của buổi này（4 bậc）**
-> 01 Dùng vibe coding để ra được một thứ chạy được → 02 Nhận ra cùng một yêu cầu mà cả lớp làm ra những thứ khác nhau → 03 Viết đặc tả trước rồi mới cho làm → 04 Yêu cầu đến sau thì thêm vào đặc tả rồi cho chạy tiếp（phần thử sức）
-> **Lên tới 01–03 là đạt. 04 là phần thử sức**, không tới cũng không phải là thất bại.
+> **Mục tiêu của buổi này（4 mục）**  
+> 1 Làm một game chạy được bằng vibe coding → 2 So sánh game của cả lớp ở phần trình bày lần 1 → 3 Thêm yêu cầu bổ sung và nhận ra rằng không kiểm tra được yêu cầu đã được thực hiện đúng hay chưa → 4 Trình bày chức năng đã thêm và điều mình nhận ra ở phần trình bày lần 2  
+> **Cả 4 mục đều hoàn thành trong buổi học này.** Không đánh giá mức độ hoàn thiện.
+
+> **Hôm nay chỉ thực hành một cách làm: nhờ AI “làm cho ngon nha” mà không quyết gì trước（vibe coding）.**
+> Cả lớp gửi cùng 3 dòng, rồi cho nhau xem ngay thứ đã làm ra. **Cùng một yêu cầu nhưng mỗi người lại làm ra một thứ khác. Đây là đặc điểm của vibe coding.**
+> Ở buổi 3, chúng ta sẽ làm một game phải quyết nhiều thứ（poker）bằng cách viết yêu cầu trước rồi mới làm（phát triển theo spec）.
 
 ---
 
-## Luận điểm của buổi này（giảng viên cần hiểu trước）
+## Toàn bộ mạch của kịch bản
 
-**Kịch bản này được dựng trên tiền đề: KHÔNG nói rằng “vibe coding thì sẽ vỡ”.**
+1. Mục đích của buổi này（dành cho giảng viên）
+2. 00-1 Cách đọc kịch bản này
+3. 00-2 Chuẩn bị trong ngày
+4. 00-3 Bảng thời gian
+5. 0-1 Trang bìa và phần mở đầu
+6. Chương 1 đến chương 8
+7. Checklist cho giảng viên
 
-Trò lật hình tìm cặp là thứ AI biết rất rõ, nên vibe coding vẫn làm xong bình thường. Điểm số, độ khó, giới hạn thời gian — nhờ thì nó thêm được hết（**đã đo thực tế**）. Dựng kịch bản theo hướng “kiểu gì cũng vỡ” thì thực tế không diễn ra đúng như vậy, và học viên nhìn ra ngay.
+---
 
-Buổi này cho thấy bốn điều sau.
+## Mục đích của buổi này（dành cho giảng viên）
 
-| Vibe coding trên thực tế | Trải nghiệm ở đâu |
+**Buổi này không được xây dựng trên tiền đề “làm bằng vibe coding thì sẽ bị lỗi”.**
+
+Trò lật hình（memory match）là game AI biết rất rõ, nên làm bằng vibe coding vẫn hoàn thành mà không gặp vấn đề gì. Điểm số, độ khó hay giới hạn thời gian, nếu nhờ thì AI cũng thêm được mà không gặp vấn đề gì（**đã thử và xác nhận trên thực tế**）. Nếu tiến hành buổi học với tiền đề “chắc chắn sẽ bị lỗi”, game thực tế lại chạy tốt, và học viên sẽ nhận ra phần giải thích không khớp với thực tế.
+
+Vì vậy, buổi này **không đặt vấn đề game có bị lỗi hay không**. Thay vào đó, học viên sẽ trải nghiệm 4 điều sau.
+
+| Điều xảy ra khi làm bằng vibe coding | Chương trải nghiệm |
 |---|---|
-| **Nó làm cả những thứ không ai nhờ** — không phân biệt được đâu là thứ mình chỉ định, đâu là thứ AI tự quyết | Chương 3 |
-| **Cùng một yêu cầu, mỗi người ra một thứ khác nhau** — không tái lập được | Chương 3 |
-| **Không phán định được đúng sai** — không có căn cứ nào để trả lời “thế này là đúng chưa” | Chương 4 |
-| **Không bàn giao được** — không đưa cho người không có ngữ cảnh được | Chương 4 |
+| **Cùng một yêu cầu, mỗi người làm ra một thứ khác.** Không làm lại được đúng thứ đã làm | Chương 3（trình bày lần 1） |
+| **AI làm cả những thứ không được nhờ.** Học viên không nắm được game của mình có những gì | Chương 3（trình bày lần 1）・Chương 4 |
+| **Không xác định được đã làm đúng hay chưa.** Không có tiêu chí để đánh giá “đã đúng chưa” | Chương 4 |
+| **Không bàn giao được cho người khác.** Không thể giao cho người không biết quá trình trước đó | Chương 4 |
 
-Chỗ hạ cánh cuối cùng là **“vibe không phải là cái xấu. Vấn đề là nhận ra điểm cần chuyển sang cách khác.”** Nếu vibe làm xong ngon lành thì đó không phải thất bại, mà thu về được bài học “lần này vibe là lựa chọn đúng”. Cấu trúc buổi học thành lập dù kết quả có ra sao.
+Đồng thời, học viên cũng trải nghiệm **ưu điểm của vibe coding**（làm được nhanh, dễ dàng cải tiến）ở chương 2 và chương 5.
+
+Điều buổi này muốn truyền đạt là: **“Vibe coding không phải là cách làm xấu. Điều quan trọng là có thể phán đoán khi nào nên dùng cách làm nào.”** Buổi này cho học viên trải nghiệm tình huống mà vibe coding là đủ. Buổi 3 cho học viên trải nghiệm tình huống nên viết yêu cầu trước.
+
+### Lý do trình bày 2 lần
+
+- **Lần 1（chương 3）** diễn ra ngay sau khi làm bằng 3 dòng. Vì đây là lúc trước khi cải tiến, học viên thấy rằng mọi điểm khác nhau đều đến từ “cùng 3 dòng”.
+- **Lần 2（chương 6）** diễn ra sau phần yêu cầu bổ sung và phần tự do cải tiến. Nội dung trình bày được thiết kế để không trùng với lần 1.
+
+### Lý do cho học viên chọn yêu cầu bổ sung từ danh sách
+
+Với vibe coding, không thể quyết trước sẽ làm ra những gì. Nếu giảng viên quyết một yêu cầu và cho cả lớp cùng thêm vào, sẽ có học viên mà game đã có sẵn yêu cầu đó từ đầu.
+
+Vì vậy, yêu cầu bổ sung được đưa ra dưới dạng **danh sách 8 yêu cầu**, và học viên **chọn những yêu cầu game của mình chưa có** để thực hiện. Việc kiểm tra “yêu cầu nào đã có sẵn” trước khi chọn cũng chính là trải nghiệm “không nắm được game của mình có những gì”.
+
+> **Lớp học được giả định có 4 học viên, nên ở cả 2 lần trình bày, mọi học viên đều trình bày trước cả lớp.**
 
 ---
 
 ## Cách đọc kịch bản này
 
-Kịch bản viết theo giả định: **học viên vừa nhìn tài liệu vừa tự tay làm, giảng viên vừa giảng vừa dẫn nhịp**. Phần chia thời gian cũng vậy. Mỗi chương gồm 5 khối（ở vài phần như trang bìa và mở đầu thì có thể thiếu vài khối）.
+### Mạch của phần này
 
-| Khối | Dành cho ai |
-|------|-------------|
+1. 00-1 Những điểm chính khi đọc
+
+### 00-1 Những điểm chính khi đọc
+
+Kịch bản này được viết theo giả định: **học viên vừa xem tài liệu vừa tự thực hành, giảng viên vừa giải thích vừa dẫn dắt buổi học**. Phần phân bổ thời gian cũng dựa trên giả định đó.
+
+Prompt được in đầy đủ trong tài liệu, vị trí trên màn hình được chỉ bằng ảnh chụp. Vì vậy, kịch bản không giả định giảng viên phải thao tác mẫu riêng. Cách tiến hành thực tế có thể điều chỉnh tùy theo lớp học.
+
+Số ở tiêu đề được đọc là **`N-M` = bước M của chương N**（ví dụ: `2-1`）. Các phần trước chương 1 là **`00-M`**（cách đọc, chuẩn bị, bảng thời gian）, phần mở đầu là **`0-1`**. Đầu mỗi chương có **Mạch của chương**, các phần trước chương có **Mạch của phần này**（mục lục）.
+
+Mỗi chương gồm 5 khối sau（một số phần như phần mở đầu có thể không có đủ các khối）.
+
+| Khối | Nội dung |
+|------|----------|
 | **［Slide］Giải thích** | Giải thích cơ chế của Cursor. Đưa lên slide. Nguồn là `courses/vi/fundamentals/` |
-| **［Slide］Học viên làm gì** | Đưa thẳng lên tài liệu phát. Prompt in đầy đủ, không đọc miệng |
-| **Giảng viên nói gì** | Nội dung nói trong lúc học viên đang gõ, đang chờ |
-| **Điểm kiểm tra** | Căn cứ để quyết định chờ cho đủ hay đi tiếp |
-| **Khi mắc kẹt** | Những chỗ kẹt thật sự xảy ra ở chương đó và cách xử lý |
+| **［Slide］Học viên làm gì** | Đưa nguyên vào tài liệu phát. Prompt được in đầy đủ, nên không cần đọc to |
+| **Giảng viên nói gì** | Nội dung giảng viên nói trong lúc học viên đang nhập hoặc đang chờ kết quả |
+| **Điểm kiểm tra** | Tiêu chí để quyết định chờ cả lớp theo kịp hay chuyển sang phần tiếp theo |
+| **Khi mắc kẹt** | Những vấn đề thường xảy ra trong chương đó và cách xử lý |
 
-Phần giải thích lấy từ [`courses/vi/fundamentals/`](../fundamentals/). **Muốn sửa nội dung thì sửa ở phía fundamentals**（kịch bản chỉ là bản trích）.
+Phần giải thích được trích từ [`courses/vi/fundamentals/`](../fundamentals/). **Khi muốn sửa nội dung, hãy sửa ở phía fundamentals**（kịch bản chỉ trích một phần）.
 
 | Chương | fundamentals được trích |
 |--------|-------------------------|
-| Chương 2 | [`01-modes`](../fundamentals/01-modes.md)（model và Auto） |
-| Chương 5 | [`07-skills`](../fundamentals/07-skills.md) · [`05-prompting`](../fundamentals/05-prompting.md) |
-| Chương 6 | [`05-prompting`](../fundamentals/05-prompting.md) |
-| Chương 7 | [`06-rules`](../fundamentals/06-rules.md) |
+| Chương 1 | [`19-plans`](../fundamentals/19-plans.md)（tham khảo thêm: mức sử dụng） |
+| Chương 2 | [`01-modes`](../fundamentals/01-modes.md)（model và Auto, ôn lại buổi 1） · [`16-browser-design`](../fundamentals/16-browser-design.md)（browser tích hợp） |
+| Chương 4 | [`03-context`](../fundamentals/03-context.md)（dùng `@` để chỉ định đối tượng, ôn lại buổi 1） |
+| Chương 5 | [`16-browser-design`](../fundamentals/16-browser-design.md)（tham khảo thêm: Design Mode） |
 
-> Chỗ nào có dấu **［Nói miệng］**là thứ giảng viên truyền đạt tại chỗ bằng lời. Đó là các “yêu cầu phát sinh” ở chương 4 và chương 5.
-> Việc chỉ định thời điểm là để dựng lại tình huống “chủ đầu tư nói thêm sau”, chứ không cần giấu giếm gì.
+> **Câu chữ của các yêu cầu bổ sung（8 yêu cầu）ở chương 4 được đưa lên slide.**
+> Giảng viên giải thích trong vai khách hàng, nhưng **học viên làm theo câu chữ trên slide**. Giảng viên không diễn đạt lại tại chỗ.
+
+Sau khi gửi yêu cầu cho Agent, cần 30–60 giây để có kết quả. Cả lớp sẽ cùng chờ trong khoảng thời gian này, nên mỗi chương đều có sẵn nội dung để giảng viên nói trong lúc chờ.
 
 ---
 
-## Chuẩn bị trước（những thứ buổi này cần）
+## Chuẩn bị trong ngày（kiểm tra lúc 0:00）
 
-| Thứ cần có | Nội dung |
-|---|---|
-| `.cursor/skills/requirements/` | Skill viết đặc tả. Hỏi về đề tài rồi cùng học viên điền “what it does / screen / interactions / out of scope”, xuất ra một tệp Markdown |
-| `.cursor/skills/task-breakdown/` | Skill chia task. Cắt đặc tả thành các task đủ nhỏ để đưa cho Agent từng cái một, mỗi task có điều kiện hoàn thành |
+### Mạch của phần này
 
-**Tiền đề là hai skill này đã có trong repo.** Chương 5 và chương 6 dùng tới chúng.
+1. 00-2 Danh sách chuẩn bị trong ngày
+
+### 00-2 Danh sách chuẩn bị trong ngày
+
+Kịch bản giả định môi trường đã được chuẩn bị xong ở buổi 1. **Trong vài phút đầu từ 0:00, chỉ cần kiểm tra.** Nếu có học viên vắng buổi 1, học viên đó cần thiết lập trước theo các bước ở chương 1 của buổi 1.
+
+| Mục | Các bước |
+|------|------|
+| **Cập nhật repository** | Mở `cursor-course/` rồi chạy `git pull` |
+| **Thư mục làm việc** | `session02/`（trò lật hình）. Mỗi học viên tự tạo ở chương 2 |
+| **Model** | **Cứ để Auto là được.** Giống buổi 1, không cần thay đổi thiết lập |
+| **Browser tích hợp** | Mở file HTML bằng cách nhấp chuột phải ở sidebar → **Open In Browser**. Nếu mở bằng browser của hệ điều hành, game có thể không chạy |
+| **Trình bày** | Ở chương 3 và chương 6, **học viên cho cả lớp xem màn hình của mình**. Thử chia sẻ màn hình hoặc máy chiếu một lần lúc 0:00 |
+
+> **Hôm nay cũng không cần Node.js.** Trò lật hình chạy được chỉ với browser.
 
 ---
 
 ## Bảng thời gian
 
-| Giờ | Chương | Nội dung | Ai làm |
-|-----|--------|----------|--------|
-| 0:00 | Chương 1 Mục tiêu hôm nay | Làm cùng một game hai lần（5 phút） | Giảng viên |
-| 0:05 | Chương 2 Làm bằng vibe | Mỗi người tự gõ đúng một câu ví dụ（15 phút） | Cả lớp |
-| 0:20 | Chương 3 Đem ra so | Cho nhau xem màn hình với người bên cạnh（10 phút） | Cả lớp |
-| 0:30 | Chương 4 Yêu cầu phát sinh | Nhét yêu cầu mới của chủ đầu tư vào bản vibe của mình（15 phút） | Cả lớp |
-| 0:45 | Chương 5 Viết đặc tả | Dùng skill viết đặc tả để viết đặc tả của mình（15 phút） | Cả lớp |
-| 1:00 | Chương 6 Chia task rồi làm | Chia task → làm từng cái một（20 phút） | Cả lớp |
-| 1:20 | Chương 7 Mang về | Cách quyết dùng cái nào, và buổi sau（10 phút） | Giảng viên |
+### Mạch của phần này
 
-**Học viên tự tay làm 75 phút trên tổng 90 phút.**
+1. 00-3 Lộ trình 90 phút
 
-> Bảng thời gian này chính là cấu trúc chương của slide. Đầu mỗi chương có một trang bìa chương.
+### 00-3 Lộ trình 90 phút
 
-> **Nếu trễ giờ**: cắt chương 6（viết được đặc tả là đã đạt một nửa mục đích）. **Không cắt chương 3 và chương 4.** Hai chương đó là phần chính.
+| Thời gian | Chương | Nội dung | Người thực hiện |
+|------|----|------|------|
+| 0:00 | Chương 1 Mục tiêu hôm nay | Giải thích nội dung hôm nay（5 phút） | Giảng viên |
+| 0:05 | Chương 2 Làm bằng vibe coding | Làm trò lật hình bằng 3 dòng yêu cầu（15 phút） | Cả lớp |
+| 0:20 | Chương 3 Trình bày lần 1 | Mỗi người trình bày 1 phút, so sánh game của cả lớp（10 phút） | Cả lớp |
+| 0:30 | Chương 4 Thêm yêu cầu bổ sung | Chọn từ danh sách những yêu cầu game chưa có rồi thực hiện（15 phút） | Cả lớp |
+| 0:45 | Chương 5 Tự do cải tiến | Thêm chức năng mình thích（10 phút） | Cả lớp |
+| 0:55 | Chương 6 Trình bày lần 2 | Mỗi người 3 phút, trình bày chức năng đã thêm và điều mình nhận ra（15 phút） | Cả lớp |
+| 1:10 | Chương 7 Tổng kết | Sắp xếp lại ưu điểm và nhược điểm（10 phút） | Giảng viên |
+| 1:20 | Chương 8 Câu hỏi ôn tập và buổi sau | Câu hỏi ôn tập và giới thiệu buổi sau（10 phút） | Cả lớp |
+
+Trong 90 phút, có 75 phút là **thời gian học viên tự thực hành hoặc trình bày**.
+
+> **Khi trễ giờ**, rút chương 5（tự do cải tiến）còn 5 phút và giảm câu hỏi ôn tập ở chương 8 còn 4 câu. **Không cắt phần trình bày（chương 3 và chương 6）**, vì kết luận của buổi học đến từ việc đặt game của cả lớp cạnh nhau để so sánh.
 
 ---
 
 ## Trang bìa và phần mở đầu — 0:00（tính trong chương 1）
 
-### ［Slide］Trang bìa
+> **Phần mở đầu không tách thành chương riêng.** Sau phần này, chuyển ngay sang chương 1.
+
+### Mạch của phần này
+
+1. 0-1 Từ trang bìa đến nội dung hôm nay
+
+### 0-1 Từ trang bìa đến nội dung hôm nay
+
+#### ［Slide］Trang bìa
 
 ```
-Từ vibe coding tới phát triển theo đặc tả
+Vibe coding
 
-Khóa thực hành Cursor　Buổi 2 / 4　·　90 phút
+Khóa thực hành Cursor　Buổi 2 / 5　・　90 phút
 （ngày）
 ```
 
-### ［Slide］Ôn lại buổi trước（30 giây）
+#### ［Slide］Ôn lại buổi trước（30 giây）
 
-**Vòng lặp của buổi trước hôm nay vẫn y nguyên. Thứ thay đổi chỉ là nội dung của yêu cầu.**
+**Hôm nay vẫn tiến hành theo các bước giống buổi trước.** Điều khác với buổi trước là **đưa cho AI những gì**.
 
 ```
-Ask（@tệp + câu hỏi）
+Ask（@file + câu hỏi）
   ↓ hiểu nội dung
-Agent（@tệp + yêu cầu + điều kiện hoàn thành）
+Agent（@file + yêu cầu + điều kiện hoàn thành）
   ↓ đọc diff
 Keep hoặc Undo
 ```
 
-### ［Slide］Việc của hôm nay
+#### ［Slide］Nội dung thực hành hôm nay
 
-**Làm cùng một game hai lần.**
-
-| | Cách làm | Ở đâu |
+| | Nội dung | Chương |
 |---|---|---|
-| Lần 1 | Không quyết gì cả, chỉ nói “làm cho nó ổn ổn” | Chương 2 |
-| Lần 2 | Viết đặc tả trước rồi mới làm | Chương 5, chương 6 |
+| 1 | Làm trò lật hình bằng cách chỉ nhờ “làm cho ngon nha”, không quyết gì trước | Chương 2 |
+| 2 | Cho xem game vừa làm và so sánh với nhau（trình bày lần 1） | Chương 3 |
+| 3 | Chọn từ danh sách yêu cầu bổ sung những yêu cầu game chưa có, rồi thêm vào | Chương 4 |
+| 4 | Tự do cải tiến game của mình | Chương 5 |
+| 5 | Trình bày chức năng đã thêm và điều mình nhận ra（trình bày lần 2） | Chương 6 |
 
-**Không phải để xem cái nào tốt hơn, mà để mang về câu trả lời: khi nào thì dùng cái nào.**
+**Cách làm hôm nay được gọi là “vibe coding”.** Ở buổi 3, chúng ta sẽ học cách viết yêu cầu trước rồi mới làm（phát triển theo spec）.
 
-### Giảng viên nói gì
+#### ［Slide］Cách tiến hành buổi học
 
-Có ai vắng buổi 1 thì riêng slide ôn lại hãy nói kỹ. Còn lại chạy trong 30 giây.
+1. **Game làm chưa đẹp cũng không sao.** Hôm nay chúng ta cố ý nhờ một cách chung chung.
+2. **Khi trình bày, không so sánh mức độ hoàn thiện.** Thứ đem ra so sánh là điểm khác nhau giữa các game.
+3. **Khi gặp khó khăn, hãy giơ tay.** Nhờ người ngồi cạnh cho xem màn hình cũng là một cách tốt.
 
-**Tuyên bố trước rằng “sẽ làm hai lần” thì học viên sẽ không bận tâm chuyện lần 1 còn thô.** Đừng bỏ qua chỗ này.
+#### Giảng viên nói gì
+
+Nếu có học viên vắng buổi 1, chỉ giải thích kỹ slide ôn lại buổi trước. Nếu không có ai vắng, chuyển sang phần tiếp theo sau 30 giây.
+
+Nếu học viên hỏi “Cách nào mới đúng?”, hãy trả lời rằng **cả hai đều đúng**. Đây không phải chuyện cách nào tốt hơn, mà là chọn cách phù hợp với từng tình huống.
+
+#### Khi mắc kẹt
+
+| Vấn đề | Cách xử lý |
+|--------|------|
+| Học viên vắng buổi 1 và chưa cài Cursor | Cho học viên thiết lập theo các bước ở chương 1 của buổi 1. Học viên có thể làm trước mà không cần chờ chương 2 bắt đầu |
 
 ---
 
 ## Chương 1 Mục tiêu hôm nay — 0:00（5 phút）
 
-> Làm cùng một game hai lần. Lần 1 bằng vibe coding, lần 2 bắt đầu từ đặc tả.
+> Chương này giải thích nội dung hôm nay và các thuật ngữ sẽ dùng. **Trong chương này, chỉ giảng viên nói.**
 
-### ［Slide］Học viên làm gì
+### Mạch của chương
 
-Không có. Chỉ nghe.
+1. 1-1 Truyền đạt mục tiêu hôm nay（tham khảo thêm: mức sử dụng）
 
-### Giảng viên nói gì
+### 1-1 Truyền đạt mục tiêu hôm nay
 
-> “Hôm nay cả lớp cùng làm một game: trò lật hình tìm cặp（memory match）. Nhưng làm hai lần.
-> Lần 1: không nghĩ gì cả, chỉ nhờ ‘làm cho nó ổn ổn’（vibe coding）
-> Lần 2: viết đặc tả trước rồi mới làm（phát triển theo đặc tả）
-> Bên nào trôi hơn — cứ để cơ thể tự nhớ.”
+#### ［Slide］Học viên làm gì
 
-**Tuyên bố trước rằng sẽ làm hai lần thì học viên sẽ không bận tâm chuyện lần 1 còn thô.** Đừng bỏ qua chỗ này.
+Trong chương này, học viên chỉ cần nghe.
 
-Ôn lại buổi trước đúng một câu（vòng Ask → Agent → diff → Keep）.
+#### ［Slide］Mục tiêu hôm nay
 
-**Bốn bậc của hôm nay:**
+| | Điều học viên làm được | Chương |
+|----|--------------------|------------|
+| 1 | Làm một game chạy được bằng vibe coding | Chương 2 |
+| 2 | So sánh game của cả lớp ở phần trình bày lần 1 | Chương 3 |
+| 3 | Thêm yêu cầu bổ sung và nhận ra rằng không kiểm tra được yêu cầu đã được thực hiện đúng hay chưa | Chương 4 |
+| 4 | Trình bày chức năng đã thêm và điều mình nhận ra ở phần trình bày lần 2 | Chương 6 |
 
-| Bậc | Làm được gì | Làm ở đâu |
-|-----|-------------|-----------|
-| 01 | Dùng vibe coding để ra được một thứ chạy được | Chương 2 |
-| 02 | Nhận ra cùng một yêu cầu mà cả lớp làm ra những thứ khác nhau | Chương 3 |
-| 03 | Viết đặc tả trước rồi mới cho làm | Chương 5, chương 6 |
-| 04 | Yêu cầu đến sau thì thêm vào đặc tả rồi cho chạy tiếp ← **thử sức** | Chương 6 |
+#### ［Slide］Thuật ngữ
 
-> **Cách dùng từ**: tên của phương pháp là “vibe coding” và “phát triển theo đặc tả”.
-> Khi đem hai sản phẩm ra so thì gọi là “**bản vibe**” và “**bản đặc tả**”. Với học viên cũng dùng đúng hai từ này.
+| Thuật ngữ | Ý nghĩa |
+|---|---|
+| **Vibe coding** | Cách làm nhờ AI mà không quyết gì trước. Hôm nay chỉ dùng cách này |
+| **Phát triển theo spec** | Cách làm viết yêu cầu trước rồi mới nhờ AI. Sẽ học ở buổi 3 |
 
-### Điểm kiểm tra
+**Thứ làm ra được gọi bằng tên game: “trò lật hình”.** Không gọi tắt là “vibe”.
 
-Không có. Gói lại trong 5 phút.
+#### Giảng viên nói gì
 
-### Khi mắc kẹt
+Giảng viên nói những điều sau.
 
-Có ai vắng buổi 1 thì bổ sung riêng vòng Ask → Agent → diff → Keep trong 30 giây.
+- Hôm nay chúng ta làm trò lật hình bằng cách chỉ nhờ AI “làm cho ngon nha”. Cách làm này được gọi là vibe coding.
+- Làm xong thì trình bày lần 1 ngay. Hãy xem khi cả lớp nhờ bằng cùng 3 dòng thì kết quả khác nhau đến mức nào.
+
+Để ôn lại buổi trước, chỉ nhắc lại một câu về các bước Ask → Agent → diff → Keep.
+
+#### ［Slide］Tham khảo thêm: Về mức sử dụng
+
+**Hôm nay sẽ dùng Agent nhiều lần, nên giảng viên nói trước về mức sử dụng trong 30 giây.**
+
+| | |
+|---|---|
+| **Khi dùng Auto** | Tính tiền theo giá của model thực sự được dùng |
+| **Gói nào cũng** | Đã bao gồm một lượng sử dụng nhất định |
+| **Khi dùng hết** | Chọn trả theo mức sử dụng（trả sau）để dùng tiếp, hoặc nâng lên gói cao hơn |
+
+Các chế độ của Auto（Cost / Balance / Intelligence）chỉ **thay đổi cách chọn model**. Chúng không giúp giảm giá.
+
+> **Tài liệu này không ghi số tiền.** Lý do là khi giá thay đổi thì dễ quên sửa.
+> Khi cần kiểm tra số tiền, hãy xem [trang bảng giá chính thức](https://cursor.com/pricing).
+>
+> Chi tiết hơn: [`19-plans.md`](../fundamentals/19-plans.md)
+
+#### Điểm kiểm tra
+
+Chương này không có điểm kiểm tra. Sau 5 phút thì chuyển sang chương tiếp theo.
 
 ---
 
-## Chương 2 Làm bằng vibe — 0:05（15 phút）
+## Chương 2 Làm bằng vibe coding — 0:05（15 phút）
 
-> Không quyết gì mà cứ nhờ thì ra tới đâu. **Mỗi người có một bản vibe của riêng mình.**
+> Chương này kiểm tra xem khi nhờ mà không quyết gì trước thì AI làm được đến đâu. **Khi kết thúc chương, mỗi học viên đều có trò lật hình của riêng mình.**
 
-### ［Slide］Giải thích — vì sao phải cố định model
+### Mạch của chương
 
-Cạnh ô nhập có cả **mode**（Agent / Ask…）lẫn **model**（Auto…）. Hai thứ khác nhau.
+1. 2-1 Nhờ AI làm trò lật hình
 
-| | Quyết định điều gì | Đổi bằng |
-|---|---|---|
-| **Mode** | **Cách hành xử** của AI（có sửa tệp hay chỉ tra cứu） | `Shift+Tab` |
-| **Model** | **Chính bộ não AI** xử lý yêu cầu | `Ctrl+/`（Mac là `Cmd+/`） |
+### 2-1 Nhờ AI làm trò lật hình
 
-Mặc định là **Auto**, không có nghĩa “không chọn model”, mà là **Cursor Router tự chọn cho từng request**. Việc khó thì đẩy sang model mạnh, việc dễ thì đẩy sang model rẻ.
+#### ［Slide］Học viên làm gì（15 phút）
 
-**Ngày thường để Auto là không gặp vấn đề gì.** Chỉ đáng cố định lại khi **muốn so sánh kết quả**, đúng như hôm nay. Cứ để Auto thì bản vibe và bản đặc tả chạy hai model khác nhau, và ta không còn phân biệt được khác biệt đến từ “cách làm” hay từ “model”.
+> **Cứ để model ở Auto là được.** Giống buổi 1, hôm nay không cần thay đổi thiết lập.
 
-> Chi tiết hơn: [`01-modes.md`](../fundamentals/01-modes.md)
-
-### ［Slide］Học viên làm gì
-
-**① Cố định model（3 phút, bắt buộc）**
-
-Bấm vào phần hiển thị model ở ô nhập（**Auto** hoặc **High**）, hoặc `Ctrl+/`（Mac là `Cmd+/`）, rồi chọn **một model cụ thể chứ không phải Auto**.
-
-**Hôm nay từ đây trở đi dùng mãi một model đó.** Đổi ở giữa chừng thì phần so sánh về sau biến thành “khác model” chứ không còn là “khác cách làm”.
-
-**② Tạo thư mục làm việc（1 phút）**
+**① Tạo thư mục làm việc（1 phút）**
 
 Tạo một thư mục mới tên `session02/`.
 
-**③ Cho nó làm trò lật hình tìm cặp（10 phút）**
+**② Nhờ AI làm trò lật hình（13 phút）**
 
-Mở một chat mới rồi gửi câu sau. **Chỉ vậy thôi.**
+Mở chat mới rồi gửi 3 dòng bên dưới. **Chỉ gửi đúng như vậy.**
 
 ```text
-Làm cho tôi một game lật hình tìm cặp.
-HTML + JS, chơi được trên trình duyệt.
-Làm sao cho ổn ổn là được.
+Làm cho tôi game lật hình (memory match).
+Bằng HTML + JS, chơi được trên browser.
+Làm cho ngon nha.
 ```
 
-**④ Chạy thử（1 phút）**
+（Màn hình: `s02-03` trạng thái đã nhập yêu cầu）
 
-Có kết quả rồi thì mở trên trình duyệt, xác nhận chơi được.
+**③ Chạy thử（1 phút）**
 
-### Giảng viên nói gì
+Khi file đã được tạo, hãy mở bằng browser và kiểm tra xem có chơi được không. Nhấp **chuột phải** vào file HTML ở sidebar rồi chọn **Open In Browser**.
 
-**Ở ①**: đây là thao tác duy nhất của buổi này mà bỏ qua thì phần so sánh về sau không thành lập. An toàn nhất là xác nhận màn hình của cả lớp rồi mới đi tiếp.
+> **Ở đây không cần đọc kỹ diff.** Đây là file mới tạo, nên mọi thay đổi đều là các dòng được thêm vào.
+> Điều cần kiểm tra ở đây chỉ là **game có chạy hay không**.
 
-**Ngay sau khi gửi ③ và đang chờ（1–3 phút）**: đây là quãng chờ dài. Hãy nói sẵn mấy điều sau.
+#### Giảng viên nói gì
 
-- Rằng ta đang cố tình nhờ một cách cẩu thả. “Làm cho nó ổn ổn” chính là câu đã bị liệt vào “tránh nói” ở buổi trước
-- Rằng **khi có kết quả, hãy đi tìm xem có thứ gì mình không nhờ mà vẫn được gắn thêm vào không** ← báo trước cho chương 3
+**Nếu học viên hỏi “Nên chọn model nào?”, trả lời rằng cứ để Auto là được.** Hôm nay không phải là buổi so sánh sự khác nhau giữa các model.
 
-**Sau ④**: “Nhanh. Ra ngay một thứ chạy được. Tới đây vẫn là sở trường của vibe coding.”
+**Ngay sau khi gửi ②（chờ 1–3 phút）**: thời gian chờ khá dài, nên giảng viên nói 2 điều sau.
 
-**Đừng kết thúc ở câu ‘AI đỉnh thật’.** Hãy dùng nó làm móc kéo sang chương sau.
+- Hôm nay chúng ta cố ý nhờ một cách chung chung. “Làm cho ngon nha” là cách nói đã được giới thiệu ở buổi trước là “nên tránh”.
+- **Khi có kết quả, hãy tìm xem có thứ gì mình không nhờ mà vẫn được thêm vào không.** Ở phần trình bày lần 1 ngay sau đây, mỗi người sẽ giới thiệu 1 thứ đã tìm thấy.
 
-### Điểm kiểm tra
+**Sau ③**: xác nhận rằng đã có ngay một thứ chạy được, và giải thích rằng làm được nhanh là thế mạnh của vibe coding.
 
-- [ ] Model đã được cố định vào một model cụ thể, không còn là Auto（**bắt buộc với tất cả**）
-- [ ] Bản vibe của chính mình đang chạy trên trình duyệt
+#### Điểm kiểm tra
 
-**Có người không chạy được thì vẫn đi tiếp.** Xin xem màn hình người bên cạnh là chương 3 vẫn thành lập.
+- [ ] Trò lật hình của mình đang chạy trên browser
 
-### Khi mắc kẹt
+**Dù có học viên chưa chạy được game, vẫn chuyển sang chương tiếp theo.** Ở phần trình bày lần 1, học viên chỉ cần cho xem đã làm được đến đâu.
 
-| Chỗ kẹt | Xử lý |
-|---------|-------|
-| Không biết chọn model ở đâu | Bấm vào tên model ở ô nhập. `Ctrl+/`（Mac là `Cmd+/`）cũng mở ra |
-| Không mở được trên trình duyệt | Mở bằng trình duyệt tích hợp của Cursor. Kiểm tra luôn đường dẫn tệp |
-| Nó sinh ra một đống tệp, rối quá | Cứ để vậy. Chương này không dọn dẹp gì cả |
-| Không chạy | Dán lỗi vừa hiện cho Agent và nhờ sửa. Vẫn không được thì xin xem màn hình người bên cạnh |
+#### Khi mắc kẹt
+
+| Vấn đề | Cách xử lý |
+|--------|------|
+| Không mở được bằng browser | Nhấp chuột phải ở sidebar → chọn **Open In Browser** để mở bằng browser tích hợp của Cursor. **Nếu mở file trực tiếp bằng browser của hệ điều hành, JavaScript có thể không được tải do giới hạn của browser, và game sẽ không chạy** |
+| AI tạo ra nhiều file, khó theo dõi | Cứ giữ nguyên. Chương này không sắp xếp lại |
+| Game không chạy | **Nhờ Agent mở browser và đọc lỗi trong console**（xem phần giải thích bên dưới）. Nếu vẫn không chạy, nhờ người ngồi cạnh cho xem màn hình |
+| Không xong trong 15 phút | Dù game chưa chạy, vẫn kết thúc sau 15 phút |
+
+**Khi game “không chạy”, có một cách nhanh hơn việc dán lỗi vào chat.**
+
+Agent **có thể điều khiển** browser tích hợp của Cursor. Học viên có thể nhờ Agent mở trang, nhấp chuột, nhập dữ liệu hay **đọc lỗi trong console**.
+
+```text
+Mở game tôi vừa làm bằng browser,
+nếu console có lỗi thì cho tôi biết nguyên nhân.
+```
+
+**Khi Agent điều khiển browser thì cần duyệt**（mặc định là “duyệt thủ công”, hỏi lại mỗi lần thao tác）. Trong buổi học, cứ giữ nguyên mặc định.
+
+> Chi tiết hơn: [`16-browser-design.md`](../fundamentals/16-browser-design.md)
 
 ---
 
-## Chương 3 Đem ra so — 0:20（10 phút）
+## Chương 3 Trình bày lần 1 — 0:20（10 phút）
 
-> **Chương này chỉ làm được ở lớp.** Nó cho thấy thứ mà ngồi một mình thì không nhận ra.
+> Cả lớp cho nhau xem game ngay sau khi làm bằng 3 dòng. **Vì đây là lúc trước khi cải tiến, mọi điểm khác nhau đều đến từ cùng 3 dòng.**
 
-### ［Slide］Học viên làm gì
+### Mạch của chương
 
-**① Cho người bên cạnh xem bản vibe của mình（5 phút）**
+1. 3-1 Mỗi người trình bày 1 phút
+2. 3-2 So sánh game của cả lớp
 
-So các mục sau giữa bản của mình và bản của người bên cạnh.
+### 3-1 Mỗi người trình bày 1 phút
 
-| Đem ra so | Của mình | Của bạn bên cạnh |
+#### ［Slide］Cách trình bày lần 1（mỗi người 1 phút）
+
+| Thứ tự | Nội dung trình bày | Thời gian |
 |---|---|---|
-| Có bao nhiêu lá bài | | |
-| Mặt trước là hình gì（số / emoji / màu） | | |
-| Có hiện điểm hay số lượt không | | |
-| Có cho chọn độ khó không | | |
-| Giao diện（màu, bố cục） | | |
+| 1 | Chạy trò lật hình của mình cho cả lớp xem | 40 giây |
+| 2 | Giới thiệu 1 **thứ không nhờ mà vẫn được thêm vào** | 20 giây |
 
-**② Đếm những thứ chính mình “không hề nhờ”（3 phút）**
+**Không so sánh mức độ hoàn thiện.** Học viên chưa chạy được game thì cho xem đã làm được đến đâu là đủ.
 
-Yêu cầu bạn gửi đi chỉ có ba dòng. Hãy kể ra những thứ ngoài ba dòng đó mà vẫn có mặt.
+#### Giảng viên nói gì
 
-**③ Trả lời bằng một câu（2 phút）**
+Lớp có 4 học viên, mỗi người 1 phút nên tổng cộng 4 phút. **Giảng viên bấm giờ.**
 
-> **Thứ bạn muốn làm ra, là cái nào trong số này?**
+Ghi những thứ học viên nêu ở mục 2（thứ không nhờ mà vẫn được thêm vào）lên bảng trắng hoặc vào chat. Nội dung này sẽ được dùng ở 3-2 và chương 7.
 
-### Giảng viên nói gì
+### 3-2 So sánh game của cả lớp
 
-**Trong lúc ① thì đi quanh lớp nhặt sẵn các khác biệt.** Người có số lá bài khác, người có hình khác, người có điểm và người không. **Nhặt làm nguyên liệu để nói với cả lớp ngay sau đó.**
+#### ［Slide］So sánh trò lật hình của cả lớp
 
-**Ở ②**: đây là điểm thứ nhất.
+So sánh trò lật hình của cả lớp bằng bảng sau.
 
-> “Điểm số, độ khó — không ai nhờ cả. AI tự quyết. **Không phân biệt được đâu là thứ mình chỉ định, đâu là thứ AI tự quyết.** Đó là tính chất thứ nhất của vibe.”
+| Nội dung so sánh | Người 1 | Người 2 | Người 3 | Người 4 |
+|---|---|---|---|---|
+| Số lá bài | | | | |
+| Hình mặt trước（số / emoji / màu） | | | | |
+| Có hiện điểm hay số lượt không | | | | |
+| Có chọn được độ khó không | | | | |
+| Giao diện（màu, bố cục） | | | | |
 
-**Ở ③**: đây là điểm thứ hai.
+#### ［Slide］Kết quả khi giảng viên gửi cùng 3 dòng hai lần
 
-> “Cả lớp gõ đúng ba dòng như nhau, mà ra toàn thứ khác nhau. **Gõ lại lần nữa thì lại ra một thứ khác nữa.** Chạy thì có chạy, nhưng không nhắm mà làm ra được.”
+**Đây là game giảng viên làm bằng cách gửi cùng 3 dòng hai lần, với cùng một thiết lập.** Hai game này cũng khác nhau.
 
-Rồi bàn giao sang chương sau.
+（2 ảnh mẫu: `s02-05` / `s02-06`）
 
-> “Chạy được rồi thì thôi kệ. Nhưng bản vibe đó sắp nhận **yêu cầu bổ sung từ chủ đầu tư**.”
+#### ［Slide］Cùng một yêu cầu, mỗi người làm ra một thứ khác
 
-### Điểm kiểm tra
+> **Từ cùng một yêu cầu, cả lớp đã làm ra những thứ khác nhau. Đây là đặc điểm của vibe coding.**
 
-- [ ] Đã cho nhau xem với người bên cạnh（ai ngồi một mình thì so với màn hình của giảng viên）
-- [ ] Nói được ít nhất một thứ “không nhờ mà vẫn có”
+| Chuyện đã xảy ra | Điều rút ra |
+|---|---|
+| Mỗi người làm ra một thứ khác | Cùng một yêu cầu, **mỗi lần lại ra một thứ khác** |
+| Có thứ không nhờ mà vẫn được thêm vào | **Không phân biệt được** thứ mình chỉ định và thứ AI tự quyết |
 
-### Khi mắc kẹt
+#### Giảng viên nói gì
 
-| Chỗ kẹt | Xử lý |
-|---------|-------|
-| Người bên cạnh vắng, ngồi một mình | Cho so với bản vibe của giảng viên, hoặc với người ở bàn bên |
-| Cả lớp ra giống nhau quá | Kiểu gì cũng lệch ở một trong ba thứ: số lá, hình, có điểm hay không. Cho soi kỹ hơn |
-| Có người bảo “thì cũng có sao đâu” | Phản ứng đó là đúng. Đáp lại: “cái hiện giờ không thấy phiền, chương sau sẽ ra sao — cứ xem tiếp” |
+Sau khi điền xong bảng, giảng viên giải thích những điều sau.
+
+- Cả 4 người đều gửi cùng 3 dòng, nhưng số lá bài và hình trên lá lại khác nhau. Người quyết những thứ này là AI.
+- Khi giảng viên gửi cùng 3 dòng hai lần, kết quả cũng khác nhau. Lý do không chỉ nằm ở sự khác nhau giữa các model.
+- Game nào cũng chạy được. Đó là điểm mạnh của vibe coding.
+
+#### Điểm kiểm tra
+
+- [ ] Tất cả học viên đã trình bày lần 1
+- [ ] Đã điền xong bảng so sánh
+
+#### Khi mắc kẹt
+
+| Vấn đề | Cách xử lý |
+|--------|------|
+| Có học viên không cho xem được màn hình | Mở thư mục `session02/` của học viên đó trên máy của giảng viên, hoặc cho học viên giải thích bằng lời |
+| Game của cả lớp khá giống nhau | Thường sẽ khác nhau ở ít nhất một trong các điểm: số lá bài, hình trên lá, có tính điểm hay không. Cho học viên xem kỹ các chi tiết. Dùng thêm 2 ảnh mẫu của giảng viên |
+| Học viên nói “Chắc là do model khác nhau” | Giải thích rằng 2 ảnh mẫu của giảng viên được làm với **cùng một thiết lập** |
+| Không đủ thời gian | Chỉ điền 2 dòng của bảng: số lá bài và hình trên lá |
 
 ---
 
-## Chương 4 Yêu cầu phát sinh — 0:30（15 phút）
+## Chương 4 Thêm yêu cầu bổ sung — 0:30（15 phút）
 
-> **Đây là cao trào của buổi.** Khi chủ đầu tư đưa thêm yêu cầu, bản vibe sẽ ra sao.
+> **Đây là chương quan trọng nhất của buổi này.** Chương này kiểm tra xem khi khách hàng đưa thêm yêu cầu, trò lật hình vừa làm sẽ ra sao.
 
-### ［Nói miệng］Yêu cầu bổ sung do giảng viên đưa tại chỗ
+### Mạch của chương
 
-Giảng viên đóng vai chủ đầu tư, tới lúc này thì nói miệng.
+1. 4-1 Nhận danh sách yêu cầu bổ sung
+2. 4-2 Kiểm tra những gì game đã có và chọn yêu cầu
+3. 4-3 Nhờ AI thực hiện trong chat mới và ghi lại kết quả
 
-> “Chủ đầu tư có thêm yêu cầu. Hai cái.
-> **① Ghép được một cặp thì cho lật tiếp một lượt nữa.**
-> **② Từ lần sai thứ ba trở đi, rút thời gian chờ trước khi úp lại xuống còn 0,5 giây.**”
+### 4-1 Nhận danh sách yêu cầu bổ sung
 
-Hai điều này là **luật mà AI không suy ra được từ hiểu biết thông thường về trò tìm cặp**. Vì vậy bản vibe không có cái nào trong hai cái đó.
+#### ［Slide］Yêu cầu bổ sung từ khách hàng（8 yêu cầu）
 
-### ［Slide］Học viên làm gì
+**Giảng viên đóng vai khách hàng, nói “Có 8 yêu cầu bổ sung. Hãy thêm vào những yêu cầu game của bạn chưa có” rồi mới chiếu slide này.**
+
+| # | Yêu cầu |
+|---|---|
+| A1 | Hãy hiển thị số lần lật bài（số lượt）trên màn hình |
+| A2 | Hãy hiển thị thời gian cần để hoàn thành game |
+| A3 | Hãy thêm nút chơi lại từ đầu |
+| A4 | Hãy cho phép chọn số lá bài: 12 lá, 16 lá hoặc 20 lá |
+| B1 | Khi sai 3 lần liên tiếp, hãy lật ngửa tất cả các lá trong 1 giây cho người chơi xem |
+| B2 | Khi ghép đúng cặp liên tiếp, hãy nhân đôi điểm từ lần thứ 2 trở đi |
+| B3 | Khi đã sai từ 5 lần trở lên, hãy rút thời gian chờ trước khi lá úp lại xuống còn 0,5 giây |
+| B4 | Nếu cùng một lá đã lật 3 lần mà vẫn chưa ghép được cặp, hãy đánh dấu lá đó |
+
+#### Giảng viên nói gì
+
+**Câu chữ của yêu cầu được đưa lên slide. Giảng viên không diễn đạt lại tại chỗ.**
+
+Slide không ghi sự khác nhau giữa nhóm A và nhóm B. Nhóm A là những yêu cầu chỉ cần nhìn màn hình là biết đã có hay chưa. Nhóm B là những yêu cầu mà câu chữ không ghi rõ “thế nào là đúng”. Giảng viên sẽ giải thích điều này cho học viên ở chương 7.
+
+Ngoài ra, giảng viên cần chú ý **không nói trước những điều muốn học viên tự nhận ra trong chương này**.
+
+> Chương này muốn học viên tự nhận ra 2 điều sau.
+> - Học viên không biết rõ game của mình đã có sẵn những yêu cầu nào
+> - Với các yêu cầu B, sau khi AI đã thực hiện, học viên không kiểm tra được yêu cầu đã được thực hiện đúng hay chưa. Ví dụ ở B1, yêu cầu không ghi rõ chuỗi sai → đúng cặp → sai → sai có được tính là “3 lần liên tiếp” hay không
+>
+> **Không nói trước những điều này.** Giảng viên sẽ giải thích ở chương 7.
+
+### 4-2 Kiểm tra những gì game đã có và chọn yêu cầu
+
+#### ［Slide］Học viên làm gì（4 phút）
+
+**① Đánh dấu những yêu cầu đã có（3 phút）**
+
+Chạy game của mình, rồi đánh dấu những yêu cầu trong 8 yêu cầu **đã có sẵn từ đầu**.
+
+| Dấu | Ý nghĩa |
+|---|---|
+| ○ | Đã có |
+| × | Chưa có |
+| ？ | Không rõ đã có hay chưa |
+
+**Đánh dấu ？ cũng không sao.** Số yêu cầu không rõ cũng được ghi lại.
+
+**② Chọn 2 yêu cầu để thêm vào（1 phút）**
+
+Chọn 2 yêu cầu trong số các yêu cầu ×. **Trong 2 yêu cầu đó, ít nhất 1 yêu cầu phải chọn từ nhóm B.**
+
+#### Giảng viên nói gì
+
+Đi quanh lớp để xác nhận rằng mỗi học viên đánh dấu ○ × ？ khác nhau. Nhiều học viên sẽ có sẵn các yêu cầu A từ đầu, còn các yêu cầu B thì nhiều học viên sẽ đánh dấu ？.
+
+### 4-3 Nhờ AI thực hiện trong chat mới và ghi lại kết quả
+
+#### ［Slide］Học viên làm gì（11 phút）
 
 **① Mở một chat mới（1 phút）**
 
-Không dùng chat đang mở, mà mở **chat mới**.
+Không dùng chat đang mở, hãy mở **một chat mới**.
 
-> **Vì sao**: chat đang mở còn giữ ngữ cảnh “vừa nãy đã làm ra cái gì”. Chat mới thì không có ngữ cảnh đó. **Nó tạo ra đúng tình huống bàn giao cho người khác.**
+（Màn hình: `s02-07` chỗ mở chat mới）
 
-**② Cho nó làm phần yêu cầu bổ sung（8 phút）**
+> **Lý do**: chat đang mở vẫn còn thông tin về những gì đã làm ở chương 2. Chat mới không có thông tin đó. **Tình huống này giống với việc bàn giao công việc cho người khác.**
 
-Hai điều giảng viên vừa nói miệng, hãy tự viết bằng lời của mình rồi gửi.
+**② Nhờ AI thực hiện yêu cầu đã chọn（6 phút）**
+
+Gửi 2 yêu cầu đã chọn, giữ nguyên câu chữ trên slide.
+
+```text
+@session02/ Hãy thêm 2 điều sau.
+・(yêu cầu đã chọn 1)
+・(yêu cầu đã chọn 2)
+Đừng đổi các hành vi khác.
+```
+
+**③ Ghi lại kết quả（4 phút）**
+
+| Nội dung ghi lại | Câu trả lời |
+|---|---|
+| Trong 8 yêu cầu: số yêu cầu có sẵn từ đầu（○）và số yêu cầu không rõ（？） | |
+| 2 yêu cầu đã chọn | |
+| Số dòng đã thay đổi（+/- trong diff） | |
+| Chức năng có từ trước có bị lỗi không | |
+| **Bạn có tự xác định được yêu cầu đã chọn được thực hiện đúng hay chưa** | |
+
+Dòng cuối là câu hỏi quan trọng nhất hôm nay. Bản ghi này sẽ được dùng ở phần trình bày lần 2 trong chương 6.
+
+#### Giảng viên nói gì
+
+**Ở ①**: nhiều học viên làm tiếp mà không mở chat mới, nên hãy nhắc học viên. Nếu không mở chat mới, sẽ không tạo được tình huống “giao việc cho người không biết quá trình trước đó”, và học viên sẽ không trải nghiệm được nội dung của chương này.
+
+**Ngay sau khi gửi ②**: dặn học viên khi có kết quả thì kiểm tra xem yêu cầu đã được thực hiện đúng chưa. Không giải thích cách kiểm tra.
+
+**Sau ③**: phần giải thích những điều nhận ra trong chương này sẽ được thực hiện ở chương 7. Ở đây chỉ xác nhận rằng tất cả học viên đã ghi dòng cuối（có xác định được yêu cầu đã được thực hiện đúng hay chưa）.
+
+**Phần lớn học viên sẽ thực hiện được yêu cầu. Như vậy cũng không sao.** Điều buổi này muốn truyền đạt không phải là “không thực hiện được”, mà là “**không xác định được đã thực hiện được hay chưa**”.
+
+#### Điểm kiểm tra
+
+- [ ] Đã đánh dấu ○ × ？ cho 8 yêu cầu
+- [ ] Đã nhờ AI trong chat mới
+- [ ] Đã điền xong bảng ghi lại kết quả
+
+**Nếu có học viên bị lỗi ở chức năng có từ trước, hãy chia sẻ với cả lớp và dùng làm tư liệu để giải thích.** Nếu không có lỗi cũng không sao.
+
+#### Khi mắc kẹt
+
+| Vấn đề | Cách xử lý |
+|--------|------|
+| Không có đủ 2 yêu cầu × | Nếu chỉ có 1 yêu cầu ×, chỉ thêm 1 yêu cầu đó. Nếu không có yêu cầu ×, chọn từ các yêu cầu có dấu ？ |
+| Tất cả yêu cầu B đều là ○ | Có thể chọn 2 yêu cầu từ nhóm A. Ghi lại cả việc “tất cả yêu cầu B đều có sẵn từ đầu” |
+| Học viên tiếp tục trong chat cũ | Cho học viên ghi lại cả việc đó. Nhận xét “làm trong chat đã biết quá trình thì dễ hơn” cũng được dùng làm bài học |
+| Không biết cách đếm số dòng đã thay đổi | Số +/- hiển thị ở góc trên bên phải của diff, hoặc ở thanh thay đổi của panel Agent |
+| Không kiểm tra được yêu cầu đã được thực hiện hay chưa | **Đó chính là kết quả đúng.** Cho học viên ghi lại là “không kiểm tra được” |
+| Trò lật hình ở chương 2 không chạy | Cho học viên đọc danh sách, rồi chỉ suy nghĩ xem với các yêu cầu B thì “thế nào mới được coi là đúng” |
+
+---
+
+## Chương 5 Tự do cải tiến — 0:45（10 phút）
+
+> Học viên thêm vào trò lật hình của mình chức năng mà mình thích. Chương này cho học viên trải nghiệm **thế mạnh của vibe coding**.
+
+### Mạch của chương
+
+1. 5-1 Thêm chức năng mình thích
+
+### 5-1 Thêm chức năng mình thích
+
+#### ［Slide］Học viên làm gì（10 phút）
+
+**① Chọn 1 chức năng muốn thêm（1 phút）**
+
+Chức năng nào cũng được. Có thể thêm yêu cầu chưa chọn trong danh sách ở chương 4. Nếu chưa nghĩ ra, hãy chọn từ các ví dụ sau.
+
+| Ví dụ |
+|---|
+| Đổi hình trên lá（động vật, cờ, món ăn, v.v.） |
+| Thêm hiệu ứng khi hoàn thành game |
+| Thêm âm thanh |
+| Đổi màu hoặc bố cục |
+
+**② Nhờ AI trong chat mới（7 phút）**
 
 ```text
 @session02/
-（tự viết lại yêu cầu bổ sung mà giảng viên vừa nói）
-Đừng đổi những hành vi khác.
+Thêm (chức năng muốn thêm, nói ngắn gọn) vào.
 ```
 
-**③ Ghi lại（6 phút）**
+**Không cần mô tả chi tiết.** Hôm nay chúng ta tiến hành theo cách không mô tả chi tiết.
 
-| Ghi lại cái gì | Trả lời |
+**③ Chạy thử để kiểm tra（2 phút）**
+
+Mở lại game trên browser, kiểm tra xem chức năng vừa thêm có chạy không.
+
+#### ［Slide］Tham khảo thêm: Sửa giao diện bằng Design Mode
+
+**Khi muốn sửa giao diện, có một cách là chọn phần tử trên màn hình để chỉ cho AI, thay vì mô tả bằng lời.**
+
+Khi đang mở game của mình trong browser tích hợp, nhấn **`Ctrl+Shift+D`**（Mac là `Cmd+Shift+D`）.
+
+| Thao tác | Phím |
+|------|------|
+| Bật / tắt Design Mode | `Ctrl+Shift+D`（Mac là `Cmd+Shift+D`） |
+| Chọn vùng | Giữ `Shift` và kéo chuột |
+| Đưa phần tử đã chọn vào chat | `Ctrl+L`（Mac là `Cmd+L`） |
+
+> **Đây là phần tham khảo thêm, không thử cũng được.**
+>
+> Chi tiết hơn: [`16-browser-design.md`](../fundamentals/16-browser-design.md)
+
+#### Giảng viên nói gì
+
+Giải thích rằng nghĩ ra gì thử được ngay là thế mạnh của vibe coding.
+
+Đi quanh lớp để xác nhận **mỗi học viên đã thêm chức năng khác nhau**. Điều này sẽ được dùng ở phần trình bày trong chương 6.
+
+#### Điểm kiểm tra
+
+- [ ] Đã thêm ít nhất 1 chức năng mình thích
+
+#### Khi mắc kẹt
+
+| Vấn đề | Cách xử lý |
+|--------|------|
+| Chưa quyết được sẽ thêm gì | Cho học viên chọn 1 mục từ bảng ví dụ |
+| Thêm chức năng xong thì game bị lỗi | Dùng Undo để quay lại. **Việc game bị lỗi cũng là tư liệu để kể khi trình bày** |
+| Yêu cầu đã thêm ở chương 4 bị mất | Học viên có thể kể lại chuyện này khi trình bày. **Đây là ví dụ về điều xảy ra khi giao việc cho người không biết quá trình trước đó** |
+
+---
+
+## Chương 6 Trình bày lần 2 — 0:55（15 phút）
+
+> Cả lớp cho nhau xem game sau phần yêu cầu bổ sung và phần tự do cải tiến. **Khác với lần 1, ở đây học viên trình bày “đã thêm gì và nhận ra điều gì”.**
+
+### Mạch của chương
+
+1. 6-1 Mỗi người trình bày 3 phút
+
+### 6-1 Mỗi người trình bày 3 phút
+
+#### ［Slide］Cách trình bày lần 2（mỗi người 3 phút）
+
+| Thứ tự | Nội dung trình bày | Thời gian |
+|---|---|---|
+| 1 | Chạy trò lật hình hiện tại cho cả lớp xem | 1 phút |
+| 2 | Yêu cầu đã chọn ở chương 4, và **có kiểm tra được yêu cầu đã được thực hiện đúng chưa** | 1 phút |
+| 3 | Chức năng đã thêm ở chương 5 | 1 phút |
+
+**Không so sánh mức độ hoàn thiện.** Hãy kể lại cả những lần game bị lỗi hay những gì không kiểm tra được.
+
+#### Giảng viên nói gì
+
+Lớp có 4 học viên, mỗi người 3 phút nên tổng cộng 12 phút. **Giảng viên bấm giờ.** Trong 3 phút còn lại, giảng viên xác nhận những điều sau.
+
+- Nếu có học viên chọn cùng một yêu cầu（nhất là yêu cầu B）, game của các học viên đó có chạy giống nhau không
+- Có bao nhiêu học viên nói “không kiểm tra được”
+
+Nếu cùng một yêu cầu mà game của mỗi người chạy khác nhau, đó là ví dụ cho thấy chỉ với câu chữ của yêu cầu thì không xác định được một “cách chạy đúng” duy nhất.
+
+#### Điểm kiểm tra
+
+- [ ] Tất cả học viên đã trình bày lần 2
+
+#### Khi mắc kẹt
+
+| Vấn đề | Cách xử lý |
+|--------|------|
+| Có học viên không cho xem được màn hình | Cho học viên đọc to bản ghi ở chương 4 |
+| Không đủ thời gian | Rút xuống mỗi người 2 phút và rút ngắn mục 3（chức năng đã thêm）. **Không cắt mục 2** |
+
+---
+
+## Chương 7 Tổng kết — 1:10（10 phút）
+
+> Chương này sắp xếp lại bằng lời những gì học viên đã trải nghiệm. **Trong buổi này, giảng viên chỉ giảng giải tổng kết ở chương này.**
+
+### Mạch của chương
+
+1. 7-1 Những gì đã xảy ra khi làm bằng vibe coding
+
+### 7-1 Những gì đã xảy ra khi làm bằng vibe coding
+
+#### ［Slide］Những gì bạn quyết và những gì AI quyết
+
+| | Nội dung |
 |---|---|
-| Số dòng thay đổi（+/- của diff） | |
-| Có tính năng cũ nào hỏng không | |
-| **Bạn có tự phán định được là nó làm đúng chưa không** | |
+| **Thứ bạn đưa cho AI** | **3 dòng yêu cầu**（tên game, HTML + JS, “làm cho ngon nha”） |
+| **Thứ bạn đã quyết** | Chỉ có 2 điều: đây là trò lật hình, và game chạy trên browser |
+| **Thứ nhận lại** | Một game chơi được（xong trong vài phút） |
+| **Thứ AI đã quyết** | Số lá bài, hình trên lá, cách xếp, màu, có tính điểm hay không, độ khó, thời gian chờ trước khi lá úp lại, v.v. |
 
-Dòng thứ ba là câu hỏi quan trọng nhất của hôm nay.
+**Những thứ AI quyết nhiều hơn hẳn những thứ bạn quyết.**
 
-### Giảng viên nói gì
+#### ［Slide］Ưu điểm ① của vibe coding: Làm được nhanh
 
-**Ở ①**: rất nhiều người bỏ qua bước mở chat mới. Bỏ qua chỗ này thì không tạo được tình huống “đưa cho người không có ngữ cảnh”, và cả chương mất ý nghĩa.
+Chỉ với 3 dòng yêu cầu, sau vài phút đã có game chạy được（chương 2）. Game của cả lớp đều chạy được.
 
-**Ngay sau khi gửi ② và đang chờ**: nói trước về dòng thứ ba của bảng ghi.
+Không cần tự viết code, vẫn có ngay thứ chơi được.
 
-> “Lát nữa có kết quả, hãy kiểm xem nó có vào đúng không. **Bạn đối chiếu với cái gì?**”
+#### ［Slide］Ưu điểm ② của vibe coding: Nghĩ ra gì thử được ngay
 
-**Ở ③**: đây là điểm thứ ba và thứ tư.
+Ở chương 5, chỉ cần nhờ một câu là chức năng muốn thêm đã vào game.
 
-> “Chắc là chạy được. Vì AI giỏi mà. Nhưng chuyện ‘có đúng là 0,5 giây không’ thì **bạn nhìn vào cái gì để xác nhận**? Nhìn vào trí nhớ của chính mình. **Cái để đối chiếu chỉ nằm trong đầu bạn.**”
+Không cần quyết chi tiết, vẫn có thể vừa thử vừa làm tiếp.
 
-> “Và vừa nãy khi đưa sang chat mới, AI phải đọc lại code từ đầu. **Ngoài bạn ra, không ai biết đoạn code này được viết với ý đồ gì.**”
+#### ［Slide］Nhược điểm ① của vibe coding: Không kiểm tra được đã làm đúng hay chưa
 
-**Phần lớn học viên sẽ làm được. Như vậy là ổn.** Luận điểm của chương này không phải “không làm được”, mà là “**làm rồi mà không phán định được là đã làm đúng hay chưa**”.
+Vì nhờ mà chưa quyết “thế nào là đúng”, nên không có tiêu chí để kiểm tra.
 
-### Điểm kiểm tra
+Ví dụ ở B1, yêu cầu không ghi rõ những điều sau.
 
-- [ ] Đã nhờ trong một chat mới
-- [ ] Ba dòng của bảng ghi đã điền xong
+- Chuỗi sai → đúng cặp → sai → sai có được tính là “3 lần liên tiếp” hay không
+- Ở lần sai thứ 4, các lá có được lật ngửa lại một lần nữa không, hay bắt đầu đếm lại từ đầu
+- Trong 1 giây các lá đang ngửa, người chơi có nhấp vào lá được không
 
-**Có ai bị hỏng thì là may.** Đem chia sẻ với cả lớp làm nguyên liệu. Không hỏng cũng chẳng sao.
+Những điều không được ghi rõ thì AI tự quyết rồi làm. Khi chạy game, dù có điều gì xảy ra, cũng không có tiêu chí để so sánh xem điều đó có đúng hay không. Với các yêu cầu A, chỉ cần nhìn màn hình là biết đã có hay chưa, nên không xảy ra vấn đề này.
 
-### Khi mắc kẹt
+#### ［Slide］Nhược điểm ② của vibe coding: Không bàn giao được cho người khác
 
-| Chỗ kẹt | Xử lý |
-|---------|-------|
-| Không nhớ yêu cầu bổ sung | Giảng viên nói lại |
-| Lỡ làm tiếp trong chat cũ | Cũng ghi lại luôn. “Có ngữ cảnh thì đỡ hơn” cũng là một bài học đáng nhặt |
-| Không biết đếm số dòng thay đổi thế nào | Ở góc trên bên phải của diff, hoặc thanh thay đổi trong panel Agent, có hiện +/- |
-| Không xác nhận được là nó đã làm đúng chưa | **Đó chính là đáp án.** Cho ghi vào là “không xác nhận được” |
+Những gì đã quyết không được ghi lại, nên người nhận việc sau đó chỉ có thể đoán từ code.
 
----
+- AI trong chat mới không biết học viên định làm gì. AI đọc code, đoán rồi mới sửa.
+- Ví dụ, 16 lá bài là do học viên quyết hay do AI quyết, điều này không được ghi ở đâu cả.
+- Lần này, người nhận bàn giao là AI. Khi bàn giao cho người khác, hay cho chính mình vào một ngày sau, chuyện tương tự cũng xảy ra.
 
-## Chương 5 Viết đặc tả — 0:45（15 phút）
+#### ［Slide］Chọn giữa vibe coding và phát triển theo spec
 
-> Lần thứ hai. Lần này **tự viết đặc tả trước** rồi mới làm.
-
-### ［Slide］Giải thích — Skill là gì
-
-**Skill là gói gom lại “quy trình khi làm loại việc này”.** Nhờ nó mà khỏi phải viết lại cùng một quy trình mỗi lần.
-
-| Cơ chế | Vai trò | Ví dụ |
-|--------|---------|-------|
-| **Rules** | Phương châm, ràng buộc luôn có hiệu lực | “Commit viết bằng tiếng Việt” |
-| **Skills** | **Bản quy trình, chỉ nạp khi cần** | Cách viết đặc tả, cách chia task |
-
-Đặt ở `.cursor/skills/<tên>/SKILL.md`. Có ba cách gọi.
-
-| Cách gọi | Phạm vi tác dụng |
-|----------|------------------|
-| **Tự động** | Khi Agent thấy “nên dùng cái này” |
-| **Dấu gạch chéo** | Gõ `/` rồi chọn. **Chỉ đúng tin nhắn đó** |
-| **Custom Mode** | Cố định bằng `Alt+Enter`（Mac là `Option+Enter`）. **Cả phiên làm việc** |
-
-**Hôm nay gọi bằng dấu gạch chéo.**
-
----
-
-**Bốn mục nhất định phải có trong đặc tả**
-
-| Mục | Nội dung |
+| Trường hợp | Cách làm phù hợp |
 |---|---|
-| **What it does** | Những gì cần có để nó thành hình |
-| **Screen** | Nhìn thấy gì, bấm được gì |
-| **Interactions** | Người dùng làm gì thì xảy ra chuyện gì |
-| **Out of scope** | **Những thứ quyết định là lần này không làm** |
+| Khi làm thứ nhỏ, chỉ dùng một lần, hoặc chỉ mình dùng | **Vibe coding**（cỡ trò lật hình） |
+| Khi phải quyết nhiều thứ, làm cùng người khác, hoặc sau này còn sửa | **Phát triển theo spec**（học ở buổi 3） |
 
-Mục thứ tư mới là chỗ ăn tiền của hôm nay. **AI luôn tự thêm vào những thứ không được viết ra**, nên phải cấm trước. Cùng một cái lý với chuyện điểm số và độ khó tự mọc ra ở chương 2.
+**Chọn cách nào không dựa vào độ lớn của sản phẩm, mà dựa vào số thứ phải quyết.** Lý do là càng nhiều thứ phải quyết, phần giao cho AI tự quyết cũng càng nhiều.
 
-> Chi tiết hơn: [`07-skills.md`](../fundamentals/07-skills.md) · [`05-prompting.md`](../fundamentals/05-prompting.md)
+#### Giảng viên nói gì
 
-### ［Slide］Học viên làm gì
+Giảng viên nói những điều sau.
 
-**① Gọi skill viết đặc tả（2 phút）**
+- Ưu điểm ①② và nhược điểm ①② đều là sự thật. Vibe coding không phải là cách làm xấu. Khi làm nhanh một thứ nhỏ thì ưu điểm có ích, còn khi làm thứ phải quyết nhiều thì nhược điểm sẽ thành vấn đề.
+- Khi giải thích nhược điểm ①, nhắc lại việc có học viên đánh dấu ？ ở 4-2. Dù là game do chính mình làm, học viên vẫn không biết rõ game có những gì.
+- “Điều kiện hoàn thành” đã học ở buổi 1 thì hôm nay cố ý không viết. Các yêu cầu B không kiểm tra được là vì chưa viết ra “thế nào là đúng”.
+- Ở buổi 3, chúng ta sẽ làm một game phải quyết nhiều hơn hẳn trò lật hình（poker）, bằng cách viết yêu cầu và điều kiện hoàn thành trước rồi mới làm.
 
-Trong một chat mới, gõ `/` ở ô nhập rồi chọn **requirements**.
+#### Khi mắc kẹt
 
-```text
-/requirements Tôi muốn làm game lật hình tìm cặp（memory match）
-```
-
-**② Vừa đối thoại vừa điền đặc tả（8 phút）**
-
-Trả lời những gì skill hỏi. Cần điền bốn mục.
-
-| Mục | Nội dung |
-|---|---|
-| **What it does** | Những gì cần có để game thành hình |
-| **Screen** | Nhìn thấy gì, bấm được gì |
-| **Interactions** | Người dùng làm gì thì xảy ra chuyện gì |
-| **Out of scope** | **Những thứ quyết định là lần này không làm** |
-
-**Đừng quên chép cả hai điều chủ đầu tư đã nói ở chương 4 vào đặc tả.**
-
-**③ Nhận thêm một yêu cầu nữa và thêm vào（5 phút）**
-
-Giảng viên sẽ đưa thêm một yêu cầu. Hãy xử lý nó **chỉ bằng cách thêm một dòng vào đặc tả**.
-
-### ［Nói miệng］Yêu cầu bổ sung thứ hai
-
-**Đúng lúc ③, giảng viên nói miệng.**
-
-> “Thêm một cái nữa. **Khi chỉ còn 2 cặp thì đổi màu mặt sau của các lá bài.**”
-
-### Giảng viên nói gì
-
-**Trong lúc ②**: đi quanh lớp và **bắt chuyện với những ai đang để trống mục “Out of scope”**. Trống chỗ đó thì AI lại tự thêm vào nữa.
-
-> “‘Out of scope’ là chỗ ăn tiền của hôm nay. AI luôn tự thêm những thứ không được viết ra, nên **phải cấm trước**.”
-
-**Nửa sau của ②**: kiểm tra xem hai điều ở chương 4 đã được viết vào đặc tả chưa. Viết rồi thì chỉ vào đó mà nói.
-
-> “Cái mà vừa nãy chỉ được nói bằng mồm, giờ **đã thành chữ**. Từ giờ, người khác ngoài bạn cũng phán định được là ‘đúng chưa’.”
-
-**Ở ③**: đây chính là phần đối chiếu đáp án của hôm nay.
-
-> “Lại tới thêm một ‘yêu cầu bổ sung’. Ở chương 4 thì mình đi sờ thẳng vào code, đúng không. **Lần này chỉ thêm một dòng vào đặc tả.** Khác nhau ở chỗ nào?”
-
-### Điểm kiểm tra
-
-- [ ] Bốn mục của đặc tả đã điền（nhất là **Out of scope**）
-- [ ] Hai yêu cầu bổ sung ở chương 4 đã được viết vào đặc tả
-- [ ] Yêu cầu bổ sung thứ hai đã được thêm một dòng vào đặc tả
-
-**Đặc tả không cần hoàn hảo.** Điền xong là đi tiếp.
-
-### Khi mắc kẹt
-
-| Chỗ kẹt | Xử lý |
-|---------|-------|
-| Không gọi được skill | Gõ `/` rồi tìm trong danh sách. Không thấy thì kiểm tra xem có `.cursor/skills/` không |
-| Không nghĩ ra “Out of scope” | Gợi ý sẵn: “chọn độ khó”, “giới hạn thời gian”, “animation”, “thư viện ngoài” |
-| Đặc tả phình to quá | Bắt cắt “What it does” xuống còn tối đa 5 mục. Phần dư đẩy sang “Out of scope” |
-| Đối thoại mãi không xong | Cắt ở phút thứ 8. Mục nào chưa điền thì để trống rồi đi tiếp |
+| Vấn đề | Cách xử lý |
+|--------|------|
+| Phần giải thích bị kéo dài | Với ưu điểm ①②, chỉ đọc tiêu đề, dành thời gian để giải thích nhược điểm ①② |
+| Học viên nói “Làm bằng vibe coding cũng không gặp khó khăn gì” | Không phủ nhận. Giải thích rằng với quy mô cỡ trò lật hình thì đúng là như vậy, và ở buổi 3 chúng ta sẽ thử với một game phải quyết nhiều thứ hơn |
 
 ---
 
-## Chương 6 Chia task rồi làm — 1:00（20 phút）
+## Chương 8 Câu hỏi ôn tập và buổi sau — 1:20（10 phút）
 
-> Cắt đặc tả thành những phần đủ nhỏ để đưa từng cái một, rồi mới làm.
+> Học viên giải các câu hỏi để kiểm tra lại nội dung buổi 1 và buổi 2. Sau đó, giảng viên giới thiệu nội dung buổi sau.
 
-### ［Slide］Giải thích — mỗi lần nhờ chỉ một việc
+### Mạch của chương
 
-Buổi 1 đã học “yêu cầu mơ hồ thì kết quả cũng mơ hồ”. **Chia task chính là cách làm cụ thể của điều đó.** Mỗi lần nhờ thì theo khuôn này.
+1. 8-1 Câu hỏi ôn tập
+2. 8-2 Buổi sau
 
-```text
-【Muốn làm gì】một câu
-【Phạm vi】@tệp hoặc thư mục
-【Ràng buộc】cái gì không được làm hỏng
-【Điều kiện hoàn thành】có gì thì coi như xong
-```
+### 8-1 Câu hỏi ôn tập
 
-**Có điều kiện hoàn thành thì mới phán định được thứ nó trả về.** Nó đối xứng đúng với chuyện ở chương 4: “căn cứ để phán định chỉ nằm trong đầu mình”.
+#### ［Slide］Học viên làm gì（8 phút）
 
-Hội thoại dài ra thì chuyển sang **chat mới**. Để khỏi kéo theo tiền đề cũ.
+Giảng viên đưa ra từng câu. **Học viên viết câu trả lời ra giấy hoặc vào chat trước**, rồi giảng viên mới chữa.
 
-> Chi tiết hơn: [`05-prompting.md`](../fundamentals/05-prompting.md)
+| # | Câu hỏi | Đáp án |
+|---|---|---|
+| 1 | Nút để giữ và nút để hủy thay đổi file mà Agent đã sửa là gì? | Keep / Undo |
+| 2 | Muốn đưa một file cụ thể cho Agent thì gõ gì vào ô nhập? | `@`（tên file） |
+| 3 | Chỉ muốn hỏi（không muốn sửa file）thì dùng Mode nào? | Ask |
+| 4 | Cách nhờ “làm cho ngon nha” mà không quyết gì trước gọi là gì? | Vibe coding |
+| 5 | Ở chương 4, vì sao không kiểm tra được yêu cầu B đã được thực hiện đúng chưa? | Vì chưa quyết “thế nào là đúng” |
+| 6 | Vì sao cả lớp gửi cùng 3 dòng mà lại ra những thứ khác nhau? | Vì AI đã quyết những thứ mình không quyết |
 
-### ［Slide］Học viên làm gì
+#### Giảng viên nói gì
 
-**① Chia thành task（5 phút）**
+Chữa từng câu một. **Không trách học viên trả lời sai.** Với câu 5 và câu 6, dù diễn đạt chưa chính xác nhưng đúng ý thì vẫn tính là đúng.
 
-```text
-/task-breakdown （đưa bản đặc tả vừa viết）
-```
+### 8-2 Buổi sau
 
-Cắt được **3–5 task** là đủ. Nhiều quá thì cắt bớt.
+#### ［Slide］Buổi sau（buổi 3）
 
-**② Làm từng cái một（15 phút）**
+Buổi sau chúng ta sẽ làm **poker**. Poker là game phải quyết nhiều thứ hơn hẳn trò lật hình. Nếu nhờ “làm cho ngon nha” như hôm nay thì sẽ không ra đúng poker mình muốn. Vì vậy, **buổi sau chúng ta sẽ viết yêu cầu trước rồi mới làm.**
 
-Mở **chat mới** và đưa **đúng một** task.
+#### ［Slide］Việc cần làm trước buổi sau（không bắt buộc）
 
-```text
-（nội dung của task 1）
-Điều kiện hoàn thành: （điều kiện hoàn thành ghi trong task）
-Đừng đổi những tính năng khác.
-```
+- Chạy `git pull` trong `cursor-course/`（sẽ có thêm Skill dùng ở buổi 3）
+- Đọc trước [`05-prompting.md`](../fundamentals/05-prompting.md)（cách nhờ AI hiệu quả）
 
-Đọc diff, Keep xong thì sang task tiếp theo.
+#### Khi mắc kẹt
 
-**③ Vạch hoàn thành**
-
-- [ ] Các lá bài xếp ra và lật được
-- [ ] Phán định được khớp / không khớp
-- [ ] Ghép đủ mọi cặp thì hiện màn hình hoàn thành
-- [ ] **Có ít nhất một trong các yêu cầu bổ sung ở chương 4 và chương 5 đã vào**
-
-### Giảng viên nói gì
-
-**Ở ①**: “mỗi lần nhờ chỉ một việc” là khuôn của hôm nay. Buổi 1 đã học “yêu cầu mơ hồ thì kết quả cũng mơ hồ”. **Chia task chính là cách làm cụ thể của điều đó.**
-
-**Trong quãng chờ ở ②**: vừa đi quanh lớp vừa để ý mấy điểm sau.
-
-- Ai không đưa đặc tả mà lại vibe tiếp → nhắc
-- Ai nhét từ hai việc trở lên vào một lần nhờ → nhắc “từng cái một”
-
-**Hết giờ thì dừng, kể cả khi chưa xong.** Mục đích của chương này không phải làm xong, mà là **chạy đúng một lần cái khuôn cách đưa việc**.
-
-### Điểm kiểm tra
-
-- [ ] Đã cắt được 3–5 task
-- [ ] Đã làm và Keep ít nhất 2 task
-
-**Không xong cũng không sao.** Đạt 2 trên 4 mục ở vạch hoàn thành là đủ.
-
-### Khi mắc kẹt
-
-| Chỗ kẹt | Xử lý |
-|---------|-------|
-| Cắt ra hơn 10 task | Đặc tả to quá. Thêm vào “Out of scope” rồi cắt lại |
-| Thấy đưa từng cái phiền quá nên đưa hết một lượt | Đừng ngăn. **Đó lại là nguyên liệu để so kết quả về sau** |
-| Không đủ giờ | Cắt ở 2 mục hoàn thành. Không được cắt chương 7 |
-| Lẫn lộn với bản vibe | Tách thư mục ra（`session02/` và `session02-spec/`） |
-
----
-
-## Chương 7 Mang về — 1:20（10 phút）
-
-> Cách quyết dùng cái nào, và buổi sau. **Chương này không rút ngắn.**
-> Phân bổ: nhìn lại 3 + điều cần nhớ 2 + vibe không phải cái xấu 1 + phía trước 1 + giới thiệu buổi sau 1 + xác nhận cho buổi sau 2 = 10 phút
-
-### ［Slide］Học viên làm gì
-
-- Trả lời ba câu hỏi nhìn lại
-- Cuối cùng, **giơ tay** ở phần xác nhận cho buổi sau（`git status` có chạy không / có tài khoản GitHub không）
-
-### Giảng viên nói gì
-
-**Nhìn lại（hỏi học viên, 3 phút）**
-
-1. Cùng một “yêu cầu bổ sung”, lúc nhét vào bản vibe và lúc thêm vào đặc tả, **khác nhau ở chỗ nào**
-2. Chuyện “nó làm đúng chưa”, ở mỗi bên bạn xác nhận bằng cách nào
-3. Ngày mai bị bảo làm lại đúng game đó, bạn sẽ dùng cách nào
-
-**Ba điều cần nhớ khi ra về（2 phút）**
-
-1. **Vibe thì nhanh. Nhưng không nhắm mà làm ra được**（thứ không nhờ vẫn mọc ra / cùng một yêu cầu vẫn ra thứ khác）
-2. **Đặc tả phải ở dạng đưa được cho người khác**（what it does + **out of scope**）
-3. **Bổ sung thì từng cái một, kèm điều kiện hoàn thành**
-
-**Vibe coding không phải là cái xấu（1 phút）**
-
-> “Vibe coding hợp với ‘nguyên mẫu đầu tiên’ và ‘đi khảo sát’. Hôm nay chỉ vài phút là ra thứ chạy được, đúng không. **Đó là thế mạnh thật.**
-> Nhưng để ‘vừa giữ cho nó chạy đúng vừa cùng người khác nuôi nó lớn’ thì cần đặc tả.
-> **Quyết được khi nào dùng cái nào** — đó mới là mục tiêu của hôm nay.”
-
-**Thứ nằm ở phía trước（1 phút, 1 slide）**
-
-Thứ hôm nay viết ra là “đặc tả cho đúng một lần này”. **Còn những giao ước muốn bắt tuân thủ mọi lúc thì đặt được vào `.cursor/rules/`.**
-
-| Cơ chế | Có hiệu lực khi nào |
-|--------|---------------------|
-| **Rules** | **Luôn luôn**（phương châm, ràng buộc, khỏi phải viết lại trong từng prompt） |
-| **Skills** | Chỉ khi cần（bản quy trình） |
-| **Đặc tả** | Chỉ trong dự án đó |
-
-Những thứ kiểu “commit viết bằng tiếng Việt”, “không tạo test trừ khi được yêu cầu” — tức **giao ước của team và của repo** — chính là Rules. Buổi 3 sẽ dùng tới khi làm việc nhóm.
-
-> Chi tiết hơn: [`06-rules.md`](../fundamentals/06-rules.md)
-
-**Giới thiệu buổi sau（1 phút）**
-
-> “Buổi 3 thì các nhóm tự chọn đề tài và bắt đầu làm ứng dụng. Cái ‘viết đặc tả trước’ hôm nay, đem vào làm theo nhóm thì sẽ ra sao. Có thêm cả luồng tối thiểu về branch, PR và review.”
-
-### Điểm kiểm tra（đo thực tế cho buổi sau, cả lớp, 2 phút）
-
-Buổi 3 dùng Git và PR. **Đo ngay tại đây.** Để tới hôm đó mới phát hiện thì 40 phút cuối biến thành lớp dạy Git.
-
-- [ ] Chạy được `git status` trong terminal
-- [ ] Có tài khoản GitHub
-
-Cho những ai thiếu một trong hai giơ tay, và **giảng viên ghi lại số người**. Từ 3 người trở lên thì đó là căn cứ để chuyển phần PR của buổi 3 thành tùy chọn.
-
-### Khi mắc kẹt
-
-Nếu không ai trả lời được câu nhìn lại số 1, giảng viên chỉ vào bảng ghi ở chương 4. Có sẵn con số nên dễ trả lời hơn.
-
-### Bài tập về nhà（tùy chọn）
-
-- Đọc [`05-prompting.md`](../fundamentals/05-prompting.md)（khuôn mẫu để nhờ cho đúng ý）
-- Tự thêm một dòng vào đặc tả hôm nay và làm thêm một tính năng
-
----
-
-## Phụ lục: bản đặc tả tối thiểu mẫu（để đối chiếu đáp án）
-
-**Không được phát cho học viên ngay từ đầu.** Dùng để cứu những ai không viết nổi đặc tả ở chương 5, hoặc để giảng viên cho thấy “viết được tới mức này là đủ”.
-
-```markdown
-# Requirements — Memory match
-
-## What it does
-
-- Xáo 8 cặp（16 lá）rồi xếp úp xuống
-- Người chơi lật 2 lá
-- Hai lá cùng hình thì để ngửa luôn（ghép thành cặp）
-- Hai lá khác hình thì sau 1 giây úp lại
-- **Ghép được một cặp thì được lật tiếp một lượt nữa**
-- **Từ lần sai thứ ba trở đi, rút thời gian chờ trước khi úp lại xuống 0,5 giây**
-- **Khi chỉ còn 2 cặp thì đổi màu mặt sau của các lá bài**
-- Ghép đủ mọi cặp thì hoàn thành（hiện “Chúc mừng”）
-
-## Screen
-
-- Xếp bài theo lưới 4×4
-- Mặt sau dùng chung một thiết kế（tô màu trơn là được）
-- Mặt trước là ký hiệu phân biệt được cặp（emoji hoặc số）
-
-## Interactions
-
-- Click vào lá bài để lật
-- Mỗi lượt chỉ lật được tối đa 2 lá（lá thứ ba không phản hồi）
-- Lá đã ngửa thì không bấm được
-
-## Out of scope
-
-- Chọn độ khó
-- Giới hạn thời gian
-- Điểm số, bảng xếp hạng
-- Animation（không có hiệu ứng lật, chỉ đổi hiển thị）
-- Thư viện ngoài, API
-- Lưu trữ lâu dài（reload mà mất hết cũng được）
-```
-
-**Ba dòng in đậm**（ghép cặp thì lật tiếp / 0,5 giây / còn 2 cặp thì đổi màu mặt sau）là quân bài tẩy của buổi này. Đó là **những luật mà AI không suy ra được từ hiểu biết thông thường về trò tìm cặp**, nên bản vibe không thể có.
+| Vấn đề | Cách xử lý |
+|--------|------|
+| Trễ giờ | Giảm câu hỏi ôn tập còn 4 câu（1, 2, 4, 5）. **Không cắt phần giới thiệu buổi sau** |
 
 ---
 
 ## Checklist cho giảng viên（dùng trong ngày）
 
-### Trước hôm đó
-- [ ] Đã kiểm tra xem còn ai chưa clone được từ buổi 1 không（còn thì xử lý ngay đầu buổi）
-- [ ] **`.cursor/skills/requirements/` và `.cursor/skills/task-breakdown/` đã có trong repo**
-- [ ] Tự mình đã chạy thử một lượt từ chương 2 tới chương 6（**bắt buộc**. AI phiên bản khác nhau thì khả năng đoán ra yêu cầu bổ sung cũng khác）
-- [ ] Đã xác nhận mở được HTML bằng trình duyệt tích hợp của Cursor
-- [ ] Đã chọn sẵn một model để dùng（cố định, không phải Auto）
-- [ ] Thư mục `session02/` và `session02-spec/` đang trống
-- [ ] **Nắm rõ ba yêu cầu bổ sung（bảng dưới）và thời điểm đưa ra từng cái**
+#### Trước buổi học
 
-### Danh sách yêu cầu bổ sung（chỉ giảng viên）
+- [ ] Đã xác nhận không có học viên nào chưa clone được repository ở buổi 1（nếu có thì xử lý ngay đầu buổi）
+- [ ] Đã tự làm thử một lượt từ chương 2 đến chương 5
+- [ ] Đã kiểm tra trong danh sách yêu cầu bổ sung（8 yêu cầu）những yêu cầu mà AI thường làm sẵn từ đầu（xem mục “Yêu cầu bổ sung” bên dưới）
+- [ ] **Đã chụp 2 ảnh mẫu（`s02-05` / `s02-06`）bằng cách gửi 2 lần với cùng một thiết lập**（dùng ở chương 3）
+- [ ] Đã xác nhận mở được file HTML bằng browser tích hợp của Cursor
+- [ ] Đã xác nhận có thể cho cả lớp xem màn hình của học viên bằng chia sẻ màn hình hoặc máy chiếu（chương 3, chương 6）
 
-| Đưa lúc nào | Nội dung |
+#### Cách chụp 2 ảnh mẫu
+
+**Học viên không cố định model**（cứ để Auto）. Vì vậy, để cho thấy “cùng một yêu cầu vẫn ra những thứ khác nhau”, giảng viên dùng **2 ảnh mẫu do giảng viên chụp**（`s02-05` / `s02-06`）.
+
+| | |
 |---|---|
-| Đầu chương 4 | Ghép được một cặp thì cho lật tiếp một lượt nữa |
-| Đầu chương 4 | Từ lần sai thứ ba trở đi, rút thời gian chờ trước khi úp lại xuống 0,5 giây |
-| Chương 5, mục ③ | Khi chỉ còn 2 cặp thì đổi màu mặt sau của các lá bài |
+| **Gửi 2 lần với cùng một thiết lập** | Không gửi liên tiếp trong cùng một chat, mà **mở chat mới rồi gửi, làm 2 lần**. Cả 2 lần dùng cùng một thiết lập |
+| **Gửi cùng 3 dòng** | Gửi nguyên 3 dòng trong kịch bản. Không diễn đạt lại |
+| **Chọn 2 game thấy rõ điểm khác nhau** | Chọn 2 game khác nhau rõ đến mức nhìn là thấy ngay ở ít nhất một điểm: số lá bài, hình trên lá, có tính điểm hay không |
 
-**Gặp phiên bản AI đoán ra được mấy cái này thì hãy thay yêu cầu khác.** Điều kiện là “chi phí hiện thực thấp” và “không nằm trong hiểu biết thông thường về trò tìm cặp”.
+#### Yêu cầu bổ sung（câu chữ được đưa lên slide）
 
-### Quản lý thời gian theo chương
-- Chương 2 cắt ở 15 phút. Cái đà “chạy được rồi” quan trọng hơn một sản phẩm hoàn hảo
-- **Không cắt** chương 3 và chương 4. Đó là phần chính của buổi
-- Chương 6 mà quá 1:20 thì dừng, kể cả chưa xong
-- Chương 7 dù có chuyện gì cũng giữ đủ 10 phút
+| Nhóm | Yêu cầu | Lý do đưa vào |
+|---|---|---|
+| A | A1–A4 | Là những yêu cầu kiểm tra được bằng mắt. Thường đã có sẵn từ đầu, nên là tư liệu cho việc “kiểm tra xem game đã có hay chưa” |
+| B | B1–B4 | Là những yêu cầu có điều kiện không rõ ràng. Dù AI đã thực hiện, cũng không có tiêu chí để đánh giá đúng hay sai |
 
-### Giả định về cách chạy
-- Cố định model（chương 2 ①）và mở chat mới（chương 4 ①）— bỏ qua là chương đó mất ý nghĩa. Thời gian đã tính theo hướng xác nhận xong rồi mới đi tiếp
-- Yêu cầu bổ sung được đưa bằng miệng ở đầu chương 4 và ở mục ③ của chương 5
-- Có ai làm bản vibe ra ngon lành thì “vibe vậy là đủ rồi” cũng là một phần bài học đúng đắn của buổi này
+**Nếu AI thường làm sẵn các yêu cầu B từ đầu, hãy thay các yêu cầu B.** Yêu cầu thay thế cần thỏa 3 điều kiện: “dễ thực hiện”, “không suy ra được từ luật chơi thông thường của trò lật hình”, và “câu chữ không xác định được một cách duy nhất thế nào là đúng”.
 
-### Những chỗ hay kẹt
-| Chỗ kẹt | Xử lý |
-|---------|-------|
-| Agent sinh ra cả đống tệp, rối | Chương 2 không dọn. Tới chương 6 thì cho viết vào đặc tả “gói gọn trong một tệp cũng được” |
-| Không mở được trên trình duyệt | Mở bằng trình duyệt tích hợp của Cursor. Kiểm tra luôn đường dẫn tệp |
-| Đưa đặc tả rồi mà vẫn mọc thêm tính năng thừa | Nhấn mạnh “Out of scope” rồi đưa lại. Bản thân chuyện này đã là một giáo cụ tốt |
-| Có người thấy vibe lại trôi hơn | Cứ nói thật là đúng vậy. Quy mô nhỏ thì đúng thế. Quy mô lớn lên thì hay đảo chiều |
-| Kết quả tản mát quá, không so được | Kiểm tra xem model có còn để Auto không. Chương 2 và chương 6 phải cùng một model cố định |
+#### Quản lý thời gian
 
-> **Bài nộp thì chưa chốt.** Cần thì thu bảng ghi ở chương 4（số dòng thay đổi, có hỏng không, có phán định được không）.
+- Chương 2 kết thúc lúc 0:20. Ưu tiên chuyển sang phần tiếp theo khi game đã chạy, thay vì làm cho hoàn hảo
+- Chương 5 được rút xuống 5 phút khi trễ giờ
+- **Không cắt chương 3 và chương 6（trình bày）.** Đây là các chương đưa ra kết luận của buổi học
+- Câu hỏi ôn tập ở chương 8 được giảm còn 4 câu khi trễ giờ

@@ -104,11 +104,12 @@ Reference: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 - Understand where MCP, Cloud Agents and PR review sit
 - Know what to watch for around secrets, execution limits and parallel agents
 
-### Applied 14–19 — distributing to a team, running things automatically
+### Applied 14–21 — distributing to a team, running things automatically
 
 - Carve a piece of work off to a Subagent
 - Bundle a whole setup into a Plugin and hand it out
 - Trigger the Agent from a screen, a terminal or an external service
+- Set a goal, a way to check and a stopping point, and let the agent run the work in a loop by itself
 
 ## Chapter list
 
@@ -123,8 +124,8 @@ Reference: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 | [07](07-skills.md) | Skills |
 | [08](08-hooks.md) | Hooks |
 | [09](09-mcp.md) | MCP |
-| [10](10-cloud-agents.md) | Cloud Agents（Builds / Automations） |
-| [11](11-bugbot-pr.md) | Bugbot and PR review |
+| [10](10-cloud-agents.md) | Cloud Agents（Builds / Automations / Subscriptions / Projects） |
+| [11](11-bugbot-pr.md) | Bugbot, Agent Review and PR review |
 | [12](12-agents-window.md) | Agents Window and Worktrees |
 | [13](13-safety-ignore.md) | Secrets, execution limits, safe operation |
 | [14](14-subagents.md) | Subagents |
@@ -133,5 +134,7 @@ Reference: [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 | [17](17-cli.md) | The CLI |
 | [18](18-integrations.md) | Integrations with external services |
 | [19](19-plans.md) | Plans and usage |
+| [20](20-git.md) | Git integration（branches, commits, PRs, issues） |
+| [21](21-goals-loops.md) | Goals and loops（`/goal`, `/loop`, Steering, the `stop` hook） |
 
 Next: [01-modes.md](01-modes.md)

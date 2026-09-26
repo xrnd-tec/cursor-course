@@ -52,6 +52,16 @@ Mỗi Hook gắn thêm được những tùy chọn sau.
 
 Trong JSON trả về, trường `permission` nhận `allow` / `deny` / `ask`. Thoát với mã `2` được xử lý y như `deny`.
 
+## Tạo vòng lặp bằng hook `stop`
+
+Hook `stop` được gọi **khi agent làm xong việc**. Nếu JSON trả về có `followup_message`（chuỗi ký tự）, Cursor sẽ **tự động gửi nội dung đó như tin nhắn tiếp theo của người dùng**. Nếu để trống hoặc bỏ qua thì agent dừng tại đó.
+
+- Dữ liệu vào có `loop_count`（số lần hook `stop` đã tự động gửi trong cuộc hội thoại này, đếm từ 0）
+- Số lần tự động gửi tối đa **mặc định là 5 lần**. Có thể đổi bằng `loop_limit`; đặt `null` thì không giới hạn
+- `subagentStop`（khi subagent kết thúc）cũng trả về được `followup_message`. Giới hạn dùng chung `loop_limit`
+
+Ví dụ cách dùng: chạy test, nếu có test thất bại thì trả về “Hãy sửa các test bị thất bại”, nếu tất cả đều qua thì không trả về gì. Như vậy sẽ tạo thành vòng lặp “sửa cho tới khi test qua”. Cách xây dựng vòng lặp xem [21-goals-loops.md](21-goals-loops.md).
+
 ## Lưu ý
 
 - Chặn hết khi lỗi（`failClosed: true`）dễ làm cả việc phát triển đứng lại. Mặc định là “lỗi thì vẫn cho đi qua”

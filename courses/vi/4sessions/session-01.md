@@ -127,29 +127,30 @@ Ai xong rồi thì cứ đi tiếp các bước sau, không phải chờ.
 
 ### Mạch của phần này
 
-1. 0-1 Từ trang bìa tới lời hứa hôm nay
+1. 0-1 Từ trang bìa tới cách tiến hành buổi học hôm nay
 
-### 0-1 Từ trang bìa tới lời hứa hôm nay
+### 0-1 Từ trang bìa tới cách tiến hành buổi học hôm nay
 
 #### ［Slide］Trang bìa
 
 ```
 Thao tác cơ bản của Cursor
 
-Khóa thực hành Cursor　Buổi 1 / 4　·　90 phút
+Khóa thực hành Cursor　Buổi 1 / 5　·　90 phút
 （ngày）
 ```
 
 #### ［Slide］Về khóa học này
 
-**Bốn buổi để đi tới chỗ “cả nhóm làm được một ứng dụng và đem đi trình bày”.**
+**5 buổi để đi tới chỗ “cả nhóm làm được một ứng dụng và đem đi trình bày”.**
 
 | Buổi | Làm gì | Xong thì làm được gì |
 | ---- | ------ | -------------------- |
 | **Buổi 1（hôm nay）** | Thao tác cơ bản | Bắt AI sửa lỗi, và đọc được diff nó tạo ra |
-| Buổi 2 | Vibe coding → phát triển theo đặc tả | Viết yêu cầu trước rồi mới cho làm |
-| Buổi 3 | Làm việc nhóm（nửa đầu） | Cả nhóm viết đặc tả và ra được một PR |
-| Buổi 4 | Hoàn thiện và trình bày | Demo được một thứ chạy thật |
+| Buổi 2 | Vibe coding | Giải thích được chuyện gì xảy ra khi nhờ AI mà không quyết định gì trước |
+| Buổi 3 | Phát triển theo yêu cầu | Viết yêu cầu trước rồi mới cho AI làm |
+| Buổi 4 | Làm việc nhóm（nửa đầu） | Cả nhóm viết yêu cầu và mở được PR |
+| Buổi 5 | Hoàn thiện và trình bày | Demo được một thứ chạy thật |
 
 #### ［Slide］Việc của hôm nay
 
@@ -165,7 +166,7 @@ Mở `practice/index.html` lên là thấy 3 chỗ hỏng, hiện màu cam.
 
 **Ba chỗ đó đổi sang màu xanh đậm là hôm nay đạt.**
 
-#### ［Slide］Ba lời hứa của hôm nay
+#### ［Slide］Cách tiến hành buổi học hôm nay（3 điểm）
 
 1. **Không cần nhớ hết.** Hôm nay chỉ dùng đúng ba công cụ
 2. **Gần như không có lúc nào chỉ ngồi nhìn.** 75 trên 90 phút là tự tay làm
@@ -842,7 +843,7 @@ Làm cá nhân thì nên dùng **Auto-review**（mục đọc thêm ở chương
 
 **Giới thiệu buổi sau:**
 
-> “Buổi sau mình làm trò lật hình tìm cặp. Đầu tiên cứ ‘không nghĩ gì cả’ mà làm. Sau đó viết yêu cầu ra rồi làm lại. Bên nào trôi hơn — cứ để cơ thể tự nhớ.”
+> “Buổi sau chúng ta sẽ làm game lật hình tìm cặp. Các bạn sẽ nhờ AI ‘làm cho ổn’ mà không quyết định gì trước, và cuối buổi cả lớp sẽ cho nhau xem game của mình.”
 
 #### Điểm kiểm tra
 
