@@ -1,7 +1,7 @@
 # Buổi 5: Hoàn thiện và trình bày（90 phút）
 
 > **Mục tiêu của buổi này（4 mục）**  
-> 01 Hoàn thiện các task còn lại bằng PR → 02 Thao tác trình bày chạy được **trên nhánh main** → 03 Cả nhóm trình bày trong 5 phút → 04 Nói thành một câu điều đã thay đổi qua cả khóa học  
+> 01 Hoàn thiện các task còn lại bằng PR → 02 Thao tác trình bày chạy được **trên branch main** → 03 Cả nhóm trình bày trong 5 phút → 04 Nói thành một câu điều đã thay đổi qua cả khóa học  
 > **Hoàn thành từ 02 đến 04 là đạt mục tiêu.** Mục 01 chỉ làm trong phạm vi không ảnh hưởng đến mục 02（không cần hoàn thành tất cả task）.
 
 > **Hôm nay là buổi trình bày.** Nửa đầu buổi dùng để hoàn thiện, **dừng merge lúc 1:00**, sau đó cả nhóm trình bày.
@@ -138,7 +138,7 @@ Khóa thực hành Cursor　Buổi 5 / 5　·　90 phút
 #### ［Slide］Ôn lại buổi trước（30 giây）
 
 ```
-/start-task（trở thành người phụ trách Issue, nhánh được tạo từ main mới nhất）
+/start-task（trở thành người phụ trách Issue, branch được tạo từ main mới nhất）
   ↓
 Gửi phần “làm gì” của task（điều kiện hoàn thành và “không thay đổi phần khác” đã có trong rule）
   ↓
@@ -159,10 +159,10 @@ Người khác kiểm tra trên màn hình rồi Approve → merge（Issue tự 
 
 | Thuật ngữ | Nghĩa |
 |---|---|
-| **Nhánh / main** | Nơi thực hiện thay đổi tách riêng khỏi main / nhánh gốc chỉ chứa những gì nhóm đã kiểm tra |
+| **Branch / main** | Nơi thực hiện thay đổi tách riêng khỏi main / branch gốc chỉ chứa những gì nhóm đã kiểm tra |
 | **Commit / PR / merge** | Ghi lại thay đổi / lời đề nghị kiểm tra xem có đưa vào main được chưa / đưa thay đổi của PR vào main |
 | **Issue / người phụ trách（Assignee）** | “Việc cần làm” đã đăng ký trên GitHub / người làm Issue đó |
-| **`/start-task`** | Skill giúp mình trở thành người phụ trách một Issue còn trống và tạo nhánh từ main mới nhất |
+| **`/start-task`** | Skill giúp mình trở thành người phụ trách một Issue còn trống và tạo branch từ main mới nhất |
 | **`Closes #số`** | Nếu ghi vào mô tả PR, khi PR được merge thì Issue đó sẽ tự đóng |
 | **Sync Changes** | Lấy thay đổi mới trên GitHub về máy mình, nếu có commit của mình thì gửi lên |
 | **Conflict** | Trạng thái 2 người sửa cùng một chỗ trong cùng một file nên không tự gộp được |
@@ -194,7 +194,7 @@ Hãy **nói câu “vẫn trình bày dù ứng dụng không chạy” ngay t�
 | Mục | Những việc sẽ làm được | Thực hiện ở đâu |
 |----|--------------------|------------|
 | 01 | Hoàn thiện các task còn lại bằng PR | Chương 2 |
-| 02 | Thao tác trình bày chạy được **trên nhánh main** | Chương 3 |
+| 02 | Thao tác trình bày chạy được **trên branch main** | Chương 3 |
 | 03 | Cả nhóm trình bày trong 5 phút | Chương 4 |
 | 04 | Nói thành một câu điều đã thay đổi qua cả khóa học | Chương 5 |
 
@@ -222,7 +222,7 @@ Hãy **nói câu “vẫn trình bày dù ứng dụng không chạy” ngay t�
 
 #### Giảng viên nói gì
 
-> “Mục tiêu hôm nay là cho xem ‘thao tác trình bày’ đã quyết định ở buổi 4 **trên nhánh main**.
+> “Mục tiêu hôm nay là cho xem ‘thao tác trình bày’ đã quyết định ở buổi 4 **trên branch main**.
 > Đó chính là điều kiện hoàn thành của toàn bộ ứng dụng.”
 
 Chỉ vào mục 3（không làm gì）và nói thêm một câu.
@@ -286,8 +286,8 @@ Chỉ vào mục 3（không làm gì）và nói thêm một câu.
 Các bước giống buổi 4.
 
 ```
-1  Chọn Issue bằng /start-task（trở thành người phụ trách, nhánh được tạo từ main mới nhất）
-   （Nếu đã là người phụ trách từ buổi trước, hãy chuyển sang nhánh của mình bằng tên nhánh ở góc dưới bên trái）
+1  Chọn Issue bằng /start-task（trở thành người phụ trách, branch được tạo từ main mới nhất）
+   （Nếu đã là người phụ trách từ buổi trước, hãy chuyển sang branch của mình bằng tên branch ở góc dưới bên trái）
 2  Trong chat mới, chỉ gửi phần “làm gì” của task
 3  Đọc diff → kiểm tra điều kiện hoàn thành → Keep
 4  ＋ → ✨ → Commit → Publish Branch（từ lần thứ 2 là Sync Changes）
@@ -314,7 +314,7 @@ QA chuẩn bị để **nói được bằng lời** “mở cái gì → bấm 
 | **Revert** | Huỷ thay đổi của một PR đã merge. Khi nhấn **Revert** ở cuối màn hình PR, **một PR mới để đưa về trạng thái cũ** sẽ được tạo ra |
 | **PR của Revert** | PR được tạo bởi Revert. **Khi merge PR này, main mới trở về trạng thái cũ.** Chỉ nhấn nút thì main vẫn chưa trở về trạng thái cũ |
 
-**Revert là cách cuối cùng khi hết thời gian mà vẫn chưa sửa được.** Trước hết, người phụ trách PR gây lỗi sẽ sửa trên một nhánh mới.
+**Revert là cách cuối cùng khi hết thời gian mà vẫn chưa sửa được.** Trước hết, người phụ trách PR gây lỗi sẽ sửa trên một branch mới.
 
 > Nguồn chính của phần giải thích thuật ngữ: [phần thuật ngữ trong `20-git.md`](../fundamentals/20-git.md)
 
@@ -324,7 +324,7 @@ QA chuẩn bị để **nói được bằng lời** “mở cái gì → bấm 
 
 Khi đang mở trang bằng trình duyệt tích hợp, nhấn `Ctrl+Shift+D`（Mac là `Cmd+Shift+D`）→ giữ `Shift` và kéo chuột để chọn chỗ muốn sửa → nhấn `Ctrl+L`（Mac là `Cmd+L`）để đưa vào chat.
 
-**Sửa bằng cách này cũng phải tạo nhánh và đưa vào bằng PR.** Không có ngoại lệ.
+**Sửa bằng cách này cũng phải tạo branch và đưa vào bằng PR.** Không có ngoại lệ.
 
 > Chi tiết hơn: [`16-browser-design.md`](../fundamentals/16-browser-design.md)
 
@@ -338,7 +338,7 @@ Những điểm cần xem khi đi quanh lớp:
 |------|------|
 | Thao tác trình bày vẫn chưa chạy | **Cho nhóm bỏ các task không cần cho thao tác trình bày.** “Chỉ cần thao tác trình bày chạy được là đủ” |
 | Nhóm đang định thêm chức năng mới | Dừng lại. “Đến 1:00, việc này có thể làm hỏng những gì đang chạy” |
-| Nhóm đang sửa trực tiếp trên `main` | Cho nhóm tạo nhánh. **Hôm nay cũng không có ngoại lệ** |
+| Nhóm đang sửa trực tiếp trên `main` | Cho nhóm tạo branch. **Hôm nay cũng không có ngoại lệ** |
 | Không ai đọc PR | Nhắc lại vai trò “người đang rảnh tay thì đọc PR” |
 | Nhóm còn dư thời gian | Nhận Issue còn trống bằng `/start-task`. Khi xong cả phần đó, cho nhóm tập các bước trình bày 2 lần |
 
@@ -357,17 +357,17 @@ Những điểm cần xem khi đi quanh lớp:
 |--------|------|
 | **PR hiện “This branch has conflicts”** | Nhờ Agent bằng prompt bên dưới. Sau khi giải quyết, gửi lên bằng Sync Changes. PR sẽ tự cập nhật |
 | Máy mình hiện màn hình conflict | Nhấn **Resolve in Chat**. Đề xuất giải quyết cũng phải đọc diff rồi mới Keep |
-| Sau khi merge, thao tác trình bày bị lỗi | **Nguyên nhân là PR vừa merge.** Người phụ trách PR đó sửa trên nhánh mới rồi tạo PR |
+| Sau khi merge, thao tác trình bày bị lỗi | **Nguyên nhân là PR vừa merge.** Người phụ trách PR đó sửa trên branch mới rồi tạo PR |
 | Đã quá 0:55 mà vẫn chưa sửa được | Nhấn **Revert** ở màn hình PR trên GitHub → **merge** PR vừa được tạo（chỉ nhấn nút thì chưa trở về trạng thái cũ）. **Ưu tiên hàng đầu là đưa ứng dụng về trạng thái đang chạy** |
-| Lỡ commit trên `main`（chưa gửi lên） | Nhờ Agent: “Chuyển commit hiện tại của `main` sang nhánh mới, rồi đưa `main` về như cũ” |
-| Nhánh từ buổi trước đã cũ | Lấy thay đổi của `main` vào nhánh（prompt bên dưới）. Hoặc bỏ nhánh đó và tạo lại từ `main` mới nhất |
+| Lỡ commit trên `main`（chưa gửi lên） | Nhờ Agent: “Chuyển commit hiện tại của `main` sang branch mới, rồi đưa `main` về như cũ” |
+| Branch từ buổi trước đã cũ | Lấy thay đổi của `main` vào branch（prompt bên dưới）. Hoặc bỏ branch đó và tạo lại từ `main` mới nhất |
 | Người phụ trách vắng mặt | **Nếu task không cần cho thao tác trình bày thì bỏ.** Nếu cần, một người khác đổi người phụ trách của Issue từ người vắng mặt sang mình（**Assignees** ở bên phải Issue）, rồi bắt đầu bằng `/start-task` |
-| Buổi trước đã tạo nhánh mà không dùng `/start-task` | Kiểm tra người phụ trách ở tab Issues. Nếu chưa có tên mình, chọn mình ở **Assignees** bên phải Issue |
+| Buổi trước đã tạo branch mà không dùng `/start-task` | Kiểm tra người phụ trách ở tab Issues. Nếu chưa có tên mình, chọn mình ở **Assignees** bên phải Issue |
 
-Prompt gửi cho Agent khi bị conflict, hoặc khi cần lấy thay đổi của `main` vào nhánh cũ:
+Prompt gửi cho Agent khi bị conflict, hoặc khi cần lấy thay đổi của `main` vào branch cũ:
 
 ```text
-Lấy bản mới nhất của main vào nhánh hiện tại.
+Lấy bản mới nhất của main vào branch hiện tại.
 Nếu có conflict thì đề xuất cách giải quyết, giữ lại thay đổi của cả hai bên.
 Giải quyết xong thì commit, nhưng chưa push.
 ```
@@ -394,7 +394,7 @@ Giải quyết xong thì commit, nhưng chưa push.
 
 Chuyển sang `main` → **Sync Changes**
 
-**Nhất định phải kiểm tra tên nhánh ở góc dưới bên trái là `main`.** Nếu trình bày khi vẫn đang ở nhánh làm việc, nhóm sẽ cho xem thứ không có trong main.
+**Nhất định phải kiểm tra tên branch ở góc dưới bên trái là `main`.** Nếu trình bày khi vẫn đang ở branch làm việc, nhóm sẽ cho xem thứ không có trong main.
 
 **③ QA: làm thử thao tác trình bày 1 lần（2 phút）**
 

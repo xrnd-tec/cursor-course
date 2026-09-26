@@ -37,7 +37,7 @@
 |---|---|---|
 | **Rule**（`task-cycle.mdc`） | **Rule của nhóm**. 1 người tạo PR thì rule có hiệu lực trong Cursor của mọi người | Chương 4 |
 | **Yêu cầu**（làm gì / không làm gì） | **Nội dung cả nhóm thống nhất**. Được kiểm tra bằng PR | Chương 5 |
-| **Task**（có điều kiện hoàn thành） | **Đơn vị phân chia công việc**. 1 task = 1 nhánh = 1 PR | Chương 5, chương 6 |
+| **Task**（có điều kiện hoàn thành） | **Đơn vị phân chia công việc**. 1 task = 1 branch = 1 PR | Chương 5, chương 6 |
 | **Điều kiện hoàn thành** | **Tiêu chí kiểm tra PR**. Người kiểm tra xác nhận điều kiện hoàn thành trên màn hình rồi Approve | Chương 6 |
 
 **Việc kiểm tra PR không cần góp ý sâu.** Khi những người mới học kiểm tra PR của nhau, họ chưa thể đánh giá code tốt hay xấu. Những gì học viên có thể đánh giá là “**đã xác nhận được điều kiện hoàn thành trên màn hình chưa**” và “**có thứ gì không được nhờ mà vẫn bị thêm vào không**”. Cả hai điều này đều đã làm ở buổi 3.
@@ -46,7 +46,7 @@
 
 Nếu dùng lệnh `git` trong terminal, học viên sẽ hiểu rõ cơ chế hơn, nhưng **với người mới, 40 phút nửa sau sẽ trở thành buổi học Git**. Từ buổi 1 đến buổi 3, mọi thao tác đều hoàn tất bên trong Cursor, nên hôm nay cũng làm theo cách đó.
 
-- Tạo nhánh, commit và gửi lên GitHub（Publish / Sync）bằng các nút trong **bảng Source Control**
+- Tạo branch, commit và gửi lên GitHub（Publish / Sync）bằng các nút trong **bảng Source Control**
 - Commit message được **nút ✨** viết nháp, học viên đọc lại rồi mới Commit
 - PR được tạo bằng cách **nhờ Agent chạy `gh pr create`**（học viên không có GitHub CLI thì tạo trên màn hình web của GitHub）
 - Task được chuyển thành **Issue trên GitHub**, và khi bắt đầu thì dùng **`/start-task`** để gán mình làm người phụ trách（Assignee）. Nhìn danh sách Issue là biết ai đang làm gì, và không có trường hợp 2 người bắt đầu cùng một task
@@ -91,7 +91,7 @@ Phần giải thích được trích từ [`courses/vi/fundamentals/`](../fundam
 | Chương | fundamentals được trích |
 |----|------------------------|
 | Chương 3 | [`20-git`](../fundamentals/20-git.md)（chuẩn bị repository） · [`07-skills`](../fundamentals/07-skills.md)（Skill có sẵn trong template） |
-| Chương 4 | [`20-git`](../fundamentals/20-git.md)（nhánh, commit, PR） · [`06-rules`](../fundamentals/06-rules.md)（rule dùng chung trong nhóm） |
+| Chương 4 | [`20-git`](../fundamentals/20-git.md)（branch, commit, PR） · [`06-rules`](../fundamentals/06-rules.md)（rule dùng chung trong nhóm） |
 | Chương 5 | [`07-skills`](../fundamentals/07-skills.md) · [`05-prompting`](../fundamentals/05-prompting.md) |
 | Chương 6 | [`20-git`](../fundamentals/20-git.md)（cập nhật main, conflict） · [`11-bugbot-pr`](../fundamentals/11-bugbot-pr.md)（vị trí của việc kiểm tra PR） |
 
@@ -114,7 +114,7 @@ Phần giải thích được trích từ [`courses/vi/fundamentals/`](../fundam
 | **Chia nhóm** | **4 học viên một nhóm**. Mỗi người đảm nhận 1 trong 4 vai trò. Khi có nhiều học viên, chia nhóm 3–4 người, tối đa 8 nhóm（giới hạn số lượt trình bày ở buổi 5） |
 | **Template repository** | Chuẩn bị **template cho nhóm** trên GitHub của tổ chức và bật **Template repository**. Nội dung xem ở phụ lục A |
 | **Thông báo trước cho học viên** | Gửi nội dung “Những việc nhờ học viên làm trước ngày học” bên dưới qua chat |
-| **Repository làm mẫu của giảng viên** | Tạo 1 repository từ template và **chạy thử một lần phần làm mẫu của chương 4**（nhánh → commit → PR → merge） |
+| **Repository làm mẫu của giảng viên** | Tạo 1 repository từ template và **chạy thử một lần phần làm mẫu của chương 4**（branch → commit → PR → merge） |
 | **Kết quả giơ tay ở buổi 3** | Nắm số người “không thấy thay đổi trong Source Control” và “chưa có tài khoản GitHub” |
 
 #### Những việc nhờ học viên làm trước ngày học
@@ -279,7 +279,7 @@ Hãy **bắt đầu bằng cách trích nguyên văn** câu cuối của buổi 
 #### ［Slide］Quy tắc PR（2 điều）
 
 1. **Người tạo PR không tự merge PR của mình.** Một người khác đọc và Approve rồi mới merge
-2. **Không commit thẳng vào `main`.** Luôn tạo nhánh làm việc trước khi thay đổi
+2. **Không commit thẳng vào `main`.** Luôn tạo branch làm việc trước khi thay đổi
 
 #### ［Slide］Góc giải thích — Thuật ngữ cơ bản của GitHub
 
@@ -289,10 +289,10 @@ Hãy **bắt đầu bằng cách trích nguyên văn** câu cuối của buổi 
 |---|---|---|
 | **GitHub** | Dịch vụ web để đặt repository lên Internet và chia sẻ trong nhóm | Đặt repository của nhóm |
 | **Repository** | Tập hợp các file của một ứng dụng và lịch sử thay đổi của chúng | Cả nhóm tạo một repository |
-| **Nhánh（branch）** | Nơi thực hiện thay đổi tách riêng khỏi main. Sửa trên nhánh thì main không thay đổi | Mỗi task tạo một nhánh |
-| **main** | Nhánh gốc của repository. Chỉ đưa vào những gì nhóm đã kiểm tra | Dùng để trình bày ở buổi 5 |
+| **Branch** | Nơi thực hiện thay đổi tách riêng khỏi main. Sửa trên branch thì main không thay đổi | Mỗi task tạo một branch |
+| **main** | Branch gốc của repository. Chỉ đưa vào những gì nhóm đã kiểm tra | Dùng để trình bày ở buổi 5 |
 | **Commit** | Ghi lại thay đổi thành một mốc | Mỗi khi hoàn tất một việc |
-| **PR（pull request）** | Lời đề nghị “Hãy kiểm tra xem thay đổi của nhánh này có thể đưa vào main chưa” | Khi chia sẻ thay đổi |
+| **PR（pull request）** | Lời đề nghị “Hãy kiểm tra xem thay đổi của branch này có thể đưa vào main chưa” | Khi chia sẻ thay đổi |
 | **Merge** | Đưa thay đổi của PR vào main | Sau khi kiểm tra xong |
 
 > Nguồn chính của phần giải thích thuật ngữ: [mục “Thuật ngữ” trong `20-git.md`](../fundamentals/20-git.md)
@@ -342,7 +342,7 @@ Hãy **bắt đầu bằng cách trích nguyên văn** câu cuối của buổi 
 | 2 | **Đặt ghế rạp chiếu phim** | Rạp chiếu phim | “Chọn 2 ghế và loại vé thì hiện tổng tiền; đặt xong thì **không chọn được ghế đó nữa**” |
 | 3 | **Bốc thăm khuyến mãi** | Phòng marketing hãng nước giải khát | “Bấm nút thì trúng quà và số quà còn lại giảm; **quà đã hết thì không trúng nữa**” |
 | 4 | **Trắc nghiệm gợi ý sản phẩm** | Chuỗi cà phê | “Trả lời 5 câu hỏi thì hiện **kiểu người và loại cà phê được gợi ý**” |
-| 5 | **Máy bán hàng tự động** | Hãng máy bán hàng | “Bỏ 500 yên vào rồi mua một món giá 150 yên thì ra hàng và hiện **chi tiết tiền thối**” |
+| 5 | **Máy bán hàng tự động** | Hãng máy bán hàng | “Bỏ 20.000 đồng vào rồi mua một món giá 12.000 đồng thì ra hàng và hiện **chi tiết tiền thối**” |
 
 **Với chủ đề 1, “màn hình khách” và “màn hình bếp” được đặt hai bên trái phải của cùng một trang**（vì không dùng server）.
 
@@ -576,7 +576,7 @@ Học viên chưa đăng nhập `gh` thì chạy `gh auth login` trong terminal�
 | Từ | Nghĩa | Tên trên màn hình |
 |---|---|---|
 | **Stage** | Chọn file sẽ đưa vào commit | Nút **＋** trong bảng Source Control |
-| **Push** | Gửi nhánh và commit trên máy mình lên GitHub | **Publish Branch**（lần đầu） / **Sync Changes** |
+| **Push** | Gửi branch và commit trên máy mình lên GitHub | **Publish Branch**（lần đầu） / **Sync Changes** |
 | **Pull** | Lấy thay đổi mới trên GitHub về máy mình | **Sync Changes** |
 | **Review / Approve** | Kiểm tra thay đổi của PR / kiểm tra xong và xác nhận “không có vấn đề” | **Files changed** / **Review changes → Approve** |
 | **Conflict** | Trạng thái 2 người sửa cùng một chỗ trong cùng một file nên Git không tự gộp được | This branch has conflicts |
@@ -586,7 +586,7 @@ Học viên chưa đăng nhập `gh` thì chạy `gh auth login` trong terminal�
 #### ［Slide］Giải thích — Các bước làm PR
 
 ```
-① Tạo nhánh                      (tên nhánh ở góc dưới bên trái Cursor)
+① Tạo branch                      (tên branch ở góc dưới bên trái Cursor)
 ② Sửa file                       (Agent)
 ③ Commit                         (Source Control → ＋ → ✨ → Commit)
 ④ Gửi lên GitHub                 (Publish Branch)
@@ -603,7 +603,7 @@ Mở **“Source Control” ở thanh bên trái**（`Ctrl+Shift+G`. Trên Mac c
 
 | Vị trí | Chức năng |
 |---|---|
-| **Tên nhánh** ở góc dưới bên trái（thanh trạng thái） | Nhấp → **Create new branch...** để tạo nhánh / chuyển nhánh |
+| **Tên branch** ở góc dưới bên trái（thanh trạng thái） | Nhấp → **Create new branch...** để tạo branch / chuyển branch |
 | Nút **＋** ở **Changes** | Chọn file sẽ đưa vào commit（stage） |
 | Nút **✨** ở ô nhập | AI viết nháp commit message. **Đọc lại rồi mới** Commit |
 | **Publish Branch** / **Sync Changes** | Gửi lên GitHub / lấy từ GitHub về |
@@ -618,7 +618,7 @@ Mở **“Source Control” ở thanh bên trái**（`Ctrl+Shift+G`. Trên Mac c
 | **Tạo trên màn hình GitHub** | Không cần gì thêm | Nhấn **Compare & pull request** hiện ra khi mở repository |
 
 ```text
-Tạo PR vào main từ nhánh hiện tại.
+Tạo PR vào main từ branch hiện tại.
 Tiêu đề là "Thêm rule của nhóm".
 Trong phần mô tả, ghi file đã thêm và tóm tắt nội dung.
 ```
@@ -633,7 +633,7 @@ Trong phần mô tả, ghi file đã thêm và tóm tắt nội dung.
 
 | Slide | Màn hình cho xem |
 |---|---|
-| Giảng viên làm mẫu ① Tạo nhánh và nhờ Agent tạo file rule | Tên nhánh ở góc dưới bên trái → Create new branch...（`feature/team-rules`）（`s03-05`） ／ Xem diff của `team.mdc` do Agent tạo rồi nhấn Keep（`s03-06`） |
+| Giảng viên làm mẫu ① Tạo branch và nhờ Agent tạo file rule | Tên branch ở góc dưới bên trái → Create new branch...（`feature/team-rules`）（`s03-05`） ／ Xem diff của `team.mdc` do Agent tạo rồi nhấn Keep（`s03-06`） |
 | Giảng viên làm mẫu ② Stage rồi commit | Nhấn ＋ ở `team.mdc` trong Changes（`s03-07`） ／ Message đã được tạo bằng ✨（`s03-09`） |
 | Giảng viên làm mẫu ③ Gửi lên GitHub và tạo PR | Publish Branch（`s03-10`） ／ PR đã được tạo sau khi nhờ Agent（`s03-11`） |
 | Giảng viên làm mẫu ④ Kiểm tra, merge rồi cập nhật về máy của mọi người | **Files changed** của PR → **Approve**（`s03-13`） ／ Trên màn hình của thành viên khác: main → Sync Changes → `team.mdc` hiện ra（`s03-17`） |
@@ -644,9 +644,9 @@ Trong phần mô tả, ghi file đã thêm và tóm tắt nội dung.
 
 #### ［Slide］Học viên làm gì（13 phút）
 
-**① Tech Lead: Tạo nhánh（1 phút）**
+**① Tech Lead: Tạo branch（1 phút）**
 
-Tên nhánh ở góc dưới bên trái → **Create new branch...** → `feature/team-rules`
+Tên branch ở góc dưới bên trái → **Create new branch...** → `feature/team-rules`
 
 **② Tech Lead: Nhờ Agent viết rule（2 phút）**
 
@@ -661,7 +661,7 @@ Nội dung chỉ gồm đúng 5 dòng sau. Đừng thêm gì khác.
 - làm xong thì đối chiếu với điều kiện hoàn thành của task đó
 - thỏa điều kiện hoàn thành thì dừng. Không tự đi tiếp sang task sau
 - không thêm chức năng không được yêu cầu
-- khi đang ở nhánh main thì không sửa file. Hãy nhắc tạo nhánh làm việc trước
+- khi đang ở branch main thì không sửa file. Hãy nhắc tạo branch làm việc trước
 ```
 
 Đọc diff, xác nhận chỉ có frontmatter `alwaysApply: true` và **đúng 5 rule**, rồi nhấn Keep.
@@ -683,7 +683,7 @@ Học viên đã cài `gh` thì nhờ Agent（prompt ở trên）. Học viên c
 
 **⑥ Mọi người: Cập nhật main（3 phút）**
 
-1. Tên nhánh ở góc dưới bên trái → chọn `main`
+1. Tên branch ở góc dưới bên trái → chọn `main`
 2. Nhấn **Sync Changes** trong Source Control（hoặc `Ctrl+Shift+P` → `Git: Pull`）
 3. Kiểm tra **`.cursor/rules/team.mdc` đã hiện ra** ở thanh bên
 
@@ -705,7 +705,7 @@ Học viên đã cài `gh` thì nhờ Agent（prompt ở trên）. Học viên c
 
 **Với nhóm hoàn thành sớm, hãy cho học viên kiểm tra rule có hiệu lực không（không bắt buộc）:**
 
-Khi đang ở `main`, nhờ Agent: “Thêm 1 dòng vào README”. **Nếu dòng thứ 5 có hiệu lực, Agent sẽ nhắc tạo nhánh.**
+Khi đang ở `main`, nhờ Agent: “Thêm 1 dòng vào README”. **Nếu dòng thứ 5 có hiệu lực, Agent sẽ nhắc tạo branch.**
 
 #### Điểm kiểm tra
 
@@ -717,14 +717,14 @@ Khi đang ở `main`, nhờ Agent: “Thêm 1 dòng vào README”. **Nếu dòn
 
 | Vấn đề | Cách xử lý |
 |--------|------|
-| Đã tạo file trên `main` mà chưa tạo nhánh | Chỉ cần tạo nhánh ngay lúc đó, thay đổi sẽ được chuyển sang nhánh mới. **Nếu chưa commit** thì không có vấn đề |
+| Đã tạo file trên `main` mà chưa tạo branch | Chỉ cần tạo branch ngay lúc đó, thay đổi sẽ được chuyển sang branch mới. **Nếu chưa commit** thì không có vấn đề |
 | Không thấy nút ✨ / nhấn vào nhưng không có gì | Có thể file chưa được stage. Nhấn **＋** trước. Nếu vẫn không được thì tự viết message（“Thêm rule của nhóm”） |
 | Khi Commit hiện thông báo “hãy thiết lập user.name” | Quay lại bước ⑤ của chương 3 |
 | Khi Publish Branch bị yêu cầu đăng nhập | Đăng nhập GitHub trên trình duyệt và cho phép |
 | Agent không tìm thấy `gh` | Tạo PR trên màn hình GitHub. **Chuyển cách làm ngay, không chờ** |
 | Đã cài `gh` nhưng không tạo được PR | Chưa chạy `gh auth login`. Hôm nay tạo PR trên màn hình GitHub |
 | **Không nhấn được nút Approve** | Không thể Approve PR của chính mình. **Người khác ngoài người tạo PR** thực hiện |
-| Đã Sync nhưng không thấy `team.mdc` | Máy chưa chuyển sang `main`. Kiểm tra tên nhánh ở góc dưới bên trái |
+| Đã Sync nhưng không thấy `team.mdc` | Máy chưa chuyển sang `main`. Kiểm tra tên branch ở góc dưới bên trái |
 | Nội dung nhiều hơn 5 dòng | Giống buổi trước, **dùng trường hợp này làm tài liệu học**. Nếu người đọc PR phát hiện ra thì việc kiểm tra đang có tác dụng |
 
 ---
@@ -758,7 +758,7 @@ Khi đang ở `main`, nhờ Agent: “Thêm 1 dòng vào README”. **Nếu dòn
 |---|---|
 | **Task 1 làm đến khi “màn hình hiện ra”** | Các task khác được làm trên nền task 1. **Task 1 chưa được merge thì các thành viên khác chưa bắt đầu được** |
 | **Số task ≥ số người** | Mỗi người phụ trách ít nhất 1 task |
-| **1 task = 1 nhánh = 1 PR** | PR càng nhỏ, người đọc càng dễ đọc hết |
+| **1 task = 1 branch = 1 PR** | PR càng nhỏ, người đọc càng dễ đọc hết |
 | **Quản lý người phụ trách và trạng thái hoàn thành bằng Issue** | Nếu ghi người phụ trách hay dấu hoàn thành vào `tasks.md`, mọi người sẽ sửa cùng một file và PR bị xung đột. **Khi bắt đầu thì dùng `/start-task` để nhận phụ trách, khi PR được merge và Issue đóng thì hoàn tất** |
 
 > Chi tiết hơn: [`07-skills.md`](../fundamentals/07-skills.md) · [`05-prompting.md`](../fundamentals/05-prompting.md)
@@ -769,7 +769,7 @@ Khi đang ở `main`, nhờ Agent: “Thêm 1 dòng vào README”. **Nếu dòn
 
 **PM là người thao tác trên màn hình.** Các thành viên khác xem màn hình của PM và **trả lời bằng lời**（nếu học online thì chia sẻ màn hình）.
 
-**① PM: Tạo nhánh（1 phút）**
+**① PM: Tạo branch（1 phút）**
 
 Xác nhận đang ở `main` → **Create new branch...** → `feature/requirements`
 
@@ -870,7 +870,7 @@ Cả nhóm mở tab **Issues** của repository trên GitHub và kiểm tra đã
 | Thảo luận mãi không xong | Dừng ở phút thứ 8. **Những gì chưa quyết được thì đưa vào mục “không làm gì”** |
 | Số task ít hơn số người | Nhờ `/task-breakdown` chia lại: “Chia lại để ○ người có thể phân chia” |
 | Có từ 6 task trở lên | Thêm nội dung vào mục “không làm gì” rồi chia lại. Giống buổi trước |
-| Agent bắt đầu viết yêu cầu trên `main` | Quên tạo nhánh. **Nếu dòng thứ 5 của rule có hiệu lực thì Agent sẽ dừng**（nếu dừng thì giới thiệu cho cả lớp） |
+| Agent bắt đầu viết yêu cầu trên `main` | Quên tạo branch. **Nếu dòng thứ 5 của rule có hiệu lực thì Agent sẽ dừng**（nếu dừng thì giới thiệu cho cả lớp） |
 | Mọi người đọc mất nhiều thời gian | Cho biết chỉ cần đọc phần “không làm gì” |
 | Không tạo được Issue（không có `gh` / chưa đăng nhập） | Tạo trên màn hình GitHub. Ở **Issues → New issue**, đặt tiêu đề là “Task 1: （tên task）”, dán nội dung làm gì và điều kiện hoàn thành vào phần mô tả. Không gán người phụ trách |
 | Issue bị tạo trùng | Đóng 1 Issue bằng **Close issue** |
@@ -900,7 +900,7 @@ Cả nhóm mở tab **Issues** của repository trên GitHub và kiểm tra đã
 
 **Không cần đánh giá code tốt hay xấu.** Chỉ cần đánh giá 2 điều sau.
 
-1. **Đã xác nhận được điều kiện hoàn thành trên màn hình chưa**（chuyển sang nhánh đó trên máy mình rồi mở bằng trình duyệt）
+1. **Đã xác nhận được điều kiện hoàn thành trên màn hình chưa**（chuyển sang branch đó trên máy mình rồi mở bằng trình duyệt）
 2. **Có thứ gì không được nhờ mà vẫn bị thêm vào không**（file, chức năng không có trong task）
 
 #### ［Slide］Giải thích — Bắt đầu task bằng `/start-task`
@@ -911,10 +911,10 @@ Cả nhóm mở tab **Issues** của repository trên GitHub và kiểm tra đã
 |---|---|
 | Liệt kê các Issue chưa có người phụ trách | Biết được task nào còn trống |
 | Gán mình làm người phụ trách（Assignee）của Issue đã chọn | **Người khác không bắt đầu cùng task đó.** Issue đã có người phụ trách thì không chọn được |
-| Cập nhật `main` rồi tạo nhánh từ đó | Nếu tạo từ `main` cũ, sau này PR sẽ bị xung đột（conflict） |
+| Cập nhật `main` rồi tạo branch từ đó | Nếu tạo từ `main` cũ, sau này PR sẽ bị xung đột（conflict） |
 | Hiện “làm gì” và “điều kiện hoàn thành” của task | Biết được tiếp theo cần gửi gì |
 
-**`/start-task` không viết code.** Sau khi có nhánh, hãy gửi “làm gì” trong chat mới.
+**`/start-task` không viết code.** Sau khi có branch, hãy gửi “làm gì” trong chat mới.
 
 Trong phần mô tả PR, ghi **`Closes #số`**（số của Issue）. Khi PR được merge vào main, Issue đó sẽ tự đóng. **Issue đang mở ＝ task còn lại.**
 
@@ -926,7 +926,7 @@ Trong phần mô tả PR, ghi **`Closes #số`**（số của Issue）. Khi PR �
 
 **① Engineer: Làm task 1（8 phút）**
 
-1. Trong chat mới, gửi `/start-task` và chọn **Task 1**. Bạn trở thành người phụ trách và nhánh `feature/<số>-...` được tạo
+1. Trong chat mới, gửi `/start-task` và chọn **Task 1**. Bạn trở thành người phụ trách và branch `feature/<số>-...` được tạo
 2. Mở thêm một **chat mới** nữa, rồi **chỉ gửi phần “làm gì” của task 1** đã hiện ra
 
 ```text
@@ -944,7 +944,7 @@ Trong phần mô tả PR, ghi **`Closes #số`**（số của Issue）. Khi PR �
 
 **② QA: Kiểm tra task 1 trên màn hình rồi merge（4 phút）**
 
-1. Tên nhánh ở góc dưới bên trái → chọn nhánh của Engineer（`origin/feature/<số>-...`）（**lấy nhánh của Engineer về máy mình**）
+1. Tên branch ở góc dưới bên trái → chọn branch của Engineer（`origin/feature/<số>-...`）（**lấy branch của Engineer về máy mình**）
 2. Nhấp phải vào file HTML → **Open In Browser** để mở, và kiểm tra **điều kiện hoàn thành của task 1**
 3. Xem **Files changed** của PR trên GitHub, kiểm tra không có file nào không được nhờ
 4. **Approve** → **Merge pull request**
@@ -953,7 +953,7 @@ Khi merge, Issue của task 1 sẽ **tự đóng**（kiểm tra ở tab Issues�
 
 **③ Mọi người trừ Engineer: Bắt đầu task mình phụ trách bằng `/start-task`（3 phút）**
 
-Trong chat mới, gửi `/start-task` và chọn 1 **Issue còn trống**. Bạn trở thành người phụ trách và nhánh được tạo từ `main` mới nhất.
+Trong chat mới, gửi `/start-task` và chọn 1 **Issue còn trống**. Bạn trở thành người phụ trách và branch được tạo từ `main` mới nhất.
 
 > **Ai chọn trước thì được trước.** Issue mà người khác đã nhận phụ trách trước thì `/start-task` không cho chọn. Cả nhóm có thể thảo luận trước rồi mới chọn.
 
@@ -976,7 +976,7 @@ Các bước giống bước 2 đến 4 của ①. Gửi chỉ phần “làm g�
 
 > “Việc của người đang chờ là **đọc điều kiện hoàn thành của task mình**. Khi tạo PR, hãy chuẩn bị để có thể nói cho người kiểm tra biết ‘cần kiểm tra bằng cách nào’.”
 
-**Ở bước ②**: chọn 1 nhóm mà QA đang mở nhánh của người khác trên trình duyệt, và cho cả lớp xem.
+**Ở bước ②**: chọn 1 nhóm mà QA đang mở branch của người khác trên trình duyệt, và cho cả lớp xem.
 
 > “Bây giờ, **QA đang chạy thứ Engineer đã làm trên máy của mình**. Đây chính là việc kiểm tra PR.
 > Không đọc được code cũng không sao. **Có chạy đúng điều kiện hoàn thành không** thì ai cũng kiểm tra được.”
@@ -994,13 +994,13 @@ Các bước giống bước 2 đến 4 của ①. Gửi chỉ phần “làm g�
 
 | Vấn đề | Cách xử lý |
 |--------|------|
-| Danh sách nhánh không có nhánh của Engineer | Engineer chưa Publish Branch, hoặc máy mình chưa lấy bản mới nhất. Chạy `Ctrl+Shift+P` → `Git: Fetch` rồi thử lại |
-| Task 1 không chạy | QA không Approve. **Ghi comment vào PR về điều đã xảy ra** → Engineer sửa trên cùng nhánh rồi commit → Sync Changes. PR sẽ tự cập nhật |
+| Danh sách branch không có branch của Engineer | Engineer chưa Publish Branch, hoặc máy mình chưa lấy bản mới nhất. Chạy `Ctrl+Shift+P` → `Git: Fetch` rồi thử lại |
+| Task 1 không chạy | QA không Approve. **Ghi comment vào PR về điều đã xảy ra** → Engineer sửa trên cùng branch rồi commit → Sync Changes. PR sẽ tự cập nhật |
 | Task 1 quá lớn, không xong trong 8 phút | Tạo PR khi màn hình đã hiện ra. **Dù chưa thỏa điều kiện hoàn thành, hôm nay ưu tiên trải nghiệm tạo PR** |
 | **PR hiện “This branch has conflicts”** | Nhờ Agent bằng prompt bên dưới. Phương án giải quyết cũng phải đọc diff rồi mới Keep |
 | Máy của mình hiện màn hình conflict | Nhấn **Resolve in Chat**. Agent sẽ đọc thay đổi của cả hai bên và đề xuất phương án giải quyết |
 | Task của mình phải chờ task của người khác mới làm được | Vấn đề về thứ tự task. **Hôm nay, trong lúc chờ hãy chuyển sang đọc PR.** Buổi sau tiến hành theo thứ tự đó |
-| Agent bắt đầu làm trên `main` | Dòng thứ 5 của rule chưa có hiệu lực. Tạo nhánh rồi làm lại |
+| Agent bắt đầu làm trên `main` | Dòng thứ 5 của rule chưa có hiệu lực. Tạo branch rồi làm lại |
 | `/start-task` báo “không dùng được `gh`” | Chưa chạy `gh auth login`. Hôm nay làm thủ công: ở Issue, nhấn **Assignees** bên phải để chọn mình → `main` → Sync Changes → **Create new branch...** → `feature/<số>-<tên>` |
 | `/start-task` báo “đã có người phụ trách” | Người khác đã nhận trước. Chọn **một Issue khác còn trống** |
 | Không còn Issue trống | Tất cả task đã có người phụ trách. Chuyển sang **vai trò đọc PR của người khác** |
@@ -1009,7 +1009,7 @@ Các bước giống bước 2 đến 4 của ①. Gửi chỉ phần “làm g�
 Nội dung gửi cho Agent khi bị conflict:
 
 ```text
-Lấy bản mới nhất của main vào nhánh hiện tại.
+Lấy bản mới nhất của main vào branch hiện tại.
 Nếu có conflict thì đề xuất cách giải quyết, giữ lại thay đổi của cả hai bên.
 Giải quyết xong thì commit, nhưng chưa push.
 ```
@@ -1067,7 +1067,7 @@ Giải quyết xong thì commit, nhưng chưa push.
 - Người đọc PR hãy **xác nhận điều kiện hoàn thành trên màn hình rồi mới** Approve. Ngoài giờ học, quy tắc này vẫn giữ nguyên
 - Học viên muốn ôn lại thao tác Git thì làm phần thực hành trong [`20-git.md`](../fundamentals/20-git.md)
 
-> **Trước khi merge trong bài tập về nhà, luôn cập nhật main rồi mới tạo nhánh.** Ngoài giờ học không có giảng viên, nên khi bị conflict, học viên tự thực hiện đến bước nhờ Agent xử lý.
+> **Trước khi merge trong bài tập về nhà, luôn cập nhật main rồi mới tạo branch.** Ngoài giờ học không có giảng viên, nên khi bị conflict, học viên tự thực hiện đến bước nhờ Agent xử lý.
 
 #### Khi mắc kẹt
 
@@ -1106,7 +1106,7 @@ Giảng viên chuẩn bị trên GitHub của tổ chức. Hãy bật **Settings
 | `requirements` | Giống buổi 3. **Chỉ khác nơi lưu là `docs/requirements.md`** |
 | `task-breakdown` | Dựa trên buổi 3, thêm quy định **chia ít nhất bằng số người** và **không ghi người phụ trách** |
 | `create-issues` | **Mới.** Tạo từng task trong `docs/tasks.md` trên `main` thành Issue. Nếu đã có Issue cùng tiêu đề thì không tạo. Không gán người phụ trách |
-| `start-task` | **Mới.** Liệt kê các Issue chưa có người phụ trách → gán mình làm người phụ trách của Issue đã chọn（nếu đã có người phụ trách thì dừng）→ tạo nhánh từ `main` mới nhất → hiện “làm gì” và điều kiện hoàn thành. Không viết code |
+| `start-task` | **Mới.** Liệt kê các Issue chưa có người phụ trách → gán mình làm người phụ trách của Issue đã chọn（nếu đã có người phụ trách thì dừng）→ tạo branch từ `main` mới nhất → hiện “làm gì” và điều kiện hoàn thành. Không viết code |
 
 `create-issues` và `start-task` dùng GitHub CLI（`gh`）. **Nhờ tất cả học viên cài trước ngày học**（00-2）.
 
@@ -1136,7 +1136,7 @@ Giảng viên chuẩn bị trên GitHub của tổ chức. Hãy bật **Settings
 | Không nhận được lời mời | Cho mở URL `.../invitations` |
 | Bị dừng khi commit | `user.name` / `user.email`. Bước ⑤ của chương 3 |
 | Không tạo được PR | Bỏ `gh`, tạo PR trên màn hình GitHub |
-| 2 người bắt đầu cùng một task | Học viên đã tạo nhánh mà không dùng `/start-task`. Cho kiểm tra người phụ trách ở tab Issues |
+| 2 người bắt đầu cùng một task | Học viên đã tạo branch mà không dùng `/start-task`. Cho kiểm tra người phụ trách ở tab Issues |
 | Không Approve được | Không thể Approve PR của chính mình. Người khác thực hiện |
-| Conflict | Dùng Resolve in Chat, hoặc nhờ Agent lấy main mới nhất vào nhánh |
+| Conflict | Dùng Resolve in Chat, hoặc nhờ Agent lấy main mới nhất vào branch |
 | 1 người làm tất cả | Chỉ vào bảng vai trò. **Khi chưa đến lượt mình thì đọc PR** |

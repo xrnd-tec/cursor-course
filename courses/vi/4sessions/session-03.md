@@ -1,11 +1,11 @@
-# Buổi 3: Phát triển theo yêu cầu（90 phút）
+# Buổi 3: Phát triển theo spec（90 phút）
 
 > **Mục tiêu của buổi này（4 mục）**  
 > 1 Viết yêu cầu cho một game có nhiều điều cần quyết định（poker）→ 2 Chia yêu cầu thành task và nhờ AI làm lần lượt từng task → 3 Biến 2 dòng phải viết mỗi lần thành rule phát triển → 4 Thêm yêu cầu đến sau vào bản yêu cầu và hoàn thiện game（phần thử sức）  
 > **Đạt tới mục 1–3 là hoàn thành buổi học.** Mục 4 là phần thử sức, không đạt tới cũng không phải là thất bại. Cuối buổi, tất cả học viên đều trình bày.
 
 > **Buổi trước, chúng ta đã làm trò lật hình theo cách nhờ AI mà không quyết định trước điều gì（vibe coding）.**
-> Hôm nay, chúng ta sẽ làm **một game có nhiều điều cần quyết định hơn rất nhiều（poker rút 5 lá）**, theo cách **viết yêu cầu trước rồi mới làm**（phát triển theo yêu cầu）.
+> Hôm nay, chúng ta sẽ làm **một game có nhiều điều cần quyết định hơn rất nhiều（poker rút 5 lá）**, theo cách **viết yêu cầu trước rồi mới làm**（phát triển theo spec）.
 
 ---
 
@@ -32,7 +32,7 @@ Hôm nay, học viên sẽ trải nghiệm rằng **khi có nhiều điều cầ
 
 **Vì trò lật hình quá đơn giản.** Những điều cần quyết định ở trò lật hình chỉ khoảng “số lá bài”, “hình trên lá bài”, “số giây trước khi úp lại”, và AI đã có sẵn giá trị mặc định cho các điều đó. Nếu làm lại trò lật hình từ yêu cầu, **học viên chỉ thấy tốn thêm công sức**.
 
-Vì vậy, hôm nay chúng ta chọn **một game có số điều cần quyết định nhiều hơn hẳn**. Poker rút 5 lá có ít nhất những nhánh sau.
+Vì vậy, hôm nay chúng ta chọn **một game có số điều cần quyết định nhiều hơn hẳn**. Poker rút 5 lá có ít nhất những branch sau.
 
 | Không quyết định thì mỗi người một kiểu | Ví dụ |
 |---|---|
@@ -149,7 +149,7 @@ Sau khi gửi cho Agent, phải chờ 30–60 giây mới có phản hồi. Đó
 #### ［Slide］Trang bìa
 
 ```
-Phát triển theo yêu cầu
+Phát triển theo spec
 
 Khóa thực hành Cursor　Buổi 3 / 5　・　90 phút
 （Ngày）
@@ -161,9 +161,9 @@ Khóa thực hành Cursor　Buổi 3 / 5　・　90 phút
 
 Cùng gửi 3 dòng giống nhau, nhưng 4 người đã làm ra 4 trò lật hình khác nhau. Yêu cầu bổ sung（yêu cầu B）đã được đưa vào đúng hay chưa cũng không kiểm tra được trên màn hình.
 
-#### ［Slide］Khác nhau giữa vibe coding và phát triển theo yêu cầu（1 phút）
+#### ［Slide］Khác nhau giữa vibe coding và phát triển theo spec（1 phút）
 
-| | Vibe coding（buổi trước） | Phát triển theo yêu cầu（hôm nay） |
+| | Vibe coding（buổi trước） | Phát triển theo spec（hôm nay） |
 |---|---|---|
 | Tài liệu quy định thế nào là đúng | Không có. Chỉ nằm trong đầu người nhờ và trong chat | Viết yêu cầu và các task kèm điều kiện hoàn thành thành tài liệu |
 | Thứ AI xem khi làm | Chỉ có câu nhờ được gửi lúc đó | Mỗi lần đều xem tài liệu yêu cầu và task |
@@ -955,7 +955,7 @@ Nếu có học viên đã làm được mục 3（viền）, giảng viên ch�
 | Trường hợp | Cách làm |
 |---|---|
 | Nhỏ・chỉ dùng một lần・chỉ mình dùng | **Vibe coding**（quy mô cỡ trò lật hình） |
-| Có nhiều điều cần quyết định・làm cùng người khác・sau này còn sửa | **Phát triển theo yêu cầu**（từ quy mô cỡ poker trở lên） |
+| Có nhiều điều cần quyết định・làm cùng người khác・sau này còn sửa | **Phát triển theo spec**（từ quy mô cỡ poker trở lên） |
 
 **Ranh giới không phải là “quy mô” mà là “số điều cần quyết định”.**
 

@@ -99,7 +99,7 @@ Mở Agents Window rồi gõ như sau:
 - **Hợp**: những việc độc lập với nhau（test của tệp này và tài liệu của module khác）
 - **Không hợp**: một chuỗi sửa đổi mà thứ tự quan trọng, hoặc nhiều bên cùng động vào một tệp
 
-Sửa song song trên cùng một nhánh thì có thể đụng nhau, nên khi cần hãy kết hợp với **worktree**（cây làm việc được tách riêng）.
+Sửa song song trên cùng một branch thì có thể đụng nhau, nên khi cần hãy kết hợp với **worktree**（cây làm việc được tách riêng）.
 
 Tham khảo: [Changelog 3.2（Multitask）](https://cursor.com/changelog/04-24-26) · [Multi-agent](https://cursor.com/help/ai-features/multi-agent)
 

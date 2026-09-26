@@ -3,7 +3,7 @@
 `courses/vi/fundamentals/`（0–20）và `practice/` trong repo này là **tài liệu tự học thao tác Cursor**.
 Tài liệu này là bản thiết kế tổng thể của **khóa thực hành（5 buổi）**, được vận hành riêng với tài liệu tự học.
 
-> Ngày 2026-09-25, khóa học được đổi từ 4 buổi thành 5 buổi. Buổi 2 cũ（Vibe coding → phát triển theo yêu cầu）được tách thành 2 buổi, và mỗi buổi đều có thời gian trình bày. Buổi 3 và buổi 4 cũ được lùi thành buổi 4 và buổi 5.
+> Ngày 2026-09-25, khóa học được đổi từ 4 buổi thành 5 buổi. Buổi 2 cũ（Vibe coding → phát triển theo spec）được tách thành 2 buổi, và mỗi buổi đều có thời gian trình bày. Buổi 3 và buổi 4 cũ được lùi thành buổi 4 và buổi 5.
 > Số học viên dự kiến là **4 người**（phần làm việc nhóm là 1 nhóm）.
 
 ## Chi tiết từng buổi（kịch bản tiến hành theo từng phút）
@@ -14,7 +14,7 @@ Tài liệu này là thiết kế tổng thể. Khi dẫn buổi học, giảng 
 |------|------|--------|
 | Buổi 1 | [session-01.md](session-01.md) | Thao tác cơ bản（Ask → Agent → diff → Keep） |
 | Buổi 2 | [session-02.md](session-02.md) | Vibe coding（làm trò lật hình tìm cặp và cả lớp cùng so sánh） |
-| Buổi 3 | [session-03.md](session-03.md) | Phát triển theo yêu cầu（làm poker từ yêu cầu và trình bày） |
+| Buổi 3 | [session-03.md](session-03.md) | Phát triển theo spec（làm poker từ yêu cầu và trình bày） |
 | Buổi 4 | [session-04.md](session-04.md) | Bắt đầu làm theo nhóm（repository / PR của rule / PR của yêu cầu và task） |
 | Buổi 5 | [session-05.md](session-05.md) | Hoàn thiện và trình bày（trình bày từ main） |
 
@@ -118,7 +118,7 @@ Làm trò lật hình tìm cặp bằng cách nhờ AI “làm cho ổn” mà k
 
 ---
 
-## Buổi 3: Phát triển theo yêu cầu（90 phút）
+## Buổi 3: Phát triển theo spec（90 phút）
 
 ### Mục tiêu của buổi
 
@@ -144,7 +144,7 @@ Tối thiểu những điều sau phải chạy được. Không cần đẹp, k
 - [ ] Chọn được lá bài để đổi
 - [ ] Hiện tên tay bài
 - [ ] **Đã có file `.cursor/rules/task-cycle.mdc`**
-- [ ] Nói được bằng lời của mình Vibe coding và phát triển theo yêu cầu khác nhau ở điểm nào
+- [ ] Nói được bằng lời của mình Vibe coding và phát triển theo spec khác nhau ở điểm nào
 
 ### Tài liệu phát
 
@@ -182,7 +182,7 @@ Cả nhóm（4 người）dùng chung 1 repository và bắt tay vào phát tri�
 - Vai trò trong nhóm（Tech Lead / PM / Engineer / QA）và quy tắc PR（người tạo PR không tự merge / không commit thẳng vào main）
 - Tạo repository của nhóm từ template của giảng viên, mọi người cùng clone
 - **PR đầu tiên là rule của buổi 3**（+ 1 dòng dành cho nhóm）. Sau khi merge và Sync, rule có hiệu lực trong Cursor của mọi người
-- Git dùng panel Source Control của Cursor（nhánh / ✨ commit message / Publish）, PR dùng `gh pr create` qua Agent hoặc màn hình GitHub（`courses/vi/fundamentals/20`）
+- Git dùng panel Source Control của Cursor（branch / ✨ commit message / Publish）, PR dùng `gh pr create` qua Agent hoặc màn hình GitHub（`courses/vi/fundamentals/20`）
 
 ### Nửa sau（làm bài）
 
