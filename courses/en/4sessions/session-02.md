@@ -162,6 +162,16 @@ Cursor hands-on course　Session 2 / 5　·　90 minutes
 （date）
 ```
 
+#### ［Slide］Before we start（everyone, at 0:00）
+
+Before the lesson starts, everyone does these three things.
+
+- [ ] Open `cursor-course/` and run `git pull`
+- [ ] Leave the model on Auto（don't change the settings）
+- [ ] Open HTML files by right-clicking in the sidebar → **Open In Browser**（opening them in the OS browser sometimes doesn't work）
+
+> If you missed session 1, finish the setup first, following chapter 1 of session 1.
+
 #### ［Slide］Recap of last session（30 seconds）
 
 **Today we work with the same steps as last time.** What's different from last time is **what you hand to the AI**.

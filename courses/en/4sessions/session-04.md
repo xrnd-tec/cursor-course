@@ -198,6 +198,16 @@ Cursor hands-on course　Session 4 / 5　·　90 minutes
 （date）
 ```
 
+#### ［Slide］Before we start（everyone, at 0:00）
+
+Before the lesson starts, everyone checks these three things.
+
+- [ ] Find your team and team number on the team list
+- [ ] You can sign in to GitHub（you create a repository in chapter 3）
+- [ ] Today you don't work inside `cursor-course/`
+
+> The team repository is cloned outside `cursor-course/`（chapter 3）. If you create it inside `cursor-course/`, the Source Control view gets confusing.
+
 #### ［Slide］Recap of last session（30 seconds）
 
 **Last session, you wrote down three things.**

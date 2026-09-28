@@ -162,6 +162,16 @@ Khóa thực hành Cursor　Buổi 2 / 5　・　90 phút
 （ngày）
 ```
 
+#### ［Slide］Trước khi bắt đầu（0:00 cả lớp cùng làm）
+
+Trước khi vào bài, cả lớp cùng làm 3 việc sau.
+
+- [ ] Mở `cursor-course/` rồi chạy `git pull`
+- [ ] Để model ở Auto（không đổi cài đặt）
+- [ ] Mở file HTML bằng cách nhấp chuột phải ở thanh bên → **Open In Browser**（mở bằng trình duyệt của hệ điều hành thì có khi không chạy）
+
+> Bạn nào vắng buổi 1 thì làm phần cài đặt trước, theo chương 1 của buổi 1.
+
 #### ［Slide］Ôn lại buổi trước（30 giây）
 
 **Hôm nay vẫn tiến hành theo các bước giống buổi trước.** Điều khác với buổi trước là **đưa cho AI những gì**.

@@ -198,6 +198,16 @@ Khóa thực hành Cursor　Buổi 4 / 5　・　90 phút
 （Ngày）
 ```
 
+#### ［Slide］Trước khi bắt đầu（0:00 cả lớp cùng làm）
+
+Trước khi vào bài, cả lớp cùng kiểm tra 3 việc sau.
+
+- [ ] Xem bảng chia nhóm để biết mình ở nhóm nào và số nhóm
+- [ ] Đăng nhập được GitHub（chương 3 sẽ tạo repository）
+- [ ] Hôm nay không làm việc bên trong `cursor-course/`
+
+> Repository của nhóm sẽ được clone ra bên ngoài `cursor-course/`（chương 3）. Nếu tạo bên trong `cursor-course/` thì phần Source Control sẽ bị rối.
+
 #### ［Slide］Ôn lại buổi trước（30 giây）
 
 **Ở buổi trước, học viên đã viết 3 nội dung thành văn bản.**

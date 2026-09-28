@@ -155,6 +155,15 @@ Khóa thực hành Cursor　Buổi 3 / 5　・　90 phút
 （Ngày）
 ```
 
+#### ［Slide］Trước khi bắt đầu（0:00 cả lớp cùng làm）
+
+Trước khi vào bài, cả lớp cùng làm 2 việc sau. **Skill dùng hôm nay có được nhờ `git pull`.**
+
+- [ ] Mở `cursor-course/` rồi chạy `git pull`
+- [ ] Thấy `.cursor/skills/requirements/` và `.cursor/skills/task-breakdown/` ở thanh bên
+
+> Nếu không thấy Skill thì chạy `git pull` lại. Không có Skill thì không làm tiếp được từ chương 2.
+
 #### ［Slide］Nhìn lại buổi trước（30 giây）
 
 > **Dùng vibe coding thì làm được nhanh, nhưng không làm ra đúng thứ mình muốn.**
