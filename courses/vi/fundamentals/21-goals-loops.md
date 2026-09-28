@@ -12,7 +12,7 @@ Việc của người dùng chuyển từ nhờ từng lần một sang **xác �
 | **`/loop`** | Lặp lại cùng một chỉ thị theo khoảng thời gian cố định, hoặc cho tới khi ra kết quả đã định | Chương này |
 | **Steering** | Thêm chỉ thị trong lúc agent đang làm, không cần dừng agent | Chương này |
 | **Hook `stop` của Hooks** | Khi agent làm xong, tự động gửi chỉ thị tiếp theo | [08-hooks.md](08-hooks.md) |
-| **Subagents** | Đối tượng nhận phần việc được cắt ra, như vai triển khai hay vai kiểm chứng | [14-subagents.md](14-subagents.md) |
+| **Subagents** | Đối tượng nhận phần việc được cắt ra, như vai triển khai hay vai review | [14-subagents.md](14-subagents.md) |
 | **Custom Mode** | Cho Skill luôn có hiệu lực trong suốt cuộc hội thoại | [01-modes.md](01-modes.md) |
 
 Các cơ chế chạy trên cloud（Automations · Subscriptions · Projects）nằm ở [10-cloud-agents.md](10-cloud-agents.md).
@@ -65,7 +65,7 @@ Cách viết thiết lập xem [08-hooks.md](08-hooks.md).
 | Điều cần quyết định | Ví dụ | Nếu không quyết định thì sẽ xảy ra |
 |---------------------|-------|-------------------------------------|
 | **Mục tiêu** | Hoàn thành toàn bộ task trong `tasks.md` | Không rõ phải làm tới đâu, phạm vi công việc bị lan rộng |
-| **Cách kiểm tra** | Subagent vai kiểm chứng kiểm tra điều kiện hoàn thành của từng task | Chỉ cần nói “Đã xong” là đi tiếp |
+| **Cách kiểm tra** | Subagent vai review đối chiếu code của từng task với điều kiện hoàn thành | Chỉ cần nói “Đã xong” là đi tiếp |
 | **Điểm dừng** | Dừng khi toàn bộ task đạt / dừng lại hỏi người khi cùng một task không đạt 3 lần | Không bao giờ kết thúc, hoặc dùng hết hạn mức |
 | **Chỗ người cần xem** | Báo cáo giữa chừng, diff cuối cùng, hoạt động khi chạy thực tế | Không biết đã có gì được đưa vào mà vẫn để nguyên |
 
@@ -74,18 +74,20 @@ Cách viết thiết lập xem [08-hooks.md](08-hooks.md).
 ## Lưu ý
 
 - **Mức sử dụng**: chạy càng lâu thì càng tốn hạn mức. Hãy chia mục tiêu thành từng phần nhỏ và nhất định phải quyết định điểm dừng（[19-plans.md](19-plans.md)）
-- **Nếu cách kiểm tra lỏng lẻo, agent sẽ đi tiếp mà chỉ giả vờ đã kiểm tra**. Hãy gắn `readonly: true` cho vai kiểm chứng, và cho vai đó phán định bằng điều kiện hoàn thành và hoạt động thực tế
+- **Nếu cách kiểm tra lỏng lẻo, agent sẽ đi tiếp mà chỉ giả vờ đã kiểm tra**. Hãy gắn `readonly: true` cho vai kiểm tra, và cho vai đó đánh giá bằng điều kiện hoàn thành
+- **Nếu để subagent chạy ứng dụng để kiểm tra mỗi lần, có khi subagent sẽ bị dừng lại**. Khi thử với một game, vai kiểm tra chạy game trên trình duyệt để đánh giá đã dừng lại mà không trả về kết quả đạt / không đạt. Hãy cho vai kiểm tra đọc code để đánh giá, còn việc chạy thử để kiểm tra thì để người làm ở bước cuối, như vậy sẽ ổn định hơn
+  > Đã kiểm tra trên máy thật（2026-09-27, lần thử buổi 6 của khóa thực hành）. Tài liệu chính thức không ghi.
 - **Người dùng là người kiểm tra cuối cùng**. Kể cả khi agent báo cáo “Tất cả đều đạt”, hãy tự chạy thử để kiểm tra
 
 ## Thực hành
 
 1. Chuẩn bị `tasks.md`（có điều kiện hoàn thành）cho một ứng dụng nhỏ（`/task-breakdown` ở [07-skills.md](07-skills.md)）
-2. Tạo subagent vai kiểm chứng（[14-subagents.md](14-subagents.md)）
+2. Tạo subagent vai review（[14-subagents.md](14-subagents.md)）
 3. Gửi nội dung sau
 
 ```text
 /goal Hãy hoàn thành lần lượt toàn bộ task trong tasks.md, từ trên xuống.
-Mỗi khi xong 1 task, dùng subagent verifier để kiểm tra điều kiện hoàn thành; nếu không đạt thì sửa rồi mới sang task tiếp theo.
+Mỗi khi xong 1 task, hãy cho subagent reviewer review xem code đã thỏa điều kiện hoàn thành chưa; nếu không đạt thì sửa rồi mới sang task tiếp theo.
 Nếu cùng một task không đạt 3 lần thì dừng lại và hỏi tôi.
 ```
 
