@@ -327,11 +327,11 @@ Make sure QA can **say out loud** “what to open → where to press → what ha
 
 > The authoritative explanation of these terms: [the “Terms” section of `20-git.md`](../fundamentals/20-git.md)
 
-#### ［Slide］Column — when you want to fix the look just a little（Design Mode）
+#### ［Slide］Column — when you want to fix the look just a little（point at an element）
 
 Use it **only when the one action is hard to see**（a button is too small, text overlaps）.
 
-With it open in the built-in browser, press `Ctrl+Shift+D`（Mac: `Cmd+Shift+D`）→ select the place to fix with `Shift` + drag → pass it to the chat with `Ctrl+L`（Mac: `Cmd+L`）.
+Open it in the built-in browser, press the **Select Element** button, click the place to fix, and say what to change in the chat. **Design Mode** is only in the Agents Window's browser.
 
 **This also goes in through a branch and a PR.** No exceptions.
 

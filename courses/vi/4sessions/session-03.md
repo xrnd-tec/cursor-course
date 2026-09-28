@@ -842,17 +842,16 @@ Nội dung chỉ gồm đúng 4 dòng sau. Đừng thêm gì khác.
 
 **Đạt tới mục 3 là đủ. Mục 4 là phần thử sức**（mục tiêu 4 của hôm nay）.
 
-#### ［Slide］Góc tham khảo — Dành cho học viên hoàn thành sớm（Design Mode）
+#### ［Slide］Góc tham khảo — Dành cho học viên hoàn thành sớm（chọn phần tử để sửa）
 
 **Khi muốn sửa giao diện, có cách “chỉ trực tiếp” thay vì giải thích bằng lời.**
 
-Trong lúc đang mở game của mình trong trình duyệt tích hợp, nhấn **`Ctrl+Shift+D`**（Mac là `Cmd+Shift+D`）.
+Mở game của mình trong browser tích hợp, rồi dùng nút trên màn hình.
 
-| Thao tác | Phím |
+| Màn hình | Cách làm |
 |------|------|
-| Bật / tắt Design Mode | `Ctrl+Shift+D`（Mac là `Cmd+Shift+D`） |
-| Chọn vùng | `Shift` + kéo chuột |
-| Đưa phần tử đã chọn vào chat | `Ctrl+L`（Mac là `Cmd+L`） |
+| IDE view（màn hình của lớp） | Bấm nút **Select Element** của browser tích hợp, rồi nhấp vào phần tử muốn sửa để chọn. Sau đó, nói nội dung muốn sửa trong chat |
+| Agents Window | Bấm nút **Design Mode** của browser. **Design Mode chỉ có trong browser của Agents Window** |
 
 **Code của phần tử đã chọn và quan hệ với các phần tử xung quanh** được chuyển cùng lúc cho Agent. Cách này nhanh hơn và ít sai hơn so với việc giải thích bằng lời “khoảng cách giữa các lá bài quá hẹp”.
 

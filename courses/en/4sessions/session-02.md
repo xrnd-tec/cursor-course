@@ -604,17 +604,16 @@ Add (the feature you want, in a few words).
 
 Reopen the game in the browser and check whether the added feature works.
 
-#### ［Slide］Column: fixing the look with Design Mode
+#### ［Slide］Column: fixing the look by pointing at an element
 
 **When you want to fix the look, instead of describing it in words, you can select elements on the screen and pass them to the AI.**
 
-With your game open in the built-in browser, press **`Ctrl+Shift+D`**（Mac: `Cmd+Shift+D`）.
+Open your game in the built-in browser, then use the buttons on screen.
 
-| Action | Keys |
-|--------|------|
-| Turn Design Mode on and off | `Ctrl+Shift+D`（Mac: `Cmd+Shift+D`） |
-| Select an area | Drag while holding `Shift` |
-| Add the selected elements to the chat | `Ctrl+L`（Mac: `Cmd+L`） |
+| Screen | How |
+|--------|-----|
+| IDE view（the class screen） | Press the **Select Element** button in the built-in browser and click the element you want to change. Then say what to change in the chat |
+| Agents Window | Press the **Design Mode** button in the browser. **Design Mode is only in the Agents Window's browser** |
 
 > **This is a column, so you don't have to try it.**
 >

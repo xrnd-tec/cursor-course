@@ -604,17 +604,16 @@ Thêm (chức năng muốn thêm, nói ngắn gọn) vào.
 
 Mở lại game trên browser, kiểm tra xem chức năng vừa thêm có chạy không.
 
-#### ［Slide］Tham khảo thêm: Sửa giao diện bằng Design Mode
+#### ［Slide］Tham khảo thêm: Chọn phần tử trên màn hình để sửa giao diện
 
 **Khi muốn sửa giao diện, có một cách là chọn phần tử trên màn hình để chỉ cho AI, thay vì mô tả bằng lời.**
 
-Khi đang mở game của mình trong browser tích hợp, nhấn **`Ctrl+Shift+D`**（Mac là `Cmd+Shift+D`）.
+Mở game của mình trong browser tích hợp, rồi dùng nút trên màn hình.
 
-| Thao tác | Phím |
+| Màn hình | Cách làm |
 |------|------|
-| Bật / tắt Design Mode | `Ctrl+Shift+D`（Mac là `Cmd+Shift+D`） |
-| Chọn vùng | Giữ `Shift` và kéo chuột |
-| Đưa phần tử đã chọn vào chat | `Ctrl+L`（Mac là `Cmd+L`） |
+| IDE view（màn hình của lớp） | Bấm nút **Select Element** của browser tích hợp, rồi nhấp vào phần tử muốn sửa để chọn. Sau đó, nói nội dung muốn sửa trong chat |
+| Agents Window | Bấm nút **Design Mode** của browser. **Design Mode chỉ có trong browser của Agents Window** |
 
 > **Đây là phần tham khảo thêm, không thử cũng được.**
 >

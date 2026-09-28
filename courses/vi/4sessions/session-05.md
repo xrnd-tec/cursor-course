@@ -327,11 +327,11 @@ QA chuẩn bị để **nói được bằng lời** “mở cái gì → bấm 
 
 > Nguồn chính của phần giải thích thuật ngữ: [phần thuật ngữ trong `20-git.md`](../fundamentals/20-git.md)
 
-#### ［Slide］Tham khảo thêm: Sửa giao diện một chút（Design Mode）
+#### ［Slide］Tham khảo thêm: Sửa giao diện một chút（chọn phần tử）
 
 **Chỉ dùng khi thao tác trình bày khó nhìn（nút quá nhỏ, chữ bị chồng lên nhau）.**
 
-Khi đang mở trang bằng trình duyệt tích hợp, nhấn `Ctrl+Shift+D`（Mac là `Cmd+Shift+D`）→ giữ `Shift` và kéo chuột để chọn chỗ muốn sửa → nhấn `Ctrl+L`（Mac là `Cmd+L`）để đưa vào chat.
+Mở trang bằng trình duyệt tích hợp, bấm nút **Select Element**, nhấp vào chỗ muốn sửa để chọn, rồi nói nội dung muốn sửa trong chat. **Design Mode** chỉ có trong browser của Agents Window.
 
 **Sửa bằng cách này cũng phải tạo branch và đưa vào bằng PR.** Không có ngoại lệ.
 
