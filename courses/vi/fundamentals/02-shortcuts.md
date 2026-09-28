@@ -27,7 +27,7 @@ Chỉ với bấy nhiêu đây là đã lo được 80% việc hằng ngày. Thi
 | Dừng đang sinh | `Ctrl+Shift+Backspace` | `Cmd+Shift+Backspace` |
 | Command palette | `Ctrl+Shift+P` | `Cmd+Shift+P` |
 | Gửi vượt hàng đợi | `Ctrl+Enter` | `Cmd+Enter`（`Enter` sẽ xếp vào lượt sau） |
-| Bật / tắt Design Mode | `Ctrl+Shift+D` | `Cmd+Shift+D`（khi đang mở trình duyệt） |
+| Bật / tắt Design Mode | `Ctrl+Shift+D` | `Cmd+Shift+D`（chỉ trong trình duyệt của Agents Window. Ở IDE view thì dùng nút Select Element） |
 | Chat mới | （nút New Chat trên panel / tùy thiết lập） | như bên trái |
 | Từ chối gợi ý | `Esc` hoặc cứ gõ tiếp | như bên trái |
 | Đổi sidebar Agent sang trái / phải | `Ctrl+E` | `Cmd+E` |

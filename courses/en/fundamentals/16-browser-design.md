@@ -72,7 +72,10 @@ On Teams / Enterprise, an administrator can restrict which domains may be opened
 
 ## Design Mode
 
-While the browser is showing, toggle it with **`Ctrl+Shift+D`**（Mac: `Cmd+Shift+D`）. It's the mode for **pointing at the screen instead of describing the UI in words**.
+> **Design Mode is only in the Agents Window's browser.** The built-in browser in the IDE view has a **Select Element** button instead, which lets you pick an element and pass it to the chat. Both can also be used from buttons on screen.
+> Reference: [Design mode in classic view](https://forum.cursor.com/t/design-mode-in-classic-not-agent-view/164806)（Cursor staff answer, July 2026）
+
+In the Agents Window's browser, toggle it with **`Ctrl+Shift+D`**（Mac: `Cmd+Shift+D`）. It's the mode for **pointing at the screen instead of describing the UI in words**.
 
 | Action | Key |
 |--------|-----|
@@ -115,7 +118,7 @@ If there are errors in the console, tell me those too.
 Don't fix anything yet.
 ```
 
-4. Press `Ctrl+Shift+D` for Design Mode, select one element and ask for a fix
+4. Select one element and ask for a fix（in the IDE view use the **Select Element** button; in the Agents Window's browser use **Design Mode**）
 5. Read the diff before you Keep（pointing at the screen doesn't change the checking steps）
 
 Reference: [Browser](https://cursor.com/docs/agent/tools/browser) · [Design Mode](https://cursor.com/docs/agent/design-mode) · [Cursor 3.0](https://cursor.com/changelog/3-0)

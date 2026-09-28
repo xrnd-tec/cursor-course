@@ -72,7 +72,10 @@ Với Teams / Enterprise, quản trị viên giới hạn được những domai
 
 ## Design Mode
 
-Khi đang xem trình duyệt, bấm **`Ctrl+Shift+D`**（Mac là `Cmd+Shift+D`）để bật. Đây là mode để **chỉ thẳng vào màn hình thay vì mô tả UI bằng lời**.
+> **Design Mode chỉ có trong trình duyệt của Agents Window.** Trình duyệt tích hợp ở IDE view thì thay vào đó có nút **Select Element** để chọn phần tử và đưa vào chat. Cả hai đều dùng được bằng nút trên màn hình.
+> Tham khảo: [Design mode in classic view](https://forum.cursor.com/t/design-mode-in-classic-not-agent-view/164806)（trả lời của nhân viên Cursor, tháng 7/2026）
+
+Khi đang xem trình duyệt của Agents Window, bấm **`Ctrl+Shift+D`**（Mac là `Cmd+Shift+D`）để bật. Đây là mode để **chỉ thẳng vào màn hình thay vì mô tả UI bằng lời**.
 
 | Thao tác | Phím |
 |----------|------|
@@ -115,7 +118,7 @@ Console có lỗi thì cho tôi biết luôn.
 Chưa sửa gì cả.
 ```
 
-4. Bấm `Ctrl+Shift+D` để vào Design Mode, chọn một phần tử rồi nhờ sửa
+4. Chọn một phần tử rồi nhờ sửa（ở IDE view thì dùng nút **Select Element**, ở trình duyệt của Agents Window thì dùng **Design Mode**）
 5. Đọc diff xong mới Keep（chỉ từ màn hình thì các bước kiểm tra vẫn y nguyên）
 
 Tham khảo: [Browser](https://cursor.com/docs/agent/tools/browser) · [Design Mode](https://cursor.com/docs/agent/design-mode) · [Cursor 3.0](https://cursor.com/changelog/3-0)

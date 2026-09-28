@@ -27,7 +27,7 @@ These alone cover about 80% of daily work. Your setup may differ — if a key do
 | Stop generating | `Ctrl+Shift+Backspace` | `Cmd+Shift+Backspace` |
 | Command palette | `Ctrl+Shift+P` | `Cmd+Shift+P` |
 | Send ahead of the queue | `Ctrl+Enter` | `Cmd+Enter`（`Enter` queues it for the next turn） |
-| Toggle Design Mode | `Ctrl+Shift+D` | `Cmd+Shift+D`（while the browser is showing） |
+| Toggle Design Mode | `Ctrl+Shift+D` | `Cmd+Shift+D`（Agents Window's browser only; in the IDE view use the Select Element button） |
 | New chat | （the New Chat button on the panel / depends on your setup） | same as left |
 | Reject a suggestion | `Esc`, or just keep typing | same as left |
 | Move the Agent sidebar left / right | `Ctrl+E` | `Cmd+E` |

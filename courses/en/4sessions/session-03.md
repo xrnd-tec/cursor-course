@@ -839,17 +839,16 @@ The contents are only the four lines below. Don't add anything else.
 
 **Getting to the third one is plenty. The fourth is a stretch**（today's goal 4）.
 
-#### ［Slide］Column — for anyone who finished early（Design Mode）
+#### ［Slide］Column — for anyone who finished early（point at an element）
 
 **If you want to fix the look, there's a way to “point” instead of describing it in words.**
 
-With your game open in the built-in browser, press **`Ctrl+Shift+D`**（Mac: `Cmd+Shift+D`）.
+Open your game in the built-in browser, then use the buttons on screen.
 
-| Action | Keys |
-|--------|------|
-| Toggle Design Mode | `Ctrl+Shift+D`（Mac: `Cmd+Shift+D`） |
-| Select an area | `Shift` + drag |
-| Add the selected elements to the chat | `Ctrl+L`（Mac: `Cmd+L`） |
+| Screen | How |
+|--------|-----|
+| IDE view（the class screen） | Press the **Select Element** button in the built-in browser and click the element you want to change. Then say what to change in the chat |
+| Agents Window | Press the **Design Mode** button in the browser. **Design Mode is only in the Agents Window's browser** |
 
 **The code of the selected elements, and how they relate to what's around them,** are passed to the Agent together. It's faster than explaining “the cards are too close together” in words, and there are fewer mistakes.
 
