@@ -84,10 +84,10 @@ Phần giải thích được trích từ [`courses/vi/fundamentals/`](../fundam
 
 | Chương | fundamentals được trích |
 |--------|-------------------------|
-| Chương 1 | [`19-plans`](../fundamentals/19-plans.md)（tham khảo thêm: mức sử dụng） |
+| Chương 1 | [`19-plans`](../fundamentals/19-plans.md)（góc mở rộng: mức sử dụng） |
 | Chương 2 | [`01-modes`](../fundamentals/01-modes.md)（model và Auto, ôn lại buổi 1） · [`16-browser-design`](../fundamentals/16-browser-design.md)（browser tích hợp） |
 | Chương 4 | [`03-context`](../fundamentals/03-context.md)（dùng `@` để chỉ định đối tượng, ôn lại buổi 1） |
-| Chương 5 | [`16-browser-design`](../fundamentals/16-browser-design.md)（tham khảo thêm: Design Mode） |
+| Chương 5 | [`16-browser-design`](../fundamentals/16-browser-design.md)（góc mở rộng: Design Mode） |
 
 > **Câu chữ của các yêu cầu bổ sung（8 yêu cầu）ở chương 4 được đưa lên slide.**
 > Giảng viên giải thích trong vai khách hàng, nhưng **học viên làm theo câu chữ trên slide**. Giảng viên không diễn đạt lại tại chỗ.
@@ -222,7 +222,7 @@ Nếu học viên hỏi “Cách nào mới đúng?”, hãy trả lời rằng 
 
 ### Mạch của chương
 
-1. 1-1 Truyền đạt mục tiêu hôm nay（tham khảo thêm: mức sử dụng）
+1. 1-1 Truyền đạt mục tiêu hôm nay（góc mở rộng: mức sử dụng）
 
 ### 1-1 Truyền đạt mục tiêu hôm nay
 
@@ -257,7 +257,7 @@ Giảng viên nói những điều sau.
 
 Để ôn lại buổi trước, chỉ nhắc lại một câu về các bước Ask → Agent → diff → Keep.
 
-#### ［Slide］Tham khảo thêm: Về mức sử dụng
+#### ［Slide］Góc mở rộng: Về mức sử dụng
 
 **Hôm nay sẽ dùng Agent nhiều lần, nên giảng viên nói trước về mức sử dụng trong 30 giây.**
 
@@ -604,7 +604,7 @@ Thêm (chức năng muốn thêm, nói ngắn gọn) vào.
 
 Mở lại game trên browser, kiểm tra xem chức năng vừa thêm có chạy không.
 
-#### ［Slide］Tham khảo thêm: Chọn phần tử trên màn hình để sửa giao diện
+#### ［Slide］Góc mở rộng: Chọn phần tử trên màn hình để sửa giao diện
 
 **Khi muốn sửa giao diện, có một cách là chọn phần tử trên màn hình để chỉ cho AI, thay vì mô tả bằng lời.**
 
@@ -615,7 +615,7 @@ Mở game của mình trong browser tích hợp, rồi dùng nút trên màn hì
 | IDE view（màn hình của lớp） | Bấm nút **Select Element** của browser tích hợp, rồi nhấp vào phần tử muốn sửa để chọn. Sau đó, nói nội dung muốn sửa trong chat |
 | Agents Window | Bấm nút **Design Mode** của browser. **Design Mode chỉ có trong browser của Agents Window** |
 
-> **Đây là phần tham khảo thêm, không thử cũng được.**
+> **Đây là phần mở rộng, không thử cũng được.**
 >
 > Chi tiết hơn: [`16-browser-design.md`](../fundamentals/16-browser-design.md)
 

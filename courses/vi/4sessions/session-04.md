@@ -291,7 +291,7 @@ Hãy **bắt đầu bằng cách trích nguyên văn** câu cuối của buổi 
 1. **Người tạo PR không tự merge PR của mình.** Một người khác đọc và Approve rồi mới merge
 2. **Không commit thẳng vào `main`.** Luôn tạo branch làm việc trước khi thay đổi
 
-#### ［Slide］Góc giải thích — Thuật ngữ cơ bản của GitHub
+#### ［Slide］Góc mở rộng — Thuật ngữ cơ bản của GitHub
 
 **Vì đây là lần đầu dùng GitHub nên các thuật ngữ sử dụng từ hôm nay được giải thích trước.** Học viên không cần nhớ cơ chế chi tiết.
 
@@ -484,7 +484,7 @@ Repository của nhóm được tạo từ **template** do giảng viên chuẩn
 
 > Chi tiết hơn: [`20-git.md`](../fundamentals/20-git.md) · [`07-skills.md`](../fundamentals/07-skills.md)
 
-#### ［Slide］Góc giải thích — Thuật ngữ khi tạo repository
+#### ［Slide］Góc mở rộng — Thuật ngữ khi tạo repository
 
 | Từ | Nghĩa | Tình huống dùng hôm nay |
 |---|---|---|
@@ -581,7 +581,7 @@ Học viên chưa đăng nhập `gh` thì chạy `gh auth login` trong terminal�
 
 ### 4-1 Luồng làm PR, giảng viên làm mẫu（giải thích）
 
-#### ［Slide］Góc giải thích — Thuật ngữ khi chia sẻ thay đổi
+#### ［Slide］Góc mở rộng — Thuật ngữ khi chia sẻ thay đổi
 
 | Từ | Nghĩa | Tên trên màn hình |
 |---|---|---|
@@ -820,7 +820,7 @@ Giống chương 4. Source Control → ＋（**3 file**） → ✨ → Commit �
 
 **Sau khi mọi người đã đọc**, 1 người Approve rồi merge. Sau đó **mọi người cập nhật main**（bước ⑥ của chương 4）.
 
-#### ［Slide］Góc giải thích — Thuật ngữ về Issue
+#### ［Slide］Góc mở rộng — Thuật ngữ về Issue
 
 | Từ | Nghĩa |
 |---|---|
