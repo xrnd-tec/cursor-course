@@ -23,7 +23,7 @@ Material for people who have **used Cursor a few times** and want to lock down *
 | [`courses/vi/`](courses/vi/) | Tài liệu khóa học（tiếng Việt） |
 | [`courses/en/`](courses/en/) | Course material（English） |
 | [`practice/`](practice/) | Sample code you edit by hand（English, shared by both languages） |
-| [`slides/`](slides/) | Class slides as PDF（sessions 1–2 · Vietnamese / English / Japanese） |
+| [`slides/`](slides/) | Class slides as PDF（Vietnamese: sessions 1–6 · English / Japanese: sessions 1–2） |
 | [`.cursor/skills/`](.cursor/skills/) | Skills used from session 3（English） |
 
 `practice/` and `.cursor/skills/` are kept in **English only**: both language tracks point at the same files, so there is a single source of truth for the code you edit.
