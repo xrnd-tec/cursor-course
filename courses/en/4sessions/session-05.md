@@ -135,6 +135,15 @@ Cursor hands-on course　Session 5 / 5　·　90 minutes
 （date）
 ```
 
+#### ［Slide］Before we start（everyone, at 0:00）
+
+Before the lesson starts, everyone does these two things.
+
+- [ ] Open your team repository in Cursor
+- [ ] Switch to `main` and press **Sync Changes** to get the latest
+
+> If your team merged PRs after the last session, `main` has moved on. Update it before we start.
+
 #### ［Slide］Recap of last session（30 seconds）
 
 ```

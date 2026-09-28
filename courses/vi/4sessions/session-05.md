@@ -135,6 +135,15 @@ Khóa thực hành Cursor　Buổi 5 / 5　·　90 phút
 （ngày）
 ```
 
+#### ［Slide］Trước khi bắt đầu（0:00 cả lớp cùng làm）
+
+Trước khi vào bài, cả lớp cùng làm 2 việc sau.
+
+- [ ] Mở repository của nhóm bằng Cursor
+- [ ] Chuyển sang `main` rồi bấm **Sync Changes** để cập nhật mới nhất
+
+> Nhóm nào đã có PR được merge sau buổi trước thì `main` đã có thay đổi mới. Hãy cập nhật rồi mới bắt đầu.
+
 #### ［Slide］Ôn lại buổi trước（30 giây）
 
 ```

@@ -154,6 +154,15 @@ Cursor hands-on course　Session 3 / 5　·　90 minutes
 （date）
 ```
 
+#### ［Slide］Before we start（everyone, at 0:00）
+
+Before the lesson starts, everyone does these two things. **Today's Skills arrive with `git pull`.**
+
+- [ ] Open `cursor-course/` and run `git pull`
+- [ ] You can see `.cursor/skills/requirements/` and `.cursor/skills/task-breakdown/` in the sidebar
+
+> If you can't see the Skills, run `git pull` again. Without them, you can't go past chapter 2.
+
 #### ［Slide］Looking back at last session（30 seconds）
 
 > **Vibe coding lets you build fast, but you can't build exactly what you intend.**
