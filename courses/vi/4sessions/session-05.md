@@ -67,7 +67,7 @@ Cách trình bày giống buổi 3 và buổi 4（`N-M` = bước M của chươ
 
 | Chương | fundamentals được trích |
 |--------|-------------------------|
-| Chương 2 | [`20-git`](../fundamentals/20-git.md)（cập nhật main, conflict） · [`16-browser-design`](../fundamentals/16-browser-design.md)（tham khảo thêm: Design Mode） |
+| Chương 2 | [`20-git`](../fundamentals/20-git.md)（cập nhật main, conflict） · [`16-browser-design`](../fundamentals/16-browser-design.md)（góc mở rộng: Design Mode） |
 | Chương 3 | [`20-git`](../fundamentals/20-git.md) |
 
 **Hôm nay không dạy chức năng mới của Cursor.** Đây là buổi sử dụng hết các cách làm đã học từ buổi 1 đến buổi 4.
@@ -162,7 +162,7 @@ Người khác kiểm tra trên màn hình rồi Approve → merge（Issue tự 
 2. **Dừng merge lúc 1:00.** Sau thời điểm đó, không thay đổi main nữa
 3. **Vẫn trình bày dù ứng dụng không chạy.** Trình bày “nhóm đã định làm gì” và “gặp khó khăn ở đâu” cũng là một bài trình bày đầy đủ
 
-#### ［Slide］Tham khảo thêm: Ôn lại thuật ngữ buổi 4
+#### ［Slide］Góc mở rộng: Ôn lại thuật ngữ buổi 4
 
 **Đây là các thuật ngữ được dùng lần đầu ở buổi 4.** Hôm nay vẫn tiếp tục dùng các thuật ngữ này.
 
@@ -316,7 +316,7 @@ Khi có PR được merge, chuyển sang `main` → Sync Changes → mở trên 
 
 QA chuẩn bị để **nói được bằng lời** “mở cái gì → bấm vào đâu → điều gì xảy ra”.
 
-#### ［Slide］Tham khảo thêm: Thuật ngữ khi huỷ thay đổi（Revert）
+#### ［Slide］Góc mở rộng: Thuật ngữ khi huỷ thay đổi（Revert）
 
 | Thuật ngữ | Nghĩa |
 |---|---|
@@ -327,7 +327,7 @@ QA chuẩn bị để **nói được bằng lời** “mở cái gì → bấm 
 
 > Nguồn chính của phần giải thích thuật ngữ: [phần thuật ngữ trong `20-git.md`](../fundamentals/20-git.md)
 
-#### ［Slide］Tham khảo thêm: Sửa giao diện một chút（chọn phần tử）
+#### ［Slide］Góc mở rộng: Sửa giao diện một chút（chọn phần tử）
 
 **Chỉ dùng khi thao tác trình bày khó nhìn（nút quá nhỏ, chữ bị chồng lên nhau）.**
 

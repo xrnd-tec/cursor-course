@@ -81,7 +81,7 @@ Phần giải thích được trích từ [`courses/vi/fundamentals/`](../fundam
 | Chương 2 | [`07-skills`](../fundamentals/07-skills.md) · [`05-prompting`](../fundamentals/05-prompting.md) |
 | Chương 3 | [`05-prompting`](../fundamentals/05-prompting.md) |
 | Chương 4 | [`06-rules`](../fundamentals/06-rules.md)（**trong buổi này, học viên thực sự viết 1 rule**） |
-| Chương 5 | [`16-browser-design`](../fundamentals/16-browser-design.md)（góc tham khảo: Design Mode） |
+| Chương 5 | [`16-browser-design`](../fundamentals/16-browser-design.md)（góc mở rộng: Design Mode） |
 
 
 > **Có 1 yêu cầu bổ sung**（chương 2）. **Câu chữ của yêu cầu được đưa lên slide.**
@@ -237,7 +237,7 @@ Cùng gửi 3 dòng giống nhau, nhưng 4 người đã làm ra 4 trò lật h�
 > “Buổi trước, chúng ta đã làm trò lật hình bằng câu ‘làm cho ngon nha’. **4 người đã làm ra 4 trò khác nhau.**
 > Hôm nay là poker. **Đây là game có nhiều điều cần quyết định hơn rất nhiều.** Với câu ‘làm cho ngon nha’ thì không làm ra được đúng poker mình muốn. Chúng ta sẽ viết yêu cầu trước.”
 
-#### ［Slide］Góc tham khảo — Luật chơi poker
+#### ［Slide］Góc mở rộng — Luật chơi poker
 
 Học viên không biết luật chơi poker cũng không sao. Ở chương 2, giảng viên sẽ cho xem bảng “thứ tự mạnh yếu của các bộ bài”.
 
@@ -842,7 +842,7 @@ Nội dung chỉ gồm đúng 4 dòng sau. Đừng thêm gì khác.
 
 **Đạt tới mục 3 là đủ. Mục 4 là phần thử sức**（mục tiêu 4 của hôm nay）.
 
-#### ［Slide］Góc tham khảo — Dành cho học viên hoàn thành sớm（chọn phần tử để sửa）
+#### ［Slide］Góc mở rộng — Dành cho học viên hoàn thành sớm（chọn phần tử để sửa）
 
 **Khi muốn sửa giao diện, có cách “chỉ trực tiếp” thay vì giải thích bằng lời.**
 
@@ -859,7 +859,7 @@ Mở game của mình trong browser tích hợp, rồi dùng nút trên màn hì
 |---|---|
 | Chỉnh giao diện, khoảng cách, bố cục, những chỗ nhấn vào mà không phản hồi | **Logic tính toán như xét bộ bài.** Phần này nhờ Agent như bình thường |
 
-> **Đây là phần tham khảo thêm.** Không làm cũng được. **Vì đây là thay đổi giao diện không có trong yêu cầu, nên không phải nội dung chính của hôm nay.** Nếu muốn thay đổi, hãy thêm 1 dòng vào yêu cầu trước rồi mới nhờ AI.
+> **Đây là phần mở rộng.** Không làm cũng được. **Vì đây là thay đổi giao diện không có trong yêu cầu, nên không phải nội dung chính của hôm nay.** Nếu muốn thay đổi, hãy thêm 1 dòng vào yêu cầu trước rồi mới nhờ AI.
 >
 > Tìm hiểu thêm: [`16-browser-design.md`](../fundamentals/16-browser-design.md)
 
