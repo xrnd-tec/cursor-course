@@ -1,9 +1,12 @@
 ---
 name: task-breakdown
-description: Use when you need to split requirements into tasks small enough to hand to an Agent one at a time, each with its own definition of done. Does not write code.
+description: Use only when the user explicitly invokes `/task-breakdown` or explicitly asks to split requirements into tasks. Do not use for ordinary build requests. Splits requirements into tasks small enough to hand to an Agent one at a time, each with its own definition of done. Does not write code.
 ---
 
 # Split it into tasks
+
+Use this skill only when the user explicitly calls `/task-breakdown` or explicitly asks to split requirements into tasks.
+If the user simply asks you to build something, do not use this skill; build normally.
 
 A skill for taking requirements and cutting them into tasks **small enough to hand over one per request**.
 

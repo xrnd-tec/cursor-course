@@ -1,0 +1,17 @@
+---
+description: How to work through session06/tasks.md with the implementer and reviewer subagents (session 6).
+alwaysApply: true
+---
+
+# Harness for session06/
+
+Apply this only when you are working on `session06/tasks.md`. For anything else, ignore it.
+
+- Take the tasks in `session06/tasks.md` from the top, one at a time.
+- For each task, let the `implementer` subagent build it, then let the `reviewer` subagent review it.
+- Before you call a subagent, write one line: who you are calling and what you hand over.
+- When the reviewer returns, write one line: the task number, PASS or FAIL, and what you do next.
+- If it FAILS, pass the reasons to the implementer and let it fix only those reasons.
+- If the same task FAILS 3 times, stop and ask the user.
+- Do not stop after each task. This overrides "stop after each task" in other rules while you work on `session06/tasks.md`.
+- When every task has PASSED, report a table: each task and how many reviews it took to pass.

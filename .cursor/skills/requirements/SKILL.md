@@ -1,9 +1,12 @@
 ---
 name: requirements
-description: Use when you need to interview someone about what they want to build and turn it into a requirements document covering four sections — what it does, the screen, the interactions, and what is out of scope. Does not write code.
+description: Use only when the user explicitly invokes `/requirements` or explicitly asks to write a requirements document. Do not use for ordinary build requests. Interviews someone about what they want to build and turns it into a requirements document covering four sections — what it does, the screen, the interactions, and what is out of scope. Does not write code.
 ---
 
 # Write the requirements
+
+Use this skill only when the user explicitly calls `/requirements` or explicitly asks for a requirements document.
+If the user simply asks you to build something, do not use this skill; build normally.
 
 A skill for interviewing someone about what they want to build and turning it into **requirements in a shape you can hand to an AI**.
 

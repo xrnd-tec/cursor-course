@@ -791,7 +791,7 @@ The result is saved to **`docs/requirements.md`**.
 /task-breakdown
 ```
 
-**At least as many as there are people, and no more than five**, is enough. The result is saved to **`docs/tasks.md`**. **Assignments aren't written here**（they're decided after turning the tasks into Issues in ⑦）.
+**At least as many as there are people, and no more than ten**, is enough. With about two per person, anyone who finishes early can pick up the next Issue. The result is saved to **`docs/tasks.md`**. **Assignments aren't written here**（they're decided after turning the tasks into Issues in ⑦）.
 
 **④ PM: write “the one action you'll show”（1 minute）**
 
@@ -869,7 +869,7 @@ Everyone checks in the **Issues** tab of the GitHub repository that as many Issu
 | The requirements were saved somewhere other than `docs/` | Ask the Agent: “move it to `docs/requirements.md`” |
 | The discussion never ends | Cut it off at 8 minutes. **Put anything undecided into “out of scope”** |
 | Fewer tasks than people | Ask `/task-breakdown` again: “split it again so that ○ people can share it” |
-| Six or more tasks | Add more to “out of scope” and split again. The same as last session |
+| Eleven or more tasks | Add more to “out of scope” and split again |
 | The Agent started writing the requirements on `main` | They forgot to create a branch. **If the fifth line of the rule is working, it stops**（if it stopped, introduce it to the whole room） |
 | It takes a long time for everyone to read | Tell them it's enough to read just the “out of scope” section |
 | Issues can't be created（no `gh`, or not signed in） | Create them on the GitHub web page. **Issues → New issue**, with the title “Task 1: (task name)” and the task's contents and done-when condition pasted into the body. Don't set an Assignee |
@@ -1104,7 +1104,7 @@ The instructor prepares it on the organisation's GitHub. Tick **Settings → Gen
 | Skill | Contents |
 |---|---|
 | `requirements` | The same as session 3. **Only the save location is `docs/requirements.md`** |
-| `task-breakdown` | Based on session 3, with **split into at least as many tasks as people** and **don't write assignments** added |
+| `task-breakdown` | Based on session 3, with **split into at least as many tasks as people (about two each, ten at most)** and **don't write assignments** added |
 | `create-issues` | **New.** Turns the tasks in `docs/tasks.md` on `main` into Issues one by one. Doesn't create an Issue if one with the same title exists. Doesn't set Assignees |
 | `start-task` | **New.** Lists the Issues with no Assignee → makes you the Assignee of the one you choose（stops if it already has one）→ creates a branch from the latest `main` → shows what to build and the done-when condition. Doesn't write code |
 

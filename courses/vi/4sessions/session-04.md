@@ -791,7 +791,7 @@ Kết quả được lưu vào **`docs/requirements.md`**.
 /task-breakdown
 ```
 
-Chỉ cần chia được **ít nhất bằng số người và tối đa 5 task** là đủ. Kết quả được lưu vào **`docs/tasks.md`**. **Không ghi người phụ trách ở đây**（sẽ quyết định sau khi chuyển thành Issue ở bước ⑦）.
+Chỉ cần chia được **ít nhất bằng số người và tối đa 10 task** là đủ. Nếu mỗi người có khoảng 2 task, ai làm xong sớm có thể nhận Issue tiếp theo. Kết quả được lưu vào **`docs/tasks.md`**. **Không ghi người phụ trách ở đây**（sẽ quyết định sau khi chuyển thành Issue ở bước ⑦）.
 
 **④ PM: Ghi “thao tác trình bày”（1 phút）**
 
@@ -869,7 +869,7 @@ Cả nhóm mở tab **Issues** của repository trên GitHub và kiểm tra đã
 | Yêu cầu được lưu ở nơi khác ngoài `docs/` | Nhờ Agent: “Chuyển sang `docs/requirements.md`” |
 | Thảo luận mãi không xong | Dừng ở phút thứ 8. **Những gì chưa quyết được thì đưa vào mục “không làm gì”** |
 | Số task ít hơn số người | Nhờ `/task-breakdown` chia lại: “Chia lại để ○ người có thể phân chia” |
-| Có từ 6 task trở lên | Thêm nội dung vào mục “không làm gì” rồi chia lại. Giống buổi trước |
+| Có từ 11 task trở lên | Thêm nội dung vào mục “không làm gì” rồi chia lại |
 | Agent bắt đầu viết yêu cầu trên `main` | Quên tạo branch. **Nếu dòng thứ 5 của rule có hiệu lực thì Agent sẽ dừng**（nếu dừng thì giới thiệu cho cả lớp） |
 | Mọi người đọc mất nhiều thời gian | Cho biết chỉ cần đọc phần “không làm gì” |
 | Không tạo được Issue（không có `gh` / chưa đăng nhập） | Tạo trên màn hình GitHub. Ở **Issues → New issue**, đặt tiêu đề là “Task 1: （tên task）”, dán nội dung làm gì và điều kiện hoàn thành vào phần mô tả. Không gán người phụ trách |
@@ -1104,7 +1104,7 @@ Giảng viên chuẩn bị trên GitHub của tổ chức. Hãy bật **Settings
 | Skill | Nội dung |
 |---|---|
 | `requirements` | Giống buổi 3. **Chỉ khác nơi lưu là `docs/requirements.md`** |
-| `task-breakdown` | Dựa trên buổi 3, thêm quy định **chia ít nhất bằng số người** và **không ghi người phụ trách** |
+| `task-breakdown` | Dựa trên buổi 3, thêm quy định **chia ít nhất bằng số người (mỗi người khoảng 2 task, tối đa 10 task)** và **không ghi người phụ trách** |
 | `create-issues` | **Mới.** Tạo từng task trong `docs/tasks.md` trên `main` thành Issue. Nếu đã có Issue cùng tiêu đề thì không tạo. Không gán người phụ trách |
 | `start-task` | **Mới.** Liệt kê các Issue chưa có người phụ trách → gán mình làm người phụ trách của Issue đã chọn（nếu đã có người phụ trách thì dừng）→ tạo branch từ `main` mới nhất → hiện “làm gì” và điều kiện hoàn thành. Không viết code |
 
