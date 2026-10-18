@@ -525,6 +525,8 @@ Gửi 2 yêu cầu đã chọn, giữ nguyên câu chữ trên slide.
 Đừng đổi các hành vi khác.
 ```
 
+Khi có kết quả, **đừng nhấn Keep vội.** Ở bước ③ tiếp theo, bạn sẽ đếm số dòng trong diff. Nếu nhấn Keep trước, diff sẽ biến mất và bạn không đếm được số dòng nữa.
+
 **③ Ghi lại kết quả（4 phút）**
 
 | Nội dung ghi lại | Câu trả lời |
@@ -541,7 +543,7 @@ Dòng cuối là câu hỏi quan trọng nhất hôm nay. Bản ghi này sẽ đ
 
 **Ở ①**: nhiều học viên làm tiếp mà không mở chat mới, nên hãy nhắc học viên. Nếu không mở chat mới, sẽ không tạo được tình huống “giao việc cho người không biết quá trình trước đó”, và học viên sẽ không trải nghiệm được nội dung của chương này.
 
-**Ngay sau khi gửi ②**: dặn học viên khi có kết quả thì kiểm tra xem yêu cầu đã được thực hiện đúng chưa. Không giải thích cách kiểm tra.
+**Ngay sau khi gửi ②**: dặn học viên khi có kết quả thì kiểm tra xem yêu cầu đã được thực hiện đúng chưa. Không giải thích cách kiểm tra. Nhắc lại một lần nữa: **đừng nhấn Keep cho đến khi đếm xong số dòng ở ③**.
 
 **Sau ③**: phần giải thích những điều nhận ra trong chương này sẽ được thực hiện ở chương 7. Ở đây chỉ xác nhận rằng tất cả học viên đã ghi dòng cuối（có xác định được yêu cầu đã được thực hiện đúng hay chưa）.
 

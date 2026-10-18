@@ -30,7 +30,7 @@ Beyond “don't read it”, you can also set “don't do it”. Even at the defa
 
 ### Run Modes
 
-How far the Agent's tool calls may go without asking is set under **Settings → Agents → Approvals & Execution**. The first-time steps are in “Settings worth getting right first” in [00-map.md](00-map.md).
+How far the Agent's tool calls may go without asking is set under **Settings → Agents → Execution and Approvals**（called Approvals & Execution in the official documentation）. The first-time steps are in “Settings worth getting right first” in [00-map.md](00-map.md).
 
 Cursor recommends **Auto-review** for most users.
 

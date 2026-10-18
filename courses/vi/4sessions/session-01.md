@@ -227,7 +227,7 @@ Mở được trang rồi thì **cả lớp chỉnh cho giống nhau đúng ph�
 **Bắt buộc — cho Cursor khởi động vào IDE**
 
 1. Vào **Cursor Settings → General → Startup → Window Restoration**, chọn **Last Used Windows**
-2. Xác nhận đang ở **IDE view**（code nằm giữa）. Nếu đang là Agents Window thì `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ **Open Editor Window**
+2. Xác nhận đang ở **IDE view**（code nằm giữa）. Nếu đang là Agents Window thì `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ **Open IDE**
 3. Tập thói quen **thoát Cursor từ IDE view** để lần sau cũng mở vào IDE（hôm nay không cần thoát）
 
 > Ở giao diện cũ, hướng dẫn là tắt **Agents → Open Agents Window on startup**. Chi tiết xem [`00-map.md`](../fundamentals/00-map.md).
@@ -239,7 +239,7 @@ Ngoài ra, phần riêng của Cursor như **Agent / Cursor Settings thì tính 
 
 **Đọc thêm — Auto-review（tùy chọn, hợp với làm cá nhân）**
 
-Đặt Run Mode ở **Settings → Agents → Approvals & Execution** thành **Auto-review** thì lệnh có vẻ an toàn sẽ tự chạy, còn lệnh rủi ro cao mới hỏi. Bài hôm nay không bắt buộc phải bật.
+Đặt Run Mode ở **Settings → Agents → Execution and Approvals** thành **Auto-review** thì lệnh có vẻ an toàn sẽ tự chạy, còn lệnh rủi ro cao mới hỏi. Bài hôm nay không bắt buộc phải bật.
 
 > Bản gốc: mục “Những thiết lập nên chỉnh trước” trong [`00-map.md`](../fundamentals/00-map.md)
 
@@ -285,7 +285,7 @@ Nói “thấy đúng màn hình này là được” rồi đi tiếp.
 | Chưa git clone | `Ctrl+Shift+P` → `Git: Clone` → dán URL. Quen terminal thì chạy `git clone https://github.com/xrnd-tec/cursor-course.git` |
 | **Trang lên rồi nhưng số vẫn là “…”** | Nhiều khả năng đang mở bằng trình duyệt của hệ điều hành. Mở lại bằng trình duyệt tích hợp của Cursor |
 | Trang trắng trơn | Tải lại trình duyệt tích hợp. Vẫn không được thì xin xem màn hình người bên cạnh |
-| Khởi động ra màn hình lạ（Agents Window） | ① `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ **Open Editor Window** ② Trong Cursor Settings tìm `startup` → đặt **Window Restoration** thành **Last Used Windows** ③ Thoát Cursor **từ IDE view**. Chi tiết xem [`00-map.md`](../fundamentals/00-map.md) |
+| Khởi động ra màn hình lạ（Agents Window） | ① `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ **Open IDE** ② Trong Cursor Settings tìm `startup` → đặt **Window Restoration** thành **Last Used Windows**（thiết lập có các lựa chọn `all`・`folders`・`one` là một thiết lập khác của VS Code）③ Thoát Cursor **từ IDE view**. Chi tiết xem [`00-map.md`](../fundamentals/00-map.md) |
 | Menu vẫn tiếng Anh | Đúng như vậy. Tiếng Việt không có trong ngôn ngữ hiển thị chính thức, và phần riêng của Cursor thì vẫn là tiếng Anh. Không phải lỗi cấu hình |
 
 ---
@@ -829,7 +829,7 @@ Nếu còn nhiều người chưa xong bài A thì không giới thiệu bài B 
 
 Thứ không muốn cho đọc thì loại ra bằng `.cursorignore`. Nhưng ưu tiên cao nhất vẫn là **ngay từ đầu đừng đặt thông tin bí mật vào repo**.
 
-Làm cá nhân thì nên dùng **Auto-review**（mục đọc thêm ở chương 1）. Ở **Settings → Agents → Approvals & Execution**.
+Làm cá nhân thì nên dùng **Auto-review**（mục đọc thêm ở chương 1）. Ở **Settings → Agents → Execution and Approvals**.
 
 > Chi tiết hơn: [`13-safety-ignore.md`](../fundamentals/13-safety-ignore.md) · [`00-map.md`](../fundamentals/00-map.md)（những thiết lập nên chỉnh trước）
 

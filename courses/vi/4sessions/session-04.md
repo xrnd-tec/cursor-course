@@ -200,11 +200,14 @@ Khóa thực hành Cursor　Buổi 4 / 5　・　90 phút
 
 #### ［Slide］Trước khi bắt đầu（0:00 cả lớp cùng làm）
 
-Trước khi vào bài, cả lớp cùng kiểm tra 3 việc sau.
+Trước khi vào bài, cả lớp cùng kiểm tra 4 việc sau.
 
 - [ ] Xem bảng chia nhóm để biết mình ở nhóm nào và số nhóm
 - [ ] Đăng nhập được GitHub（chương 3 sẽ tạo repository）
+- [ ] **Dùng được GitHub CLI.** Chạy `gh auth status` trong terminal（`` Ctrl+` ``）và thấy `Logged in`
 - [ ] Hôm nay không làm việc bên trong `cursor-course/`
+
+> Ai chưa có `gh` thì cài ngay lúc này từ https://cli.github.com/, khởi động lại Cursor rồi chạy `gh auth login`. Lệnh này cần cho `/start-task` và cho việc tạo PR, Issue. Dù đã nhắc từ hôm trước, vẫn có người chưa cài. **Ở bước kiểm tra lúc 0:00, cho cả lớp cài xong rồi mới bắt đầu.**
 
 > Repository của nhóm sẽ được clone ra bên ngoài `cursor-course/`（chương 3）. Nếu tạo bên trong `cursor-course/` thì phần Source Control sẽ bị rối.
 
@@ -501,7 +504,7 @@ Repository của nhóm được tạo từ **template** do giảng viên chuẩn
 
 **① Tech Lead: Tạo repository từ template（3 phút）**
 
-1. Mở **URL của template** được dán trong chat
+1. Mở **URL của template**: `https://github.com/xrnd-tec/cursor-team-template`（cũng có trên slide）
 2. **Use this template** → **Create a new repository**
 3. Tên repository là **`team-<số nhóm>-<tên ứng dụng>`**（ví dụ: `team-3-quiz`）
 4. Để Private cũng được → **Create repository**
@@ -693,8 +696,8 @@ Học viên đã cài `gh` thì nhờ Agent（prompt ở trên）. Học viên c
 
 **⑥ Mọi người: Cập nhật main（3 phút）**
 
-1. Tên branch ở góc dưới bên trái → chọn `main`
-2. Nhấn **Sync Changes** trong Source Control（hoặc `Ctrl+Shift+P` → `Git: Pull`）
+1. Nhấn vào tên branch hiện ở góc dưới bên trái màn hình → chọn `main` trong danh sách hiện ra ở phía trên. Kiểm tra góc dưới bên trái đã đổi thành `main`
+2. Mở biểu tượng Source Control ở bên trái, nhấn **Sync Changes**. Nếu không thấy nút này thì dùng `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ `Git: Pull`
 3. Kiểm tra **`.cursor/rules/team.mdc` đã hiện ra** ở thanh bên
 
 #### Giảng viên nói gì

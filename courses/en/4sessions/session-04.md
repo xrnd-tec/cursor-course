@@ -200,11 +200,14 @@ Cursor hands-on course　Session 4 / 5　·　90 minutes
 
 #### ［Slide］Before we start（everyone, at 0:00）
 
-Before the lesson starts, everyone checks these three things.
+Before the lesson starts, everyone checks these four things.
 
 - [ ] Find your team and team number on the team list
 - [ ] You can sign in to GitHub（you create a repository in chapter 3）
+- [ ] **GitHub CLI works.** Run `gh auth status` in the terminal（`` Ctrl+` ``）and see `Logged in`
 - [ ] Today you don't work inside `cursor-course/`
+
+> Anyone without `gh` installs it now from https://cli.github.com/, restarts Cursor, then runs `gh auth login`. It's needed for `/start-task` and for creating PRs and Issues. Even if you asked them the day before, some people won't have it. **Get everyone ready at the 0:00 check before you start.**
 
 > The team repository is cloned outside `cursor-course/`（chapter 3）. If you create it inside `cursor-course/`, the Source Control view gets confusing.
 
@@ -501,7 +504,7 @@ The team repository is created from a **template** the instructor has prepared. 
 
 **① Tech Lead: create the repository from the template（3 minutes）**
 
-1. Open the **template URL** pasted in the chat
+1. Open the **template URL**: `https://github.com/xrnd-tec/cursor-team-template`（also on the slide）
 2. **Use this template** → **Create a new repository**
 3. Name it **`team-<team number>-<app name>`**（e.g. `team-3-quiz`）
 4. Private is fine → **Create repository**
@@ -693,8 +696,8 @@ If `gh` is installed, ask the Agent（the prompt above）. If not, on the GitHub
 
 **⑥ Everyone: update main（3 minutes）**
 
-1. The branch name at the bottom left → choose `main`
-2. **Sync Changes** in Source Control（or `Ctrl+Shift+P` → `Git: Pull`）
+1. Click the branch name shown at the bottom left of the screen → choose `main` from the list that appears at the top. Check that the bottom left now shows `main`
+2. Open the Source Control icon on the left and press **Sync Changes**. If the button isn't there, use `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ `Git: Pull`
 3. Check that **`.cursor/rules/team.mdc` has appeared** in the sidebar
 
 #### What the instructor says

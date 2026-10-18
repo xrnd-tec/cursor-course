@@ -94,7 +94,7 @@ Cách trình bày giống buổi 2 đến buổi 5. Số của tiêu đề là *
 | **Repository** | Mở `cursor-course/` rồi chạy `git pull`. Kiểm tra xem đã có Skill của buổi 3（`requirements`, `task-breakdown`）, subagent của buổi 6（`lessons/06/agents/reviewer.md`, `implementer.md`）và rule（`lessons/06/rules/harness.mdc`）chưa |
 | **Rule** | Sao chép rule `harness.mdc` của buổi 6 vào `.cursor/rules/` ở phần “Trước khi bắt đầu”. Không có `task-cycle.mdc` của buổi 3 cũng được（`harness.mdc` sẽ ghi đè bằng quy định “không dừng lại sau mỗi task”） |
 | **Thư mục làm việc** | `session06/`. Ở chương 2, mỗi học viên tự tạo |
-| **Run Mode** | Đặt thành **Auto-review**（Settings → Agents → Approvals & Execution）. Nếu mỗi lần xác nhận đều dừng lại, vòng lặp ở chương 4 sẽ không tiến triển |
+| **Run Mode** | Đặt thành **Auto-review**（Settings → Agents → Execution and Approvals）. Nếu mỗi lần xác nhận đều dừng lại, vòng lặp ở chương 4 sẽ không tiến triển |
 | **`/goal`** | Nhấn `/` ở ô nhập và kiểm tra xem có hiện `goal` không. Ai không thấy thì thử trong chat mới |
 | **Agent Review** | Kiểm tra panel Source Control có hiện **Agent Review**（Find Issues）không |
 | **Lượng sử dụng** | Chương 4 chạy lâu, nên sẽ dùng nhiều lượng sử dụng. Giảng viên kiểm tra trước phần còn lại của gói |
@@ -152,7 +152,7 @@ Sao chép agents/reviewer.md và agents/implementer.md trong lessons/06/ vào .c
 và rules/harness.mdc vào .cursor/rules/. Không thay đổi nội dung.
 ```
 
-- [ ] Đặt Run Mode thành **Auto-review**（Settings → Agents → Approvals & Execution）
+- [ ] Đặt Run Mode thành **Auto-review**（Settings → Agents → Execution and Approvals）
 - [ ] Nhấn `/` ở ô nhập thì thấy `goal`（ai không thấy thì thử trong chat mới）
 
 > Ai không có `lessons/06/` thì chạy `git pull` lại. Nếu nơi sao chép không phải `.cursor/` ngay dưới `cursor-course/` thì nhờ Agent chuyển sang. **Nếu bước này chưa xong thì vòng lặp ở chương 4 sẽ không chạy.**

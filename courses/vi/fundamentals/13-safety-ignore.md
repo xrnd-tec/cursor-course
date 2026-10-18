@@ -30,7 +30,7 @@ Không chỉ “không cho đọc”, bạn còn đặt được “**không cho
 
 ### Run Modes
 
-Việc Agent gọi tool được tự đi tới đâu mà không hỏi thì quyết ở **Settings → Agents → Approvals & Execution**. Các bước chỉnh lần đầu nằm ở mục “Những thiết lập nên chỉnh trước” trong [00-map.md](00-map.md).
+Việc Agent gọi tool được tự đi tới đâu mà không hỏi thì quyết ở **Settings → Agents → Execution and Approvals**（tài liệu chính thức ghi là Approvals & Execution）. Các bước chỉnh lần đầu nằm ở mục “Những thiết lập nên chỉnh trước” trong [00-map.md](00-map.md).
 
 Phía Cursor khuyến nghị **Auto-review** cho phần đông người dùng.
 

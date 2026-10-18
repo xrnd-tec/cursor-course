@@ -42,7 +42,13 @@ Bản Cursor gần đây đôi khi mở thẳng vào **Agents Window**. Đó là
 1. Vào **Cursor Settings → General → Startup → Window Restoration**, chọn **Last Used Windows**
 2. Chuyển về **IDE view** rồi mới thoát Cursor. Nếu thoát trong lúc Agents Window đang ở trước, lần sau nó lại mở Agents Window
 
-Trong Settings, gõ tìm `startup` là thấy.
+Trong Settings, gõ tìm `startup` là thấy. Có 3 lựa chọn: **Default / Agent Window / Last Used Windows**.
+
+Muốn quay lại IDE view từ Agents Window thì chạy `Ctrl+Shift+P`（Mac là `Cmd+Shift+P`）→ **Open IDE**.
+
+> **Đừng nhầm với thiết lập của VS Code.** Màn hình thiết lập kế thừa từ VS Code（Preferences: Open Settings）cũng có một thiết lập gần giống tên là **Window: Restore Windows**, với các lựa chọn như `all`・`folders`・`one`. Đó là một thiết lập khác. Window Restoration nằm trong **Cursor Settings**.
+> Đã kiểm tra trên máy thật（Cursor 3.24.12, 18/10/2026）: Window Restoration nằm ở General → Startup trong Cursor Settings.
+> Tham khảo: [Agents Window](https://cursor.com/docs/agent/agents-window)（Switch Back to the IDE）
 
 Ở giao diện cũ, hướng dẫn là tắt **Cursor Settings → Agents → Open Agents Window on startup**. Từ bản 3.12 mục này đã đổi cả chỗ lẫn tên. Và tắt đi cũng không có nghĩa là “luôn luôn vào IDE”, mà là **khôi phục lại cửa sổ dùng lần cuối**. Vì vậy việc thoát từ IDE view mới là thứ có tác dụng.
 
@@ -67,7 +73,9 @@ Nếu không thấy `Configure Display Language` hiện ra, hãy chuyển về *
 
 ### Mức phê duyệt（Run Mode）
 
-Quyết định xem khi Agent gọi terminal hay MCP thì được tự đi tới đâu mà không cần hỏi. Ở **Settings → Agents → Approvals & Execution**.
+Quyết định xem khi Agent gọi terminal hay MCP thì được tự đi tới đâu mà không cần hỏi. Chọn ở mục **Run Mode** trong **Settings → Agents → Execution and Approvals**.
+
+> Trên máy thật（Cursor 3.24.12, 18/10/2026）, tiêu đề trên màn hình là **Execution and Approvals**. Tài liệu chính thức thì ghi là **Approvals & Execution**（tính đến tháng 10/2026）.
 
 | Run Mode | Hành vi | Hợp với ai |
 |----------|---------|------------|
