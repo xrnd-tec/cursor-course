@@ -525,6 +525,8 @@ Send the two requests you chose, using the wording on the slide as it is.
 Don't change any other behaviour.
 ```
 
+When the result comes back, **don't press Keep yet.** In ③ you count the lines in the diff. If you press Keep first, the diff disappears and you can't count the lines.
+
 **③ Record the results（4 minutes）**
 
 | What to record | Answer |
@@ -541,7 +543,7 @@ The last row is the most important question of the day. This record is used in t
 
 **At ①**: many people carry on without opening a new chat, so remind them. Without a new chat, the situation of “handing work to someone who doesn't know the history” doesn't happen, and they don't get the experience this chapter is for.
 
-**Right after ② is sent**: tell them to check whether the requests went in correctly when the result comes back. Don't explain how to check.
+**Right after ② is sent**: tell them to check whether the requests went in correctly when the result comes back. Don't explain how to check. Remind them once more: **don't press Keep until they've counted the lines in ③**.
 
 **After ③**: what they noticed in this chapter is explained in chapter 7. Here, only confirm that everyone has written the last row（could they judge whether it went in correctly）.
 

@@ -42,7 +42,13 @@ Recent builds sometimes open straight into the **Agents Window**. That's a produ
 1. Go to **Cursor Settings → General → Startup → Window Restoration** and choose **Last Used Windows**
 2. Switch to the **IDE view** before you quit Cursor. Quit with the Agents Window in front and it will open there again next time
 
-Search Settings for `startup` and you'll find it.
+Search Settings for `startup` and you'll find it. There are three choices: **Default / Agent Window / Last Used Windows**.
+
+To go back to the IDE view from the Agents Window, run `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ **Open IDE**.
+
+> **Don't confuse it with the VS Code setting.** The settings screen inherited from VS Code（Preferences: Open Settings）also has a similar setting called **Window: Restore Windows**, with choices such as `all`・`folders`・`one`. That is a different setting. Window Restoration is in **Cursor Settings**.
+> Checked on a real machine（Cursor 3.24.12, 2026-10-18）: Window Restoration is under General → Startup in Cursor Settings.
+> Reference: [Agents Window](https://cursor.com/docs/agent/agents-window)（Switch Back to the IDE）
 
 In the older UI, the advice was to turn off **Cursor Settings → Agents → Open Agents Window on startup**. As of 3.12 that item moved and was renamed. And turning it off doesn't mean “always the IDE” — it means **restore the window you used last**. Which is why quitting from the IDE view is the part that matters.
 
@@ -65,7 +71,9 @@ If `Configure Display Language` doesn't appear, switch back to the **IDE view** 
 
 ### The approval level（Run Mode）
 
-This decides how far the Agent may go without asking when it calls the terminal or MCP. Under **Settings → Agents → Approvals & Execution**.
+This decides how far the Agent may go without asking when it calls the terminal or MCP. You choose it with **Run Mode** under **Settings → Agents → Execution and Approvals**.
+
+> On a real machine（Cursor 3.24.12, 2026-10-18）, the heading on screen is **Execution and Approvals**. The official documentation calls it **Approvals & Execution**（as of October 2026）.
 
 | Run Mode | Behaviour | Who it suits |
 |----------|-----------|--------------|

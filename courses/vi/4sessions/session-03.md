@@ -272,6 +272,8 @@ Vị trí đặt và cách gọi Skill đã được quy định sẵn.
 
 **2 Skill dùng hôm nay đã có sẵn trong repo**（đã được tải về bằng `git pull`）.
 
+**Phần làm của bạn đặt ở chỗ khác với Skill.** Yêu cầu（`requirements.md`）, task（`tasks.md`）và code poker đặt trong **`session02-spec/`** tạo ở thư mục gốc của repo. Không đặt trong `.cursor/skills/`. Nếu không chỉ định gì, 2 Skill sẽ lưu vào `session02-spec/`.
+
 | Cách gọi | Phạm vi có tác dụng | Thao tác |
 |--------|----------|------|
 | **Tự động** | Khi Agent đánh giá là “nên dùng” | Không cần làm gì. Agent quyết định dựa trên description |
@@ -598,6 +600,8 @@ Kết quả chia được lưu vào **`session02-spec/tasks.md`**. **Từ đây 
 > AI sẽ bắt đầu sửa cả những chỗ không được nhờ. **1 task = 1 chat.**
 
 Khi nhận kết quả, thực hiện theo thứ tự **đọc diff → kiểm tra đã thỏa điều kiện hoàn thành chưa → nhấn Keep**. Sau đó chuyển sang task tiếp theo.
+
+> **Lúc này, game sẽ đơn giản hơn bản poker trong phần demo của giảng viên ở chương 2（bản làm bằng “làm cho ngon nha”）. Như vậy là đúng.** Vì chỉ làm những gì đã viết trong yêu cầu. Hãy kiểm tra xem “có chức năng nào không được nhờ mà vẫn bị thêm vào không”.
 
 **④ Dừng lại ở đây**
 

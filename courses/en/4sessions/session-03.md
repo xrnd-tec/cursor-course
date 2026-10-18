@@ -271,6 +271,8 @@ Where it lives and how you call it are fixed.
 
 **The two used today are already in the repository**（they came down with `git pull`）.
 
+**Keep your own work in a different place from the Skills.** The requirements（`requirements.md`）, the tasks（`tasks.md`）and the poker code go in **`session02-spec/`**, which you create at the root of the repository. Don't put them inside `.cursor/skills/`. If you don't say otherwise, the two Skills save to `session02-spec/`.
+
 | How to call it | Scope | Action |
 |----------------|-------|--------|
 | **Automatic** | When the Agent judges it should be used | Nothing. The description decides |
@@ -596,6 +598,8 @@ Don't change any other feature.
 > it starts changing things you didn't ask for. **One task = one chat.**
 
 When it comes back: **read the diff → check whether the done-when condition is met → Keep**. Then the next task.
+
+> **At this point, the game will be simpler than the instructor demo in chapter 2（the poker made with “make it nice”）. That is correct.** It only builds what the requirements say. Check that no feature you didn't ask for has been added.
 
 **④ Stop here**
 

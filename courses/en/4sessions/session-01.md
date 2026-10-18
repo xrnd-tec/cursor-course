@@ -227,7 +227,7 @@ Once the page is open, **the room aligns only the part of the screen we use toda
 **Required — start into the IDE**
 
 1. **Cursor Settings → General → Startup → Window Restoration** → **Last Used Windows**
-2. Confirm you're in the **IDE view**（code in the middle）. If it's the Agents Window: `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ **Open Editor Window**
+2. Confirm you're in the **IDE view**（code in the middle）. If it's the Agents Window: `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ **Open IDE**
 3. Get into the habit of quitting Cursor **from the IDE view**, so it opens there next time（no need to quit today）
 
 > In the older UI the advice was to turn off **Agents → Open Agents Window on startup**. Detail in [`00-map.md`](../fundamentals/00-map.md).
@@ -238,7 +238,7 @@ Cursor's interface is in **English**, and Cursor's own surfaces（Agent, Cursor 
 
 **Optional reading — Auto-review（optional, for individual work）**
 
-Set the Run Mode under **Settings → Agents → Approvals & Execution** to **Auto-review** and safe-looking commands run on their own, while risky ones still ask. Not required for today's exercises.
+Set the Run Mode under **Settings → Agents → Execution and Approvals** to **Auto-review** and safe-looking commands run on their own, while risky ones still ask. Not required for today's exercises.
 
 > Canonical: “Settings worth getting right first” in [`00-map.md`](../fundamentals/00-map.md)
 
@@ -284,7 +284,7 @@ Say “if you can see this screen you're good” and move on.
 | Haven't cloned | `Ctrl+Shift+P` → `Git: Clone` → paste the URL. Or in a terminal: `git clone https://github.com/xrnd-tec/cursor-course.git` |
 | **The page appeared but the numbers stay as “…”** | Probably opened in the operating system's browser. Reopen it in Cursor's built-in browser |
 | The page is blank | Reload the built-in browser. If that doesn't fix it, look at a neighbour's screen |
-| An unfamiliar screen on launch（Agents Window） | ① `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ **Open Editor Window** ② Search Cursor Settings for `startup` → set **Window Restoration** to **Last Used Windows** ③ Quit Cursor **from the IDE view**. Detail in [`00-map.md`](../fundamentals/00-map.md) |
+| An unfamiliar screen on launch（Agents Window） | ① `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）→ **Open IDE** ② Search Cursor Settings for `startup` → set **Window Restoration** to **Last Used Windows**（the setting with the choices `all`・`folders`・`one` is a different VS Code setting）③ Quit Cursor **from the IDE view**. Detail in [`00-map.md`](../fundamentals/00-map.md) |
 | The menus are in English | That's correct. Cursor's own surfaces stay English. Not a misconfiguration |
 
 ---
@@ -828,7 +828,7 @@ If lots of people haven't finished exercise A, don't introduce B and C.
 
 You can exclude what you don't want read with `.cursorignore`. But the highest priority is **not putting secrets in the repo in the first place**.
 
-For individual work, **Auto-review** is a good idea（the optional reading in chapter 1）. Under **Settings → Agents → Approvals & Execution**.
+For individual work, **Auto-review** is a good idea（the optional reading in chapter 1）. Under **Settings → Agents → Execution and Approvals**.
 
 > More detail: [`13-safety-ignore.md`](../fundamentals/13-safety-ignore.md) · [`00-map.md`](../fundamentals/00-map.md)（settings worth getting right first）
 
