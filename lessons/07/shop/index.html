@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stationery Shop</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 24px auto; padding: 0 16px; color: #222; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 16px; margin-top: 28px; }
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 6px 4px; border-bottom: 1px solid #ddd; }
+    .num { text-align: right; }
+    input[type="number"] { width: 56px; }
+    dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; }
+    dt { color: #555; }
+    dd { margin: 0; text-align: right; }
+    .total { font-weight: bold; font-size: 18px; }
+    .note { color: #555; font-size: 14px; min-height: 1.2em; }
+    .error { color: #b00020; font-size: 14px; min-height: 1.2em; }
+  </style>
+</head>
+<body>
+  <h1>Stationery Shop</h1>
+
+  <h2>Products</h2>
+  <table>
+    <tbody id="products"></tbody>
+  </table>
+  <p id="error" class="error"></p>
+
+  <h2>Coupon</h2>
+  <form id="couponForm">
+    <input id="couponInput" placeholder="Coupon code" aria-label="Coupon code">
+    <button type="submit">Apply</button>
+  </form>
+  <p id="couponMessage" class="note"></p>
+
+  <h2>Receipt</h2>
+  <dl>
+    <dt>Subtotal</dt><dd id="subtotal"></dd>
+    <dt>Discount</dt><dd id="discount"></dd>
+    <dt>Shipping</dt><dd id="shipping"></dd>
+    <dt class="total">Total</dt><dd id="total" class="total"></dd>
+  </dl>
+  <p id="shippingHint" class="note"></p>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
