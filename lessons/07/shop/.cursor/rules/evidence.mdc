@@ -1,0 +1,16 @@
+---
+description: How to report and record work in this project (session 7).
+alwaysApply: true
+---
+
+# Evidence and the work log
+
+- `docs/spec.md` is the source of truth. When the code or a test disagrees with it, the spec wins. Never edit `docs/spec.md`.
+- When you say tests pass, a bug is fixed, or something works, show the exact command you ran in this chat and the lines of its output that prove it. If you did not run it, write "not checked".
+- Mark how strong each claim is, at the end of the sentence:
+  - `[said]` you only say so
+  - `[line]` you point at a file and function
+  - `[traced]` you followed the steps through the code
+  - `[ran]` you ran code or a test and show the output
+- Change only the files the current skill allows. If you need to change anything else, stop and say why.
+- When a skill finishes, add one row to the table in `work-log.md`: step, what you decided or did, why, evidence (a test name, a file and function, a command, or a commit), and the result. Add rows only. Never edit or delete earlier rows.
