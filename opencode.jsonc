@@ -1,0 +1,11 @@
+// OpenCode の設定（補足講座 C）。Cursor では使いません。
+// 1. コマンドの実行とファイルの書き換えの前に、確認を出す
+// 2. Cursor のルール（.cursor/rules/）と Skill（.cursor/skills/）を読む
+{
+  "instructions": [".cursor/rules/*.mdc"],
+  "skills": [".cursor/skills"],
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "edit", "resource": "*", "effect": "ask" }
+  ]
+}
